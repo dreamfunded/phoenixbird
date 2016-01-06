@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // Styling for index.html.erb
 
-
+@import "colors";
 
 .subtitle {
 	font-size: 30px;
@@ -13,6 +13,7 @@
 	max-width: 100% !important;
 	position: relative;
 }
+
 .cover-image{
 	width: 100%;
 }
@@ -25,7 +26,6 @@
 }
 
 ////////------------- Front ----------------//////////
-
 .top {
 	background-color: white;
 }
@@ -304,7 +304,7 @@ h3 {
 
 .logos {
 	background-color: white;
-	height: 420px;
+	height: 550px;
 	margin: 50px 0;
 }
 
@@ -414,7 +414,7 @@ h3 {
 
 @media only screen
 and (min-device-width : 320px)
-and (max-device-width : 568px) {
+and (max-device-width : 1124px) {
 	.main-menu li{
 		visibility: hidden;
 	}

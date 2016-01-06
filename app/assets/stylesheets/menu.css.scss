@@ -122,9 +122,6 @@ button {
 	background-color: #ECECEC;
 }*/
 
-#nopadding {
-	padding: 0;
-}
 
 #left {
 	margin-left: 40px;
@@ -142,3 +139,27 @@ button {
 #last-menu-button{
 	width: 77px;
 }
+
+@media only screen
+and (min-width : 320px)
+and (max-width : 1164px) {
+	.main-menu li{
+		visibility: hidden;
+	}
+	#mobile-menu{
+		float: right !important;
+		visibility: visible !important;
+	}
+	#mobile-menu li{
+		visibility: visible;
+	}
+	#left{
+		visibility: visible;
+		position: absolute;
+	}
+
+	.sub-menu {
+		min-width: 200px;
+	}
+}
+
