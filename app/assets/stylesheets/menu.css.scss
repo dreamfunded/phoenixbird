@@ -16,7 +16,9 @@
 .main-menu {
 	display: inline;
 	clear: both;
+	padding: 0;
 }
+
 #mobile-menu {
 	float: left;
 	visibility: hidden;
@@ -124,7 +126,6 @@ button {
 
 
 #left {
-	margin-left: 40px;
 	float: left;
 	height: 52px;
 }

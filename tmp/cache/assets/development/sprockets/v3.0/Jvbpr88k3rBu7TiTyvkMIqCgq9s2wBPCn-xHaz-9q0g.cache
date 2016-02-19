@@ -1,0 +1,11 @@
+I"ó(function() {
+  $(window).load(function() {
+    $('.container').find('img').each(function() {
+      var imgClass;
+      imgClass = this.width / this.height > 1 ? 'wide' : 'tall';
+      $(this).addClass(imgClass);
+    });
+  });
+
+}).call(this);
+:ET

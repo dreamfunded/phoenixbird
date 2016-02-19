@@ -32,6 +32,8 @@
 
 .space-keeper {
 	min-height: 600px;
+	width: 100vw;
+	overflow: hidden;
 }
 
 .big-title {
@@ -306,6 +308,8 @@ h3 {
 	background-color: white;
 	height: 550px;
 	margin: 50px 0;
+	width: 100%;
+	overflow: hidden;
 }
 
 .logos-container {

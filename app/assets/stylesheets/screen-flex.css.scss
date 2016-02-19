@@ -3,6 +3,9 @@
 @media only screen
 and (min-width : 320px)
 and (max-width : 1124px) {
+
+	///// front //////
+
 	.big-title {
 		top: 250px;
 	}
@@ -27,6 +30,56 @@ and (max-width : 1124px) {
 	#newsletter-submit-button {
 		margin-top: 10px;
 	}
+
+	//// section 2 //////
+
+	.section2-wrap {
+		margin-top: -30px;
+	}
+
+	.section2 {
+		margin: 50px auto;
+		width: 100%;
+		height: 830px;
+	}
+
+	.section2-box {
+		float: none;
+		width: 99%; 
+		margin: 2% auto;
+		height: 260px;
+	}
+
+	.picture-right {
+		float: right;
+	}
+
+	.section2-right {
+		float: right;
+	}
+
+	.section2-left {
+		float: left;
+	}
+
+	.outer {
+		width: 30%;
+		display: inline;
+		margin-right: 30px;
+	}
+	.section2-words {
+		width: 50%;
+	}
+
+	.image2 {
+		max-width: 180px;
+		max-height: 180px;
+	}
+
+	.outer {
+		display: table;
+		margin-left: 30px;
+	}
 }
 
 //logos issues
@@ -36,9 +89,38 @@ and (max-width : 1200px) {
 
 }
 
-// section2 issues
+/// extra section2 issues
 @media only screen
 and (min-width : 320px)
-and (max-width : 1075px) {
+and (max-width : 625px) {
+	h2 {
+		font-size: 1.2em;
+	}
 
+	.seventeen {
+		font-size: 15px;
+	}
+
+	.image2 {
+		max-width: 150px;
+		max-height: 150px;
+	}
+}
+
+@media only screen
+and (min-width : 320px)
+and (max-width : 510px) {
+	.image2 {
+		display: none;
+	}
+}
+
+/// footer issues 
+
+@media only screen
+and (min-width : 320px)
+and (max-width : 1250px) {
+	.image4 {
+		margin-top: 10px;
+	}
 }
