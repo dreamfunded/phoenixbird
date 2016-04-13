@@ -5,7 +5,7 @@
 </head>
 
 <body>
-   <div class= "wrapper"><div class= "signup-size box">
+  <div class= "wrapper"><div class= "signup-size box">
 
       <div class="row">
         <div class="tab right-line darkblue nodec">
@@ -16,32 +16,83 @@
         </div>
       </div>
 
-      <div class= "signup-content">
-        <h4>Basic Information</h4>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <div class= "signup-content">
+      <h4>Basic Information</h4>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <%= f.text_field(:first_name, :placeholder => "First Name", :class => "input-box half") %>
+        <div class= "filler"></div>
+        <%= f.text_field(:last_name, :placeholder => "Last Name", :class => "input-box half scoot-left") %>
+        <%= f.text_field(:phone, :placeholder => "Phone", :class => "input-box") %><br>
+
+        <h4>Login Information</h4>
+
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, :placeholder => "Email", class: "input-box email-signup" %>
+        </div>
+
+          <%= f.password_field :password, :placeholder => "Password ", autocomplete: "off", :class => "input-box half little-margin" %>
+
+          <%= f.password_field :password_confirmation,  :placeholder => "Confirm Password", autocomplete: "off", :class => "input-box half scoot-left little-margin" %>
+
+          <span class='password-six-chars'>Password must be at least 6 characters</span>
+
+           <br>
+           <h4> Certify yourself as an investor </h4>
+
+           <!-- <div class = "check_box">
+             <input type="checkbox" name="net_worth" id="box1" onclick = "onOff()"> My net worth is over $1 million, excluding my home.<br>
+             <input type="checkbox" name="income" id="box3" onclick = "onOff()"> My income was $200k+ for the past two years.<br>
+             <input type="checkbox" name="investor" id="box4" onclick = "onOff()"> I invest from an accredited business, family office or VC.<br>
+             <input type="checkbox" name="international" id='box2'  onclick = "onOff()"> I am an international investor.<br>
+             <input type="checkbox" name="reg" id="box5" onclick = "onOff()"> I am not accredited, but may invest when the rules change.<br>
+          </div> -->
+          <section title=".squaredFour">
+              <!-- .squaredFour -->
+              <div class="squaredFour">
+                <input type="checkbox" value="None" id="box1" name="net_worth"  onclick = "onOff()" />
+                <label for="box1"></label>
+                My net worth is over $1 million, excluding my home.
+              </div>
+              <div class="squaredFour">
+                <input type="checkbox" value="None" id="box2" name="income"  onclick = "onOff()" />
+                <label for="box2"></label>
+                My income was $200k+ for the past two years.
+              </div>
+              <div class="squaredFour">
+                <input type="checkbox" value="None" id="box3" name="investor"  onclick = "onOff()" />
+                <label for="box3"></label>
+               I invest from an accredited business, family office or VC.
+              </div>
+              <div class="squaredFour">
+                <input type="checkbox" value="None" id="box4" name="international"  onclick = "onOff()" />
+                <label for="box4"></label>
+                 I am an international investor.
+              </div>
+              <div class="squaredFour">
+                <input type="checkbox" value="None" id="box5" name="reg"  onclick = "onOff()" />
+                <label for="box5~"></label>
+                 I am not accredited, but may invest when the rules change.
+              </div>
+              <!-- end .squaredFour -->
+          </section>
+
+          <br>
+          <div class= "centered">
+              <p class='check_box'>We will never sell or rent your personal information.</p>
+              <%= f.submit("Sign Up", :id => "submit-button", :disabled => true) %>
+              <div class='social-login-ions'>
+                  <%= link_to fa_icon("google 2x"), '/auth/google_oauth2', id: 'google-icon' %>
+                  <%= link_to fa_icon("linkedin 2x"), '/auth/linkedin', id: 'linkedin-icon'  %>
+              </div>
+          </div>
+      <% end %>
+
+    </div>
+
   </div>
+</body>
+</html>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
