@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415234134) do
+
+ActiveRecord::Schema.define(version: 20160412212046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,13 +36,21 @@ ActiveRecord::Schema.define(version: 20160415234134) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "auction_id"
+<<<<<<< HEAD
+=======
+    t.string   "bid_amount"
+    t.string   "counter_amount"
+>>>>>>> 19d46208b797689701dd0e16ec9c5b8cd7279e90
     t.boolean  "accepted"
     t.integer  "company_id"
     t.integer  "number_of_shares"
     t.integer  "user_id"
+<<<<<<< HEAD
     t.string   "status",           default: "pending"
     t.float    "bid_amount"
     t.integer  "counter_amount",   default: 0
+=======
+>>>>>>> 19d46208b797689701dd0e16ec9c5b8cd7279e90
   end
 
   create_table "ckeditor_assets", force: true do |t|

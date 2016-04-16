@@ -24,7 +24,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'async-rails'
 gem 'carrierwave'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '< 2.0'
 gem 'friendly_id'
@@ -41,6 +41,7 @@ gem 'activeadmin'
 gem 'infusionsoft'
 gem 'newrelic_rpm'
 gem 'docusign_rest'
+gem 'devise'
 
 
 gem 'will_paginate', '~> 3.0.5'
