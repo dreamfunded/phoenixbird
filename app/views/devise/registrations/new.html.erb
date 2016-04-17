@@ -17,6 +17,8 @@
       </div>
 
     <div class= "signup-content">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <h4>Basic Information</h4>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -52,27 +54,27 @@
           <section title=".squaredFour">
               <!-- .squaredFour -->
               <div class="squaredFour">
-                <input type="checkbox" value="None" id="box1" name="net_worth"  onclick = "onOff()" />
+                <input type="checkbox" value="2" id="box1" name="authority"  onclick = "onOff()" />
                 <label for="box1"></label>
                 My net worth is over $1 million, excluding my home.
               </div>
               <div class="squaredFour">
-                <input type="checkbox" value="None" id="box2" name="income"  onclick = "onOff()" />
+                <input type="checkbox" value="2" id="box2" name="authority"  onclick = "onOff()" />
                 <label for="box2"></label>
                 My income was $200k+ for the past two years.
               </div>
               <div class="squaredFour">
-                <input type="checkbox" value="None" id="box3" name="investor"  onclick = "onOff()" />
+                <input type="checkbox" value="2" id="box3" name="authority"  onclick = "onOff()" />
                 <label for="box3"></label>
                I invest from an accredited business, family office or VC.
               </div>
               <div class="squaredFour">
-                <input type="checkbox" value="None" id="box4" name="international"  onclick = "onOff()" />
+                <input type="checkbox" value="2" id="box4" name="authority"  onclick = "onOff()" />
                 <label for="box4"></label>
                  I am an international investor.
               </div>
               <div class="squaredFour">
-                <input type="checkbox" value="None" id="box5" name="reg"  onclick = "onOff()" />
+                <input type="checkbox" value="1" id="box5" name="authority"  onclick = "onOff()" />
                 <label for="box5~"></label>
                  I am not accredited, but may invest when the rules change.
               </div>

@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 
 	#Default site that shows all startups
 	def index
-		if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Basic]
+		if current_user == nil || current_user.authority < User.Authority[:Basic]
 			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 		end
 		@companies = Company.all.order(:position).where(hidden: false)
@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
 
 	def new
 		@company = Company.new
-		if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Founder]
+		if current_user == nil || current_user.authority < User.Authority[:Founder]
 			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 		end
 	end
@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
 			# path = File.join(directory, @file_name)
 			# File.open(path, "wb") { |f| f.write(uploaded_file.read) }
 
-			# @user_id = session[:current_user].login
+			# @user_id = current_user.login
 			# @name = params[:name]
 			# @description = params[:description][0]
 			# @goal = params[:goal]
@@ -74,7 +74,7 @@ class CompaniesController < ApplicationController
 
 	def edit
 		@companies = Company.all
-		if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Founder]
+		if current_user == nil || current_user.authority < User.Authority[:Founder]
 			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 		end
 	end
@@ -98,7 +98,7 @@ class CompaniesController < ApplicationController
 	def make_team
 		@founder = Founder.new
 		@companies = Company.all
-		if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Founder]
+		if current_user == nil || current_user.authority < User.Authority[:Founder]
 			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 		end
 	end
@@ -143,7 +143,7 @@ class CompaniesController < ApplicationController
 	def make_profile
 		@company = Company.find(params[:id])
 		@companies = Company.all
-		if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Founder]
+		if current_user == nil || current_user.authority < User.Authority[:Founder]
 			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 		end
 	end
@@ -182,7 +182,7 @@ class CompaniesController < ApplicationController
 			@members = @company.founders
 			@section = @company.sections.first
 
-			@bid = Bid.find_by(user_id: user_session.id, company_id: @id)
+			@bid = Bid.find_by(user_id: current_user.id, company_id: @id)
 			@bid = Bid.new if @bid == nil
 		else
 			redirect_to "/companies"
@@ -190,7 +190,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit_profile
-		if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Admin]
+		if current_user == nil || current_user.authority < User.Authority[:Admin]
 			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 		end
 		@company = Company.find(params[:id])
@@ -244,7 +244,7 @@ class CompaniesController < ApplicationController
     end
 
     def epay
-    	if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Basic]
+    	if current_user == nil || current_user.authority < User.Authority[:Basic]
 				redirect_to url_for(:controller => 'home', :action => 'unauthorized')
 			end
     end
@@ -254,7 +254,7 @@ class CompaniesController < ApplicationController
     end
 
     def submit_bid
-    	user = session[:current_user]
+    	user = current_user
     	investment = ProspectiveInvestment.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, phone: user.phone, shares_price: params[:shares_price], investment_amount: params[:investment_amount], company: params[:name], company_id: params[:id])
 			ContactMailer.prospective_investment_email(user.first_name, user.last_name, user.email, user.phone, investment.company, investment.investment_amount, investment.shares_price)
 			redirect_to '/companies'
@@ -262,7 +262,7 @@ class CompaniesController < ApplicationController
 
    private
    def verify
-   	user = User.find(session[:current_user])
+   	user = User.find(current_user)
    	if user.confirmed == false
    		redirect_to url_for(:controller => 'home', :action => 'unverified')
    	end

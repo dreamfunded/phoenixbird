@@ -36,9 +36,11 @@
 					<li id='mobile-menu'><button >Menu<span class="arrow">&#9660;</span></button>
 						<ul class='sub-menu white'>
 							<!-- <li><button onclick= "whyInv()">Why Invest</button></li> -->
-							<% if user_session != nil && user_session.authority >= authority[:Accredited] %>
-								<li><button onclick= "invest()">Invest</button></li>
-							<% elsif user_session == nil %>
+							<% if user_signed_in? %>
+								<% if current_user.authority >= authority[:Accredited] %>
+										<li><button onclick= "invest()">Invest</button></li>
+								<% end %>
+							<% elsif current_user == nil %>
 								<li><button onclick= "signUp()">Invest</button></li>
 							<% end %>
 							<li><button onclick="location.href='/dreamfunded-exchange';" >Sell Shares	</button></li>
@@ -49,11 +51,11 @@
 							<li><button onclick= "about()">About Us</button></li>
 							<li><button onclick= "faq()">FAQ</button></li>
 							<li><button onclick= "contact()">Contact Us</button></li>
-							<% if user_session == nil %>
+							<% if current_user == nil %>
 								<li><button onclick= "signIn()">Login</button></li>
 							<% else %>
-								<li><button onclick= "profile()" >Welcome <%= user_session.first_name.capitalize%> <span class="arrow"></span></button></li>
-								<li><button onclick= "signOut()" >Sign Out</button></li>
+								<li><button onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow"></span></button></li>
+								<li><%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete %></li>
 							<% end %>
 						</ul>
 					</li>
@@ -65,12 +67,12 @@
 						<ul class='sub-menu white'>
 							<!-- <li><button onclick= "whyInv()">Why Invest</button></li> -->
 
-							<% if user_session == nil %>
+							<% if current_user == nil %>
 								<li><button onclick= "login()">Login</button></li>
 								<li><button onclick= "signUp()">Sign Up</button></li>
 							<% else %>
-								<li><button onclick= "profile()" >Welcome <%= user_session.first_name.capitalize%> <span class="arrow"></span></button></li>
-								<li><button onclick= "signOut()" >Sign Out</button></li>
+								<li><button onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow"></span></button></li>
+								<li><%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete %></li>
 							<% end %>
 						</ul>
 					</li>
@@ -86,33 +88,33 @@
 					<li class='ipad-menu'><button onclick="location.href='/education';" >Education</button></li>
 					<li class='ipad-menu'><button onclick="location.href='/events';" >Events</button></li>
 					<li class='ipad-menu'><button onclick="location.href='/dreamfunded-exchange';" >Sell Shares	</button></li>
-					<% if user_session != nil && user_session.authority >= authority[:Accredited] %>
+					<% if current_user != nil && current_user.authority >= authority[:Accredited] %>
 						<li class='ipad-menu'><button onclick= "invest()">Invest</button></li>
-					<% elsif user_session == nil %>
+					<% elsif current_user == nil %>
 						<li class='ipad-menu'><button onclick= "signUp()">Invest</button></li>
 					<% end %>
 					<li class='ipad-menu'><button onclick= "how_it_works()">How It Works</button></li>
 					<!-- iPAD MENU END -->
 
 					<li id="last-menu-button"></li>
-					<% if user_session == nil %>
+					<% if current_user == nil %>
 						<li><button onclick= "window.location = '/users/sign_up';" id="sign-in-button">Sign Up</button></li>
 						<li><button onclick= "window.location='/users/sign_in'">Login</button></li>
 					<% else %>
-						<li><button onclick= "profile()" >Welcome <%= user_session.first_name.capitalize%> <span class="arrow">&#9660;</span></button>
+						<li><button onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow">&#9660;</span></button>
 							<ul class= "sub-menu">
-								<% if user_session.role == 'seller' %>
+								<% if current_user.role == 'seller' %>
 									<li><button onclick= "location.href='/shares';">My Shares</button></li>
 								<% else %>
 									<li><button onclick= "portfolio()">My Portfolio</button></li>
 								  <li><button onclick= "location.href='/bids'">Bids</button></li>
 								<% end %>
-								<% if user_session.authority != authority[:Admin] %>
-									<li><button onclick= "signOut()" >Sign Out</button></li>
+								<% if current_user.authority != authority[:Admin] %>
+									<li><%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete %></li>
 								<% else %>
 									<li><button onclick= "admin()">Admin Panel</button></li>
 									<li><button onclick="location.href='/admin/users';" >New Admin Panel</button></li>
-									<li><button onclick= "signOut()" >Sign Out</button></li>
+									<li><%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete %></li>
 								<% end %>
 							</ul>
 						</li>
@@ -127,7 +129,7 @@
 							<li><button onclick= "contact()">Contact Us</button></li>
 						</ul>
 					</li>
-					<%# if user_session != nil && user_session.authority > 2 %>
+					<%# if current_user != nil && current_user.authority > 2 %>
 						<!-- <li><button onclick= "funding()">Get Funded</button></li> -->
 					<%# end %>
 					<li><button onclick="location.href='/events';" >Events</button></li>
@@ -139,9 +141,9 @@
 					<li><button disabled= "true">Investments <span class="arrow">&#9660;</span></button>
 						<ul class= "sub-menu">
 							<li><button onclick= "dreamfunded_portfolio()">Portfolio</button></li>
-							<% if user_session != nil && user_session.authority >= authority[:Accredited] %>
+							<% if current_user != nil && current_user.authority >= authority[:Accredited] %>
 								<li><button onclick= "invest()">Invest</button></li>
-							<% elsif user_session == nil %>
+							<% elsif current_user == nil %>
 								<li><button onclick= "signUp()">Invest</button></li>
 							<% end %>
 						</ul>

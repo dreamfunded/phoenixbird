@@ -4,7 +4,7 @@
 				<div class= "big-title white ">
 					<h1 class= "remove-margin">Access to Invest in Pre-IPO Tech Companies</h1>
 					<%= link_to :logout, destroy_user_session_path, :method => :delete %>
-
+					<%= current_user%>
 					<div class= "top-space"><h3 class= "remove-margin">Sillicon Valley's 1st Private Tech Stock Market ~ Buy or Sell Private Shares</h3></div>
 					<div class= "top-space"><h3 class= "remove-margin"></h3></div>
 					<div class= "centered button-box">
@@ -156,8 +156,8 @@
 				</div>
 			</div>
 		</div> -->
-<% if user_session != nil %>
-	<% if user_session.confirmed == false %>
+<% if current_user != nil %>
+	<% if current_user.confirmed == false %>
 		<!-- ---------------------- -->
 		<a href="#dialog" class="modalLink">Verify Email Address</a>
 
@@ -170,7 +170,7 @@
 		    		</div>
 		        <h3>Verify Email Address</h3>
 		        <!-- <hr class='line-verify-modal'> -->
-		        <p class='verify-modal-text'>Thank you for joining DreamFunded. A verification email has been sent to <%= user_session.email %>. Please complete your signup by clicking the link in this email.</p>
+		        <p class='verify-modal-text'>Thank you for joining DreamFunded. A verification email has been sent to <%= current_user.email %>. Please complete your signup by clicking the link in this email.</p>
 		        <center>
 		        	<a href="#" class="close">Close</a>
 

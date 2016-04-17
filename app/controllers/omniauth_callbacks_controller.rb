@@ -17,7 +17,7 @@ class OmniauthCallbacksController < ApplicationController
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
       @user.update(confirmed: true)
-      session[:current_user] = @user
+      current_user = @user
       if @user.authority >= 2
         redirect_to root_path
       else

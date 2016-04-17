@@ -112,7 +112,7 @@
 						<div class= "team-band">
 							<% @members.each do |member| %>
 								<div class= "team-box">
-									<% if user_session != nil && user_session.authority == authority[:Admin] %>
+									<% if current_user != nil && current_user.authority == authority[:Admin] %>
 										<%= button_to "X", { action: 'remove_founder', id: member.id} , {:class => 'remove-button'} %>
 									<% end %>
 									<%= image_tag("companies/#{member.image_address}", :class => "image team-pic") %>

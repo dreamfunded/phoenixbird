@@ -70,7 +70,7 @@
                 Secondary Investment:  A Secondary Investment is an investment made into the stock of a company through a secondary source (not the company directly).  If you purchase shares of a private company from an early investor or employee in that company who had ownership before you, it is a secondary investment.  Secondary investments are traded and sold on secondary markets, like ours.</p> -->
 
             <% @posts.each do |post|%>
-              <% if user_session != nil && user_session.authority == authority[:Admin] %>
+              <% if current_user != nil && current_user.authority == authority[:Admin] %>
                 <%= button_to "Delete", {:controller => :posts,  :action => 'destroy', :id => post.id }, :method => :delete, class: 'float-rigth' %>
                 <%= link_to 'Edit', "/posts/#{post.id}/edit/basics", {:class => 'right'} %>
 
@@ -83,7 +83,7 @@
 
             <% end %>
 
-            <% if user_session != nil && user_session.authority == authority[:Admin] %>
+            <% if current_user != nil && current_user.authority == authority[:Admin] %>
               <h3><%= link_to 'Create New', "/posts/new/basics", {:class => 'right', :data => { :page => 'faq' }} %></h3>
             <% end %>
 
