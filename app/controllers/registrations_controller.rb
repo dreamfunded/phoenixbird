@@ -1,17 +1,24 @@
 class RegistrationsController < Devise::RegistrationsController
+  after_action :set_authority, only: [:create]
 
+  # def set_authority
+  #   if params[:reg] == nil
+  #     @authority = User.Authority[:Accredited]
+  #   else
+  #     @authority = User.Authority[:Basic]
+  #   end
+  #   ContactMailer.verify_email(record).deliver
+  #   ContactMailer.account_created(record).deliver
+  # end
+
+  protected
 
   def set_authority
-    if params[:reg] == nil
-      @authority = User.Authority[:Accredited]
-    else
-      @authority = User.Authority[:Basic]
-    end
+    record = User.lasts
+    record.update(authority: params[:authority])
     ContactMailer.verify_email(record).deliver
     ContactMailer.account_created(record).deliver
   end
-
-  protected
 
   def update_resource(resource, params)
     resource.update_without_password(params)

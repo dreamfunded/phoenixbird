@@ -110,11 +110,11 @@
 								  <li><button onclick= "location.href='/bids'">Bids</button></li>
 								<% end %>
 								<% if current_user.authority != authority[:Admin] %>
-									<li><%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete %></li>
+									<li><%= button_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
 								<% else %>
 									<li><button onclick= "admin()">Admin Panel</button></li>
 									<li><button onclick="location.href='/admin/users';" >New Admin Panel</button></li>
-									<li><%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete %></li>
+									<li><%= button_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
 								<% end %>
 							</ul>
 						</li>

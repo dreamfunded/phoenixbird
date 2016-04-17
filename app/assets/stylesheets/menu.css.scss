@@ -78,6 +78,10 @@ a {
 	min-width: 170px;
 	text-align: left;
 }
+.sub-menu input {
+	min-width: 170px;
+	text-align: left;
+}
 
 .sub-menu li:hover {
 	background: $darkgray;
@@ -106,6 +110,19 @@ button {
 	height: 52px;
 	font-weight: 500;
 	font-family: 'proxima-nova',sans-serif;
+}
+.main-menu input {
+	color: $darkblue;
+}
+
+.menu input {
+	font-size: 15px;
+	padding: 0 17px;
+	height: 52px;
+	font-weight: 500;
+	font-family: 'proxima-nova',sans-serif;
+	    background-color: transparent;
+    border: 0;
 }
 
 
