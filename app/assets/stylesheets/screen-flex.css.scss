@@ -85,8 +85,10 @@ and (max-width : 1124px) {
 //logos issues
 @media only screen
 and (min-width : 320px)
-and (max-width : 1200px) {
-
+and (max-width : 1145px) {
+	.logos-container {
+		width: 90%;
+	}
 }
 
 /// extra section2 issues

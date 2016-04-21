@@ -327,7 +327,7 @@ h3 {
 .row1 img {
 	width: 150px;
 	height: 150px;
-	margin: 10px 70px;
+	margin: 10px 40px;
 }
 
 .row2{
@@ -477,10 +477,21 @@ and (max-device-width : 1124px) {
 	}
 	.bottom-buttons{
 		visibility: hidden;
+    display: none;
 	}
 	.section2-box{
 		height: 490px;
 	}
+  #toast-container{
+    display: none;
+  }
+  .cnbc-video-wrapper{
+    text-align: center !important;
+    margin-left: 0 !important;
+  }
+  .cnbc-video-title{
+    visibility: hidden;
+  }
 
 }
 
@@ -576,4 +587,35 @@ and (max-device-width : 1124px) {
 	text-align: center;
 	font-size: 19px;
 }
+.cnbc-youtube-video{
+  width: 865px;
+  height: 487px;
+  display: inline-block;
+}
+.cnbc-video-wrapper{
+  text-align: left;
+  margin-left: 12%;
+  margin-bottom: 100px;
+}
+.cnbc-video-description{
+  font-size: 80%;
 
+}
+.cnbc-video-title{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 112%;
+  padding-left: 30px;
+  width: 258px;
+}
+.cnbc-video-text{
+  padding-bottom: 10px;
+}
+.watch-video-cnbc{
+  margin-bottom: 50px;
+}
+.cnbc-link-news{
+  font-size: 80%;
+  color: #333;
+  text-decoration: underline;
+}

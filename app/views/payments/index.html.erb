@@ -1,23 +1,32 @@
+<% title "SSL Secured" %>
 <div class= "wrapper">
 	<div class="header-container shadow">
-		<div class= "header centered"><h1>Payment</h1></div>
+		<div class= "header centered"><h2 id='payment-title'>Please Complete Your Investment Below</h2></div>
 	</div>
 
-  <div class= "box signin-box centered">
-	<%= form_tag( '/submit_payment', method: :post) do %>
-			<p>Name</p>
-		<%= text_field_tag(:name, nil, :placeholder => "Name") %>
-		<p>Account Number</p>
-		<%= text_field_tag(:account, nil, :placeholder => "Account Number") %>
-		<p>Routing Number</p>
-		<%= text_field_tag(:routing, nil, :placeholder => "Routing Number") %>
-		<p>Amount</p>
-		<%= text_field_tag(:amount, nil, :placeholder => "Amount") %>
+  <div class= " payment-box centered">
+  	<%= form_tag( '/submit_payment', method: :post) do %>
+  		<p class='payment-form'>Name<br>
+  			<%= text_field_tag(:name, nil ) %>
+  		</p>
 
-		<%= submit_tag "Proceed"%>
-	<% end %>
+  		<p class='payment-form'>Routing Number<br>
+  		<%= text_field_tag(:routing, nil ) %>
+  		</p>
+
+  		<p class='payment-form'>Account Number<br>
+  			<%= text_field_tag(:account, nil ) %>
+  		</p>
+
+
+  		<p class='payment-form'>Investment Amount<br>
+  		<%= text_field_tag(:amount, nil 	) %>
+  		</p>
+
+  		<%= submit_tag "Invest", id: 'submit-button'%>
+  	<% end %>
 	<p>
-		<%= flash[:message] %>
+		<b><%= flash[:message] %></b>
 	</p>
 	<!-- <form action="https://sandbox.usaepay.com/gate.php " method="POST">
 	<input type="hidden" name="UMcommand " value="check:sale">

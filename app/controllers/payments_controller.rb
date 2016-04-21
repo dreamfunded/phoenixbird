@@ -48,7 +48,8 @@ class PaymentsController < ApplicationController
     flash[:message] = tran.error
     if tran.resultcode.to_s=="A"
     then
-      flash[:message] = tran.result
+      # flash[:message] = tran.result
+      flash[:message] = "Thank you. Your investment has been completed. You will receive an email from DreamFunded within 24 hours or less."
       p "Full result #{tran.result}"
       p "Authcode:  #{tran.authcode} "
       p "AVS Result: #{tran.avs_result} "
@@ -64,7 +65,7 @@ class PaymentsController < ApplicationController
   private
 
   def authorize
-    if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Admin]
+    if session[:current_user] == nil || session[:current_user].authority < User.Authority[:Accredited]
       redirect_to url_for(:controller => 'home', :action => 'unauthorized')
     end
   end
