@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	invisible_captcha only: [:create]
 	def index
 		@users = User.all()
 	end
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
 		end
 		@current_user = session[:current_user]
 		@Authority = User.Authority
-		@users = User.all.order(:first_name)
+		@users = User.all.order(:created_at)
 		@new = News.new
 	end
 
@@ -97,6 +98,7 @@ class UsersController < ApplicationController
 		@password = params[:password]
 		@email = params[:email]
 		@phone = params[:phone]
+		role = params[:user_role]
 
 		#Change to enum / class later
 		if params[:reg] == nil
@@ -105,7 +107,11 @@ class UsersController < ApplicationController
 			@authority = User.Authority[:Basic]
 		end
 
-		record = User.new(:first_name => @first_name, :last_name => @last_name, :email => @email, :authority => @authority, phone: @phone)
+		if role = 'Seller'
+			@authority = User.Authority[:Basic]
+		end
+
+		record = User.new(:first_name => @first_name, :last_name => @last_name, :email => @email, :authority => @authority, phone: @phone, role: role)
 		record.password = @password
 		record.password_confirmation = params[:password_confirmation]
 		if record.valid?
@@ -113,25 +119,28 @@ class UsersController < ApplicationController
 			ContactMailer.verify_email(record).deliver
 			ContactMailer.account_created(record).deliver
 			flash[:notice] = "Registration successful."
+			if record.first_name && record.last_name && record.email && Rails.env.production?
+				Infusionsoft.contact_add({:FirstName => record.first_name , :LastName => record.last_name, :Email => record.email})
+			end
 			redirect_to(:action => :post_login, :email => @email, :password => @password)
 		else
-			flash[:notice] = "Validation failed."
+			flash[:signup_errors] = "Validation failed."
 			@error_message = ""
 			record.errors.full_messages.each do |error|
 				@error_message = @error_message + error + ". "
 			end
 			render(:action => :new)
 		end
+
 	end
 
 	def post_login
-		login_user = User.find_by(email: params[:email])
+		login_user = User.find_by(email: params[:email], provider: nil)
 		if login_user == nil
 			flash[:notice] = "This user ID does not exist."
 			redirect_to(:action => :login)
 		else
 			password = params[:password]
-
 			if(login_user.password_valid?(password))
 				session[:current_user] = login_user
 				redirect_to url_for(:controller => 'home', :action => 'index')
@@ -188,9 +197,39 @@ class UsersController < ApplicationController
 		user = User.find_by(email: params[:email])
 		user.confirmed = true
 		user.save(:validate => false)
+		session[:current_user] = user
 		#ContactMailer.welcome_email(user).deliver
 		ContactMailer.personal_hello(user).deliver
 		redirect_to root_path
+	end
+
+	def certify
+	end
+
+	def certify_user
+		user = User.find(params[:id])
+		if params[:reg] == nil
+			@authority = User.Authority[:Accredited]
+		else
+			@authority = User.Authority[:Basic]
+		end
+		user.update(authority: @authority)
+		if user.first_name && user.last_name && user.email && Rails.env.production?
+			Infusionsoft.contact_add({:FirstName => user.first_name , :LastName => user.last_name, :Email => user.email})
+		end
+		ContactMailer.personal_hello(user).deliver
+		ContactMailer.account_created(user).deliver
+		session[:current_user] = user
+		redirect_to root_path
+	end
+
+
+	def admin
+		@users = User.all.where(authority: 1)
+	end
+
+	def companies
+		@companies = Company.all.where(accredited: false)
 	end
 
 end

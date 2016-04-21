@@ -1,6 +1,6 @@
 <% title "DreamFunded | Access to Invest in Pre-IPO Tech companies" %>
 		<div class= "cover-image">
-				<div class= "space-keeper"><%= image_tag("skylinedark comp.png", :class => "sky") %></div>
+				<div class= "space-keeper"><%#= image_tag("smaller_bg.jpg", :class => "sky") %></div>
 				<div class= "big-title white ">
 					<h1 class= "remove-margin">Access to Invest in Pre-IPO Tech Companies</h1>
 					<div class= "top-space"><h3 class= "remove-margin">Sillicon Valley's 1st Private Tech Stock Market ~ Buy or Sell Private Shares</h3></div>
@@ -101,11 +101,14 @@
 						<h2 class= "centered darkblue" id='mentioned_in'>As Seen In</h2>
 					</div>
 					<div class= "row1">
-						<%= image_tag("static/Forbes.jpg", class: "padding-top-100") %>
-						<%= image_tag("static/inc.png") %>
-						<%= link_to image_tag("static/cnbc.png"), 'news/betting-on-pre-ipo-companies' %>
-						<%= image_tag("static/tech.png") %>
-						<%= image_tag("static/fox.jpg") %>
+						<span class='homepage-press-mentions'><%= image_tag("static/Forbes.jpg", class: "padding-top-100") %></span>
+						<span class='homepage-press-mentions'><%= image_tag("static/inc.png") %></span>
+						<span class='homepage-press-mentions'><%= link_to image_tag("static/cnbc.png"), 'news/betting-on-pre-ipo-companies' %></span>
+					</div>
+					<div class='row1'>
+						<span class='homepage-press-mentions'><%= image_tag("static/tech.png") %></span>
+						<span class='homepage-press-mentions'><%= image_tag("static/fox.jpg") %></span>
+						<span class='homepage-press-mentions'><%= image_tag("static/cnn.png", class: 'cnn-logo') %></span>
 					</div>
 
 					<div class= "row2">
@@ -124,12 +127,12 @@
 		<!-- Newsletter Subscribers -->
 		<div class='cnbc-video-wrapper'>
 				<h2 class='watch-video-cnbc'>DreamFunded as seen on CNBC Squawk BOX</h2>
-				<iframe class='cnbc-youtube-video' src="https://www.youtube.com/embed/UosDuIgUCjI" frameborder="0" allowfullscreen></iframe>
-				<div class='cnbc-video-title'>
-					<span class='cnbc-video-text'>Betting on pre-IPO companies</span><br>
-					<span class='cnbc-video-description'>Manny Fernandez, DreamFunded CEO, weighs in on Silicon Valley's private tech stock market that connects angel investors with private markets through an equity crowdfunding platfrom.</span><br>
+				<div class='cnbc-video-title watch-video-cnbc'>
+					<!-- <span class='cnbc-video-text'>Betting on pre-IPO companies</span><br> -->
+					<span class='cnbc-video-description'>Manny Fernandez, DreamFunded CEO, weighs in on Silicon Valley's private tech stock market that connects angel investors with private markets through an equity crowdfunding platfrom.</span>
 					<%= link_to 'More News', news_index_path, class: 'cnbc-link-news' %>
 				</div>
+				<iframe class='cnbc-youtube-video' src="https://www.youtube.com/embed/UosDuIgUCjI" frameborder="0" allowfullscreen></iframe>
 		</div>
 
 		<div id='toast-container'>
@@ -143,9 +146,15 @@
 				<% end %>
 			</div>
 		</div>
+
+		<div class="investor-logos">
+			<div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+			<%= image_tag("static/aca_logo.png", :class => 'aca-logo') %>
+			<%= image_tag("static/perkins.png", :class => 'perkins-logo') %>
+
+		</div>
 <!-- 		<div class= "foot-bar">
 			<div class= "foot-wrap">
-				<div class= "image3-box gap"><%= image_tag("static/logo.png", :class => 'image3') %></div>
 				<div class= "image3-box gap"><%= image_tag("static/DreamFunded-Logo-Vertical-lightblue.png", :class => 'image3') %></div>
 				<div class= "image4-box gap">
 					<%= link_to image_tag("static/facebook.png", :class => 'image4'), "https://www.facebook.com/dreamfundedcom", :target => "_blank" %>

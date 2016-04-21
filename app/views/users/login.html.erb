@@ -17,7 +17,7 @@
 
 		<div class= "login-container">
 			<%= form_tag("post_login", method: "get") do %>
-				<%= text_field_tag(:email, nil, :class =>"userbox", :placeholder => "Email") %>
+				<%= text_field_tag(:email, nil, :class =>"userbox-login", :placeholder => "Email") %>
 				<br>
 				<%= password_field_tag(:password, nil, :class => "passbox", :placeholder => "Password") %>
 				<br>
@@ -27,6 +27,10 @@
 					</div>
 				<div class= "centered">
 					<%= submit_tag("Login", :class => "login-button") %>
+					<div class='social-login-ions'>
+					  <%= link_to fa_icon("google 2x"), '/auth/google_oauth2', id: 'google-icon' %>
+					  <%= link_to fa_icon("linkedin 2x"), '/auth/linkedin', id: 'linkedin-icon'  %>
+					</div>
 				</div>
 			<% end %>
 		</div>

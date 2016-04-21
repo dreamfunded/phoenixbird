@@ -72,6 +72,7 @@
 
 .check_box {
 	font-size : 15px;
+	display: block;
 }
 .check_box input{
 	margin-bottom: 6px;
@@ -104,4 +105,31 @@
 }
 #payment-title{
 	font-size: 35px;
+}
+#linkedin-icon{
+	color: #0077b5;
+	margin-left: 10px;
+}
+#google-icon{
+	color: #EF2219;
+	margin-right: 10px;
+}
+.social-login-ions{
+	margin-bottom: 10px;
+}
+ /*i P A D*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)  {
+	.input-box, .userbox, .passbox {
+		font-size: 25px;
+		border: 1px solid gray;
+		border-radius: 3px;
+	}
+	.input-box{
+		font-size: 20px;
+	}
+	.userbox:focus{
+		border: 1px solid gray;
+	}
 }

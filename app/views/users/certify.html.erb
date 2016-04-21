@@ -1,0 +1,47 @@
+<html>
+<head>
+    <%= javascript_include_tag    'signup' %>
+    <% title "DreamFunded | Sign Up" %>
+</head>
+
+<body>
+   <div class= "wrapper"><div class= "signup-size box">
+
+      <div class="row">
+        <div class="tab right-line darkblue nodec">
+          <h2 class= "no-margin centered"><a href="/users/login" id="login-form-link">Login</a></h2>
+        </div>
+        <div class="tab darkblue active">
+          <h2 class= "no-margin centered"><a href="/users/new" id="register-form-link">Sign Up</a></h2>
+        </div>
+      </div>
+
+      <div class= "signup-content">
+        <%= form_tag("certify_user", method: "post") do %>
+            <%= hidden_field_tag(:id,  session[:current_user].id )%>
+           <h4>Step 2:</h4>
+           <h4> Certify yourself as an investor </h4>
+           <div class = "check_box">
+             <input type="checkbox" name="net_worth" id="box1" onclick = "onOff()"> My net worth is over $1 million, excluding my home.<br>
+             <input type="checkbox" name="income" id="box3" onclick = "onOff()"> My income was $200k+ for the past two years.<br>
+             <input type="checkbox" name="investor" id="box4" onclick = "onOff()"> I invest from an accredited business, family office or VC.<br>
+             <input type="checkbox" name="international" id='box2'  onclick = "onOff()"> I am an international investor.<br>
+             <input type="checkbox" name="reg" id="box5" onclick = "onOff()"> I am not accredited, but may invest when the rules change.<br>
+          </div>
+
+           <div class = "notice centered">
+              <%= flash[:notice] if flash[:notice] %>
+              <%= @error_message %>
+           </div>
+
+           <div class= "centered">
+           <p class='check_box'>We will never sell or rent your personal information.</p>
+              <%= submit_tag("Submit", :id => "submit-button", :disabled => true) %>
+           </div>
+
+        <% end %>
+      </div>
+      </div>
+  </div>
+</body>
+</html>

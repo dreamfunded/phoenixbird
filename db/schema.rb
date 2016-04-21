@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225130610) do
+ActiveRecord::Schema.define(version: 20160412183846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "bids", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "auction_id"
+    t.boolean  "accepted"
+    t.integer  "company_id"
+    t.integer  "number_of_shares"
+    t.integer  "user_id"
+    t.string   "status",           default: "pending"
+    t.float    "bid_amount"
+    t.integer  "counter_amount",   default: 0
+  end
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -56,8 +84,10 @@ ActiveRecord::Schema.define(version: 20151225130610) do
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
     t.text     "docusign_url"
-    t.integer  "position",              default: 0
-    t.boolean  "hidden",                default: false
+    t.integer  "position",               default: 0
+    t.boolean  "hidden",                 default: false
+    t.float    "suggested_target_price"
+    t.boolean  "accredited"
   end
 
   create_table "documents", force: true do |t|
@@ -69,6 +99,20 @@ ActiveRecord::Schema.define(version: 20151225130610) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.text     "description"
+    t.date     "date"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "founders", force: true do |t|
@@ -102,6 +146,53 @@ ActiveRecord::Schema.define(version: 20151225130610) do
 
   add_index "investments", ["company_id"], name: "index_investments_on_company_id", using: :btree
   add_index "investments", ["user_id"], name: "index_investments_on_user_id", using: :btree
+
+  create_table "invites", force: true do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "accepted"
+    t.boolean  "signedup"
+  end
+
+  create_table "liquidate_shares", force: true do |t|
+    t.string   "first_name"
+    t.string   "company"
+    t.integer  "number_shares"
+    t.integer  "shares_price"
+    t.string   "timeframe"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "message"
+    t.string   "last_name"
+    t.boolean  "rofr_restrictions"
+    t.boolean  "financial_assistance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "suggested_target_price"
+    t.boolean  "approved"
+    t.integer  "user_id"
+    t.integer  "company_id"
+  end
+
+  create_table "members", force: true do |t|
+    t.string   "name"
+    t.text     "summary"
+    t.text     "fullbio"
+    t.string   "title"
+    t.integer  "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "slug"
+  end
+
+  add_index "members", ["slug"], name: "index_members_on_slug", using: :btree
 
   create_table "news", force: true do |t|
     t.text     "title"
@@ -142,6 +233,21 @@ ActiveRecord::Schema.define(version: 20151225130610) do
     t.string   "page"
   end
 
+  create_table "prospective_investments", force: true do |t|
+    t.string   "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "company"
+    t.string   "company_id"
+    t.string   "investment_amount"
+    t.float    "shares_price"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sections", force: true do |t|
     t.integer  "company_id"
     t.text     "overview"
@@ -177,22 +283,31 @@ ActiveRecord::Schema.define(version: 20151225130610) do
     t.datetime "image_updated_at"
     t.string   "title"
     t.string   "slug"
+    t.integer  "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "teams", ["slug"], name: "index_teams_on_slug", using: :btree
 
   create_table "users", force: true do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "login"
-    t.string  "email"
-    t.integer "authority"
-    t.string  "salt"
-    t.string  "password_digest"
-    t.boolean "confirmed",       default: false
-    t.string  "slug"
-    t.integer "invested_amount", default: 0
-    t.string  "phone"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "login"
+    t.string   "email"
+    t.integer  "authority"
+    t.string   "salt"
+    t.string   "password_digest"
+    t.boolean  "confirmed",              default: false
+    t.string   "slug"
+    t.integer  "invested_amount",        default: 0
+    t.string   "phone"
+    t.string   "uid"
+    t.string   "provider"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+    t.integer  "credit"
   end
 
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
