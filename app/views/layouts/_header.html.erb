@@ -1,132 +1,60 @@
-  <div class= "menu-wrap fullWidth">
-        <nav class= "menu fullWidth">
-          <ul class= "main-menu white">
+<label for="show-menu" class="show-menu"> Menu </label>
+<input type="checkbox" id="show-menu" role="button">
 
-            <!-- M O B I L E -->
-            <li id='mobile-menu'><button >Menu <span class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
-              <ul class='sub-menu white'>
-                <!-- <li><button onclick= "whyInv()">Why Invest</button></li> -->
-                <% if current_user != nil && current_user.authority >= authority[:Accredited] %>
-                  <li><button onclick= "invest()">Invest</button></li>
-                <% elsif current_user != nil && current_user.authority == 1 %>
-                  <li><button onclick= "location.href='/marketplace_companies ';">NonAccredited</button></li>
-                <% end %>
-                <li><button onclick= "location.href='/events';">Events</button></li>
-                <li><button onclick="location.href='/education';" >Education</button></li>
-                <li><button onclick= "contact()">Contact Us</button></li>
-                <% if current_user == nil %>
-                  <li><button onclick= "signIn()">Login</button></li>
-                <% else %>
-                  <li><button onclick= "signOut()" >Sign Out</button></li>
-                <% end %>
-              </ul>
-            </li>
+<ul id="menu">
 
-            <li id='mobile-menu'><button >About <span class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
-              <ul class='sub-menu white'>
-                <li><button onclick= "about()">About Us</button></li>
-                <li><button onclick= "press()">Press</button></li>
-                <li><button onclick= "how_it_works()">How It Works</button></li>
-                <li><button onclick= "faq()">FAQ</button></li>
-                <li><button onclick= "team()">Team</button></li>
-                <li><button onclick= "get_funded()">Get Funded</button></li>
-              </ul>
-            </li>
-            <li id='mobile-menu'><button onclick= "invest()">Investments </button></li>
-            <!-- M O B I L E   E N D -->
+    <% if !current_user %>
+      <li><a onclick= "signIn()" id="sign-in-a">Sign Up</a></li>
+      <li><a onclick= "login()">Login</a></li>
+    <% else %>
+      <li><a onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow">&#9660;</span></a>
+        <ul class="hidden">
+          <li><a onclick= "portfolio()">My Investments</a></li>
+          <li><a onclick= "campaign()"><%= current_user.my_campaign %></a></li>
 
-            <!-- iPAD MENU -->
+          <% if current_user.authority != authority[:Admin] %>
+            <li><a onclick= "signOut()" >Sign Out</a></li>
+            <% if current_user.startup? %><li><a onclick= "invite()">Invite</a></li> <% end %>
+          <% else %>
+            <li><a onclick= "invite()">Invite</a></li>
+            <li><a onclick= "admin()">Admin Panel</a></li>
+            <li><a onclick="location.href='/admin/users';" >New Admin Panel</a></li>
+            <li><a onclick="signOut()">Sign Out</a></li>
+          <% end %>
+          <% if current_user.role == "government"%>
+            <li><a onclick= "government_admin()">Admin Panel</a></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
 
-            <li class='ipad-menu'><button >Menu<span class="arrow">&#9660;</span></button>
-              <ul class='sub-menu white'>
-                <!-- <li><button onclick= "whyInv()">Why Invest</button></li> -->
-
-                <% if current_user == nil %>
-                  <li><button onclick= "login()">Login</button></li>
-                  <li><button onclick= "signUp()">Sign Up</button></li>
-                <% else %>
-                  <li><button onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow"></span></button></li>
-                  <li><button onclick= "signOut()" >Sign Out</button></li>
-                <% end %>
-              </ul>
-            </li>
-            <li class='ipad-menu'><button >About<span class="arrow">&#9660;</span></button>
-              <ul class='sub-menu white'>
-                <li><button onclick= "about()">About Us</button></li>
-                <li><button onclick= "faq()">FAQ</button></li>
-                <li><button onclick= "team()">Team</button></li>
-                <li><button onclick= "news()">News</button></li>
-                <li><button onclick= "contact()">Contact Us</button></li>
-              </ul>
-            </li>
-            <li class='ipad-menu'><button onclick="location.href='/education';" >Education</button></li>
-            <li class='ipad-menu'><button onclick="location.href='/events';" >Events</button></li>
-            <li class='ipad-menu'><button onclick= "get_funded()">Get Funded</button></li>
-            <% if current_user != nil && current_user.authority >= authority[:Accredited] %>
-              <li class='ipad-menu'><button onclick= "invest()">Invest</button></li>
-            <% elsif current_user == nil %>
-              <li class='ipad-menu'><button onclick= "signUp()">Invest</button></li>
-            <% end %>
-            <li class='ipad-menu'><button onclick= "how_it_works()">How It Works</button></li>
-            <!-- iPAD MENU END -->
+  <li><a disabled= "true">About <span class="arrow">&#9660;</span></a>
+    <ul class="hidden">
+      <li><a onclick= "about()">About Us</a></li>
+      <li><a onclick= "faq()">FAQ</a></li>
+      <li><a onclick= "team()">Team</a></li>
+      <li><a onclick= "news()">News</a></li>
+      <li><a onclick= "press()">Press</a></li>
+      <li><a onclick= "contact()">Contact Us</a></li>
+    </ul>
+  </li>
 
 
-            <li id="last-menu-button"></li>
-            <% if !current_user %>
-              <li><button onclick= "signIn()" id="sign-in-button">Sign Up</button></li>
-              <li><button onclick= "login()">Login</button></li>
-            <% else %>
-              <li><button onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow">&#9660;</span></button>
-                <ul class= "sub-menu">
-                  <li><button onclick= "portfolio()">My Investments</button></li>
-                  <li><button onclick= "campaign()"><%= current_user.my_campaign %></button></li>
+  <li><a onclick="location.href='/events';" >Events</a></li>
+  <li><a onclick="location.href='/education';" >Education</a></li>
 
-                  <% if current_user.authority != authority[:Admin] %>
-                    <li><button onclick= "signOut()" >Sign Out</button></li>
-                    <% if current_user.startup? %><li><button onclick= "invite()">Invite</button></li> <% end %>
-                  <% else %>
-                    <li><button onclick= "invite()">Invite</button></li>
-                    <li><button onclick= "admin()">Admin Panel</button></li>
-                    <li><button onclick="location.href='/admin/users';" >New Admin Panel</button></li>
-                    <li><button onclick="signOut()">Sign Out</button></li>
-                  <% end %>
-                  <% if current_user.role == "government"%>
-                    <li><button onclick= "government_admin()">Admin Panel</button></li>
-                  <% end %>
-                </ul>
-              </li>
-            <% end %>
+  <% if current_user %>
+    <% if current_user.company %>
+      <li><a onclick= "campaign()">Edit My Campaign</a></li>
+    <%else%>
+      <li><a onclick= "get_funded()">Get Funded</a></li>
+     <% end %>
+  <% else %>
+    <li><a onclick= "get_funded()">Get Funded</a></li>
+  <% end %>
 
-            <li><button disabled= "true">About <span class="arrow">&#9660;</span></button>
-              <ul class= "sub-menu">
-                <li><button onclick= "about()">About Us</button></li>
-                <li><button onclick= "faq()">FAQ</button></li>
-                <li><button onclick= "team()">Team</button></li>
-                <li><button onclick= "news()">News</button></li>
-                <li><button onclick= "press()">Press</button></li>
-                <li><button onclick= "contact()">Contact Us</button></li>
-              </ul>
-            </li>
+  <li><a onclick= "invest()">Investments </a></li>
+  <li><a onclick= "how_it_works()">How It Works</a></li>
+  <li class='logo-float'><a onclick= "home()" id= "nopadding"><div class='logo'></div></a></li>
+</ul>
 
-            <li><button onclick="location.href='/events';" >Events</button></li>
-            <li><button onclick="location.href='/education';" >Education</button></li>
-
-
-            <% if current_user %>
-              <% if current_user.company %>
-                <li><button onclick= "campaign()">Edit My Campaign</button></li>
-              <%else%>
-                <li><button onclick= "get_funded()">Get Funded</button></li>
-               <% end %>
-            <% else %>
-              <li><button onclick= "get_funded()">Get Funded</button></li>
-            <% end %>
-
-
-            <li><button onclick= "invest()">Investments </button></li>
-            <li><button onclick= "how_it_works()">How It Works</button></li>
-            <li><button onclick= "svexchange()">SVExchange</button></li>
-            <li id= "left"><button onclick= "home()" id= "nopadding"><div class= "logo"></div></button></li>
-          </ul>
-        </nav>
-      </div>

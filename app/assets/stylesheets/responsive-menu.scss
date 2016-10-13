@@ -1,0 +1,134 @@
+/*Strip the ul of padding and list styling*/
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    position: absolute;
+    background-color: #fff;
+}
+#menu{
+    width: 100%;
+}
+
+/*Create a horizontal list with spacing*/
+li {
+    display:inline-block;
+    float: right;
+    margin-right: 1px;
+}
+.logo-float{
+    float: left;
+    margin-left: 20px;
+}
+
+
+/*Style for menu links*/
+li a {
+    display:block;
+    padding: 0 17px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #10a1d6;
+    background: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*Hover state for top level links*/
+li:hover a {
+    background: #DFDFDF;
+    position: relative;
+}
+
+/*Style for dropdown links*/
+li:hover ul a {
+    background: #fff;
+    color: #10a1d6;
+    height: 40px;
+    line-height: 40px;
+}
+
+/*Hover state for dropdown links*/
+li:hover ul a:hover {
+    background: #DFDFDF;
+    color: #10a1d6;
+}
+
+
+
+/*Hide dropdown links until they are needed*/
+li ul {
+    display: none;
+}
+
+/*Make dropdown links vertical*/
+li ul li {
+    display: block;
+    float: none;
+}
+
+/*Prevent text wrapping*/
+li ul li a {
+    width: auto;
+    /*min-width: 100px;*/
+    padding: 0 20px;
+}
+
+/*Display the dropdown on hover*/
+ul li a:hover + .hidden, .hidden:hover {
+    display: block;
+    width: 130%;
+    min-width: 170px;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #19c589;
+    text-align: right;
+    padding: 10px 10px;
+    display: none;
+}
+
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block;
+}
+
+
+/*Responsive Styles*/
+
+@media screen and (max-width : 760px){
+    /*Make dropdown links appear inline*/
+    ul {
+        position: static;
+        display: none;
+    }
+    /*Create vertical spacing*/
+    li {
+        margin-bottom: 1px;
+    }
+    /*Make all menu links full width*/
+    ul li, li a {
+        width: 100%;
+    }
+    /*Display 'show menu' link*/
+    .show-menu {
+        display:block;
+    }
+}
+
+
