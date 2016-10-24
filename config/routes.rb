@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   put 'team/:id', to: 'members#update'
   delete 'team/:id', to: 'members#destroy'
 
+  get '/affiliate_code', to: "home#affiliate_code"
+
   match "/companies/next-minute-inc" => redirect("/"), via: 'get'
   mount Ckeditor::Engine => '/ckeditor'
   get '/posts/new/:page', to: "posts#new"

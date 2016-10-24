@@ -19,6 +19,9 @@ class HomeController < ApplicationController
 		end
 	end
 
+	def affiliate_code
+	end
+
 	def unauthorized
 	end
 
