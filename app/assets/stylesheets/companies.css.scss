@@ -14,7 +14,6 @@
 }
 .grey-section{
   background-color: #f5f5f5;
-  padding: 5% 12%;
   padding-bottom: 0;
 }
 
@@ -91,9 +90,6 @@
 }
 .social-media-campaign{
   display: inline-block;
-  vertical-align: top;
-  margin-top: 65px;
-  margin-left: 60px;
 }
 .help-our-campaign{
   color: gray;
@@ -603,8 +599,6 @@
 
 .video-box {
 	margin-top: 10px;
-  margin-bottom: 100px;
-  display: inline-block;
 }
 .max-width-image{
 	max-width: 500px;
@@ -920,4 +914,10 @@ and (max-device-width : 568px) {
   }
 
 
+}
+
+@media (min-width: 40rem) {
+  .grey-section {
+    padding: 5% 12%;
+  }
 }
