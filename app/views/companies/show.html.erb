@@ -122,60 +122,71 @@
                     <% end %>
                 </div>
 
-                <div style="text-align:center;">
-                    <section class= "video-box">
-                        <h2 class='section-title'>Who Are We?</h2>
-                        <% if @company.video_link.empty? %>
-                            <%= image_tag( @company.image.url, class: 'image-max-width')%>
-                        <% else %>
-                            <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0" %> frameborder="0" allowfullscreen ></iframe>
-                        <% end %>
-                    </section>
+                <div class="fluid-container">
+                    <div class="row">
+                        <div class="col-8">
+                            <h2 class='section-title'>Who Are We?</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <section class= "video-box">
+                                <% if @company.video_link.empty? %>
+                                    <%= image_tag( @company.image.url, class: 'image-max-width')%>
+                                <% else %>
+                                    <div class="video-fluid">
+                                        <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0" %> frameborder="0" allowfullscreen ></iframe>
+                                    </div>
+                                <% end %>
+                            </section>
+                        </div>
+                        <div class="col-4 centered">
+                            <section class='social-media-campaign'>
+                                <p class='help-our-campaign'>
+                                    Help us reach our goal. <br>Share our campaign to your friends and family.
+                                </p>
+                                <section class='centered'>
+                                    <%if @company.accredited%>
+                                        <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
+                                        <script type="text/javascript">
+                                          $('#facebook').click(function(){
+                                            FB.ui({
+                                              method: 'share',
+                                              href: "https://dreamfunded.com/companies/<%= @company.slug %>",
+                                              redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
+                                              // quote: "Invest in <%= @company.name %> on DreamFunded",
+                                              title: "<%= @company.name %>",
+                                              description: "<%= @company.campaign.tagline %>"
+                                            }, function(response){});
 
-                    <section class='social-media-campaign'>
-                        <p class='help-our-campaign'>
-                            Help us reach our goal. <br>Share our campaign to your friends and family.
-                        </p>
-                        <section class='centered'>
-                            <%if @company.accredited%>
-                                <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
-                                <script type="text/javascript">
-                                  $('#facebook').click(function(){
-                                    FB.ui({
-                                      method: 'share',
-                                      href: "https://dreamfunded.com/companies/<%= @company.slug %>",
-                                      redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
-                                      // quote: "Invest in <%= @company.name %> on DreamFunded",
-                                      title: "<%= @company.name %>",
-                                      description: "<%= @company.campaign.tagline %>"
-                                    }, function(response){});
+                                          })
+                                        </script>
+                                        <a id="twitter" class="share-invites-social" target="_blank"
+                                         href="http://twitter.com/intent/tweet?url=https://dreamfunded.com/companies/<%= @company.slug %>"
+                                          title="Share via Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
 
-                                  })
-                                </script>
-                                <a id="twitter" class="share-invites-social" target="_blank"
-                                 href="http://twitter.com/intent/tweet?url=https://dreamfunded.com/companies/<%= @company.slug %>"
-                                  title="Share via Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
+                                        <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Invest%in%<%= @company.name%>&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    <%else%>
+                                        <a id='facebook' class="share-invites-social" > <i class="fa fa-facebook"></i></a>
+                                        <a id="twitter" class="share-invites-social" title="Share via Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a id ='linkedin' class="share-invites-social" title="Share via LinkedIn" >
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    <%end%>
 
-                                <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Invest%in%<%= @company.name%>&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            <%else%>
-                                <a id='facebook' class="share-invites-social" > <i class="fa fa-facebook"></i></a>
-                                <a id="twitter" class="share-invites-social" title="Share via Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a id ='linkedin' class="share-invites-social" title="Share via LinkedIn" >
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            <%end%>
-
-                            <div class='company-info-cateogry campaign-website'>
-                                <%= link_to @company.website_link, "http://"+@company.website_link, class: 'website-url', target: '_blank' %>
-                            </div>
-                        </section>
-                    </section>
+                                    <div class='company-info-cateogry campaign-website'>
+                                        <%= link_to @company.website_link, "http://"+@company.website_link, class: 'website-url', target: '_blank' %>
+                                    </div>
+                                </section>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </div>
 
