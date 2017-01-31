@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import 'colors';
+@import 'z_index';
 
 .wrap {
 	font-family: "Calibri";
@@ -920,4 +921,45 @@ and (max-device-width : 568px) {
   .grey-section {
     padding: 5% 12%;
   }
+}
+
+.icon-play {
+  border: 5px white solid;
+  border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 0 40px #000;
+
+  &::before {
+    content: '\25BA';
+    position: absolute;
+    left: 2rem;
+    top: 1.5rem;
+  }
+}
+
+#video-play-button {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  z-index: $video-play-button;
+
+  .icon::before {
+    font-size: 3rem;
+  }
+}
+
+.video-popup-overlay:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
 }

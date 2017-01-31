@@ -12,7 +12,9 @@
 
 
     <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
-
+        <button id="video-play-button" data-video-src='<%= @company.video_link + "?rel=0" %>'>
+            <span class='icon icon-play'></span>
+        </button>
         <div class='company-profile-bottom-line'>
             <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
             <section class='company-basic-info'>
@@ -133,7 +135,7 @@
                                     <%= image_tag( @company.image.url, class: 'image-max-width')%>
                                 <% else %>
                                     <div class="video-fluid">
-                                        <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0" %> frameborder="0" allowfullscreen ></iframe>
+                                        <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0&enablejsapi=1" %> frameborder="0" allowfullscreen ></iframe>
                                     </div>
                                 <% end %>
                             </section>
