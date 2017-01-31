@@ -47,7 +47,6 @@ $.fn.videoPopup = function() {
     _this.render = function() {
       if (_this.$overlay) {
         _this.$overlay.show();
-        return
       } else {
         let content_container = $('<div>', {id: 'video-content-container'});
         content_container.css({
@@ -72,9 +71,12 @@ $.fn.videoPopup = function() {
   var Video = function(link) {
     var _this = this;
     _this.$container = function(){return $('#video-content-container')};
+    _this.id = 'popup-youtube-video';
+    _this.ready = false;
 
     _this.template = function() {
       _this.video = $('<iframe>', {
+        id: _this.id,
         frameborder: '0',
         allowfullscreen: 'allowfullscreen',
         src: link
@@ -83,15 +85,25 @@ $.fn.videoPopup = function() {
     }
 
     _this.render = function() {
-      var scaler = $('<div>', {class: 'video-fluid'});
-      scaler.html(_this.template());
-      _this.$container().html(scaler);
+      _this.$scaler = $('<div>', {class: 'video-fluid'});
+      _this.$scaler.html(_this.template());
+      _this.$container().html(_this.$scaler);
+      _this.player = new YT.Player(_this.id, {
+        events: {
+          'onReady': function(event) {
+            event.target.playVideo();
+            _this.ready = true;
+          }
+        }
+      });
     }
 
     _this.play = function() {
+      this.player.playVideo();
     }
 
     _this.pause = function() {
+      this.player.pauseVideo();
     }
   }
   let _this = this;
@@ -99,7 +111,9 @@ $.fn.videoPopup = function() {
   var overlay = new Overlay(video);
 
   overlay.on_open = function() {
-    video.play();
+    if (video.ready) {
+      video.play();
+    }
   }
 
   overlay.on_close = function() {
