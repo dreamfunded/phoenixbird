@@ -3,6 +3,16 @@ $(document).on('ready', function(){
   $('.close-disclaimer').click(function(){
       $(this).parent().hide();
   })
-
-  $('#video-play-button').videoPopup();
 });
+
+$('.companies.show').ready(function() {
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+})
+
+function onYouTubeIframeAPIReady() {
+  $('#video-play-button').videoPopup();
+}
