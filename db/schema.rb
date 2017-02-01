@@ -332,6 +332,13 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.decimal  "sustain_amount"
   end
 
+  create_table "followers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "founders", force: true do |t|
     t.string   "name"
     t.string   "position"

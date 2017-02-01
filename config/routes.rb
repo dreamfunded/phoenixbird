@@ -266,8 +266,16 @@ Rails.application.routes.draw do
   match "/regulation-mini-ipos-way-rule-change-allows-regular-joes-invest-startups/" => redirect("news/regulation-a-mini-ipos-on-the-way-as-rule-change-allows-regular-joes-to-invest-in-startups"), via: 'get'
   get '/funding', to: 'home#index'
 
-
   resources :users, only: [:update, :edit, :create, :new]
+
+  namespace :api, format: :json do
+    resources :companies, only: [] do
+      member do
+        post :follow
+        delete :unfollow, path: "/follow"
+      end
+    end
+  end
   get ':controller(/:action(/:id))'
   post ':controller(/:action(/:id))'
 
