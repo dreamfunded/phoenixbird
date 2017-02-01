@@ -10,7 +10,7 @@
 					<div class="card-content">
 						<%= link_to company do %>
 						<div class="card-topbar primary-color">
-							<div class="follow fa fa-heart-o"></div>
+							<div class="follow" data-following='<%= company.followed_by_current_user %>' data-company-id="<%= company.id %>"></div>
 							<%= company.name %>
 						</div>
 						<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">

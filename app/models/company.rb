@@ -4,7 +4,8 @@ class Company < ActiveRecord::Base
 
 
 	has_many :users
-
+  has_many :followers, inverse_of: :company
+  has_many :user_followers, through: :followers, source: :user, inverse_of: :company
 
 
   has_many :investments
@@ -70,9 +71,9 @@ class Company < ActiveRecord::Base
   validates :goal_amount, numericality: { less_than_or_equal_to: 1000000 }
 	validates_attachment_content_type :document, :content_type =>['application/pdf']
 
-  def self.all_accredited
-    all.order(:position).where(hidden: false, accredited: true)
-  end
+  scope :all_accredited, -> {
+    order(:position).where(hidden: false, accredited: true)
+  }
 
   def self.Status
 		{

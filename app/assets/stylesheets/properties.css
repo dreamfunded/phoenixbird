@@ -271,9 +271,12 @@ and (max-device-width : 1024px)  {
 
 .card-topbar .follow {
     float: right;
+}
+
+.card-topbar .follow .fa-heart-o {
     opacity: 0.8;
 }
 
-.card-topbar .follow:hover {
+.card-topbar .follow .fa-heart-o:hover {
     opacity: 1;
 }

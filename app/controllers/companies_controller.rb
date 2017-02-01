@@ -6,7 +6,9 @@ class CompaniesController < ApplicationController
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
-		@companies = Company.all_accredited
+		@companies =
+			Company.select('companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
+				joins("LEFT JOIN followers ON companies.id = followers.company_id").all_accredited
 	end
 
 	def company_profile
