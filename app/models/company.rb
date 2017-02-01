@@ -1,8 +1,8 @@
 class Company < ActiveRecord::Base
 
-  def self.all_accredited
-    all.order(:position).where(hidden: false, accredited: true).where.not(status: 3)
-  end
+  scope :all_accredited, -> {
+    order(:position).where(hidden: false, accredited: true).where.not(status: 3)
+  }
 
   def self.all_funded
     all.order(:position).where(hidden: false, accredited: true, status: 3)
@@ -11,10 +11,9 @@ class Company < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-
-  has_many :users
-
-
+	has_many :users
+  has_many :followers, inverse_of: :company
+  has_many :user_followers, through: :followers, source: :user, inverse_of: :company
 
   has_many :investments
 
@@ -78,7 +77,6 @@ class Company < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates :goal_amount, numericality: { less_than_or_equal_to: 1000000 }
   validates_attachment_content_type :document, :content_type =>['application/pdf']
-
 
   def self.Status
 		{

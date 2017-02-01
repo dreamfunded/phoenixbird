@@ -14,13 +14,13 @@ class User < ActiveRecord::Base
 	has_many :guests
 	has_many :invites
 	has_many :csv_files
-
 	has_many :liquidate_shares
 	has_many :bids
+	has_many :docusigns
+	has_many :followers, inverse_of: :user
+	has_many :followings, through: :followers, source: :company, inverse_of: :user_followers
 
 	has_one :investor
-
-	has_many :docusigns
 	#Getter
 	validates :first_name, presence:true
 	validates :last_name, presence:true

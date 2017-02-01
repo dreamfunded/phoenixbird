@@ -5,6 +5,10 @@ $(document).on('ready', function(){
   })
 });
 
+$('.companies.index').ready(function() {
+  $('.follow').followBtn();
+})
+
 $('.companies.show').ready(function() {
   var tag = document.createElement('script');
 
