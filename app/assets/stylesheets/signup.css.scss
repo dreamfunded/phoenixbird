@@ -67,7 +67,15 @@
 .notice {
 	color: #CF513D;
 	font-size: 15px;
-	font-weight: 600;
+
+	#error_explanation h2 {
+		font-size: 15px;
+	}
+	#error_explanation > ul {
+		padding-left: 1rem;
+		font-size: 14px;
+		line-height: 1.5em;
+	}
 }
 
 .check_box {
