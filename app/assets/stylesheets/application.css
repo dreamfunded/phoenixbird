@@ -16,6 +16,10 @@
  *= require_self
  */
 
+html {
+	-webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
 
 .wrapper {
 	margin: 0;
@@ -340,4 +344,18 @@ input[type='number']::-webkit-inner-spin-button {
 }
 a{
 	color: #10a1d6;
+}
+
+.form-inline input {
+	display: inline-block;
+}
+
+.form-inline button {
+	display: inline-block;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

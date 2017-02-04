@@ -142,41 +142,49 @@
   text-transform: uppercase;
 }
 .company-finance-info{
-  font-size: 20px;
-  color: #fff;
-  line-height: 2.1;
-  font-family: Gotham;
-  margin-left: 66px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
-.fund-america-invest-button{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
+
 .company-admin-editing{
   position: absolute;
   right: 2%;
   margin-top: -50px;
 }
+.fund-america-invest-button {
+  position: absolute;
+  bottom: 1.25rem;
+  padding-right: 3rem;
+  width: 100%;
+}
 .fund-america-invest-button button{
-  font-size: 18px;
+  font-size: 1.4rem;
   border-radius: 3px;
-  font-family: Gotham;
   padding: 14px;
 }
-.company-info-cateogry:nth-child(1){
-  margin-top: 100px;
+.fund-america-invest-button form {
+  display: flex;
 }
 .no-margin-top{
   margin-top: 50px !important;
 }
 .company-info-right-panel{
+  font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
   position: absolute;
   width: 25%;
+  min-width: 310px;
   max-width: 400px;
   right: 18%;
-  height: 450px;
   background-color: rgba(0,0,0,0.6);
+  color: white;
+  height: 100%;
+  padding: 3rem 1.5rem;
+
+  box-sizing: border-box;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 }
 
 .company-slogan{
@@ -401,10 +409,9 @@
 }
 
 .company-button {
+  flex: 0 0 120px;
 	background: $darkblue;
-	margin-top: 10px;
 	padding: 10px;
-	width: 100%;
 	border: none;
 	color: white;
 	cursor: pointer;
@@ -421,10 +428,8 @@
 }
 
 .profile-button {
-	width: 80%;
-	margin: 20px auto;
-	display: block;
-	font-size: 17px;
+	font-size: 1.1em;
+  font-weight: bold;
 }
 .mail-to-button {
 	text-align: center;
@@ -891,15 +896,8 @@ and (max-device-width : 568px) {
   .grey-section{
     padding-bottom: 10%;
   }
-  .company-info-cateogry:nth-child(1){
-    margin-top: 3vh;
-  }
   .company-info-cateogry{
     font-size: 1.5em;
-  }
-  .company-finance-info{
-    font-size: 2em;
-    font-weight: bold;
   }
   .company-basic-info{
     font-size: 4em;
@@ -944,7 +942,7 @@ and (max-device-width : 568px) {
 
 #video-play-button {
   position: absolute;
-  bottom: 5rem;
+  top: 50%;
   left: 50%;
   width: 100px;
   height: 100px;
@@ -962,4 +960,72 @@ and (max-device-width : 568px) {
   display: inline-block;
   vertical-align: middle;
   height: 100%;
+}
+
+.company-detail {
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.company-info-category {
+  opacity: .5;
+  font-size: .8rem;
+}
+
+.company-info-container {
+  max-width: 1266px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 4.125rem;
+}
+
+.currency_input, #invest_amount {
+  font-size: 1.4rem;
+  * {
+    font-size: 1.4rem;
+  }
+}
+
+.currency_input {
+  border-bottom: 2px $darkblue solid;
+  margin-right: 8px;
+  flex: 1;
+  text-align: left;
+  padding-left: 8px;
+}
+
+#invest_amount {
+  padding: 8px;
+  padding-left: 0;
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  width: 76%;
+}
+
+.company-info {
+  color: white;
+}
+
+.company-info.bottom {
+  background: linear-gradient(to bottom,rgba(0,0,0,0) 0,#000 100%);
+  bottom: 0;
+  padding-bottom: 1rem;
+}
+
+.company-info.top {
+  background: linear-gradient(to bottom,#000 0,rgba(0,0,0,0) 100%);
+  top: 0;
+  padding: 25px 0;
+  font-size: 12px;
+  opacity: .9;
+  font-weight: bold;
+  text-transform: capitalize;
+  position: absolute;
+  width: 100%;
+
+  .follow {
+    margin-right: 5px;
+  }
 }
