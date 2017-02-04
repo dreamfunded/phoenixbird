@@ -157,6 +157,7 @@ Rails.application.routes.draw do
 
   post '/join_waitlist', to: 'companies#join_waitlist_send_email'
   get '/join_waitlist_thank_you', to: 'companies#join_waitlist_thank_you'
+  post '/join_waitlist_send_email_with_invest', to: 'companies#join_waitlist_send_email_with_invest'
 
 
   get '/liquidate', to: 'home#liquidate'
