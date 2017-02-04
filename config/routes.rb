@@ -162,7 +162,7 @@ Rails.application.routes.draw do
   post '/join_waitlist', to: 'waitlist#join_waitlist_send_email'
   post '/join_waitlist_reg_a', to: 'waitlist#join_waitlist_reg_a'
   get '/join_waitlist_thank_you', to: 'waitlist#join_waitlist_thank_you'
-
+  post '/join_waitlist_send_email_with_invest', to: 'waitlist#join_waitlist_send_email_with_invest'
 
   get '/liquidate', to: 'home#liquidate'
   get '/liquidity', to: 'home#liquidate'

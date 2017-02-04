@@ -12,6 +12,11 @@
 
 
     <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
+        <div class='company-info top'>
+            <div class='company-info-container'>
+                <span class='follow' data-company-id="<%= @company.id %>"></span>FOLLOW US FOR UPDATES
+            </div>
+        </div>
         <button id="video-play-button" data-video-src='<%= @company.video_link + "?&enablejsapi=1&version=3" %>'>
             <span class='icon icon-play'></span>
         </button>
@@ -27,19 +32,27 @@
         <div class='company-info-right-panel'>
 
                 <% if @company.status == 2 %>
-                    <div class='company-info-cateogry'>RAISED</div>
-                    <div class='company-finance-info'>
-                        <%= raised_amount(@company) %>
+                    <div class='company-detail'>
+                        <div class='company-finance-info'>
+                            <%= raised_amount(@company) %>
+                        </div>
+                        <div class='company-info-category'>RAISED</div>
                     </div>
 
-                    <div class='company-info-cateogry'>TARGET</div>
-                    <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+                    <div class='company-detail'>
+                        <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+                        <div class='company-info-category'>TARGET</div>
+                    </div>
 
-                    <div class='company-info-cateogry'>DAYS LEFT</div>
-                    <div class='company-finance-info'> <%= @company.left_days %></div>
+                    <div class='company-detail'>
+                        <div class='company-finance-info'> <%= @company.left_days %></div>
+                        <div class='company-info-category'>DAYS LEFT</div>
+                    </div>
 
-                    <div class='company-info-cateogry'>minimum investment</div>
-                    <div class='company-finance-info'> <%= number_to_currency @company.min_investment, precision: 0 %> </div>
+                    <div class='company-detail'>
+                        <div class='company-finance-info'><%= number_to_currency @company.min_investment, precision: 0 %></div>
+                        <div class='company-info-category'>MINIMUM INVESTMENT</div>
+                    </div>
 
                     <div class="meter orange">
                         <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
@@ -53,18 +66,25 @@
                     </div>
                     <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
                 <% else %>
+                    <div class="company-detail">
+                        <div class='company-finance-info'>TBA</div>
+                        <div class='company-info-category'>RAISED</div>
+                    </div>
 
-                    <div class='company-info-cateogry'>RAISED</div>
-                    <div class='company-finance-info'> TBA</div>
+                    <div class="company-detail">
+                        <div class='company-finance-info'>TBA</div>
+                        <div class='company-info-category'>TARGET</div>
+                    </div>
 
-                    <div class='company-info-cateogry'>TARGET</div>
-                    <div class='company-finance-info'>TBA</div>
+                    <div class="company-detail">
+                        <div class='company-finance-info'>TBA</div>
+                        <div class='company-info-category'>DAYS LEFT</div>
+                    </div>
 
-                    <div class='company-info-cateogry'>DAYS LEFT</div>
-                    <div class='company-finance-info'> TBA </div>
-
-                    <div class='company-info-cateogry'>minimum investment</div>
-                    <div class='company-finance-info'> TBA </div>
+                    <div class="company-detail">
+                        <div class='company-finance-info'>TBA</div>
+                        <div class='company-info-category'>MINIMUM INVESTMENT</div>
+                    </div>
 
                 <% end %>
 
@@ -80,7 +100,13 @@
                                 Invest in <%= @company.name %>
                             </button>
                         <%else%>
-                            <%= link_to "Join The Waitlist", "/waitlist/join_waitlist/#{@company.slug}", target: "_blank", class: 'company-button profile-button mail-to-button' %>
+                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
+                                <span class="currency_input">
+                                    <span>$</span>
+                                    <%= text_field_tag "invest_amount", nil, placeholder: '100' %>
+                                </span>
+                                <%= submit_tag "Join The Waitlist", class: "company-button profile-button mail-to-button", target: "_blank" %>
+                            <% end %>
                         <%end%>
                     <%else%>
                         <button class=" company-button profile-button mail-to-button" >

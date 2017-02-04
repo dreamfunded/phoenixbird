@@ -5,7 +5,7 @@ $(document).on('ready', function(){
   })
 });
 
-$('.companies.index').ready(function() {
+$('.companies.index, .companies.show').ready(function() {
   $('.follow').followBtn();
 })
 
