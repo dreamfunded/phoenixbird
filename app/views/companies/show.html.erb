@@ -17,16 +17,18 @@
                 <span class='follow' data-company-id="<%= @company.id %>"></span>FOLLOW US FOR UPDATES
             </div>
         </div>
-        <button id="video-play-button" data-video-src='<%= @company.video_link + "?&enablejsapi=1&version=3" %>'>
+        <button id="video-play-button" data-video-src='<%= @company.video_link + "?enablejsapi=1&version=3" %>'>
             <span class='icon icon-play'></span>
         </button>
         <div class='company-profile-bottom-line'>
-            <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
-            <section class='company-basic-info'>
-                <div>   <%= @company.name %>  </div>
-                <div class='company-slogan'>    <%= @company.campaign.tagline %>  </div>
-                <div class='company-location'><i class="fa fa-map-marker"></i> <%= @company.campaign.place %> </div>
-            </section>
+            <div class="company-info-container">
+                <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
+                <section class='company-basic-info'>
+                    <div>   <%= @company.name %>  </div>
+                    <div class='company-slogan'>    <%= @company.campaign.tagline %>  </div>
+                    <div class='company-location'><i class="fa fa-map-marker"></i> <%= @company.campaign.place %> </div>
+                </section>
+            </div>
         </div>
 
         <div class='company-info-right-panel'>
@@ -121,274 +123,278 @@
         </div>
     </section>
 
-        <div class='grey-section'>
-            <div class=" stretch">
-                <!-- A D M I N   E D I T I N G -->
-                <div class='company-admin-editing'>
-                    <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                        <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
-                            <i class="fa fa-user-secret" aria-hidden="true"></i>
-                           <span class='edit-my-company-button'> Edit as Admin</span>
-                        <% end %>
+    <div class="company-content">
+        <div class="company-content-container">
+            <!-- A D M I N   E D I T I N G -->
+            <div class='company-admin-editing'>
+                <% if current_user != nil && current_user.authority == authority[:Admin] %>
+                    <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
+                        <i class="fa fa-user-secret" aria-hidden="true"></i>
+                        <span class='edit-my-company-button'> Edit as Admin</span>
                     <% end %>
-                    <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+                <% end %>
+                <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+                    <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span class='edit-my-company-button'>Edit My Company</span>
+                    <% end %>
+                <%end%>
+                <% if current_user %>
+                    <% if current_user.company == @company && current_user.role == 'founder' %>
                         <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
                             <i class="fa fa-cog" aria-hidden="true"></i>
                             <span class='edit-my-company-button'>Edit My Company</span>
                         <%end%>
                     <% end %>
-                    <br>
-                    <% if current_user %>
-                        <% if current_user.company == @company && current_user.role == 'founder' %>
-                            <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
-                                <i class="fa fa-cog" aria-hidden="true"></i>
-                                <span class='edit-my-company-button'>Edit My Company</span>
-                            <%end%>
-                        <% end %>
-                    <% end %>
-                </div>
-
-                <div class="fluid-container">
-                    <div class="row">
-                        <div class="col-8">
-                            <h2 class='section-title'>Who Are We?</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <section class= "video-box">
-                                <% if @company.video_link.empty? %>
-                                    <%= image_tag( @company.image.url, class: 'image-max-width')%>
-                                <% else %>
-                                    <div class="video-fluid">
-                                        <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0" %> frameborder="0" allowfullscreen ></iframe>
-                                    </div>
-                                <% end %>
-                            </section>
-                        </div>
-                        <div class="col-4 centered">
-                            <section class='social-media-campaign'>
-                                <p class='help-our-campaign'>
-                                    Help us reach our goal. <br>Share our campaign to your friends and family.
-                                </p>
-                                <section class='centered'>
-                                    <%if @company.accredited%>
-                                        <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
-                                        <script type="text/javascript">
-                                          $('#facebook').click(function(){
-                                            FB.ui({
-                                              method: 'share',
-                                              href: "https://dreamfunded.com/companies/<%= @company.slug %>",
-                                              redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
-                                              // quote: "Invest in <%= @company.name %> on DreamFunded",
-                                              title: "<%= @company.name %>",
-                                              description: "<%= @company.campaign.tagline %>"
-                                            }, function(response){});
-
-                                          })
-                                        </script>
-                                        <a id="twitter" class="share-invites-social" target="_blank"
-                                         href="http://twitter.com/intent/tweet?url=https://dreamfunded.com/companies/<%= @company.slug %>"
-                                          title="Share via Twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-
-                                        <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Invest%in%<%= @company.name%>&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    <%else%>
-                                        <a id='facebook' class="share-invites-social" > <i class="fa fa-facebook"></i></a>
-                                        <a id="twitter" class="share-invites-social" title="Share via Twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                        <a id ='linkedin' class="share-invites-social" title="Share via LinkedIn" >
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    <%end%>
-
-                                    <div class='company-info-cateogry campaign-website'>
-                                        <%= link_to @company.website_link, "http://"+@company.website_link, class: 'website-url', target: '_blank' %>
-                                    </div>
-                                </section>
-                            </section>
-                        </div>
-                    </div>
-                </div>
+                <% end %>
             </div>
 
-        </div>
+            <section class="company-section">
+                <div class="section-container">
+                    <h1 class="section-title"><%= @company.name %></h1>
+                    <div class="fluid-container">
+                        <div class="col-6">
+                            <h2 class="section-sub-heading">Who Are We?</h2>
+                            <h2 class="company-section-tagline"><%= @company.campaign.tagline %></h2>
+                            <div class="company-quote">
+                                CEO Quote Goes Here
+                                <div class="sub-quote">followed by small paragraph</div>
+                            </div>
+                            <div class='said-by'>
+                                <%= image_tag(@company.image.url) %>
+                                <span>
+                                    <div>Juan Miguel Maniego</div>
+                                    <div class="said-by-title">CEO</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="section-sub-heading">Offering Summary</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="div"/>
+            <section class="company-section">
+                <div class="section-container">
+                    <h2 class="section-title">Our Mission</h2>
+                    <div class="section-content">
+                        <% if current_user %>
+                            <p><%= @company.campaign.about_campaign.html_safe if @company.campaign.about_campaign %></p>
+                        <% else %>
+                            <p class= "fifteen "><%= @company.campaign.about_campaign.split(' ').first(30).join(' ').html_safe if @company.campaign.about_campaign%>...</p>
+                            <article class='centered'>
+                                <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                                <%= link_to "Sign In to View", new_user_session_path%>
+                            </article>
+                        <%end%>
+                    </div>
+                </div>
+            </section>
+            <hr class="div"/>
+            <section class="company-section">
+                <div class="section-container">
+                    <h2 class="section-title">What Others are saying</h2>
+                </div>
+            </section>
+            <hr class="div"/>
+            <section class="company-section">
+                <div class="section-container">
+                    <h2 class="section-title">Business Plan</h2>
+                </div>
+            </section>
 
-        <div class='white-section'>
-            <div class= "description-container">
-                <section class='nav-links'>
-                    <a  class='tab-name about_tab active-tab'>Company</a>
-                    <a  class='tab-name   ' id='team_tab'>Team</a>
-                    <a  class='tab-name   ' id='finances_tab'>Financial Info</a>
-                    <a  class='tab-name   ' id='documents_tab'>Documents</a>
-                    <a  class='tab-name   ' id='comments_tab'>Comments</a>
-                </section>
+            <hr class="div"/>
 
-                <div class='about_tab_content tab-content'>
-
-                    <h2 class= " category-name indent">Highlight</h2>
-                    <hr>
+            <section class='company-section'>
+                <div class='section-container'>
+                    <h2 class='section-title'>Highlight</h2>
+                    <div class='section-content'>
+                        <% if current_user %>
                             <p class= "fifteen "><%= @company.description.html_safe if @company.description %></p>
-                    <br>
-
-                    <h2 class= " category-name indent">Why <%= @company.name %>?</h2>
-                    <hr>
-                        <p class='sign-in-blur'><%= @company.campaign.elevator_pitch.html_safe  if @company.campaign.elevator_pitch %></p>
-                    <br>
-
-                    <h2 class= " category-name indent">Our Mission</h2>
-                    <hr>
-                    <p><%= @company.campaign.about_campaign.html_safe if @company.campaign.about_campaign %></p>
+                        <%else%>
+                            <p class= "fifteen "><%= @company.description.split(' ').first(30).join(' ').html_safe %>...</p>
+                            <article class='centered'>
+                                <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                                <%= link_to "Sign In to View", new_user_session_path%>
+                            </article>
+                        <%end%>
+                    </div>
                 </div>
+            </section>
 
-                <div class='team_tab_content tab-content'>
-                    <% if @company.status == 2 || @company.status == 1 %>
-                        <% if @members != nil && !@members.empty? %>
-                            <br>
-                                <div class= "team-band">
-                                    <% @members.each do |member| %>
-                                        <div class= "team-member-box">
-                                            <%# if current_user != nil && current_user.authority == authority[:Admin] %>
-                                                <%#= button_to "X", { action: 'remove_founder', id: member.id} , {:class => 'remove-button'} %>
-                                            <%# end %>
-                                            <%= image_tag( member.image.url, :class => "company-members") %>
-                                            <h2 class= "team-member-name"><%= member.name %></h2>
-                                            <h2 class='team-member-title'><%= member.title %></h2>
-                                            <br>
-                                            <p class= "team-member-bio"><%= nl2br(h(member.content)).html_safe %></p>
-                                        </div>
-                                    <% end %>
-                                </div>
+            <hr class="div"/>
+
+            <section class='company-section'>
+                <div class='section-container'>
+                    <h2 class='section-title'>Why <%= @company.name %>?</h2>
+                    <div class='section-content'>
+                        <% if current_user %>
+                            <p class='sign-in-blur'><%= @company.campaign.elevator_pitch.html_safe  if @company.campaign.elevator_pitch %></p>
+                        <% else %>
+                            <p class= "fifteen "><%= @company.campaign.elevator_pitch.split(' ').first(30).join(' ').html_safe if @company.campaign.elevator_pitch%>...</p>
+                            <article class='centered'>
+                                <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                                <%= link_to "Sign In to View", new_user_session_path%>
+                            </article>
+                        <%end%>
+                    </div>
+                </div>
+            </section>
+            <hr class="div"/>
+            <section class='company-section'>
+                <div class='section-container'>
+                    <h2 class='section-title'>Team Members</h2>
+                    <div class='section-content'>
+                        <% if @company.status == 2 || @company.status == 1 %>
+                            <% if @members != nil && !@members.empty? %>
+                                    <div class= "team-band">
+                                        <% @members.each do |member| %>
+                                            <div class= "team-member-box">
+                                                <%# if current_user != nil && current_user.authority == authority[:Admin] %>
+                                                    <%#= button_to "X", { action: 'remove_founder', id: member.id} , {:class => 'remove-button'} %>
+                                                <%# end %>
+                                                <%= image_tag( member.image.url, :class => "company-members") %>
+                                                <h2 class= "team-member-name"><%= member.name %></h2>
+                                                <h2 class='team-member-title'><%= member.position %></h2>
+                                                <p class= "team-member-bio"><%= nl2br(h(member.content)).html_safe %></p>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                            <% end %>
                         <% end %>
-                    <% end %>
+                    </div>
                 </div>
-
-                <div class='finance_tab_content tab-content'>
+            </section>
+            <hr class="div">
+            <section class='company-section'>
+                <div class='section-container'>
                     <% if current_user %>
-
-                        <h2 class= " category-name indent">Offering Terms</h2>
-                        <hr>
-                        <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
-
-                        <h2 class= " category-name indent">Financial Risks</h2>
-                        <hr>
-                        <p class= "fifteen"><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
+                        <h2 class="section-title">Offering Terms</h2>
+                        <div class='section-content'>
+                            <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
+                        </div>
                     <%else%>
-
                         <article class='centered'>
                             <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
                             <%= link_to "Sign In to View", new_user_session_path%>
                         </article>
                     <%end%>
-
-
                 </div>
-
-                <div class='documents_tab_content tab-content'>
+            </section>
+            <hr class="div">
+            <section class='company-section'>
+                <div class='section-container'>
                     <% if current_user %>
-                        <% if @financial_details.balance_sheet_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Balance Sheet", @financial_details.balance_sheet.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.income_statements_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Income Statements", @financial_details.income_statements.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.statement_of_cash_flow_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Statement of Cash Flow", @financial_details.statement_of_cash_flow.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.statement_changes_of_equity_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Statement of Changes in Equity For Past 2 Years", @financial_details.statement_changes_of_equity.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.business_plan_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Anticipated Business Plan", @financial_details.business_plan.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.party_transaction_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Any Related Party Transaction", @financial_details.party_transaction.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.intended_use_of_proceeds_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Description of Intended Use of Proceeds", @financial_details.intended_use_of_proceeds.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.capital_structure_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Ownership and Capital Structure", @financial_details.capital_structure.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.material_terms_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Material Terms of Any Indebtedness", @financial_details.material_terms.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.directors_background_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Background of Directors and Officers", @financial_details.directors_background.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.accountant_review_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Independent Accountant's Review", @financial_details.accountant_review.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% if @financial_details.financial_conditions_file_name %>
-                            <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Financial Condition", @financial_details.financial_conditions.url, target: "_blank", class: 'document-url' %></p>
-                        <% end %>
-
-                        <% @company.documents.each do |doc| %>
-                            <p class= "fifteen ">Pitch Deck:</p>
-                            <p class= "no-margin doc_name_overflow">
-                                <%= image_tag "static/pdf_icon.png" %>
-                                <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
-                            </p>
-                        <% end %>
+                        <h2 class="section-title">Financial Risks</h2>
+                        <div class='section-content'>
+                            <p class= "fifteen"><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
+                        </div>
                     <% else %>
                         <article class='centered'>
                             <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
                             <%= link_to "Sign In to View", new_user_session_path%>
                         </article>
-                    <%end%>
+                    <% end %>
                 </div>
+            </section>
 
-                <div class='comments_tab_content tab-content' >
-                    <div class='comments'>
-                        <%= nested_messages(@comments.arrange(:order => :created_at))%>
-                    </div>
-                    <br>
+            <div class='documents_tab_content tab-content'>
+                <% if current_user %>
+                    <% if @financial_details.balance_sheet_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Balance Sheet", @financial_details.balance_sheet.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
 
-                        <% if current_user %>
-                            <div class="comment">
-                              <div class="headline">
-                                <span class="name">
-                                  <span class='comment_as'>New comment as</span>
-                                  <a><%= current_user.comments_name%></a>
-                                </span>
-                              </div>
-                              <div class="comment_content">
-                                    <%= form_for Comment.new, remote: true  do |f|%>
-                                         <%= f.hidden_field "user_id", value: current_user.id %>
-                                         <%= f.hidden_field "company_id", value: @company.id %>
-                                         <%= f.hidden_field :parent_id %>
-                                        <div>
-                                            <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
-                                        </div>
-                                        <%= f.submit "Post Comment", class: 'comment_submit_button' %>
-                                    <% end %>
-                            </div>
-                        <%else%>
-                              <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
-                            </div>
-                        <%end%>
-                </div>
+                    <% if @financial_details.income_statements_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Income Statements", @financial_details.income_statements.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
 
+                    <% if @financial_details.statement_of_cash_flow_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Statement of Cash Flow", @financial_details.statement_of_cash_flow.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
 
+                    <% if @financial_details.statement_changes_of_equity_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Statement of Changes in Equity For Past 2 Years", @financial_details.statement_changes_of_equity.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.business_plan_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Anticipated Business Plan", @financial_details.business_plan.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.party_transaction_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Any Related Party Transaction", @financial_details.party_transaction.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.intended_use_of_proceeds_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Description of Intended Use of Proceeds", @financial_details.intended_use_of_proceeds.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.capital_structure_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Ownership and Capital Structure", @financial_details.capital_structure.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.material_terms_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Material Terms of Any Indebtedness", @financial_details.material_terms.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.directors_background_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Background of Directors and Officers", @financial_details.directors_background.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.accountant_review_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Independent Accountant's Review", @financial_details.accountant_review.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% if @financial_details.financial_conditions_file_name %>
+                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Financial Condition", @financial_details.financial_conditions.url, target: "_blank", class: 'document-url' %></p>
+                    <% end %>
+
+                    <% @company.documents.each do |doc| %>
+                        <p class= "fifteen ">Pitch Deck:</p>
+                        <p class= "no-margin doc_name_overflow">
+                            <%= image_tag "static/pdf_icon.png" %>
+                            <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
+                        </p>
+                    <% end %>
+                <% else %>
+                    <article class='centered'>
+                        <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                        <%= link_to "Sign In to View", new_user_session_path%>
+                    </article>
+                <%end%>
             </div>
 
+            <div class='comments_tab_content tab-content' >
+                <div class='commentnts'>
+                    <%= nested_messages(@comments.arrange(:order => :created_at))%>
+                </div>
 
+                    <% if current_user %>
+                        <div class="comment">
+                          <div class="headline">
+                            <span class="name">
+                              <span class='comment_as'>New comment as</span>
+                              <a><%= current_user.comments_name%></a>
+                            </span>
+                          </div>
+                          <div class="comment_content">
+                                <%= form_for Comment.new, remote: true  do |f|%>
+                                     <%= f.hidden_field "user_id", value: current_user.id %>
+                                     <%= f.hidden_field "company_id", value: @company.id %>
+                                     <%= f.hidden_field :parent_id %>
+                                    <div>
+                                        <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
+                                    </div>
+                                    <%= f.submit "Post Comment", class: 'comment_submit_button' %>
+                                <% end %>
+                        </div>
+                    <%else%>
+                          <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
+                    <%end%>
+                </div>
+            </div>
         </div>
+    </div>
 
 
 
@@ -400,37 +406,6 @@
 
 <script>
     $(document).ready(function() {
-        $('#team_tab').click(function(e){
-            $('.tab-content').hide();
-            $('.team_tab_content').show();
-            $(".tab-name").removeClass('active-tab');
-            $("#team_tab").addClass('active-tab');
-        });
-        $('.about_tab').click(function(e){
-            $('.tab-content').hide();
-            $('.about_tab_content').show();
-            $(".tab-name").removeClass('active-tab');
-            $('.about_tab').addClass('active-tab');
-        });
-        $('#finances_tab').click(function(e){
-            $('.tab-content').hide();
-            $('.finance_tab_content').show();
-            $(".tab-name").removeClass('active-tab');
-            $('#finances_tab').addClass('active-tab');
-        });
-        $('#comments_tab').click(function(e){
-            $('.tab-content').hide();
-            $('.comments_tab_content').show();
-            $(".tab-name").removeClass('active-tab');
-            $('#comments_tab').addClass('active-tab');
-        });
-        $("#documents_tab").click(function(e){
-            $('.tab-content').hide();
-            $('.documents_tab_content').show();
-            $(".tab-name").removeClass('active-tab');
-            $('#documents_tab').addClass('active-tab');
-        })
-
         document.addEventListener('fa.investnow.success', function(e){
           var InvestorInvestmentID = e.investment_id;
           console.log(e);
