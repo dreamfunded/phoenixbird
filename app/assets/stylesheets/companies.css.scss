@@ -4,6 +4,7 @@
 
 @import 'colors';
 @import 'z_index';
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
 
 .wrap {
 	font-family: "Calibri";
@@ -12,10 +13,6 @@
 
 .gray {
 	color: $lightgray;
-}
-.grey-section{
-  background-color: #f5f5f5;
-  padding-bottom: 0;
 }
 
 .edit-company-button{
@@ -38,8 +35,6 @@
 }
 
 .white-section{
-  background-color: #fff;
-  padding-top: 18px;
   padding-bottom: 100px;
 }
 
@@ -100,13 +95,93 @@
   font-family: Gotham;
   text-align: center;
 }
-.section-title{
-  font-family: Gotham, sans-serif;
+
+hr.div {
+  margin: 0 30px;
+  border: none;
+  border-bottom: 1px rgba(74,74,74,0.05) solid;
+}
+
+.company-section {
+  font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
   color: rgb(66, 66, 66);
   -webkit-font-smoothing: antialiased;
-  text-align: center;
-  font-size: 30px;
+  font-smoothing: antialiased;
+  padding-top: 75px;
+  margin-bottom: 75px;
+
+  h1, h2 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  h1.section-title {
+    font-size: 3rem;
+  }
+
+  h2.section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-content, .section-title {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .section-sub-heading {
+    margin-bottom: 1rem;
+  }
+
+  .company-section-tagline {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    font-family: 'Droid Serif', serif;
+  }
+
+  .company-quote, .company-section-tagline {
+    padding-left: 1rem;
+  }
+
+  .company-quote {
+    margin-bottom: 1rem;
+  }
+
+  .said-by {
+    padding-left: 1rem;
+
+    img {
+      width: 50px;
+      height: auto;
+      border-radius: 50%;
+      float: left;
+      margin-right: 10px;
+    }
+
+    & > span {
+      line-height: 1.3rem;
+    }
+
+    .said-by-title {
+      opacity: .5;
+    }
+  }
 }
+
+.company-quote {
+  font-family: 'Droid Serif', serif;
+  font-size: 2.1rem;
+  line-height: 1.5rem;
+  opacity: .75;
+  letter-spacing: 1px;
+
+  .sub-quote {
+    padding-top: 8px;
+    font-size: .9rem;
+  }
+}
+
 .category-name{
   font-family: Gotham, sans-serif;
   color: rgb(66, 66, 66);
@@ -117,7 +192,7 @@
 .company-profile-bottom-line{
   position: absolute;
   bottom: 0;
-  left: 10%;
+  width: 100%;
 }
 .company-basic-info {
   width: 500px;
@@ -150,7 +225,6 @@
 .company-admin-editing{
   position: absolute;
   right: 2%;
-  margin-top: -50px;
 }
 .fund-america-invest-button {
   position: absolute;
@@ -235,7 +309,6 @@
   border-bottom: 2px solid $darkblue;
 }
 .tab-content{
-  display: none;
   width: 76%;
   max-width: 800px;
   margin-left: 12%;
@@ -893,9 +966,6 @@ and (max-device-width : 568px) {
   .nav-links a{
     font-size: 12px;
   }
-  .grey-section{
-    padding-bottom: 10%;
-  }
   .company-info-cateogry{
     font-size: 1.5em;
   }
@@ -913,12 +983,6 @@ and (max-device-width : 568px) {
   }
 
 
-}
-
-@media (min-width: 40rem) {
-  .grey-section {
-    padding: 5% 12%;
-  }
 }
 
 .icon-play {
@@ -1008,12 +1072,6 @@ and (max-device-width : 568px) {
   color: white;
 }
 
-.company-info.bottom {
-  background: linear-gradient(to bottom,rgba(0,0,0,0) 0,#000 100%);
-  bottom: 0;
-  padding-bottom: 1rem;
-}
-
 .company-info.top {
   background: linear-gradient(to bottom,#000 0,rgba(0,0,0,0) 100%);
   top: 0;
@@ -1028,4 +1086,20 @@ and (max-device-width : 568px) {
   .follow {
     margin-right: 5px;
   }
+}
+
+.company-content {
+  background-color: white;
+  padding-top: 3rem;
+
+  box-sizing: border-box;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+}
+
+.company-content-container {
+  margin: 0 auto;
+  max-width: 1030px;
+  position: relative;
 }
