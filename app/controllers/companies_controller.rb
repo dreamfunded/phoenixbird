@@ -7,8 +7,7 @@ class CompaniesController < ApplicationController
 
 	def index
 		@companies =
-			Company.select('companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
-				joins("LEFT JOIN followers ON companies.id = followers.company_id").all_accredited
+			Company.with_followers.all_accredited
 	end
 
 	def company_profile
@@ -190,7 +189,7 @@ class CompaniesController < ApplicationController
 
 private
 	def set_company
-	  @company = Company.friendly.find(params[:id])
+	  @company = Company.with_followers.friendly.find(params[:id])
 	end
 
 	def verify
