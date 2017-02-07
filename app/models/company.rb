@@ -75,6 +75,11 @@ class Company < ActiveRecord::Base
     order(:position).where(hidden: false, accredited: true)
   }
 
+  scope :with_followers, -> {
+    select('companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
+      joins("LEFT JOIN followers ON companies.id = followers.company_id")
+  }
+
   def self.Status
 		{
 			:Coming_Soon => 1,

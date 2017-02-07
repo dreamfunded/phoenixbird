@@ -102,6 +102,13 @@ hr.div {
   border-bottom: 1px rgba(74,74,74,0.05) solid;
 }
 
+.company-header.company-section {
+  h1.section-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+}
+
 .company-section {
   font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
   color: rgb(66, 66, 66);
@@ -110,17 +117,27 @@ hr.div {
   padding-top: 75px;
   margin-bottom: 75px;
 
+  hr.div {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
   h1, h2 {
     margin: 0;
     margin-bottom: 10px;
   }
 
   h1.section-title {
-    font-size: 3rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   h2.section-title {
     font-size: 1.5rem;
+  }
+
+  .section-content {
+    line-height: 1.7rem;
   }
 
   .section-content, .section-title {
@@ -1037,7 +1054,7 @@ and (max-device-width : 568px) {
 }
 
 .company-info-container {
-  max-width: 1266px;
+  max-width: 1030px;
   margin: 0 auto;
   height: 100%;
   padding: 0 4.125rem;
@@ -1102,4 +1119,47 @@ and (max-device-width : 568px) {
   margin: 0 auto;
   max-width: 1030px;
   position: relative;
+}
+
+#company-nav {
+  z-index: 1000;
+  color: #424242;
+
+  .media-logo {
+    display: inline-block;
+    float: left;
+    margin: 5px 15px;
+    border-radius: 3px;
+  }
+
+  .company-content-container > ul {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    float: left;
+    padding: 0;
+    padding-top: 1.5rem;
+    margin: 0;
+    font-size: .75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    li {
+      display: inline-block;
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.media-logo {
+  width: 46px;
+  height: auto;
+}
+
+.fixed-nav {
+  position: fixed;
+  top: -70px;
+  width: 100%;
+  border-bottom: 1px rgba(0,0,0,.2) solid;
+  background-color: white;
 }
