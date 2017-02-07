@@ -78,6 +78,11 @@ class Company < ActiveRecord::Base
   validates :goal_amount, numericality: { less_than_or_equal_to: 1000000 }
   validates_attachment_content_type :document, :content_type =>['application/pdf']
 
+  scope :with_followers, -> {
+    select('companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
+      joins("LEFT JOIN followers ON companies.id = followers.company_id")
+  }
+
   def self.Status
 		{
 			:Coming_Soon => 1,
