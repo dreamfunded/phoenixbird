@@ -99,14 +99,21 @@
 hr.div {
   margin: 0 30px;
   border: none;
-  border-bottom: 1px rgba(74,74,74,0.05) solid;
+  border-bottom: 1px rgba(74,74,74,0.2) solid;
 }
 
 .company-header.company-section {
   h1.section-title {
     font-size: 3rem;
     margin-bottom: 10px;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
   }
+}
+
+.company-section:last-of-type {
+  margin-bottom: 0;
 }
 
 .company-section {
@@ -120,6 +127,7 @@ hr.div {
   hr.div {
     margin-top: 30px;
     margin-bottom: 30px;
+    border-bottom: 1px rgba(74,74,74,0.05) solid;
   }
 
   h1, h2 {
@@ -130,6 +138,7 @@ hr.div {
   h1.section-title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
 
   h2.section-title {
@@ -140,7 +149,7 @@ hr.div {
     line-height: 1.7rem;
   }
 
-  .section-content, .section-title {
+  .section-content, h2.section-title {
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -201,7 +210,7 @@ hr.div {
 
 .category-name{
   font-family: Gotham, sans-serif;
-  color: rgb(66, 66, 66);
+  color: rgb(74, 74, 74);
   -webkit-font-smoothing: antialiased;
   text-align: left;
   font-size: 25px;
@@ -407,7 +416,7 @@ hr.div {
 }
 .comment{
   max-width: 700px;
-  margin: 20px 0;
+  margin: 20px auto;
   position: relative;
 }
 .reply_comment_form{
@@ -1107,7 +1116,7 @@ and (max-device-width : 568px) {
 
 .company-content {
   background-color: white;
-  padding-top: 3rem;
+  padding: 3rem 0;
 
   box-sizing: border-box;
   *, *:before, *:after {
@@ -1162,4 +1171,31 @@ and (max-device-width : 568px) {
   width: 100%;
   border-bottom: 1px rgba(0,0,0,.2) solid;
   background-color: white;
+}
+
+.tags {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: .9rem;
+  font-weight: normal;
+  text-shadow: none;
+  padding-top: 1rem;
+
+  li {
+    display: inline-block;
+    text-align: center;
+
+    a {
+      color: rgba(74, 74, 74, 0.5);
+      background-color: white;
+      padding: 5px 8px;
+      border: 1px solid rgba(74, 74, 74, 0.2);
+      border-radius: 50px;
+    }
+
+    a:hover {
+      background-color: rgb(238, 238, 238);
+    }
+  }
 }

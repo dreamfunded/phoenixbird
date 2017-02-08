@@ -7,6 +7,7 @@ $(document).on('ready', function(){
 
 $('.companies.index, .companies.show').ready(function() {
   $('.follow').followBtn();
+  $('a[href*="#"]:not([href="#"])').smooth_scroll({offset: -30});
 
   var $fixed_nav = $('#company-nav');
   var scroll_state = { away: false };
