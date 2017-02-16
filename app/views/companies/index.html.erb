@@ -3,9 +3,9 @@
 
 	<div class= "header"><h1 class= "centered">Investment Opportunities</h1></div>
 
-	<section class='properties-wrapper fluid-container'>
+	<section class='properties-wrapper fluid-container flex-grid'>
 		<% @companies.each do |company| %>
-			<div class="col-3">
+			<div class="col">
 				<div class='property-box'>
 					<div class="card-content">
 						<%= link_to company do %>

@@ -96,8 +96,22 @@ class CampaignsController < ApplicationController
     redirect_to "/companies/company_profile/#{@campaign.company.id}"
   end
 
+  def edit_campaign
+    @testimonials_limit = Campaign::TESTIMONIALS_LIMIT
+    @campaign = Campaign.find(params[:id])
+    @company = @campaign.company
 
-
+    unless @campaign.testimonials.size >= @testimonials_limit
+      @campaign.testimonials.build
+    end
+    # if current_user.company != @company
+    #   redirect_to company_path(@company)
+    # end
+    @formc = @company.general_infos.last
+    @members = @company.founders
+    @comments = @company.comments
+    @campaign_quote = @campaign.quote || @campaign.build_quote
+  end
 
   def team
     @company = current_user.company
@@ -114,7 +128,9 @@ class CampaignsController < ApplicationController
 
   def company_params
      params.require(:company).permit(:image, :id, :cover, :name, :description, :video_link, :user_id, :goal_amount, :website_link,
-                     campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state],
+                     campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state, :business_plan,
+                      testimonials_attributes: [:id, :name, :position, :photo, :message],
+      gste_attributes: [:id, :main, :description, :said_by, :position, :photo]],
                      founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
                      documents_attributes: [:id, :file, :name, :company_id ],
                      financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",

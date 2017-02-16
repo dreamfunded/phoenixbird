@@ -76,6 +76,7 @@
 .campaign-website{
   margin-top: 50px;
   margin-left: -20px !important;
+  margin-bottom: 50px;
 }
 .website-url{
   font-size: 13px;
@@ -97,7 +98,7 @@
 }
 
 hr.div {
-  margin: 0 30px;
+  margin: 0 15px;
   border: none;
   border-bottom: 1px rgba(74,74,74,0.2) solid;
 }
@@ -107,8 +108,8 @@ hr.div {
     font-size: 3rem;
     margin-bottom: 10px;
     text-align: left;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -128,6 +129,14 @@ hr.div {
     margin-top: 30px;
     margin-bottom: 30px;
     border-bottom: 1px rgba(74,74,74,0.05) solid;
+  }
+
+  .fluid-container {
+    hr.div {
+      margin-top: 15px;
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   h1, h2 {
@@ -150,8 +159,8 @@ hr.div {
   }
 
   .section-content, h2.section-title {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .section-sub-heading {
@@ -227,8 +236,6 @@ hr.div {
   font-family: Gotham, sans-serif;
   letter-spacing: -1px;
   color: #fff;
-  padding-left: 15px;
-  padding-top: 15px;
   display: inline-block;
   vertical-align: top;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
@@ -379,11 +386,6 @@ hr.div {
 	float: left;
 	background: white;
 	position: relative;
-}
-
-.comments{
-  width: 69%;
-  max-width: 700px;
 }
 
 .comment .headline {
@@ -766,7 +768,6 @@ hr.div {
 
 .team-band div {
 	display: inline-block;
-  margin: 0 22px;
 }
 
 .team-box {
@@ -1066,7 +1067,6 @@ and (max-device-width : 568px) {
   max-width: 1030px;
   margin: 0 auto;
   height: 100%;
-  padding: 0 4.125rem;
 }
 
 .currency_input, #invest_amount {
@@ -1133,6 +1133,8 @@ and (max-device-width : 568px) {
 #company-nav {
   z-index: 1000;
   color: #424242;
+  box-shadow: 0 5px 8px -8px rgba(74,74,74,0.5);
+  font-family: 'Gotham',sans-serif;
 
   .media-logo {
     display: inline-block;
@@ -1141,21 +1143,42 @@ and (max-device-width : 568px) {
     border-radius: 3px;
   }
 
-  .company-content-container > ul {
-    display: inline-block;
-    list-style: none;
-    padding: 0;
-    float: left;
-    padding: 0;
+  .company-content-container > .company-nav-links {
     padding-top: 1.5rem;
-    margin: 0;
-    font-size: .75rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+  }
 
-    li {
+  .company-content-container {
+    .social-invites {
+      padding-top: 5px;
+    }
+
+    ul {
       display: inline-block;
-      margin-right: 1.5rem;
+      list-style: none;
+      padding: 0;
+      float: left;
+      padding: 0;
+      margin: 0;
+      font-size: .75rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+
+      &.float-opposite {
+        float: right;
+        .share-invites-social {
+          margin: 0;
+        }
+
+        li {
+          margin-right: 0;
+          margin-left: 1.5rem;
+        }
+      }
+
+      li {
+        display: inline-block;
+        margin-right: 1.5rem;
+      }
     }
   }
 }
@@ -1169,7 +1192,6 @@ and (max-device-width : 568px) {
   position: fixed;
   top: -70px;
   width: 100%;
-  border-bottom: 1px rgba(0,0,0,.2) solid;
   background-color: white;
 }
 
@@ -1197,5 +1219,94 @@ and (max-device-width : 568px) {
     a:hover {
       background-color: rgb(238, 238, 238);
     }
+  }
+}
+
+.testimonial-card {
+  img {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  input {
+    margin-bottom: 10px;
+  }
+}
+
+.testimonial .section-content, .testimonial .fluid-container{
+  text-align: center;
+  img {
+    width: 92px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonial-details {
+    font-family: 'Gotham', sans-serif;
+  }
+
+  .panel {
+    display: none;
+  }
+}
+
+.radio-tabs .state {
+  position: absolute;
+  left: -10000px;
+}
+
+.radio-tabs .radio-tab {
+  cursor: pointer;
+  opacity: .4;
+  display: block;
+  padding-top: 20px;
+  border-radius: 5px;
+}
+
+.radio-tabs .radio-tab:hover {
+    background-color: rgba(100,100,100, .1);
+    opacity: .6;
+}
+
+.radio-tabs {
+  .panels {
+    border-top: 1px solid rgba(100,100,100, .05);
+  }
+
+  .panels-content {
+    max-width: 500px;
+    min-height: 150px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 20px;
+
+    i {
+      font-family: 'Droid Serif', serif;
+      color: rgba(74,74,74,0.7);
+      line-height: 1.7rem;
+    }
+  }
+}
+
+#testimonial-0-radio:checked ~ .radio-label-tabs #testimonial-0-tab,
+#testimonial-1-radio:checked ~ .radio-label-tabs #testimonial-1-tab,
+#testimonial-2-radio:checked ~ .radio-label-tabs #testimonial-2-tab {
+  opacity: 1;
+}
+
+#testimonial-0-radio:checked ~ .panels #testimonial-0-panel,
+#testimonial-1-radio:checked ~ .panels #testimonial-1-panel,
+#testimonial-2-radio:checked ~ .panels #testimonial-2-panel {
+  display: block;
+}
+
+#team-section {
+  .links {
+    padding: 0 30px;
+  }
+
+  .nested-fields {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 }

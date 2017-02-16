@@ -1,0 +1,15 @@
+@import 'typography';
+
+.v2 {
+  font-size: $normal-font;
+
+  .form-group {
+    label {
+      font-size: $small-font;
+    }
+
+    .form-field {
+      border: 1px rgba(74,74,74, 0.15) solid;
+    }
+  }
+}
