@@ -14,14 +14,15 @@
     position: relative;
 }
 
-.team-member-name {
+.testimonial-name, .team-member-name {
     font-size: 15px;
     font-family: 'Gotham',sans-serif;
     color: #424242;
     margin-top: 11px;
+    font-weight: bold;
 }
 
-.team-member-title {
+.testimonial-title, .team-member-title {
     font-family: 'Gotham',sans-serif;
     font-size: 20px;
     font-weight: 100;

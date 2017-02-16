@@ -1,7 +1,12 @@
-  class Campaign < ActiveRecord::Base
+class Campaign < ActiveRecord::Base
+  TESTIMONIALS_LIMIT = 3
 
   belongs_to :company
   has_many :events, class_name: "CampaignEvent"
+  has_many :testimonials
+  has_one :quote, class_name: 'CampaignQuote'
+  accepts_nested_attributes_for :testimonials, reject_if: :all_blank, allow_destroy: true, limit: TESTIMONIALS_LIMIT
+  accepts_nested_attributes_for :quote
 
 
   def location

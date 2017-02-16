@@ -6,8 +6,7 @@ class CompaniesController < ApplicationController
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
-		@companies =
-			Company.with_followers.all_accredited
+		@companies = Company.with_followers(current_user).all_accredited
 	end
 
 	def company_profile
@@ -31,6 +30,8 @@ class CompaniesController < ApplicationController
 			@comments = @company.comments
 			@members = @company.founders.order(:position)
 			@section = @company.sections.first
+			@campaign = @company.campaign
+			@campaign_quote = @campaign.quote
 		else
 			redirect_to "/companies"
 		end
@@ -189,7 +190,7 @@ class CompaniesController < ApplicationController
 
 private
 	def set_company
-	  @company = Company.with_followers.friendly.find(params[:id])
+	  @company = Company.with_followers(current_user).friendly.find(params[:id])
 	end
 
 	def verify
