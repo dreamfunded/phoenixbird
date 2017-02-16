@@ -1,0 +1,64 @@
+<div class= "wrapper">
+  <div class="header-container shadow">
+    <div class= "header centered"><h2 id='payment-title'>Please Complete Your Investment Below</h2></div>
+  </div>
+
+  <div class= " payment-box">
+    <%= form_tag( '/submit_payment', method: :post) do %>
+      <%= hidden_field_tag(:company_id, @company_id) %>
+      <%= hidden_field_tag(:number_of_shares, @number_of_shares) %>
+
+      <div class='get-funded-section-name'>Number of Shares</div>
+      <%= text_field_tag :shares, nil, placeholder: '100 minimum', class: 'form-field' %>
+
+
+      <%= text_field_tag :first_name, nil, placeholder: 'First Name', class: 'form-field form-field-half' %>
+      <%= text_field_tag :last_name, nil, placeholder: 'Last Name', class: 'form-field form-field-half' %>
+      <br>
+
+      <div class='get-funded-section-name'>Date of Birth</div>
+      <%= date_field_tag :date_of_birth, nil, class: 'form-field form-field-half' %><br>
+
+      <%= text_field_tag :country, nil, placeholder: 'Country', class: 'form-field' %>
+      <br>
+
+      <div class='get-funded-section-name'>Date of Birth</div>
+      <%= text_field_tag :country, nil, placeholder: 'Street', class: 'form-field form-field-half' %>
+      <%= text_field_tag :city, nil, placeholder: 'City', class: 'form-field form-field-half' %>
+
+      <%= text_field_tag :state, nil, placeholder: 'State', class: 'form-field form-field-half' %>
+      <%= text_field_tag :zipcode, nil,placeholder: 'Zipcode', class: 'form-field form-field-half' %>
+
+
+      <div class='get-funded-section-name form-field-half'>Phone</div><br>
+      <%= text_field_tag :phone, nil,placeholder: 'Phone Number', class: 'form-field form-field-half' %>
+      <br>
+
+      <input type="checkbox" name="us_person"  required checked>
+      <span class="checkbox-label">I am a US citizen or other US person</span>
+
+
+      <div class='get-funded-section-name'>Payment</div><br>
+
+      <div class=''>Account Type</div>
+      <div class="styled-select form-field-half" >
+        <%= select_tag( :account_type, options_for_select([['Checking'],['Savings']]) ) %>
+      </div>
+
+      <div class=''>Check Type</div>
+      <div class="styled-select form-field-half" >
+        <%= select_tag( :account_type, options_for_select([['Personal'],['Business']]) ) %>
+      </div>
+      <br><br>
+
+      <%= text_field_tag :routing_number, nil, placeholder: 'Routing Number', class: 'form-field form-field-half' %>
+      <%= text_field_tag :account_number, nil,placeholder: 'Account Number', class: 'form-field form-field-half' %>
+
+    <% end %>
+  <p class='centered'>
+    <b><%= flash[:message] %></b>
+  </p>
+  </div>
+
+  </div>
+</div>
