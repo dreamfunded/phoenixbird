@@ -75,9 +75,9 @@ class Company < ActiveRecord::Base
     order(:position).where(hidden: false, accredited: true)
   }
 
-  scope :with_followers, -> {
-    select('companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
-      joins("LEFT JOIN followers ON companies.id = followers.company_id")
+  scope :with_followers, Proc.new {|user|
+    select('DISTINCT(companies.id), companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
+      joins("LEFT JOIN followers ON companies.id = followers.company_id AND followers.user_id = #{user.id}") # this is an id so this should be safe
   }
 
   def self.Status

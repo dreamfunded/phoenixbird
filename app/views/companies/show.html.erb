@@ -1,5 +1,5 @@
 <% title "DreamFunded | #{@company.name}" %>
-<% meta_tag @company.campaign.tagline %>
+<% meta_tag @campaign.tagline %>
 
 <% facebook_og_title ("Invest in #{@company.name} on DreamFunded.com") %>
 <% facebook_url("https://dreamfunded.com/companies/#{@company.slug}")%>
@@ -9,16 +9,33 @@
 
 <% twitter_image @company.cover.url %>
 
-
+<div class='v2'>
     <div id='company-nav' class='fixed-nav'>
         <div class='company-content-container'>
             <a href="#cover-photo"><%= image_tag( @company.image.url, class: 'media-logo' ) %></a>
-            <ul>
+            <ul class="company-nav-links">
                 <li><a href="#company-header">COMPANY</a></li>
                 <li><a href="#team-section">TEAM</a></li>
                 <li><a href="#terms-or-offering-section">TERMS OR OFFERING</a></li>
                 <li><a href="#comments-section">COMMENTS</a></li>
             </ul>
+            <%if @company.accredited%>
+                <ul class='float-opposite social-invites'>
+                    <li><a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a></li>
+                    <li>
+                        <a id="twitter" class="share-invites-social" target="_blank"
+                         href="http://twitter.com/intent/tweet?url=https://dreamfunded.com/companies/<%= @company.slug %>"
+                          title="Share via Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Invest%in%<%= @company.name%>&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            <% end %>
         </div>
     </div>
     <section id="cover-photo" class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
@@ -35,10 +52,10 @@
                 <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
                 <section class='company-basic-info'>
                     <div>   <%= @company.name %>  </div>
-                    <div class='company-slogan'>    <%= @company.campaign.tagline %>  </div>
-                    <div class='company-location'><i class="fa fa-map-marker"></i> <%= @company.campaign.place %> </div>
+                    <div class='company-slogan'>    <%= @campaign.tagline %>  </div>
+                    <div class='company-location'><i class="fa fa-map-marker"></i> <%= @campaign.place %> </div>
                     <ul class='tags'>
-                        <li><a href="#"><%= @company.campaign.category %></a></li>
+                        <li><a href="#"><%= @campaign.category %></a></li>
                     </ul>
                 </section>
             </div>
@@ -60,7 +77,7 @@
                     </div>
 
                     <div class='company-detail'>
-                        <div class='company-finance-info'> 10<%#= @company.left_days %></div>
+                        <div class='company-finance-info'><%= @company.left_days %></div>
                         <div class='company-info-category'>DAYS LEFT</div>
                     </div>
 
@@ -140,14 +157,14 @@
                         <i class="fa fa-user-secret" aria-hidden="true"></i>
                        <span class='edit-my-company-button'> Edit as Admin</span>
                     <% end %>
-                    <%= link_to( {:controller => 'campaigns', :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                    <%= link_to( {:controller => 'campaigns', :action => 'edit_campaign', :id => @campaign.id}, class: 'edit-company-button' )  do %>
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span class='edit-my-company-button'>Edit My Company</span>
                     <%end%>
                 <% end %>
                 <% if current_user %>
                     <% if current_user.company == @company && current_user.role == 'founder' %>
-                        <%= link_to( {:controller => 'campaigns', :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                        <%= link_to( {:controller => 'campaigns', :action => 'edit_campaign', :id => @campaign.id}, class: 'edit-company-button' )  do %>
                             <i class="fa fa-cog" aria-hidden="true"></i>
                             <span class='edit-my-company-button'>Edit My Company</span>
                         <%end%>
@@ -159,33 +176,37 @@
                 <div class="section-container">
                     <h1 class="section-title">Invest in <%= @company.name %></h1>
                     <div class="fluid-container">
-                        <div class="col-6">
-                            <h2 class="section-sub-heading">Who Are We?</h2>
-                            <h2 class="company-section-tagline"><%= @company.campaign.tagline %></h2>
-                            <div class="company-quote">
-                                CEO Quote Goes Here
-                                <div class="sub-quote">followed by small paragraph</div>
+                        <div class='row'>
+                            <div class="col-6">
+                                <h2 class="section-sub-heading">Who Are We?</h2>
+                                <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
+                                <% if @campaign_quote %>
+                                    <div class="company-quote">
+                                        <%= @campaign_quote.main %>
+                                        <div class="sub-quote"><%= @campaign_quote.description %></div>
+                                    </div>
+                                    <div class='said-by'>
+                                        <%= image_tag(@company.image.url) %>
+                                        <span>
+                                            <div><%= @campaign_quote.said_by %></div>
+                                            <div class="said-by-title"><%= @campaign_quote.position %></div>
+                                        </span>
+                                    </div>
+                                <% end %>
                             </div>
-                            <div class='said-by'>
-                                <%= image_tag(@company.image.url) %>
-                                <span>
-                                    <div>Juan Miguel Maniego</div>
-                                    <div class="said-by-title">CEO</div>
-                                </span>
+                            <div class="col-6">
+                                <h2 class="section-sub-heading">Offering Summary</h2>
+                                <% if current_user %>
+                                    <div>
+                                        <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
+                                    </div>
+                                <%else%>
+                                    <article class='centered'>
+                                        <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                                        <%= link_to "Sign In to View", new_user_session_path%>
+                                    </article>
+                                <%end%>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <h2 class="section-sub-heading">Offering Summary</h2>
-                            <% if current_user %>
-                                <div>
-                                    <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
-                                </div>
-                            <%else%>
-                                <article class='centered'>
-                                    <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
-                                    <%= link_to "Sign In to View", new_user_session_path%>
-                                </article>
-                            <%end%>
                         </div>
                     </div>
                     <hr class="div">
@@ -193,9 +214,9 @@
                         <h2 class="section-title">Our Mission</h2>
                         <div class="section-content">
                             <% if current_user %>
-                                <p><%= @company.campaign.about_campaign.html_safe if @company.campaign.about_campaign %></p>
+                                <p><%= @campaign.about_campaign.html_safe if @campaign.about_campaign %></p>
                             <% else %>
-                                <p class= "fifteen "><%= @company.campaign.about_campaign.split(' ').first(30).join(' ').html_safe if @company.campaign.about_campaign%>...</p>
+                                <p class= "fifteen "><%= @campaign.about_campaign.split(' ').first(30).join(' ').html_safe if @campaign.about_campaign%>...</p>
                                 <article class='centered'>
                                     <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
                                     <%= link_to "Sign In to View", new_user_session_path%>
@@ -204,12 +225,55 @@
                         </div>
                     </div>
                     <hr class="div">
-                    <div>
-                        <h2 class="section-title">What Others are saying</h2>
+                    <div class='testimonial'>
+                        <h2 class="section-title">What Others Are Saying</h2>
+                        <div class='section-content'>
+                            <div class='radio-tabs'>
+                                <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+                                    <% radio_id = "testimonial-#{i}-radio" %>
+                                    <input type="radio" class='state' name='testimonial-check-state' id='<%= radio_id %>' <%= 'checked' if i == 1 %> />
+                                <% end %>
+                                <div class='fluid-container radio-label-tabs'>
+                                    <div class='row'>
+                                        <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+                                            <% radio_id = "testimonial-#{i}-radio"
+                                               tab_id = "testimonial-#{i}-tab" %>
+                                            <div class="col-4">
+                                                <label for='<%= radio_id %>' class='radio-tab testimonial-details' id="<%= tab_id %>">
+                                                    <%= image_tag testimonial.photo.url %>
+                                                    <p class='testimonial-name'><%= testimonial.name %></p>
+                                                    <p class='testimonial-title'><%= testimonial.position %></p>
+                                                </label>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <div class='panels'>
+                                    <div class="panels-content">
+                                        <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+                                            <p id='testimonial-<%= i %>-panel' class="panel">
+                                                <i><%= testimonial.message %></i>
+                                            </p>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <hr class="div">
                     <div>
                         <h2 class="section-title">Business Plan</h2>
+                        <div class='section-content'>
+                            <% if current_user %>
+                                <p class= "fifteen "><%= @campaign.business_plan.html_safe if @campaign.business_plan %></p>
+                            <%else%>
+                                <p class= "fifteen "><%= @campaign.business_plan.split(' ').first(30).join(' ').html_safe %>...</p>
+                                <article class='centered'>
+                                    <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                                    <%= link_to "Sign In to View", new_user_session_path%>
+                                </article>
+                            <%end%>
+                        </div>
                     </div>
                     <hr class="div">
                     <div>
@@ -231,9 +295,9 @@
                         <h2 class='section-title'>Why <%= @company.name %>?</h2>
                         <div class='section-content'>
                             <% if current_user %>
-                                <p class='sign-in-blur'><%= @company.campaign.elevator_pitch.html_safe  if @company.campaign.elevator_pitch %></p>
+                                <p class='sign-in-blur'><%= @campaign.elevator_pitch.html_safe  if @campaign.elevator_pitch %></p>
                             <% else %>
-                                <p class= "fifteen "><%= @company.campaign.elevator_pitch.split(' ').first(30).join(' ').html_safe if @company.campaign.elevator_pitch%>...</p>
+                                <p class= "fifteen "><%= @campaign.elevator_pitch.split(' ').first(30).join(' ').html_safe if @campaign.elevator_pitch%>...</p>
                                 <article class='centered'>
                                     <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
                                     <%= link_to "Sign In to View", new_user_session_path%>
@@ -252,9 +316,9 @@
                     <div class='section-content'>
                         <% if @company.status == 2 || @company.status == 1 %>
                             <% if @members != nil && !@members.empty? %>
-                                    <div class= "team-band">
+                                    <div class= "team-band fluid-container flex-grid">
                                         <% @members.each do |member| %>
-                                            <div class= "team-member-box">
+                                            <div class= "team-member-box col-4">
                                                 <%# if current_user != nil && current_user.authority == authority[:Admin] %>
                                                     <%#= button_to "X", { action: 'remove_founder', id: member.id} , {:class => 'remove-button'} %>
                                                 <%# end %>
@@ -366,12 +430,11 @@
             </section>
             <hr class="div">
 
-            <hr class='div'>
             <section id='comments-section' class='company-section' >
                 <div class='section-container'>
                     <h1 class='section-title'>Comments</h1>
                     <div class='section-content'>
-                        <div class='commentnts'>
+                        <div>
                             <%= nested_messages(@comments.arrange(:order => :created_at))%>
                         </div>
                             <% if current_user %>
@@ -402,7 +465,7 @@
             </section>
         </div>
     </div>
-
+</div>
 
 
         <style>
@@ -450,6 +513,19 @@
       return false;
     });
 
+</script>
+
+<script type="text/javascript">
+  $('#facebook').click(function(){
+    FB.ui({
+      method: 'share',
+      href: "https://dreamfunded.com/companies/<%= @company.slug %>",
+      redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
+      // quote: "Invest in <%= @company.name %> on DreamFunded",
+      title: "<%= @company.name %>",
+      description: "<%= @campaign.tagline %>"
+    }, function(response){});
+  })
 </script>
 
 <!-- <script src="https://sandbox.fundamerica.com/cors/js/invest_now.min.js" id="fa-invest-now-launcher"></script> -->

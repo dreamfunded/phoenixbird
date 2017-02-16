@@ -1,0 +1,19 @@
+<div class="nested-fields col-4">
+  <div class="testimonial-card">
+    <p class='form-group'>
+      <%= image_tag(f.object.photo.url) %>
+    </p>
+    <p class='form-group'>
+      Image <%= f.file_field :photo %>
+    </p>
+    <p class='form-group'>
+      <%= f.text_field :name, class: "form-field", placeholder: 'Name' %>
+    </p>
+    <p class='form-group'>
+      <%= f.text_field :position, class: "form-field", placeholder: 'Position' %>
+    </p>
+    <p class='form-group'>
+      <%= f.text_area :message, class: "form-field", placeholder: 'Message' %>
+    </p>
+  </div>
+</div>
