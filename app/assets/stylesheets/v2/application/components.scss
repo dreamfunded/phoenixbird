@@ -1,0 +1,39 @@
+.v2 {
+  .media {
+    .media-left {
+      padding-right: 10px;
+      vertical-align: top;
+    }
+
+    .media-middle {
+      vertical-align: middle;
+    }
+
+    .media-left,
+    .media-body {
+      display: table-cell;
+    }
+
+    .media-body {
+      width: 100%;
+    }
+
+    img.media-object {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .form-inline {
+    font-size: 0;
+    .form-group {
+      display: inline-block;
+      vertical-align: middle;
+      padding-right: 15px;
+    }
+
+    .form-group:last-of-type {
+      padding-right: 0;
+    }
+  }
+}
