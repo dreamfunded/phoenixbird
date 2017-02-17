@@ -1,7 +1,7 @@
 <div class='v2'>
   <div id='company-nav' class='fixed-nav'>
       <div class='company-content-container'>
-          <a href="#cover-photo"><%= image_tag( @company.image.url, class: 'media-logo' ) %></a>
+          <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company %>
           <ul class="company-nav-links">
               <li><a href="#company-header">COMPANY</a></li>
               <li><a href="#team-section">TEAM</a></li>
@@ -11,7 +11,7 @@
       </div>
   </div>
 
-  <%= form_for(@company, :url => url_for(:controller => 'campaigns', :action => 'update_campaign') ) do |f| %>
+  <%= form_for(@company, :url => url_for( :action => 'update_campaign') ) do |f| %>
     <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url %>)" >
 
           <div class='company-profile-bottom-line'>
@@ -61,7 +61,7 @@
             </div>
 
             <div class='company-detail'>
-              <div class='company-finance-info'> <%= @company.left_days %></div>
+              <div class='company-finance-info'> <%= @company.end_date ? 'TBA' : @company.left_days %></div>
               <div class='company-info-category'>DAYS LEFT</div>
             </div>
 
@@ -70,24 +70,57 @@
               <div class='company-info-category'>MINIMUM INVESTMENT</div>
             </div>
 
-              <div class='company-info-cateogry'>Background Cover:</div>
-              <div class='company-finance-info'> <%= f.file_field "cover" %> </div>
-
-                <div class="meter orange">
-                    <% @progress = ((@company.invested.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                    <% if @progress == 0 %>
-                        <span class= "front" style="width: 5px"></span>
-                    <% elsif @progress > 100 %>
-                        <span style= 'width: 100%'></span>
-                    <% else %>
-                        <span style='width: <%= @progress %>%'></span>
-                    <% end %>
-                </div>
-                <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
-              <%= f.submit "Update", :class => 'company-button profile-button mail-to-button' %>
-
+            <div class='move-bottom width-100'>
+              <div class="meter orange width-80 center-block">
+                  <% @progress = ((@company.invested.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                  <% if @progress == 0 %>
+                      <span class= "front" style="width: 5px"></span>
+                  <% elsif @progress > 100 %>
+                      <span style= 'width: 100%'></span>
+                  <% else %>
+                      <span style='width: <%= @progress %>%'></span>
+                  <% end %>
+              </div>
+                <p class='company-info-category centered'><%= @progress.to_i %>% funded</p>
+                <p>
+                  <%= f.submit "Update", :class => 'company-button profile-button mail-to-button display-block width-100 width-80 center-block' %>
+                </p>
             </div>
+          </div>
     </section>
+
+    <div class='grey-section'>
+      <div class='company-content-container'>
+        <section class='company-section'>
+          <div class='section-container'>
+            <div class='fluid-container'>
+              <div class='row'>
+                <div class='col-6'>
+                  <div>
+                      <p class='form-group'>
+                        <%= f.label :website_link, 'Website' %>
+                        <%= f.text_field :website_link, class: "form-field", placeholder: 'https://www.example.com' %>
+                      </p>
+                      <p class='form-group'>
+                        <%= f.label :video_link, 'Youtube Link' %>
+                        <%= f.text_field :video_link, class: "form-field", placeholder: "e.g. https://www.youtube.com/watch?v=5AWEQ2lX6YQ" %>
+                      </p>
+                  </div>
+                </div>
+                <div class='col-4'>
+                  <p>
+                    <%= link_to "Manage Team", "/manage_team", class: 'company-button profile-button mail-to-button display-block' %>
+                  </p>
+                  <p>
+                    <%= link_to "Form C Editor", "/formc/general/#{@company.slug}", :class => 'company-button profile-button mail-to-button display-block', id: '' %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
 
     <div class='company-content'>
         <div class='company-content-container'>
@@ -95,22 +128,6 @@
             <div class='section-container'>
               <h1 class='section-title'>Invest in <%= @company.name %></h1>
               <div class='fluid-container'>
-                <div class='row'>
-                  <div class='col-6'>
-                    <h2 class='section-sub-heading'>Design</h2>
-                    <div>
-                        <p class='form-group'>
-                          <%= f.label :website_link, 'Website' %>
-                          <%= f.text_field :website_link, class: "form-field", placeholder: 'https://www.example.com' %>
-                        </p>
-                        <p class='form-group'>
-                          <%= f.label :video_link, 'Youtube Link' %>
-                          <%= f.text_field :video_link, class: "form-field", placeholder: "e.g. https://www.youtube.com/watch?v=5AWEQ2lX6YQ" %>
-                        </p>
-                    </div>
-                  </div>
-                </div>
-                <hr class='div'>
                 <div class='row'>
                   <div class='col-6'>
                     <h2 class="section-sub-heading">Who Are We?</h2>
@@ -147,11 +164,11 @@
                       <% end %>
                     </div>
                   </div>
-                </div>
-                <hr class='div'>
-                <div class='row'>
                   <div class='col-6'>
                     <h2 class="section-sub-heading">Offering Summary</h2>
+                    <div>
+
+                    </div>
                   </div>
                 </div>
               </div>
@@ -166,8 +183,7 @@
                   <% end %>
                 </div>
               </div>
-              <%= link_to "Manage Team", "/manage_team", class: 'company-button profile-button mail-to-button' %>
-                          <%= link_to "Form C Editor", "/formc/general/#{@company.slug}", :class => 'company-button profile-button mail-to-button', id: '' %>
+
               <hr class="div">
 
               <div>
@@ -208,10 +224,10 @@
                 <div class='row'>
                   <%= f.fields_for :campaign do |campaign_fields| %>
                     <%= campaign_fields.fields_for :testimonials do |testimonials| %>
-                      <%= render partial: 'testimonial_fields', locals: {f: testimonials} %>
+                      <%= render partial: 'campaigns/testimonial_fields', locals: {f: testimonials} %>
                     <% end  %>
                     <div class='links'>
-                      <%= link_to_add_association 'Add', campaign_fields, :testimonials %>
+                      <%= link_to_add_association 'Add', campaign_fields, :testimonials, partial: 'campaigns/testimonial_fields' %>
                     </div>
                   <% end %>
                 </div>

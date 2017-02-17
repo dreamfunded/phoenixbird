@@ -1,4 +1,6 @@
 class CampaignQuote < ActiveRecord::Base
+  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo]
+
   belongs_to :campaign
 
   has_attached_file :photo,
