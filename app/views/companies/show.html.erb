@@ -180,23 +180,23 @@
                     <h1 class="section-title">Invest in <%= @company.name %></h1>
                     <div class="fluid-container">
                         <div class='row'>
-                            <div class="col-6">
-                                <h2 class="section-sub-heading">Who Are We?</h2>
-                                <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
-                                <% if @campaign_quote %>
+                            <% if @campaign_quote %>
+                                <div class="col-6">
+                                    <h2 class="section-sub-heading">Who Are We?</h2>
+                                    <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
                                     <div class="company-quote">
                                         <%= @campaign_quote.main %>
                                         <div class="sub-quote"><%= @campaign_quote.description %></div>
                                     </div>
                                     <div class='said-by'>
-                                        <%= image_tag(@company.image.url) %>
+                                        <%= image_tag(@campaign_quote.photo.url) %>
                                         <span>
                                             <div><%= @campaign_quote.said_by %></div>
                                             <div class="said-by-title"><%= @campaign_quote.position %></div>
                                         </span>
                                     </div>
-                                <% end %>
-                            </div>
+                                </div>
+                            <% end %>
                             <div class="col-6">
                                 <h2 class="section-sub-heading">Offering Summary</h2>
                                 <% if current_user %>
@@ -236,25 +236,23 @@
                                     <% radio_id = "testimonial-#{i}-radio" %>
                                     <input type="radio" class='state' name='testimonial-check-state' id='<%= radio_id %>' <%= 'checked' if i == 1 %> />
                                 <% end %>
-                                <div class='fluid-container radio-label-tabs'>
-                                    <div class='row'>
-                                        <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+                                <div class='fluid-container flex-grid radio-label-tabs'>
+                                    <% @campaign.testimonials.each_with_index do |testimonial, i| %>
                                             <% radio_id = "testimonial-#{i}-radio"
                                                tab_id = "testimonial-#{i}-tab" %>
                                             <div class="col-4">
                                                 <label for='<%= radio_id %>' class='radio-tab testimonial-details' id="<%= tab_id %>">
                                                     <%= image_tag testimonial.photo.url %>
-                                                    <p class='testimonial-name'><%= testimonial.name %></p>
-                                                    <p class='testimonial-title'><%= testimonial.position %></p>
+                                                    <p class='testimonial-name centered'><%= testimonial.name %></p>
+                                                    <p class='testimonial-title centered'><%= testimonial.position %></p>
                                                 </label>
                                             </div>
                                         <% end %>
-                                    </div>
                                 </div>
                                 <div class='panels'>
                                     <div class="panels-content">
                                         <% @campaign.testimonials.each_with_index do |testimonial, i| %>
-                                            <p id='testimonial-<%= i %>-panel' class="panel">
+                                            <p id='testimonial-<%= i %>-panel' class="panel centered">
                                                 <i><%= testimonial.message %></i>
                                             </p>
                                         <% end %>
