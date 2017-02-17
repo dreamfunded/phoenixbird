@@ -44,11 +44,19 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit_campaign
+		@testimonials_limit = Campaign::TESTIMONIALS_LIMIT
 	  @campaign = Campaign.find(params[:id])
 	  @company = @campaign.company
+
+	  unless @campaign.testimonials.size >= @testimonials_limit
+      @campaign.testimonials.build
+    end
+
 	  @formc = @company.general_infos.last
 	  @members = @company.founders
 	  @comments = @company.comments
+	  @campaign_quote = @campaign.quote || @campaign.build_quote
+	  render template: 'campaigns/edit_campaign'
 	end
 
 	def update_campaign
@@ -114,7 +122,9 @@ private
 	  params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
 	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
 	   :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a,
-	   campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state],
+	   campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
+	   	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
+      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],
 	   founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
 	   documents_attributes: [:id, :file, :name, :company_id ],
 	  financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",

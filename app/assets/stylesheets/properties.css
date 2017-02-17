@@ -194,7 +194,7 @@
     font-size: 30px;
 }
 
-@media (max-width: 1210px) {
+/*@media (max-width: 1210px) {
   .properties-wrapper{
     margin-left: 8%;
   }
@@ -213,22 +213,24 @@
     width: 30%;
   }
 }
+*/
+
 @media (max-width: 930px) {
     .properties-wrapper{
         margin-left: inherit;
         text-align: center;
     }
-    .properties-wrapper .property-box{
+    /*.properties-wrapper .property-box{
       width: 35%;
-    }
+    }*/
 }
 /*  M O B I L E */
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
-    .properties-wrapper {
+    /*.properties-wrapper {
         margin-left: 5%;
-    }
+    }*/
     /*.property-box {
         width: 90% !important;
         max-width: 90% !important;

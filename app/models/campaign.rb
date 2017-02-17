@@ -1,5 +1,9 @@
 class Campaign < ActiveRecord::Base
   TESTIMONIALS_LIMIT = 3
+  ACCESSIBLE_ATTRIBUTES = [
+    :tagline, :elevator_pitch, :about_campaign,
+    :id, :category, :employees_numer, :company_location_city,
+    :company_location_state, :business_plan ]
 
   belongs_to :company
   has_many :events, class_name: "CampaignEvent"

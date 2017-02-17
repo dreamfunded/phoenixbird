@@ -12,9 +12,9 @@
 <div class='v2'>
     <div id='company-nav' class='fixed-nav'>
         <div class='company-content-container'>
-            <a href="#cover-photo"><%= image_tag( @company.image.url, class: 'media-logo' ) %></a>
+            <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company %>
             <ul class="company-nav-links">
-                <li><a href="#company-header">COMPANY</a></li>
+                <li><a href="#company-header"></a></li>
                 <li><a href="#team-section">TEAM</a></li>
                 <li><a href="#terms-or-offering-section">TERMS OR OFFERING</a></li>
                 <li><a href="#comments-section">COMMENTS</a></li>
@@ -185,6 +185,7 @@
                                     <h2 class="section-sub-heading">Who Are We?</h2>
                                     <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
                                     <div class="company-quote">
+                                        <div class='quote-symbol'>"</div>
                                         <%= @campaign_quote.main %>
                                         <div class="sub-quote"><%= @campaign_quote.description %></div>
                                     </div>

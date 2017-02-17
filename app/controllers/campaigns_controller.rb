@@ -130,7 +130,7 @@ class CampaignsController < ApplicationController
      params.require(:company).permit(:image, :id, :cover, :name, :description, :video_link, :user_id, :goal_amount, :website_link,
                      campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state, :business_plan,
                       testimonials_attributes: [:id, :name, :position, :photo, :message],
-      gste_attributes: [:id, :main, :description, :said_by, :position, :photo]],
+                      quote_attributes: [:id, :main, :description, :said_by, :position, :photo]],
                      founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
                      documents_attributes: [:id, :file, :name, :company_id ],
                      financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",

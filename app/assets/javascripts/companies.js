@@ -5,10 +5,7 @@ $(document).on('ready', function(){
   })
 });
 
-$('.companies.index, .companies.show').ready(function() {
-  $('.follow').followBtn();
-  $('a[href*="#"]:not([href="#"])').smooth_scroll({offset: -30});
-
+$(document).on('page:change ready',function() {
   var $fixed_nav = $('#company-nav');
   var $window = $(window);
 
@@ -21,6 +18,9 @@ $('.companies.index, .companies.show').ready(function() {
       $fixed_nav.animate({top: '-' + $fixed_nav.height() + 'px'});
     }
   })
+
+  $('.follow[data-company-id]').followBtn();
+  $('a[href*="#"]:not([href="#"])').smooth_scroll({offset: -30});
 })
 
 $('.companies.show').ready(function() {
