@@ -32,6 +32,8 @@ $(document).on('page:change ready',function() {
 
   $('.follow[data-company-id]').followBtn();
   $('a[href*="#"]:not([href="#"])').smooth_scroll({offset: -30});
+
+  $('#linkedin-auth').oauthPhotoGetter('')
 })
 
 function onYouTubeIframeAPIReady() {

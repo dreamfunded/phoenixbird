@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 	has_many :docusigns
 	has_many :followers, inverse_of: :user
 	has_many :followings, through: :followers, source: :company, inverse_of: :user_followers
+	has_many :identities
 
 	has_one :investor
 	#Getter

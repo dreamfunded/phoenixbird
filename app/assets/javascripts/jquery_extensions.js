@@ -18,3 +18,37 @@ $.fn.scroll_away = function(options) {
   });
   _this.trigger('scroll');
 }
+
+// https://www.sitepoint.com/oauth-popup-window/
+// Authorization popup window code
+$.oauthpopup = function(options) {
+    options.windowName = options.windowName ||  'ConnectWithOAuth'; // should not include space for IE
+    options.windowOptions = options.windowOptions || 'location=0,status=0,width=800,height=400';
+    options.callback = options.callback || function(){ window.location.reload(); };
+    var _this = this;
+
+    _this._oauthWindow = window.open(options.path, options.windowName, options.windowOptions);
+    _this._oauthInterval = window.setInterval(function(){
+      if (_this._oauthWindow.closed) {
+        window.clearInterval(_this._oauthInterval);
+        options.callback();
+      }
+    }, 1000);
+};
+
+$.fn.oauthPhotoGetter = function(target, options) {
+  var _this = this;
+  var $target = $(target);
+  var options = options || {}
+
+  this.click(function(e) {
+    e.preventDefault();
+
+    $.oauthpopup({
+      path: _this[0].href,
+      callback: function() {
+        window.location.reload();
+      }
+    })
+  })
+}
