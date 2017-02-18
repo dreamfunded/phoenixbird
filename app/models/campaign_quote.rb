@@ -1,8 +1,6 @@
 class CampaignQuote < ActiveRecord::Base
   ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url]
 
-  attr_accessor :remote_image_url
-
   belongs_to :campaign
 
   has_attached_file :photo,
@@ -20,4 +18,8 @@ class CampaignQuote < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates :said_by, :main, presence: true
+
+  def photo_remote_url=(photo_remote_url)
+    self.photo = URI.parse(photo_remote_url)
+  end
 end
