@@ -1080,19 +1080,28 @@ and (max-device-width : 568px) {
   height: 100%;
 }
 
-.currency_input, #invest_amount {
-  font-size: 1.4rem;
-  * {
+.fund-america-invest-button {
+  .currency_input, #invest_amount {
     font-size: 1.4rem;
+    * {
+      font-size: 1.4rem;
+    }
+  }
+
+  .currency_input {
+    flex: 1;
+    padding-left: 8px;
+    margin-right: 8px;
+    border-bottom: 2px $darkblue solid;
   }
 }
 
 .currency_input {
-  border-bottom: 2px $darkblue solid;
-  margin-right: 8px;
-  flex: 1;
   text-align: left;
-  padding-left: 8px;
+
+  input {
+    border: none;
+  }
 }
 
 #invest_amount {
@@ -1328,4 +1337,34 @@ and (max-device-width : 568px) {
   top: 0;
   left: 0;
   opacity: 0.5;
+}
+
+.content-title {
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: lighter;
+  color: rgba(74,74,74,0.5);
+  font-size: 1.1rem;
+}
+
+.sub-section-content {
+  &, p {
+    font-size: .875rem;
+  }
+}
+
+.investment-perk {
+  line-height: 1.5rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.8px;
+
+  .perk-amount {
+    padding-right: 1.5rem !important;
+  }
+
+  .perk-content {
+    font-family: 'Droid Serif', serif;
+    font-weight: lighter;
+    color: rgba(74,74,74, 0.7)
+  }
 }

@@ -29,9 +29,11 @@ class Company < ActiveRecord::Base
   has_many :docusigns
   has_one :campaign
   has_many :general_infos
+  has_one :general_info, -> { order('id DESC') }, inverse_of: :company
   has_one :financial_detail
   accepts_nested_attributes_for :financial_detail
   accepts_nested_attributes_for :campaign
+  accepts_nested_attributes_for :general_info, reject_if: :all_blank, allow_destroy: true
 
   has_attached_file :image,
     :styles =>{

@@ -12,9 +12,9 @@
 <div class='v2'>
     <div id='company-nav' class='fixed-nav'>
         <div class='company-content-container'>
-            <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company %>
+            <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company, :"data-no-turbolink" => true %>
             <ul class="company-nav-links">
-                <li><a href="#company-header"></a></li>
+                <li><a href="#company-header">COMPANY</a></li>
                 <li><a href="#team-section">TEAM</a></li>
                 <li><a href="#terms-or-offering-section">TERMS OR OFFERING</a></li>
                 <li><a href="#comments-section">COMMENTS</a></li>
@@ -198,12 +198,43 @@
                                     </div>
                                 </div>
                             <% end %>
-                            <div class="col-6">
+                            <div id='offering-summary' class="col-6">
                                 <h2 class="section-sub-heading">Offering Summary</h2>
                                 <% if current_user %>
-                                    <div>
-                                        <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
-                                    </div>
+                                    <% if @formc %>
+                                        <div>
+                                            <div class='sub-section-content'>
+                                                <p>
+                                                    <strong class='display-block'>Security Type</strong>
+                                                    <%= @formc.type_of_security %>
+                                                </p>
+                                                <p>
+                                                    <strong class='display-block'>Minimum Investment</strong>
+                                                    <%= @formc.min_investment %>
+                                                </p>
+                                                <p>
+                                                    <strong class='display-block'>Discount</strong>
+                                                    <%= @formc.discount %>
+                                                </p>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <h3 class='content-title'>Investment Perks</h3>
+                                                <% @investment_perks.each do |perk| %>
+                                                    <div class=sub-section-content>
+                                                        <div class='media investment-perk'>
+                                                            <div class='perk-amount media-left'>
+                                                                <strong><%= perk.amount %>+</strong>
+                                                            </div>
+                                                            <div class='media-body perk-content'>
+                                                                <%= perk.content %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    <% end %>
                                 <%else%>
                                     <article class='centered'>
                                         <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>

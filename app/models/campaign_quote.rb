@@ -1,5 +1,7 @@
 class CampaignQuote < ActiveRecord::Base
-  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo]
+  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url]
+
+  attr_accessor :remote_image_url
 
   belongs_to :campaign
 

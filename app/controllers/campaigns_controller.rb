@@ -107,7 +107,7 @@ class CampaignsController < ApplicationController
     # if current_user.company != @company
     #   redirect_to company_path(@company)
     # end
-    @formc = @company.general_infos.last
+    @formc = @company.general_info
     @members = @company.founders
     @comments = @company.comments
     @campaign_quote = @campaign.quote || @campaign.build_quote
