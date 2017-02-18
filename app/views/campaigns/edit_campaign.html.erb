@@ -1,7 +1,7 @@
 <div class='v2'>
   <div id='company-nav' class='fixed-nav'>
       <div class='company-content-container'>
-          <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company %>
+          <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company, :"data-no-turbolink" => true %>
           <ul class="company-nav-links">
               <li><a href="#company-header">COMPANY</a></li>
               <li><a href="#team-section">TEAM</a></li>
@@ -134,6 +134,7 @@
                     <div id='quote-section'>
                       <%= f.fields_for :campaign, @campaign do |campaign_fields| %>
                         <%= campaign_fields.fields_for :quote, @campaign_quote do |quote_builder| %>
+                          <%= quote_builder.hidden_field :remote_image_url %>
                           <div class='form-group'>
                             <%= quote_builder.label :main, 'Quote' %>
                             <%= quote_builder.text_field :main, class: "form-field" %>
@@ -166,9 +167,40 @@
                   </div>
                   <div class='col-6'>
                     <h2 class="section-sub-heading">Offering Summary</h2>
-                    <div>
-
-                    </div>
+                    <% if @formc %>
+                      <div>
+                        <div class='sub-section-content'>
+                          <p>
+                            <strong class='display-block'>Security</strong>
+                            <%= @formc.type_of_security %>
+                          </p>
+                          <p>
+                            <strong class='display-block'>Minimum Investment</strong>
+                            <%= @formc.min_investment %>
+                          </p>
+                          <p>
+                            <strong class='display-block'>Discount</strong>
+                            <%= @formc.discount %>
+                          </p>
+                        </div>
+                        <br>
+                        <div>
+                          <h3 class='content-title'>Investment Perks</h3>
+                          <% @investment_perks.each do |perk| %>
+                            <div class=sub-section-content>
+                              <div class='media investment-perk'>
+                                <div class='perk-amount media-left'>
+                                  <strong><%= perk.amount %>+</strong>
+                                </div>
+                                <div class='media-body perk-content'>
+                                  <%= perk.content %>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -290,6 +322,24 @@
                   <%= f.fields_for :financial_detail do |fin_details| %>
                     <%= fin_details.text_area :fin_risks, rows: 6, :class => 'ckeditor ' %>
                   <% end %>
+                </div>
+              </div>
+
+              <hr class='div'>
+
+              <div id='investment-perks'>
+                <h2 class='section-title'>Investment Perks</h2>
+                <div class='section-content'>
+                  <div class='width-50'>
+                    <%= f.fields_for :general_info, @formc do |general_info_builder| %>
+                      <%= general_info_builder.fields_for :investment_perks, @investment_perks do |investment_perk_builder| %>
+                        <%= render partial: 'investment_perk_fields', locals: {f: investment_perk_builder} %>
+                      <% end %>
+                      <div class="links">
+                        <%= link_to_add_association 'Add', general_info_builder, :investment_perks %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
               </div>
 

@@ -14,10 +14,21 @@ $margin-bottom: 0.625rem;
     margin-bottom: $margin-bottom;
     text-align: left;
 
-    .form-field {
+    .currency_input, .form-field {
       padding: $padding;
       margin: 0;
       width: 100%;
+    }
+
+    .currency_input {
+      padding-right: 0;
+    }
+
+    .currency_input {
+      .form-field {
+        display: inline-block;
+        width: auto;
+      }
     }
 
     textarea.form-field {

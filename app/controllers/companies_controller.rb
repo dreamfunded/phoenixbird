@@ -32,6 +32,8 @@ class CompaniesController < ApplicationController
 			@section = @company.sections.first
 			@campaign = @company.campaign
 			@campaign_quote = @campaign.quote
+			@formc = @company.general_info
+			@investment_perks = @formc.investment_perks
 		else
 			redirect_to "/companies"
 		end
@@ -181,7 +183,8 @@ class CompaniesController < ApplicationController
 	  # if current_user.company != @company
 	  #   redirect_to company_path(@company)
 	  # end
-	  @formc = @company.general_infos.last
+	  @formc = @company.general_info
+	  @investment_perks = @formc.build_or_get_investment_perks
 	  @members = @company.founders
 	  @comments = @company.comments
 	  @campaign_quote = @campaign.quote || @campaign.build_quote
@@ -243,6 +246,7 @@ private
 	   campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
 	   	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
       quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],
+     general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
 	   founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
 	   documents_attributes: [:id, :file, :name, :company_id ],
 	  financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",
