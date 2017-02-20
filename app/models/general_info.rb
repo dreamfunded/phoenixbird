@@ -1,6 +1,8 @@
 class GeneralInfo < ActiveRecord::Base
   belongs_to :company, inverse_of: :general_info
 
+  has_many :investment_perks
+
   has_one :financial_detail
   accepts_nested_attributes_for :financial_detail, reject_if: :all_blank, allow_destroy: true
 

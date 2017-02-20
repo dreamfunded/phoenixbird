@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
 			@section = @company.sections.first
 			@campaign = @company.campaign
 			@campaign_quote = @campaign.quote
-			@formc = @company.general_info
+			@formc = GeneralInfo.new(company_id: @company.id)
 			@investment_perks = @formc.investment_perks
 		else
 			redirect_to "/companies"
