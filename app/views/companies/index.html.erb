@@ -5,7 +5,8 @@
 
 	<section class='properties-wrapper fluid-container flex-grid'>
 		<% @companies.each do |company| %>
-			<div class="col">
+
+			<div class="col-">
 				<div class='property-box'>
 					<div class="card-content">
 						<%= link_to company do %>
@@ -13,6 +14,7 @@
 							<div class="follow" data-following='<%= company.followed_by_current_user %>' data-company-id="<%= company.id %>"></div>
 							<%= company.name %>
 						</div>
+
 						<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
 							<%#= image_tag( company.cover.url, :class => "property-image") %>
 							<div class='logo-image-wrapper'>

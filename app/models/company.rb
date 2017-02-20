@@ -22,9 +22,11 @@ class Company < ActiveRecord::Base
   has_many :docusigns
   has_one :campaign
   has_many :general_infos
+  has_one :general_info, -> { order('id DESC') }, inverse_of: :company
   has_one :financial_detail
   accepts_nested_attributes_for :financial_detail
   accepts_nested_attributes_for :campaign
+  accepts_nested_attributes_for :general_info, reject_if: :all_blank, allow_destroy: true
 
 	has_attached_file :image,
 	  :styles =>{
@@ -132,7 +134,7 @@ class Company < ActiveRecord::Base
          p "PULLING FundAmerica API"
          p offering_code
           offering = FundAmerica::Offering.details(offering_code)
-          return offering["funds_in_escrow"].to_i
+          return  offering["funds_in_escrow"]
         rescue JSON::ParserError => e
           puts e
           puts 'ERROR'

@@ -6,10 +6,32 @@
   .form-group {
     label {
       font-size: $small-font;
+      font-weight: 100;
     }
 
-    .form-field {
+    .currency_input, .form-field {
       border: 1px rgba(74,74,74, 0.15) solid;
+      outline: none;
+      border-radius: 1px;
+    }
+
+    .form-field:focus {
+      background-color: #FAFAFA;
+      border: 1px rgba(16, 161, 214, 0.15) solid;
+    }
+
+    .currency_input {
+      .form-field {
+        border: none;
+      }
+    }
+
+    strong {
+      label {
+        opacity: .5;
+        font-weight: bold;
+        color: #000;
+      }
     }
   }
 }

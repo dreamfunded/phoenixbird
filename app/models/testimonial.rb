@@ -1,4 +1,7 @@
 class Testimonial < ActiveRecord::Base
+
+  ACCESSIBLE_ATTRIBUTES = [:id, :name, :position, :photo, :message]
+
   belongs_to :campaign
 
   validates :name, :position, :message, presence: true

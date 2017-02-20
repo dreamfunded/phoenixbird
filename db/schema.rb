@@ -497,6 +497,7 @@ ActiveRecord::Schema.define(version: 20170216095323) do
     t.datetime "updated_at"
     t.integer  "invested_amount",  default: 0
     t.integer  "number_of_shares"
+    t.string   "fund_america_id"
   end
 
   add_index "investments", ["company_id"], name: "index_investments_on_company_id", using: :btree

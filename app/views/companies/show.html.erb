@@ -12,7 +12,7 @@
 <div class='v2'>
     <div id='company-nav' class='fixed-nav'>
         <div class='company-content-container'>
-            <a href="#cover-photo"><%= image_tag( @company.image.url, class: 'media-logo' ) %></a>
+            <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company, :"data-no-turbolink" => true %>
             <ul class="company-nav-links">
                 <li><a href="#company-header">COMPANY</a></li>
                 <li><a href="#team-section">TEAM</a></li>
@@ -66,7 +66,9 @@
                 <% if @company.status == 2 %>
                     <div class='company-detail'>
                         <div class='company-finance-info'>
-                            <%= number_to_currency @company.fund_america_invested_amount, precision: 0 %>
+
+                            <%= raised_amount(@company) %>
+
                         </div>
                         <div class='company-info-category'>RAISED</div>
                     </div>
@@ -148,6 +150,7 @@
             </div>
         </div>
     </section>
+
     <div class="company-content">
         <div class="company-content-container">
             <!-- A D M I N   E D I T I N G -->
@@ -155,16 +158,18 @@
                 <% if current_user != nil && current_user.authority == authority[:Admin] %>
                     <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @id }, class: 'edit-company-button' ) do %>
                         <i class="fa fa-user-secret" aria-hidden="true"></i>
-                       <span class='edit-my-company-button'> Edit as Admin</span>
+                        <span class='edit-my-company-button'> Edit as Admin</span>
                     <% end %>
-                    <%= link_to( {:controller => 'campaigns', :action => 'edit_campaign', :id => @campaign.id}, class: 'edit-company-button' )  do %>
+                <% end %>
+                <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+                    <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span class='edit-my-company-button'>Edit My Company</span>
-                    <%end%>
-                <% end %>
+                    <% end %>
+                <%end%>
                 <% if current_user %>
                     <% if current_user.company == @company && current_user.role == 'founder' %>
-                        <%= link_to( {:controller => 'campaigns', :action => 'edit_campaign', :id => @campaign.id}, class: 'edit-company-button' )  do %>
+                        <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
                             <i class="fa fa-cog" aria-hidden="true"></i>
                             <span class='edit-my-company-button'>Edit My Company</span>
                         <%end%>
@@ -177,29 +182,64 @@
                     <h1 class="section-title">Invest in <%= @company.name %></h1>
                     <div class="fluid-container">
                         <div class='row'>
-                            <div class="col-6">
-                                <h2 class="section-sub-heading">Who Are We?</h2>
-                                <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
-                                <% if @campaign_quote %>
+
+                            <% if @campaign_quote %>
+                                <div class="col-6">
+                                    <h2 class="section-sub-heading">Who Are We?</h2>
+                                    <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
                                     <div class="company-quote">
+                                        <div class='quote-symbol'>"</div>
                                         <%= @campaign_quote.main %>
                                         <div class="sub-quote"><%= @campaign_quote.description %></div>
                                     </div>
                                     <div class='said-by'>
-                                        <%= image_tag(@company.image.url) %>
+
+                                        <%= image_tag(@campaign_quote.photo.url) %>
                                         <span>
                                             <div><%= @campaign_quote.said_by %></div>
                                             <div class="said-by-title"><%= @campaign_quote.position %></div>
                                         </span>
                                     </div>
-                                <% end %>
-                            </div>
-                            <div class="col-6">
+
+                                </div>
+                            <% end %>
+                            <div id='offering-summary' class="col-6">
                                 <h2 class="section-sub-heading">Offering Summary</h2>
                                 <% if current_user %>
-                                    <div>
-                                        <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
-                                    </div>
+                                    <% if @formc %>
+                                        <div>
+                                            <div class='sub-section-content'>
+                                                <p>
+                                                    <strong class='display-block'>Security Type</strong>
+                                                    <%= @formc.type_of_security %>
+                                                </p>
+                                                <p>
+                                                    <strong class='display-block'>Minimum Investment</strong>
+                                                    <%= @formc.min_investment %>
+                                                </p>
+                                                <p>
+                                                    <strong class='display-block'>Discount</strong>
+                                                    <%= @formc.discount %>
+                                                </p>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <h3 class='content-title'>Investment Perks</h3>
+                                                <% @investment_perks.each do |perk| %>
+                                                    <div class=sub-section-content>
+                                                        <div class='media investment-perk'>
+                                                            <div class='perk-amount media-left'>
+                                                                <strong><%= perk.amount %>+</strong>
+                                                            </div>
+                                                            <div class='media-body perk-content'>
+                                                                <%= perk.content %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    <% end %>
                                 <%else%>
                                     <article class='centered'>
                                         <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
@@ -233,25 +273,27 @@
                                     <% radio_id = "testimonial-#{i}-radio" %>
                                     <input type="radio" class='state' name='testimonial-check-state' id='<%= radio_id %>' <%= 'checked' if i == 1 %> />
                                 <% end %>
-                                <div class='fluid-container radio-label-tabs'>
-                                    <div class='row'>
-                                        <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+
+                                <div class='fluid-container flex-grid radio-label-tabs'>
+                                    <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+
                                             <% radio_id = "testimonial-#{i}-radio"
                                                tab_id = "testimonial-#{i}-tab" %>
                                             <div class="col-4">
                                                 <label for='<%= radio_id %>' class='radio-tab testimonial-details' id="<%= tab_id %>">
                                                     <%= image_tag testimonial.photo.url %>
-                                                    <p class='testimonial-name'><%= testimonial.name %></p>
-                                                    <p class='testimonial-title'><%= testimonial.position %></p>
+
+                                                    <p class='testimonial-name centered'><%= testimonial.name %></p>
+                                                    <p class='testimonial-title centered'><%= testimonial.position %></p>
                                                 </label>
                                             </div>
                                         <% end %>
-                                    </div>
                                 </div>
                                 <div class='panels'>
                                     <div class="panels-content">
                                         <% @campaign.testimonials.each_with_index do |testimonial, i| %>
-                                            <p id='testimonial-<%= i %>-panel' class="panel">
+
+                                            <p id='testimonial-<%= i %>-panel' class="panel centered">
                                                 <i><%= testimonial.message %></i>
                                             </p>
                                         <% end %>
@@ -352,6 +394,25 @@
                                 <p class= "fifteen"><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
                             </div>
                         </div>
+
+                        <hr class='div'>
+
+                        <div>
+                            <h2 class='section-title'>Investment Perks</h2>
+                            <% @investment_perks.each do |perk| %>
+                                <div class=section-content>
+                                    <div class='media investment-perk'>
+                                        <div class='perk-amount media-left'>
+                                            <strong><%= perk.amount %>+</strong>
+                                        </div>
+                                        <div class='media-body perk-content'>
+                                            <%= perk.content %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+
                         <hr class="div">
                         <div>
                             <h2 class="section-title">Documents</h2>
@@ -478,9 +539,10 @@
     $(document).ready(function() {
         document.addEventListener('fa.investnow.success', function(e){
           var InvestorInvestmentID = e.investment_id;
+          console.log(e);
            $.ajax({
                 type: 'POST',
-                url: "/investment_made",
+                url: "/investment_made/"+InvestorInvestmentID,
                 data: { company_id: <%= @company.id %>  },
                 dataType: "json",
                 success: function(resultData) { alert("Save Complete") }
