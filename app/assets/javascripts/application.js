@@ -24,5 +24,34 @@
 //= require tinyscrollbar.min
 //= require jquery.tinyscrollbar.min
 //= require jquery.countdown.min
+//= require underscore
+//= require backbone
+//= require_self
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
 //= require_tree .
 
+window.App = {
+  Models: {},
+  Collections: {},
+  Views: {},
+  Routers: {},
+  should_load: function() {
+    let supported_pages = ['.users.profile'];
+    let supported_pages_class = supported_pages.join(', ');
+    return $(supported_pages_class).length > 0;
+  },
+  initialize: function() {
+    new App.Routers.Users();
+    Backbone.history.start({pushState: true});
+  }
+}
+
+$(document).on('page:change', function() {
+  if (App.should_load()) {
+    App.initialize()
+  }
+})

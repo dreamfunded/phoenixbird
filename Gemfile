@@ -70,3 +70,7 @@ group :development do
    gem 'spring'
    gem 'byebug'
 end
+
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'backbone-on-rails'
+gem 'yajl-ruby', require: 'yajl'
