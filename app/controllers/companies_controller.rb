@@ -178,6 +178,7 @@ class CompaniesController < ApplicationController
 	  @company = @campaign.company
 	  @financial_detail = @company.financial_detail
 
+	  @company.update(company_params)
 	  @campaign.update(tagline: params[:company][:campaign_attributes][:tagline],
 	  				  elevator_pitch: params[:company][:campaign_attributes][:elevator_pitch],
 	  				  about_campaign: params[:company][:campaign_attributes][:about_campaign],
@@ -187,7 +188,6 @@ class CompaniesController < ApplicationController
 	  				  company_location_state: params[:company][:campaign_attributes][:company_location_state])
 	  @financial_detail.update(offering_terms:  params[:company][:financial_detail_attributes][:offering_terms],
 	  						  fin_risks:  params[:company][:financial_detail_attributes][:fin_risks])
-	  #@company.update(company_params)
 	  redirect_to :controller => 'companies', :action => 'show', :id => @company.slug
 	end
 
