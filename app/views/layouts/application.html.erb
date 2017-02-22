@@ -138,6 +138,8 @@
 		</div>
 
 <%= render 'layouts/footer' %>
-
+<script type="text/javascript">
+	App.current_user = new App.Models.User(<%= current_user.to_json %>);
+</script>
 </body>
 </html>

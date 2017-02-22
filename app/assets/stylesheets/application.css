@@ -72,7 +72,7 @@ hr {
 	position: relative;
 }
 
-.word-content {
+.content-container, .word-content {
 	margin: 0 auto;
 	width: 80%;
 	background: white;

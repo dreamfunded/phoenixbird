@@ -1,7 +1,10 @@
 @import 'typography';
-
 $padding: 0.9375rem;
 $margin-bottom: 0.625rem;
+
+.compact-max-width-layout {
+  max-width: 930px
+}
 
 .v2 {
   box-sizing: border-box;
@@ -38,5 +41,10 @@ $margin-bottom: 0.625rem;
     input[type='text'].form-field {
       height: auto;
     }
+  }
+
+  .content-container {
+    margin: 0 auto;
+    padding-top: 30px;
   }
 }

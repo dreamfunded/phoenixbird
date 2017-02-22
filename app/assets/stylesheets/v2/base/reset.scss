@@ -1,0 +1,13 @@
+@import 'v2/application/typography';
+
+.v2 {
+  .panel {
+    display: block;
+  }
+
+  .content-container {
+    height: auto;
+    overflow: visible;
+    font-size: $font-smaller;
+  }
+}

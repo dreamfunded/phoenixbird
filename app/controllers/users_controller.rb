@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def profile
+	end
+
 	def update
 		user = User.find_by(id: params[:id])
 		Investment.create(user_id: user.id, company_id: params[:company_id], invested_amount: params[:user][:invested_amount])

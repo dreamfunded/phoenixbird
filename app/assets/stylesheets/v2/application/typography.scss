@@ -1,2 +1,8 @@
 $small-font: 0.9rem;
 $normal-font: 1rem;
+$font-smaller: 14px;
+
+.v2 {
+  font-size: $font-smaller;
+  letter-spacing: 0.4px;
+}

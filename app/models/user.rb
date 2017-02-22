@@ -38,6 +38,7 @@ class User < ApplicationRecord
 	  :bucket => 'dreamfunded',
 	  :path => "users/:filename",
 	  :url =>':s3_domain_url',
+	  :default_url => ->(attachment) {  ActionController::Base.helpers.asset_path("placeholder_person.svg") },
 	  :s3_protocol => :https,
 	  :s3_credentials => {
 	    :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
