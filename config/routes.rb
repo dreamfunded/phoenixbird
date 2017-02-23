@@ -80,6 +80,8 @@ Rails.application.routes.draw do
 
   get "company_not_accretited", to: "companies#company_not_accretited", as: "company_not_accretited"
 
+  get "explore", to: "companies#explore", as: "explore" #Testing the waters for Reg A+
+
 
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
 

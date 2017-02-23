@@ -162,6 +162,10 @@ class CompaniesController < ApplicationController
 	def company_not_accretited
 	end
 
+	def explore
+		@companies = Company.where(reg_a: true)
+	end
+
 	def edit_campaign
 	  @campaign = Campaign.find(params[:id])
 	  @company = @campaign.company
