@@ -161,6 +161,53 @@ class CompaniesController < ApplicationController
 	def company_not_accretited
 	end
 
+	def submit_payment
+		@company = Company.find(@company_id)
+		  options = {
+		       :city => params[:city],
+		       :country => params[:country],
+		       :email => "john_wick@gmail.com",
+		       :name => params[:name],
+		       :phone => [:phone],
+		       :postal_code => params[:zipcode],
+		       :region => params[:state],
+		       :street_address_1 => params[:address],
+		       :tax_id_number => '000000000',
+		       :type => "person",
+		       :date_of_birth => params[:date_of_birth]
+		  }
+		entity = FundAmerica::Entity.create(options)
+		p entity
+
+		ach_auth_options = {
+		  :account_number => params[:account_number],
+		  :account_type => params[:checking],
+		  :address => params[:address],
+		  :check_type => params[:check_type],
+		  :city => params[:city],
+		  :email => params[:email],
+		  :entity_id => entity['id'],
+		  :ip_address => request.remote_ip,
+		  :literal => "Test User",
+		  :name_on_account => params[:name],
+		  :phone => params[:name],
+		  :routing_number => params[:routing_number],
+		  :state => params[:state],
+		  :zip_code => params[:zipcode]
+		}
+		p ach_auth_options
+		begin
+		    ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
+		rescue FundAmerica::Error => e
+		    p 'ERROR'
+		    puts e.parsed_response
+		end
+
+		redirect_to "/companies/invest/#{@company.slug}"
+
+	end
+
+
 private
 	def set_company
 	  @company = Company.friendly.find(params[:id])
