@@ -10,7 +10,13 @@
       font-weight: 100;
     }
 
-    .currency_input, .form-field {
+    textarea.form-field {
+      resize: vertical;
+    }
+
+    .currency_input, .form-field,
+    .select2-container--default .select2-selection--single,
+    .select2-container--default .select2-selection--multiple {
       border: 1px rgba(74,74,74, 0.15) solid;
       outline: none;
       border-radius: 1px;

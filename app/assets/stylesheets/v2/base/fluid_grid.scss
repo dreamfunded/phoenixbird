@@ -8,10 +8,21 @@
   }
 }
 
+.fluid-container:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
 .fluid-container.flex-grid {
   justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
+
+  [class*="col-"] {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
 }
 
 .fluid-container {
@@ -65,41 +76,23 @@
 }
 
 @media (min-width: 40rem) {
+  .flex-grid {
+    @for $i from 1 through 12 {
+      .col-#{$i} {
+        flex-basis: unquote(100/12*$i + '%');
+        min-width: unquote(100/12*$i + '%');
+      }
+    }
+  }
   .fluid-container {
     .row [class*="col-"] {
       float: left;
     }
 
-    .col-3 {
-      width: 25%;
-    }
-
-    .col-4 {
-      width: 33.33%;
-    }
-
-    .col-5 {
-      width: 41.67%;
-    }
-
-    .col-6 {
-      width: 50%;
-    }
-
-    .col-7 {
-      width: 58.33%;
-    }
-
-    .col-8 {
-      width: 66.67%;
-    }
-
-    .col-9 {
-      width: 75%;
-    }
-
-    .col-12 {
-      width: 100%;
+    @for $i from 1 through 12 {
+      .col-#{$i} {
+        width: unquote(100/12*$i + '%');
+      }
     }
   }
 }
