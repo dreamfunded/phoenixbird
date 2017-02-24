@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :reg_a_company]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :reg_a_company, :waitlist]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -167,6 +167,22 @@ class CompaniesController < ApplicationController
 	end
 
 	def reg_a_company
+	end
+
+	def waitlist
+	end
+
+	def join_waitlist_reg_a
+		company_name = params[:company_name]
+		@name = params[:name]
+		@email = params[:email]
+		@phone = params[:phone]
+		@amount = params[:amount]
+		@message = params[:message]
+		Guest.create(email: params[:email], company: company_name, user_id: current_user.id)
+		ContactMailer.waitlist(@name, @email, @phone, @amount, @message).deliver
+		flash[:thank_you_notice] = 'Thank you'
+		redirect_to "/join_waitlist_thank_you"
 	end
 
 	def edit_campaign
