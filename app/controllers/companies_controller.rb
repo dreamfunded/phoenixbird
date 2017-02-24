@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist ]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :reg_a_company]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -160,6 +160,13 @@ class CompaniesController < ApplicationController
 	end
 
 	def company_not_accretited
+	end
+
+	def explore
+		@companies = Company.where(reg_a: true)
+	end
+
+	def reg_a_company
 	end
 
 	def edit_campaign
