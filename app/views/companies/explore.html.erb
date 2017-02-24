@@ -8,7 +8,7 @@
 
             <div class='property-box'>
 
-                <%= link_to company do %>
+                <%= link_to reg_a_company_path(company) do %>
                 <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
                     <%#= image_tag( company.cover.url, :class => "property-image") %>
                 </div>
@@ -52,7 +52,7 @@
 
                 </article>
                 <% end %>
-                <%= link_to "Learn More", company, class:'invest-link' %>
+                <%= link_to "Learn More", reg_a_company_path(company), class:'invest-link' %>
             </div>
         <% end %>
 
