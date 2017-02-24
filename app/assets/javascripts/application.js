@@ -15,6 +15,7 @@
 //= require jquery.readyselector
 //= require ckeditor/init
 //= require bootstrap.min
+//= require select2
 //= require instafilta.min
 //= require turbolinks
 //= require links
