@@ -4,3 +4,32 @@
 
 @import 'colors';
 
+.users.profile {
+  .user-investment {
+    margin-bottom: 1rem;
+
+    img {
+      width: 70px;
+      height: 70px;
+      vertical-align: middle;
+    }
+
+    .image-container {
+      padding: 20px;
+      background-color: $lightgray;
+      border: 1px $darkgray solid;
+      display: inline-table;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .grey-color {
+      font-size: 12px;
+    }
+  }
+}

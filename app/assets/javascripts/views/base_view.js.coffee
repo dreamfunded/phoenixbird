@@ -1,4 +1,13 @@
 class App.Views.BaseView extends Backbone.View
+  template: ->
+  model: Backbone.Models
+
+  initialize: ->
+    @listenTo(@model, 'sync', @render) if @model?
+    @after_initialize.apply(this, arguments)
+
+  after_initialize: ->
+
   assign: (selector)->
     # https://ianstormtaylor.com/assigning-backbone-subviews-made-even-cleaner
     selectors = {}
@@ -9,5 +18,12 @@ class App.Views.BaseView extends Backbone.View
 
     return if !selectors
     _.each(selectors, (view, selector) ->
-      view.setElement(this.$(selector)).render()
+      view.setElement(@$(selector)).render()
     , this)
+
+  render: ->
+    @$el.html(@template(model: @model))
+    @after_render.apply(this, arguments)
+    this
+
+  after_render: ->

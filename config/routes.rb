@@ -285,7 +285,10 @@ Rails.application.routes.draw do
         delete :unfollow, path: "/follow"
       end
     end
+
+    resources :users, only: [:show]
   end
+
   get ':controller(/:action(/:id))'
   post ':controller(/:action(/:id))'
 

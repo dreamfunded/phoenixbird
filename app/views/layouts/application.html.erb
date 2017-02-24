@@ -139,7 +139,9 @@
 
 <%= render 'layouts/footer' %>
 <script type="text/javascript">
-	App.current_user = new App.Models.User(<%= current_user.to_json %>);
+	<% if current_user %>
+		App.current_user = new App.Models.User(<%= CurrentUserSerializer.new(current_user).to_json %>);
+	<% end  %>
 </script>
 </body>
 </html>

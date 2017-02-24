@@ -2,7 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def to_json(options={})
-    new_serializer.to_json.html_safe
+    new_serializer.to_json
   end
 
   def as_json(options={})

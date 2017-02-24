@@ -25,4 +25,8 @@ class Investment < ActiveRecord::Base
     end
   end
 
+  def human_date_invested
+    created_at.strftime("%B %d, %Y")
+  end
+
 end
