@@ -286,7 +286,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :users, only: [:show]
+    resources :users, only: [:show, :update]
   end
 
   get ':controller(/:action(/:id))'

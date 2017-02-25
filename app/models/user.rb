@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	ACCESSIBLE_ATTRIBUTES = [:bio, :aspirations, :achievements, :looking_for]
+
 	before_create :set_authority
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

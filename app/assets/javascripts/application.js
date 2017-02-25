@@ -25,6 +25,7 @@
 //= require tinyscrollbar.min
 //= require jquery.tinyscrollbar.min
 //= require jquery.countdown.min
+//= require jquery-deparam.min
 //= require underscore
 //= require backbone
 //= require_self

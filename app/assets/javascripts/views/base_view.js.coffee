@@ -27,3 +27,7 @@ class App.Views.BaseView extends Backbone.View
     this
 
   after_render: ->
+
+  set_state: (new_state) ->
+    _.extend(@state, new_state)
+    @render()

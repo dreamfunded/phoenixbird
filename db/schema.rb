@@ -900,6 +900,9 @@ ActiveRecord::Schema.define(version: 20170302230303) do
     t.text     "bank_info"
     t.text     "selected_bank_account"
     t.string   "investor_id_for_fundamerica"
+    t.text     "aspirations"
+    t.text     "achievements"
+    t.text     "looking_for"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

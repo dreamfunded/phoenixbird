@@ -4,8 +4,8 @@ class App.Views.ProfileView extends App.Views.BaseView
   after_initialize: ->
     @about_section_view = new App.Views.UserEditableSection(
       title: "About"
-      show_view: new App.Views.UserAboutSection
-      edit_view: new App.Views.UserAboutEditSection
+      show_view: new App.Views.UserAboutSection(model: @model)
+      edit_view: new App.Views.UserAboutEditSection(model: @model)
         )
     @investment_section_view = new App.Views.UserInvestmentSection(model: @model)
 
