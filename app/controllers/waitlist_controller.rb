@@ -1,5 +1,5 @@
 class WaitlistController < ApplicationController
-    before_action :set_company, only: [ :join_waitlist, :reg_a_company]
+    before_action :set_company, only: [ :join_waitlist, :reg_a_company, :waitlist]
 
     #extract in a waitlist controller
     def join_waitlist
