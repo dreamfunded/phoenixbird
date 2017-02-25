@@ -1,8 +1,8 @@
 class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
-	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :reg_a_company, :waitlist]
+	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -11,139 +11,30 @@ class CompaniesController < ApplicationController
 	end
 
 	def company_profile
-		if params[:id] != nil
-			@id = params[:id]
-			@financial_details = @company.financial_detail
-			@progress = @company.invested_amount / @company.goal_amount rescue 0
-			@comments = @company.comments
-			@members = @company.founders.order(:position)
-			@section = @company.sections.first
-		else
-			redirect_to "/companies"
-		end
+		@financial_details = @company.financial_detail
+		@comments = @company.comments
+		@members = @company.founders.order(:position)
 	end
 
 	def show
-		if params[:id] != nil
-			@id = params[:id]
 			@financial_details = @company.financial_detail
-			@progress = @company.invested_amount / @company.goal_amount rescue 0
 			@comments = @company.comments
-			@members = @company.founders.order(:position)
 			@section = @company.sections.first
-		else
-			redirect_to "/companies"
-		end
 	end
 
 	def edit_profile
-		if current_user == nil || current_user.authority < User.Authority[:Admin]
-			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
-		end
 	end
 
 	def update
-		if @company.update(company_params)
-			redirect_to company_path(@company)
-		else
-			@error_update = ""
-			@company.errors.full_messages.each do |error|
-				@error_update = @error_update + error + ". "
-			end
-			flash[:problem_update] = @error_update
-			redirect_to :controller => 'companies', :action => 'edit_profile', :id => params[:id]
-		end
+		@company.update(company_params)
+		redirect_to company_path(@company)
 	end
 
-	def new
-		redirect_to funding_goal_path
-		@company = Company.new
-	end
-
-	def create
-		@company = Company.new(company_params)
-		if @company.save
-			@company.campaign = Campaign.create
-			@company.sections << Section.new
-			redirect_to "/companies"
-		else
-			@error_message = ""
-			@company.errors.full_messages.each do |error|
-				@error_message = @error_message + error + ". "
-			end
-			flash[:message] = @error_message
-			redirect_to "/companies/new"
-		end
-	end
-
-	def edit
-		@companies = Company.all
-	end
-
-# can be refactored
-	def action
-		@my_company = Company.find_by(id: params[:id])
-		if @my_company == nil
-			@message = ""
-			@message = "No company with that ID exists. Please create the company first."
-			flash[:fail] = @message
-			redirect_to url_for(:controller => 'companies', :action => 'edit')
-		elsif params[:id] != nil && params[:desired_action] == "1"
-			redirect_to url_for(:controller => 'companies', :action => 'make_team', :id => params[:id])
-		elsif params[:id] != nil && params[:desired_action] == "2"
-			redirect_to url_for(:controller => 'companies', :action => 'make_profile', :id => params[:id])
-		end
-	end
-
-	def make_team
-		@founder = Founder.new
-		@companies = Company.all
-	end
-
-	def add_team_member
-		@founder = Founder.new(founder_params)
-		if @founder.save
-			redirect_to "/companies"
-		else
-			redirect_to "/companies/make_team"
-		end
-	end
-
-	def make_profile
-		@section = @company.sections.first
-	end
-
-	def submit_profile
-		@company = Company.find(params[:section][:id])
-		@section = @company.sections.first
-
-		if @section.update(section_params)
-			redirect_to "/companies"
-		else
-			@error_message3 = ""
-			section.errors.full_messages.each do |error|
-				@error_message3 = @error_message3 + error + ". "
-			end
-			flash[:problem] = @error_message3
-			redirect_to "/companies/make_profile/#{@company.id}"
-		end
-	end
-
-	def remove_company
-    	@company.destroy
-   		redirect_to "/companies"
-	end
-
-	def remove_founder
-    	@founder = Founder.find(params[:id])
-    	@company = @founder.company
-    	@founder.destroy
-    	redirect_to company_path(@company)
- 	end
-
+	#extract in a waitlist controller
 	def join_waitlist
 	end
 
+	#extract in a waitlist controller
 	def join_waitlist_send_email
 		company_name = params[:company_name]
 		@name = params[:name]
@@ -156,22 +47,15 @@ class CompaniesController < ApplicationController
 		redirect_to "/join_waitlist_thank_you"
 	end
 
+	#extract in a waitlist controller
 	def join_waitlist_thank_you
 	end
 
-	def company_not_accretited
-	end
-
-	def explore
-		@companies = Company.where(reg_a: true)
-	end
-
-	def reg_a_company
-	end
-
+	#extract in a waitlist controller
 	def waitlist
 	end
 
+	#extract in a waitlist controller
 	def join_waitlist_reg_a
 		company_name = params[:company_name]
 		@name = params[:name]
@@ -185,12 +69,19 @@ class CompaniesController < ApplicationController
 		redirect_to "/join_waitlist_thank_you"
 	end
 
+	def company_not_accretited
+	end
+
+	def explore
+		@companies = Company.where(reg_a: true)
+	end
+
+	def reg_a_company
+	end
+
 	def edit_campaign
 	  @campaign = Campaign.find(params[:id])
 	  @company = @campaign.company
-	  # if current_user.company != @company
-	  #   redirect_to company_path(@company)
-	  # end
 	  @formc = @company.general_infos.last
 	  @members = @company.founders
 	  @comments = @company.comments
