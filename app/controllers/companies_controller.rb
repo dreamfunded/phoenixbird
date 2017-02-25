@@ -20,6 +20,7 @@ class CompaniesController < ApplicationController
 			@financial_details = @company.financial_detail
 			@comments = @company.comments
 			@section = @company.sections.first
+			@members = @company.founders.order(:position)
 	end
 
 	def edit_profile
