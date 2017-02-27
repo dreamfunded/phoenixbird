@@ -112,30 +112,54 @@
 
 <br><br><br><br><br><br><br><br><br>
 
-        <div class= "centered   bottom-buttons">
-            <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'invest-button invest-now-button margin-get-started-btn new-invest-button'} %>
-            <%#= link_to "Liquidate Now", {:action => 'liquidate'}, {:class => 'invest-button liquidate-now-button'} %>
-        </div>
+    <div class="homepage-bottom">
+        <section class='sign-up-homepage'>
+            <div class='section-title signup-homepage-title'>Join DreamFunded Investor Network</div>
 
-        <div class="investor-logos">
-            <!-- <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
-            <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-
-            <%= image_tag("static/aca_logo.png", :class => 'aca-logo') %>
-            <%#= image_tag("static/perkins.png", :class => 'perkins-logo') %>
-            <a class= "indent foot-text hide-on-desktop"> COPYRIGHT © <%= Time.now.year %></a>
-        </div>
-<!--        <div class= "foot-bar">
-            <div class= "foot-wrap">
-                <div class= "image3-box gap"><%= image_tag("static/DreamFunded-Logo-Vertical-lightblue.png", :class => 'image3') %></div>
-                <div class= "image4-box gap">
-                    <%= link_to image_tag("static/facebook.png", :class => 'image4'), "https://www.facebook.com/dreamfundedcom", :target => "_blank" %>
-                    <%= link_to image_tag("static/twitter.png", :class => 'image4'), "https://twitter.com/dreamfunded", :target => "_blank" %>
-                    <%= link_to image_tag("static/linkedin.png", :class => 'image4'), "https://www.linkedin.com/company/dreamfunded-com", :target => "_blank" %>
-                    <%= link_to image_tag("static/angel.png", :class => 'image4'), "https://angel.co/dreamfunded-1", :target => "_blank" %>
+            <section class="sign-up-homepage-social-media-links">
+                <div class='social-login-ions centered'>
+                  <%= link_to  '/auth/facebook', class: 'facebook-link social-media-links-homepage first-link-no-margin'  do %>
+                    <span>Facebook</span>
+                  <%end%>
+                  <%= link_to '/auth/google_oauth2', class: 'google-link social-media-links-homepage' do %>
+                    <span>Google</span>
+                  <%end%>
+                  <%= link_to '/auth/linkedin', class: 'linkedin-link social-media-links-homepage' do %>
+                    <span>LinkedIn</span>
+                  <%end%>
                 </div>
-            </div>
-        </div> -->
+            </section>
+
+            <section class="sign-up-homepage-form">
+                <%= form_tag( "/registration_from_homepage", method: 'post' ) do |f| %>
+                   <%= text_field_tag(:first_name, nil, :placeholder => "First Name", :class => "form-field homepage-form-field ") %>
+                   <%= text_field_tag(:last_name, nil, :placeholder => "Last Name", :class => " form-field homepage-form-field") %>
+                   <%= text_field_tag(:email, nil, :placeholder => "Email", :class => "form-field homepage-form-field  email-signup") %>
+                   <%= submit_tag("Sign Up", id: 'submit-button', class: "submit-button-homepage") %>
+                <% end %>
+            </section>
+
+        </section>
+    </div>
+
+    <br><br>
+    <div class="investor-logos">
+        <!-- <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
+        <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+
+        <%= image_tag("static/aca_logo.png", :class => 'aca-logo') %>
+        <%#= image_tag("static/perkins.png", :class => 'perkins-logo') %>
+        <a class= "indent foot-text hide-on-desktop"> COPYRIGHT © <%= Time.now.year %></a>
+    </div>
+
+
+
+
+
+
+
+
+
 <% if current_user != nil %>
     <% if User.find(current_user.id).try(:confirmed) == false %>
         <!-- ---------------------- -->
