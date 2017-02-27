@@ -1,0 +1,66 @@
+.homepage-bottom{
+  width: 100%;
+  background-color:#4b4b4b;
+  padding: 20px 0;
+}
+.sign-up-homepage{
+  max-width: 800px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 300px;
+  text-align: center;
+}
+
+.sign-up-homepage-social-media-links{
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+  border-right: 1px solid white;
+}
+
+.sign-up-homepage-form{
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+}
+
+.signup-homepage-title{
+  color: #fff;
+}
+
+.homepage-form-field{
+  margin: 0 5px 13px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit-button-homepage{
+  width: 220px !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 4px;
+  margin-top: 0 !important;
+}
+
+.homepage-form-field{
+  max-width: 220px;
+}
+
+.social-media-links-homepage{
+  box-sizing: border-box;
+  height: 50px;
+  margin: 13px auto;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.first-link-no-margin{
+  margin-top: 0;
+}
+
+.social-media-links-homepage span{
+  margin-top: 14px;
+}

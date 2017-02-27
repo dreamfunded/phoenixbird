@@ -65,6 +65,11 @@ class HomeController < ApplicationController
 		@logos = Logo.all.order(:position)
 	end
 
+	def registration_from_homepage
+		@resource = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email])
+		render 'devise/registrations/new'
+	end
+
 private
    def liquidate_share_params
    	params.require(:liquidate_share).permit(:first_name, :last_name, :email,  :phone, :company, :number_shares, :shares_price, :timeframe, :rofr_restrictions, :financial_assistance, :message)
