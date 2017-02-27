@@ -22,8 +22,25 @@
         <div class='section-title'>What is DreamFunded?</div>
 
         <div>
-            <span class="about-startups about-us-icons active-tab">Startups</span>
-            <span class="about-investors about-us-icons">Investors</span>
+            <span class="about-investors about-us-icons active-tab">Investors</span>
+            <span class="about-startups about-us-icons ">Startups</span>
+        </div>
+
+        <div class='about-investors-tab'>
+            <article class='inline-block-icons ' >
+                <%= image_tag "access_icon_clean.png", class: "about-us-images" %>
+                <p class='icon-description'>Insider Access:<br> Become an Insider by Investing in Pre-Screened Startups</p>
+            </article>
+
+            <article class='inline-block-icons '>
+                <%= image_tag "browse_clear.png", class: "about-us-images" %>
+                <p class='icon-description'>Browse Investments:<br> As a Member, You Can Review Our Selection of Innovative Tech Companies</p>
+            </article>
+
+            <article class='inline-block-icons '>
+                <%= image_tag "low_mins.png", class: "about-us-images" %>
+                <p class='icon-description'>Low Minimums:<br> You Can Invest as Little as $10 to Build a Diversified Portfolio</p>
+            </article>
         </div>
 
         <div class='about-startups-tab'>
@@ -43,22 +60,6 @@
             </article>
         </div>
 
-        <div class='about-investors-tab'>
-            <article class='inline-block-icons ' >
-                <%= image_tag "access_icon_clean.png", class: "about-us-images" %>
-                <p class='icon-description'>Insider Access:<br> Become an Insider by Investing in Pre-Screened Startups</p>
-            </article>
-
-            <article class='inline-block-icons '>
-                <%= image_tag "browse_clear.png", class: "about-us-images" %>
-                <p class='icon-description'>Browse Investments:<br> As a Member, You Can Review Our Selection of Innovative Tech Companies</p>
-            </article>
-
-            <article class='inline-block-icons '>
-                <%= image_tag "low_mins.png", class: "about-us-images" %>
-                <p class='icon-description'>Low Minimums:<br> You Can Invest as Little as $10 to Build a Diversified Portfolio</p>
-            </article>
-        </div>
 
     </section>
 
@@ -121,7 +122,7 @@
             <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 
             <%= image_tag("static/aca_logo.png", :class => 'aca-logo') %>
-            <%= image_tag("static/perkins.png", :class => 'perkins-logo') %>
+            <%#= image_tag("static/perkins.png", :class => 'perkins-logo') %>
             <a class= "indent foot-text hide-on-desktop"> COPYRIGHT © <%= Time.now.year %></a>
         </div>
 <!--        <div class= "foot-bar">
