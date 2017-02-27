@@ -112,10 +112,47 @@
 
 <br><br><br><br><br><br><br><br><br>
 
-        <div class= "centered   bottom-buttons">
-            <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'invest-button invest-now-button margin-get-started-btn new-invest-button'} %>
-            <%#= link_to "Liquidate Now", {:action => 'liquidate'}, {:class => 'invest-button liquidate-now-button'} %>
-        </div>
+    <section class='sign-up-homepage box signup-size'>
+        <div>Join DreamFunded investors</div>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+           <%= f.text_field(:first_name, :placeholder => "First Name", :class => "form-field form-field-half") %>
+           <%= f.text_field(:last_name, :placeholder => "Last Name", :class => "form-field form-field-half") %><br>
+           <%#= f.text_field(:phone, :placeholder => "Phone", :class => "form-field form-field-half") %><br>
+
+          <h4>Login Information</h4>
+           <%= f.text_field(:email, :placeholder => "Email", :class => "form-field  email-signup") %>
+           <%= f.password_field(:password, :placeholder => "Password ", :class => "form-field form-field-half little-margin", required: true, pattern: ".{6,}") %>
+           <%= f.password_field(:password_confirmation, :placeholder => "Confirm Password", required: true, pattern: ".{6,}", :class => "form-field form-field-half  little-margin") %>
+           <span class='password-six-chars'>Password must be at least 6 characters</span>
+           <br><br>
+
+          <%= f.submit("Sign Up", :id => "submit-button" ) %>
+
+          <div class='social-media-line'>
+            <span></span>
+            <h4>OR</h4>
+            <span></span>
+          </div>
+          <div class='social-login-ions'>
+            <%= link_to '/auth/google_oauth2', class: 'google-link' do %>
+              <span>Google</span>
+            <%end%>
+            <%= link_to '/auth/linkedin', class: 'linkedin-link' do %>
+              <span>LinkedIn</span>
+            <%end%>
+            <%= link_to  '/auth/facebook', class: 'facebook-link'  do %>
+              <span>Facebook</span>
+            <%end%>
+          </div>
+
+           </div>
+           <p class='check_box hide-on-desktop'>By signing up you agree with our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %>,  <%= link_to 'Privacy Policy', asset_path("DreamFunded_PrivacyPolicy.pdf"), target: '_blank' %>,  <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %> & <%= link_to 'Educational Materials', asset_path("investor-guide.pdf"), target: '_blank' %> </p>
+        <% end %>
+
+
+
+    </section>
 
         <div class="investor-logos">
             <!-- <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
@@ -125,17 +162,15 @@
             <%#= image_tag("static/perkins.png", :class => 'perkins-logo') %>
             <a class= "indent foot-text hide-on-desktop"> COPYRIGHT © <%= Time.now.year %></a>
         </div>
-<!--        <div class= "foot-bar">
-            <div class= "foot-wrap">
-                <div class= "image3-box gap"><%= image_tag("static/DreamFunded-Logo-Vertical-lightblue.png", :class => 'image3') %></div>
-                <div class= "image4-box gap">
-                    <%= link_to image_tag("static/facebook.png", :class => 'image4'), "https://www.facebook.com/dreamfundedcom", :target => "_blank" %>
-                    <%= link_to image_tag("static/twitter.png", :class => 'image4'), "https://twitter.com/dreamfunded", :target => "_blank" %>
-                    <%= link_to image_tag("static/linkedin.png", :class => 'image4'), "https://www.linkedin.com/company/dreamfunded-com", :target => "_blank" %>
-                    <%= link_to image_tag("static/angel.png", :class => 'image4'), "https://angel.co/dreamfunded-1", :target => "_blank" %>
-                </div>
-            </div>
-        </div> -->
+
+
+
+
+
+
+
+
+
 <% if current_user != nil %>
     <% if User.find(current_user.id).try(:confirmed) == false %>
         <!-- ---------------------- -->
