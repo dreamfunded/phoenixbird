@@ -118,14 +118,14 @@
 
             <section class="sign-up-homepage-social-media-links">
                 <div class='social-login-ions centered'>
-                  <%= link_to '/auth/google_oauth2', class: 'google-link first-link-no-margin social-media-links-homepage' do %>
+                  <%= link_to  '/auth/facebook', class: 'facebook-link social-media-links-homepage first-link-no-margin'  do %>
+                    <span>Facebook</span>
+                  <%end%>
+                  <%= link_to '/auth/google_oauth2', class: 'google-link social-media-links-homepage' do %>
                     <span>Google</span>
                   <%end%>
                   <%= link_to '/auth/linkedin', class: 'linkedin-link social-media-links-homepage' do %>
                     <span>LinkedIn</span>
-                  <%end%>
-                  <%= link_to  '/auth/facebook', class: 'facebook-link social-media-links-homepage'  do %>
-                    <span>Facebook</span>
                   <%end%>
                 </div>
             </section>
