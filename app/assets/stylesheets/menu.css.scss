@@ -50,7 +50,7 @@
 }
 #mobile-menu {
 	float: left;
-	visibility: hidden;
+	display: none;
 }
 .ipad-menu {
 	float: left;
@@ -198,6 +198,9 @@ button {
 	display: none;
 }
 
+.menu .margin-for-how-it-works{
+	margin-left: 235px;
+}
 
 /*M O B I L E*/
 
@@ -207,7 +210,15 @@ and (max-device-width : 568px) {
 	.arrow{
 		font-size: 28px;
 	}
-
+	#mobile-menu{
+		float: right !important;
+		display: block;
+		visibility: visible;
+	}
+	#mobile-menu li{
+		display: block;
+		visibility: visible;
+	}
 }
 
 @media screen and (max-width : 1275px){
