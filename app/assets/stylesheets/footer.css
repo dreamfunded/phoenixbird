@@ -70,3 +70,29 @@
 .logo-image-footer{
     width: 200px;
 }
+
+
+
+@media screen and (max-width : 1190px){
+    .footer-column{
+        margin-right: 3%;
+    }
+}
+
+@media screen and (max-width : 910px){
+    .footer-column{
+        min-width: inherit;
+    }
+}
+
+
+/*M O B I L E*/
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+    .footer-links-white, .footer-column-title{
+        font-size: 2em;
+    }
+
+
+}
