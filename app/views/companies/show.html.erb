@@ -33,9 +33,6 @@
                     <div class='company-info-cateogry'>TARGET</div>
                     <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
 
-                    <div class='company-info-cateogry'>DAYS LEFT</div>
-                    <div class='company-finance-info'> <%= @company.left_days %></div>
-
                     <div class='company-info-cateogry'>minimum investment</div>
                     <div class='company-finance-info'> <%= number_to_currency @company.min_investment, precision: 0 %> </div>
 
