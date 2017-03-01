@@ -27,3 +27,7 @@
 //= require jquery.countdown.min
 //= require jquery-deparam.min
 //= require_self
+//= require react
+//= require react_ujs
+//= require components
+//= require_tree .
