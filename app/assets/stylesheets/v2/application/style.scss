@@ -4,10 +4,17 @@
   color: rgb(66, 66, 66);
   font-size: $normal-font;
 
+  ul.simple-list-view {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   .form-group {
     label {
       font-size: $small-font;
       font-weight: 100;
+      color: #10a1d6;
     }
 
     textarea.form-field {

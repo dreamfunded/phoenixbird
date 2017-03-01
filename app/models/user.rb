@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-	ACCESSIBLE_ATTRIBUTES = [:bio, :aspirations, :achievements, :looking_for]
+	ACCESSIBLE_ATTRIBUTES = [
+		:first_name, :last_name, :login,
+		:bio, :aspirations, :achievements, :looking_for
+	]
 
 	before_create :set_authority
   # Include default devise modules. Others available are:
@@ -50,6 +53,7 @@ class User < ApplicationRecord
 	validates_attachment_size :image, :less_than => 5.megabytes
 	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
+	serialize :websites
 
 	def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

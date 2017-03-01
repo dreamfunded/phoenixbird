@@ -59,6 +59,14 @@ $margin-bottom: 0.625rem;
       width: 100%;
     }
 
+    .form-field {
+      margin-bottom: $margin-bottom;
+    }
+
+    .form-field::last-child {
+      margin-bottom: 0;
+    }
+
     .currency_input {
       padding-right: 0;
     }

@@ -1,6 +1,6 @@
 class UserSerializer < ApplicationSerializer
-  attributes :id, :name, :first_name, :image_url,
-             :bio, :aspirations, :achievements, :looking_for
+  attributes :id, :name, :first_name, :last_name, :login, :websites,
+             :image_url, :bio, :aspirations, :achievements, :looking_for
 
   has_many :investments
 
