@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 	invisible_captcha only: [:liquidate_form, :contact_us_send_email, :get_funded_send]
 
 	def index
-		#@companies = Company.where.not(invested_amount: nil).order("invested_amount DESC").first(3)
+		@companies = Company.where.not(invested_amount: nil).order("invested_amount DESC").first(3)
 	end
 
 	def staging

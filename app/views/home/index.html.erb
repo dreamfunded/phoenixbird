@@ -18,6 +18,61 @@
     </section>
 
 
+    <div class='section-title'>Companies Raising Right Now</div>
+    <section class='centered'>
+        <% @companies.each do |company| %>
+
+            <div class='property-box'>
+
+                <%= link_to company do %>
+                <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+                    <%#= image_tag( company.cover.url, :class => "property-image") %>
+                </div>
+                <div class='logo-image-wrapper'>
+                    <span class="helper"></span>
+                    <%= image_tag( company.image.url, :class => "property-logo-image") %>
+                </div>
+
+
+                <article>
+                    <div class='company-campaign-name'><%= company.name %></div>
+
+                    <div class='company-tagline'>
+                        <span class='company-tagline-text'><%= company.campaign.tagline %></span>
+                    </div>
+
+                    <div class='property-detail'>
+                        <span class='propety-detail-left'>Category</span>
+                        <span class='property-detail-right'><%= company.campaign.category %></span>
+                    </div>
+
+                    <section class='campaigb-basic-numbers'>
+                        <div class='company-details-small-box'>
+                            <div class='companies-box-name'>Target</div>
+                            <div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
+                        </div>
+                        <div class='company-details-small-box'>
+                            <div class='companies-box-name'>Raised</div>
+                            <% if company.status == 2 %>
+                                <div class='companies-box-value'><%=  raised_amount(company) %></div>
+                            <% else %>
+                                <div class='companies-box-value'><%= raised_amount(company) %></div>
+                            <% end %>
+                        </div>
+                        <div class='company-details-small-box'>
+                            <div class='companies-box-name'>Days Left</div>
+                            <div class='companies-box-value'><%= company.left_days %></div>
+                        </div>
+                    </section>
+
+
+                </article>
+                <% end %>
+                <%= link_to "Learn More", company, class:'invest-link' %>
+            </div>
+        <% end %>
+    </section>
+
 
     <section class='what-is-dreamfunded centered'>
         <div class='section-title'>Over $35 Million Invested in Companies Listed on DreamFunded</div>
