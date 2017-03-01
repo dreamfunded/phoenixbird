@@ -104,18 +104,6 @@
               </li>
             <% end %>
 
-            <!-- <li><button disabled= "true">About <span class="arrow">&#9660;</span></button>
-              <ul class= "sub-menu">
-                <li><button onclick= "about()">About Us</button></li>
-                <li><button onclick= "faq()">FAQ</button></li>
-                <li><button onclick= "team()">Team</button></li>
-                <li><button onclick= "news()">News</button></li>
-                <li><button onclick= "press()">Press</button></li>
-                <li><button onclick= "blog()">Blog</button></li>
-                <li><button onclick="location.href='/events';" >Events</button></li>
-                <li><button onclick= "contact()">Contact Us</button></li>
-              </ul>
-            </li> -->
 
             <li id="hidden-menu"><button disabled= "true">More <span class="arrow">&#9660;</span></button>
               <ul class= "sub-menu">
@@ -137,10 +125,9 @@
               </ul>
             </li>
 
-            <!-- <li class='items-to-hide'><button onclick="location.href='/education';" >Education</button></li> -->
 
+            <li class='items-to-hide margin-menu-middle  margin-for-how-it-works'><button onclick= "invest()">Companies </button></li>
 
-            <li class='items-to-hide margin-menu-middle margin-for-how-it-works'><button onclick= "faq()">How It Works</button></li>
             <% if current_user %>
               <% if current_user.company %>
                 <li class='items-to-hide margin-menu-middle'><button onclick= "campaign()">My Company</button></li>
@@ -151,8 +138,8 @@
               <li class='items-to-hide margin-menu-middle'><button onclick= "get_funded()">Get Funded</button></li>
             <% end %>
 
+            <li class='items-to-hide margin-menu-middle '><button onclick= "faq()">How It Works</button></li>
 
-            <li class='items-to-hide margin-menu-middle'><button onclick= "invest()">Companies </button></li>
             <!-- <li class='items-to-hide'><button onclick= "advisors()">Mentors</button></li> -->
             <li id= "left"><button onclick= "home()" id= "nopadding"><div class= "logo"></div></button></li>
           </ul>
