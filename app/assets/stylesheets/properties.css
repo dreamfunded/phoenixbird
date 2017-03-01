@@ -151,6 +151,9 @@
 .properties-wrapper .property-box{
     width: 25%;
 }
+.back-margin{
+    margin-right: 12%;
+}
 
 .invest-link {
     display: block;
