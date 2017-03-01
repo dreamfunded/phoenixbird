@@ -6,6 +6,7 @@
      background-position-y: 71%;
      width: 100%;
      color: #fff;
+     position: relative;
 }
 .background-opacity{
     background-color: rgba(0,0,0,0.4);
@@ -96,6 +97,15 @@
 }
 .about-startups-tab{
     display: none;
+}
+.task-rabbit-was-funded{
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    color: #fff;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 
