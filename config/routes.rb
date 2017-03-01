@@ -286,7 +286,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :users, only: [:show, :update]
+    resources :users, only: [:show] do
+      collection do
+        put :update_profile
+      end
+    end
   end
 
   get ':controller(/:action(/:id))'

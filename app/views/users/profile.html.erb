@@ -1,2 +1,10 @@
 <div id='main-container' class='v2'>
-</div>
+	<div class="header">
+	  <h1 class="centered">Profile</h1>
+	</div>
+	<div class='content-container'>
+		<div class='compact-max-width-layout center-block'>
+			<%= react_component 'UserScreen', {user: UserSerializer.new(current_user).as_json(include: {investments: :company})} %>
+		</div>
+	</div>
+</div>k

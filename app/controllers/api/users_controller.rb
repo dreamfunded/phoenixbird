@@ -4,7 +4,7 @@ class Api::UsersController < Api::ResourceController
     respond_with @user, include: {investments: :company}
   end
 
-  def update
+  def update_profile
     @user = current_user
     @user.update(user_params)
     respond_with @user
