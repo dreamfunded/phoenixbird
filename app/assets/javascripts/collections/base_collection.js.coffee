@@ -1,1 +1,0 @@
-class App.Collections.BaseCollection extends Backbone.Collection

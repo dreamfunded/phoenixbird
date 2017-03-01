@@ -1,1 +1,0 @@
-class App.Models.Company extends Backbone.Model
