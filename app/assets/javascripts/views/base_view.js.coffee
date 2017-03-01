@@ -1,9 +1,9 @@
 class App.Views.BaseView extends Backbone.View
   template: ->
-  model: Backbone.Models
 
-  initialize: ->
+  initialize: (options)->
     @listenTo(@model, 'sync', @render) if @model?
+    @listenTo(@collection, 'add', @render) if @collection?
     @after_initialize.apply(this, arguments)
 
   after_initialize: ->
@@ -16,7 +16,6 @@ class App.Views.BaseView extends Backbone.View
     else
       selectors[selector] = view
 
-    return if !selectors
     _.each(selectors, (view, selector) ->
       view.setElement(@$(selector)).render()
     , this)
@@ -31,3 +30,7 @@ class App.Views.BaseView extends Backbone.View
   set_state: (new_state) ->
     _.extend(@state, new_state)
     @render()
+
+  serialize: ($target)->
+    $target = $target || @$el
+    $.deparam($target.serialize())

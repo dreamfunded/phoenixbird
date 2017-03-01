@@ -1,3 +1,2 @@
-class App.Collections.Users extends Backbone.Collection
-
+class App.Collections.Users extends App.Collections.BaseCollection
   model: App.Models.User

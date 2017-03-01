@@ -17,7 +17,7 @@ class App.Views.UserAboutEditSection extends App.Views.BaseView
   form_submit: (e)->
     e.preventDefault()
     $target = $(e.target)
-    data = $.deparam($target.serialize())
+    data = @serialize($target)
     @model.save(data)
     @on_submit(e)
 

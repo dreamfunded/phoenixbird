@@ -1,2 +1,2 @@
-class App.Collections.Investments extends Backbone.Collection
+class App.Collections.Investments extends App.Collections.BaseCollection
   model: App.Models.Investment

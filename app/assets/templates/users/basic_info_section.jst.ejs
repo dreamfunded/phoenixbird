@@ -1,0 +1,38 @@
+<div class='clearfix'>
+  <h4 class='pull-right'>
+    <a href="#" class='uppercase edit-profile'>Edit Profile</a>
+  </h4>
+</div>
+<% if (state.is_editing) { %>
+  <form>
+    <div class='clearfix'>
+      <p class='pull-right margin-top-none'>
+        <input type="submit" name="submit" value="SAVE"/>
+      </p>
+    </div>
+    <div class='row'>
+      <div class='col-6'>
+        <h4>Basic Info</h4>
+        <div class='form-group'>
+          <label for='user_first_name'>First name</label>
+          <input id='user_first_name' type="text" name="first_name" class='form-field' value="<%= model.get('first_name') %>">
+        </div>
+        <div class='form-group'>
+          <label for='user_last_name'>Last name</label>
+          <input id='user_last_name' type="text" name="last_name" class='form-field' value="<%= model.get('last_name') %>">
+        </div>
+        <div class='form-group'>
+          <label for='user_login'>Username</label>
+          <input id='user_login' type="text" name="login" class='form-field' value="<%= model.get('login') %>">
+        </div>
+      </div>
+      <div class='col-6'>
+        <h4>Links</h4>
+        <div class='form-group'>
+          <label>Website</label>
+          <div id="user_websites"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+<% } %>
