@@ -204,6 +204,12 @@
     font-size: 12px;
 }
 
+@media (max-width: 1380px) {
+  .properties-wrapper{
+    margin-left: 8%
+  }
+}
+
 @media (max-width: 1210px) {
   .properties-wrapper{
     margin-left: 8%;
