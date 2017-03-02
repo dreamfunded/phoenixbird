@@ -1,6 +1,20 @@
 class UserScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      user: props.user
+    }
+  }
+
+  handleSubmit(e) {
+    let $form = $(e.target);
+    let newState = $.extend({}, this.state.user, $.deparam($form.serialize()));
+    this.setState({user: newState});
+  }
+
   render() {
-    let userData = this.props.user;
+    let userData = this.state.user;
     return (
       <FluidContainer>
         <GridRow>
@@ -8,7 +22,7 @@ class UserScreen extends React.Component {
             <UserSide user={userData}/>
           </div>
           <div className="col-9">
-            <UserInfo user={userData}/>
+            <UserInfo user={userData} onSubmit={this.handleSubmit}/>
           </div>
         </GridRow>
       </FluidContainer>
@@ -33,16 +47,25 @@ class UserSide extends React.Component {
 }
 
 class UserInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+  }
+
   render() {
     let userData = this.props.user;
 
     return (
       <div>
-        <UserBasicInfo />
+        <UserBasicInfo onSubmit={this.handleSubmit} user={userData}/>
         <UserInfoSection title='Activity'>
           Hello
         </UserInfoSection>
-        <UserAboutSectionContainer user={userData}/>
+        <UserFormContainer user={userData} childView='UserAboutSectionContainer' />
         <UserInvestmentSection user={userData}/>
         <UserInfoSection title='Work Experience & Education'>
           Hello
@@ -50,12 +73,15 @@ class UserInfo extends React.Component {
         <UserInfoSection title='Connections/Mutual Connections'>
           Hello
         </UserInfoSection>
+        <UserInfoSection title='People Also Viewed'>
+          Hello
+        </UserInfoSection>
       </div>
       )
   }
 }
 
-class UserAboutSectionContainer extends React.Component {
+class UserFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,10 +101,30 @@ class UserAboutSectionContainer extends React.Component {
       data: userData
     })
     this.setState(userData);
+    this.props.onSubmit && this.props.onSubmit(e);
   }
 
   render() {
     let userData = this.state.user;
+    let ChildView = window[this.props.childView];
+    return (
+      <ChildView user={userData} onSubmit={this.handleSubmit}/>
+      )
+  }
+}
+
+class UserAboutSectionContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+  }
+
+  render() {
+    let userData = this.props.user;
     let aboutSection = <UserAboutShowSection user={userData} />
     let aboutEditSection = <UserAboutEditSection user={userData} />
 
@@ -294,6 +340,12 @@ class UserBasicInfo extends React.Component {
       isEditing: false
     }
     this.toggleEdit = this.toggleEdit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+    this.toggleEdit(e);
   }
 
   toggleEdit(e) {
@@ -302,6 +354,7 @@ class UserBasicInfo extends React.Component {
   }
 
   render() {
+    let userData = this.props.user;
     return (
       <div>
         <div className='clearfix'>
@@ -309,16 +362,30 @@ class UserBasicInfo extends React.Component {
             <a href='#' onClick={this.toggleEdit} className='uppercase'>Edit Profile</a>
           </h4>
         </div>
-        {this.state.isEditing && <UserBasicInfoForm />}
+        {this.state.isEditing
+          && <UserFormContainer
+               onSubmit={this.handleSubmit}
+               user={userData}
+               childView='UserBasicInfoForm' />}
       </div>
       )
   }
 }
 
 class UserBasicInfoForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+  }
+
   render() {
+    let userData = this.props.user;
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className='clearfix'>
           <p className='pull-right margin-top-none'>
             <SubmitButton value="SAVE"/>
@@ -327,12 +394,30 @@ class UserBasicInfoForm extends React.Component {
         <GridRow>
           <div className='col-6'>
             <h4>Basic Info</h4>
-            <FormGroupInput title='First name' id='user_first_name' name='first_name'/>
-            <FormGroupInput title='Last name' id='user_last_name' name='last_name'/>
-            <FormGroupInput title='Username' id='user_login' name='login'/>
+            <FormGroupInput
+              title='First name'
+              id='user_first_name'
+              name='first_name'
+              defaultValue={userData.first_name}/>
+            <FormGroupInput
+              title='Last name'
+              id='user_last_name'
+              name='last_name'
+              defaultValue={userData.last_name}/>
+            <FormGroupInput
+              title='Username'
+              id='user_login'
+              name='login'
+              defaultValue={userData.login}/>
+            <h4>Links</h4>
+            <FormGroup title='Websites'>
+              <input type='websites[]' placeholder='https://...' className='form-field'/>
+              <input type='websites[]' placeholder='https://...' className='form-field'/>
+              <input type='websites[]' placeholder='https://...' className='form-field'/>
+            </FormGroup>
           </div>
           <div className='col-6'>
-            <h4>Verifications</h4>
+
           </div>
         </GridRow>
       </form>

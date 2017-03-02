@@ -10,6 +10,17 @@ class FormGroupInput extends React.Component {
   }
 }
 
+class FormGroup extends React.Component {
+  render() {
+    return (
+      <div className='form-group'>
+        <label>{this.props.title}</label>
+        {this.props.children}
+      </div>
+      )
+  }
+}
+
 class SubmitButton extends React.Component {
   render() {
     return (
