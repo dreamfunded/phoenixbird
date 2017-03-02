@@ -19,7 +19,7 @@
 
 
     <div class='section-title'>Companies Raising Right Now</div>
-    <section class='centered'>
+    <section class='centered homepage-companies-section'>
         <% @companies.each do |company| %>
 
             <div class='property-box'>
@@ -59,15 +59,14 @@
                                 <div class='companies-box-value'><%= raised_amount(company) %></div>
                             <% end %>
                         </div>
-
                     </section>
-
 
                 </article>
                 <% end %>
                 <%= link_to "Learn More", company, class:'invest-link' %>
             </div>
         <% end %>
+        <center><%= link_to "View More", companies_path, class: 'homepage-view-more-companies-link' %></center>
     </section>
 
 

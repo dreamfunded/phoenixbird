@@ -17,7 +17,7 @@
     background-color: #fff;
 }
 .property-box:last-of-type {
-    margin-bottom: 8%;
+    /*margin-bottom: 8%;*/
 }
 
 .property-box:hover{
