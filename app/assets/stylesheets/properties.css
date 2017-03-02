@@ -55,6 +55,19 @@
     text-align: center;
 }
 
+.company-tagline {
+    position: relative;
+}
+.company-tagline-text{
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3em; /* (Number of lines you want visible) * (line-height) */
+  line-height: 1.5em;
+  text-align:justify;
+}
+
 .company-funded-status{
     height: inherit;
 }
@@ -68,7 +81,7 @@
     position: relative;
 }
 .company-tagline-text {
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     padding: 0 10px;
     z-index: 1;
     background: #fff;
@@ -223,12 +236,14 @@
     margin-left: 3%;
   }
 }
+
 @media (max-width: 1020px) {
   .properties-wrapper .property-box{
     margin: 25px 10px;
     width: 30%;
   }
 }
+
 @media (max-width: 930px) {
     .properties-wrapper{
         margin-left: inherit;
