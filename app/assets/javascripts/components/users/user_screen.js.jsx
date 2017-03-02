@@ -178,12 +178,13 @@ class UserInvestmentSection extends React.Component {
 class UserAboutShowSection extends React.Component {
   render() {
     let userData = this.props.user;
+    let skills = userData.skills.join(', ');
     return (
       <div>
         <UserAboutPanelSection title='Bio' content={userData.bio} />
         <UserAboutPanelSection title='Aspirations' content={userData.aspirations} />
         <UserAboutPanelSection title='Achievements' content={userData.achievements} />
-        <UserAboutPanelSection title='Skills' />
+        <UserAboutPanelSection title='Skills' content={skills}/>
         <UserAboutPanelSection title="What I'm Looking For" content={userData.looking_for} />
       </div>
       )
@@ -210,7 +211,7 @@ class UserAboutEditSection extends React.Component {
         <UserAboutPanelSection
           className='form-group'
           title='Skills'
-          content={ <SelectTag multiple={true} /> }/>
+          content={ <SelectTag name="skills" multiple={true} values={userData.skills} /> }/>
         <UserAboutPanelSection
           className='form-group'
           title="What I'm Looking For"
@@ -411,9 +412,24 @@ class UserBasicInfoForm extends React.Component {
               defaultValue={userData.login}/>
             <h4>Links</h4>
             <FormGroup title='Websites'>
-              <input type='websites[]' placeholder='https://...' className='form-field'/>
-              <input type='websites[]' placeholder='https://...' className='form-field'/>
-              <input type='websites[]' placeholder='https://...' className='form-field'/>
+              <input
+                type='text'
+                name='websites[]'
+                placeholder='https://...'
+                className='form-field'
+                defaultValue={userData.websites[0]}/>
+              <input
+                type='text'
+                name='websites[]'
+                placeholder='https://...'
+                className='form-field'
+                defaultValue={userData.websites[1]}/>
+              <input
+                type='text'
+                name='websites[]'
+                placeholder='https://...'
+                className='form-field'
+                defaultValue={userData.websites[2]}/>
             </FormGroup>
           </div>
           <div className='col-6'>

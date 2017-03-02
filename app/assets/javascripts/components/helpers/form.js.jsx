@@ -39,18 +39,32 @@ class TextareaField extends React.Component {
 
 class SelectTag extends React.Component {
   componentDidMount() {
-    $(this.el).select2({
+    let $el = $(this.el)
+    $el.select2({
       tags: true,
       tokenSeparators: [','],
       width: '100%'
-    })
+    });
+  }
+
+  renderOptions(item) {
+    return ( <option key={item}>{item}</option> )
   }
 
   render() {
     let {className, ...props} = this.props;
     className = ['js-select2-tags', className].join(' ');
     return (
-      <select ref={(el) => this.el = el} className={className} {...props}></select>
+      <select
+        ref={(el) => this.el = el}
+        defaultValue={this.props.values}
+        className={className} {...props}>
+        {$.map(this.props.values, this.renderOptions)}
+      </select>
       )
   }
+}
+
+SelectTag.defaultProps = {
+  values: []
 }

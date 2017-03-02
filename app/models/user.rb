@@ -1,7 +1,8 @@
 class User < ApplicationRecord
 	ACCESSIBLE_ATTRIBUTES = [
-		:first_name, :last_name, :login,
-		:bio, :aspirations, :achievements, :looking_for
+		:first_name, :last_name, :login, {skills: []},
+		:bio, :aspirations, :achievements, :looking_for,
+		{websites: []}
 	]
 
 	before_create :set_authority
@@ -54,6 +55,7 @@ class User < ApplicationRecord
 	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 	serialize :websites
+	serialize :skills
 
 	def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -124,6 +126,10 @@ class User < ApplicationRecord
 	def has_company?
 		return true if self.try(:company).try(:name?)
 		false
+	end
+
+	def skills
+		[*super]
 	end
 
 end

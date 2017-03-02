@@ -904,6 +904,7 @@ ActiveRecord::Schema.define(version: 20170302230303) do
     t.text     "achievements"
     t.text     "looking_for"
     t.text     "websites"
+    t.text     "skills"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
