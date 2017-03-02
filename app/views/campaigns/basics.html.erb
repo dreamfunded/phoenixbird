@@ -56,7 +56,7 @@
 
       <label>Category</label>
 
-        <%= select_tag(:category, options_for_select(company_categories),:include_blank => true, class: "form-select form-field required-field" ) %>
+        <%= f.select(:category, options_for_select(company_categories), {:include_blank => true}, {class: "form-select form-field required-field"} ) %>
 
         <br>
 

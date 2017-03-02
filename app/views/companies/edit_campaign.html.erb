@@ -19,7 +19,7 @@
                   <%= campaign_fields.text_field :company_location_city, placeholder: 'City',:class => "form-field form-field-half", required:true %>
                   <%= campaign_fields.text_field :company_location_state, placeholder: 'State',:class => "form-field form-field-half", required:true %>
                 <% end %>
-
+                <%= f.select(:category, options_for_select(company_categories, @company.category), {}, {class: " form-field form-field-half "} ) %>
             </section>
         </div>
 
