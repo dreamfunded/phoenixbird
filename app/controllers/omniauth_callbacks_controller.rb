@@ -16,12 +16,17 @@ class OmniauthCallbacksController < ApplicationController
     p request.env["omniauth.auth"]
     auth_hash = request.env["omniauth.auth"]
 
-    if current_user
-      @company = current_user.company
-      @campaign = @company.campaign
-      @quote = @campaign.quote
-      @quote.photo_remote_url = auth_hash.info.image
-      @quote.save
+    if signed_in?
+      # FIXME
+      # @company = current_user.company
+      # @campaign = @company.campaign
+      # @quote = @campaign.quote
+      # @quote.photo_remote_url = auth_hash.info.image
+      # @quote.save
+
+      @identity = Identity.find_or_initialize_by(uid: auth_hash.uid, provider: auth_hash.provider)
+      @identity.user = current_user
+      @identity.save
 
       render layout: false
     else

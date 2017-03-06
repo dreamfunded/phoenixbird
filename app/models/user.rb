@@ -2,7 +2,7 @@ class User < ApplicationRecord
 	ACCESSIBLE_ATTRIBUTES = [
 		:first_name, :last_name, :login, {skills: []},
 		:bio, :aspirations, :achievements, :looking_for,
-		{websites: []}
+		{websites: []}, :email, :phone, :image
 	]
 
 	before_create :set_authority
@@ -14,7 +14,7 @@ class User < ApplicationRecord
 	belongs_to :company
 	 has_and_belongs_to_many :groups
 
-
+	has_many :identities
 	has_many :investments
 	has_many :comments
 	has_many :guests
@@ -131,5 +131,4 @@ class User < ApplicationRecord
 	def skills
 		[*super]
 	end
-
 end

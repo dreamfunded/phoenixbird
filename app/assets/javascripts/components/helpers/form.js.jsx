@@ -1,10 +1,20 @@
+class InputField extends React.Component {
+  render() {
+    let {className, ...props} = this.props
+    className = ['form-field', className].join(' ')
+    return (
+      <input type='text' className={className} {...props}/>
+      )
+  }
+}
+
 class FormGroupInput extends React.Component {
   render() {
     let {title, ...props} = this.props
     return (
       <div className='form-group'>
         <label htmlFor={props.id}>{title}</label>
-        <input type='text' className='form-field' {...props}/>
+        <InputField {...props} />
       </div>
       )
   }

@@ -134,7 +134,7 @@
 	display: inline-block;
 	margin: 0 4px;
 }
-.google-link, .linkedin-link, .facebook-link {
+.google_oauth2-link, .google-link, .linkedin-link, .facebook-link {
 	display: block;
 	width: 200px;
 	height: 45px;
@@ -145,7 +145,8 @@
     font-family: "Lato", sans-serif;
     color: white;
 }
-.google-link span{
+.google_oauth2-link span,
+.google-link span {
 	display: inline-block;
 	margin-top: 11px;
 }
@@ -163,7 +164,7 @@
 .linkedin-link{
 	background-color: #0079b8;
 }
-.google-link{
+.google_oauth2-link, .google-link{
 	background-color: #c22e2e;
 }
 
@@ -217,13 +218,13 @@ and (max-device-width : 568px) {
 	.password-six-chars {
 	    font-size: 1.5em;
 	}
-	.google-link, .linkedin-link, .facebook-link, .login-button{
+	.google_oauth2-link, .google-link, .linkedin-link, .facebook-link, .login-button{
 		height: 4.5vh;
 		font-size: 2em !important;
 		min-width: 40% !important;
 		letter-spacing: 2px;
 	}
-	.google-link span, .linkedin-link span, .facebook-link span{
+	.google_oauth2-link span, .google-link span, .linkedin-link span, .facebook-link span{
 		margin-top: 1vh;
 	}
 	.social-media-line span{

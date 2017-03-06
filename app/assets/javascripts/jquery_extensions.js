@@ -52,3 +52,12 @@ $.fn.oauthPhotoGetter = function(target, options) {
     })
   })
 }
+
+$.classNames = function(stateClasses) {
+  var value;
+  return Object.keys(stateClasses).reduce(function(acc, className) {
+    value = stateClasses[className]
+    if (value) { return acc + className + " " }
+    return acc
+  }, '').trim()
+}

@@ -1,0 +1,2 @@
+class IdentitySerializer < ApplicationSerializer
+end

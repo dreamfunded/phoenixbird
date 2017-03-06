@@ -10,6 +10,12 @@ class Api::UsersController < Api::ResourceController
     respond_with @user
   end
 
+  def check_identity
+    @user = current_user
+    @identity = @user.identities.find_by!(provider: params[:provider])
+    respond_with @identity
+  end
+
   private
 
     def set_user

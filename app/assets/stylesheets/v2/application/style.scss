@@ -4,10 +4,19 @@
   color: rgb(66, 66, 66);
   font-size: $normal-font;
 
-  ul.simple-list-view {
-    list-style: none;
+  .link--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .google_oauth2-link,
+  .google-link,
+  .linkedin-link,
+  .facebook-link {
     margin: 0;
-    padding: 0;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
   .form-group {

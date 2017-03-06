@@ -289,6 +289,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
       collection do
         put :update_profile
+        get :check_identity
       end
     end
   end
