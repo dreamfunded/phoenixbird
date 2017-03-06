@@ -9,17 +9,6 @@
               <li id='mobile-menu'><button onclick= "signOut()" >Sign Out</button></li>
             <% end %>
 
-            <!-- <li id='mobile-menu'><button >About <span class="arrow"><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
-              <ul class='sub-menu white'>
-                <li><button onclick= "about()">About Us</button></li>
-                <li><button onclick= "press()">Press</button></li>
-                <li><button onclick= "how_it_works()">How It Works</button></li>
-                <li><button onclick= "advisors()">Mentors</button></li>
-                <li><button onclick= "faq()">FAQ</button></li>
-                <li><button onclick= "team()">Team</button></li>
-                <li><button onclick= "get_funded()">Get Funded</button></li>
-              </ul>
-            </li> -->
             <li id='mobile-menu'><button onclick= "faq()">How It Works</button></li>
             <li id='mobile-menu'><button onclick= "invest()">Companies </button></li>
             <!-- M O B I L E   E N D -->
@@ -28,7 +17,6 @@
 
             <li class='ipad-menu'><button >Menu<span class="arrow">&#9660;</span></button>
               <ul class='sub-menu white'>
-                <!-- <li><button onclick= "whyInv()">Why Invest</button></li> -->
 
                 <% if current_user == nil %>
                   <li><button onclick= "login()">Login</button></li>
@@ -81,9 +69,7 @@
                     <li><button onclick="location.href='/admin/users';" >New Admin Panel</button></li>
                     <li><button onclick="signOut()">Sign Out</button></li>
                   <% end %>
-                  <% if current_user.authority == authority[:Editor] %>
-                    <li><button onclick="location.href='/admin/companies';" >Admin Panel</button></li>
-                  <% end %>
+
                   <% if current_user.role == "government"%>
                     <li><button onclick= "government_admin()">Admin Panel</button></li>
                   <% end %>
