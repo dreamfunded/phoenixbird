@@ -191,18 +191,18 @@
                         <br>
                         <div>
                           <h3 class='content-title'>Investment Perks</h3>
-                          <% @investment_perks.each do |perk| %>
+                         <!--  <%# @investment_perks.each do |perk| %>
                             <div class=sub-section-content>
                               <div class='media investment-perk'>
                                 <div class='perk-amount media-left'>
-                                  <strong><%= perk.amount %>+</strong>
+                                  <strong><%#= perk.amount %>+</strong>
                                 </div>
                                 <div class='media-body perk-content'>
-                                  <%= perk.content %>
+                                  <%#= perk.content %>
                                 </div>
                               </div>
                             </div>
-                          <% end %>
+                          <%# end %> -->
                         </div>
                       </div>
                     <% end %>
@@ -249,14 +249,14 @@
               <h2 class="section-title">What Others Are Saying</h2>
               <div id="testimonials" data-limit="<%= @testimonials_limit %>" class='fluid-container flex-grid'>
                 <div class='row'>
-                  <%= f.fields_for :campaign do |campaign_fields| %>
-                    <%= campaign_fields.fields_for :testimonials do |testimonials| %>
-                      <%= render partial: 'testimonial_fields', locals: {f: testimonials} %>
-                    <% end  %>
+                 <!--  <%#= f.fields_for :campaign do |campaign_fields| %>
+                    <%#= campaign_fields.fields_for :testimonials do |testimonials| %>
+                      <%#= render partial: 'testimonial_fields', locals: {f: testimonials} %>
+                    <%# #end  %>
                     <div class='links'>
-                      <%= link_to_add_association 'Add', campaign_fields, :testimonials %>
+                      <%#= link_to_add_association 'Add', campaign_fields, :testimonials %>
                     </div>
-                  <% end %>
+                  <%# end %> -->
                 </div>
               </div>
             </div>
