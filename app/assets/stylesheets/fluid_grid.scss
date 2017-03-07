@@ -9,13 +9,13 @@
 }
 
 .fluid-container.flex-grid {
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
 }
 
 .fluid-container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding-right: 15px;
   padding-left: 15px;

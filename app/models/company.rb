@@ -74,7 +74,7 @@ class Company < ActiveRecord::Base
 	validates_attachment_content_type :document, :content_type =>['application/pdf']
 
   scope :all_accredited, -> {
-    order(:position).where(hidden: false, accredited: true)
+    order(:position).where(hidden: false, accredited: true).where.not(status: 3)
   }
 
   scope :with_followers, Proc.new {|user|
