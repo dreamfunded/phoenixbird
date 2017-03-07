@@ -3,6 +3,7 @@
   <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url %>)" >
 
         <div class='company-profile-bottom-line'>
+            <div class='company-info-container'>
             <div class='inline-block'>
                 <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
                 <br>
@@ -21,6 +22,7 @@
                 <% end %>
 
             </section>
+            </div>
         </div>
 
         <div class='company-info-right-panel'>

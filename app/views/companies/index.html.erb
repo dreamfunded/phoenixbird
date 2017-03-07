@@ -12,7 +12,6 @@
 						<div class="card-content">
 							<%= link_to company do %>
 							<div class="card-topbar primary-color">
-								<div class="follow" data-following='<%= company.followed_by_current_user %>' data-company-id="<%= company.id %>"></div>
 								<%= company.name %>
 							</div>
 
@@ -64,47 +63,39 @@
 		</div>
 
 		<!-- <h1 class='centered accredited-investor-title'>Funded by accredited investors under 506(b)</h1> -->
-		<% @funded_companies.each do |company| %>
+		<div class='fluid-container flex-grid'>
+			<% @funded_companies.each do |company| %>
+				<div class='property-box'>
 
-			<div class='property-box'>
+					<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+						<div class='logo-image-wrapper'>
+							<span class="helper"></span>
+							<%= image_tag( company.image.url, :class => "property-logo-image") %>
+						</div>
+					</div>
 
-				<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-					<%#= image_tag( company.cover.url, :class => "property-image") %>
-				</div>
-				<div class='logo-image-wrapper'>
-					<span class="helper"></span>
-					<%= image_tag( company.image.url, :class => "property-logo-image") %>
-				</div>
 
-						<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-							<%#= image_tag( company.cover.url, :class => "property-image") %>
-							<div class='logo-image-wrapper'>
-								<span class="helper"></span>
-								<%= image_tag( company.image.url, :class => "property-logo-image") %>
-							</div>
+
+					<article class='card-body no-height'>
+						<div class='company-tagline'>
+							<span class='company-tagline-text'><%= company.campaign.tagline %></span>
+						</div>
+
+						<div class='property-detail company-funded-status property-detail-no-height'>
+							<span class='propety-detail-left'>Category</span>
+							<span class='property-detail-right'><%= company.campaign.category %></span>
+						</div>
+
+						<div class='property-detail company-funded-status property-detail-no-height'>
+							<span class='propety-detail-left'>Status</span>
+							<span class='property-detail-right'>Funded </span>
 						</div>
 
 
-						<article class='card-body'>
-							<div class='company-tagline'>
-								<span class='company-tagline-text'><%= company.campaign.tagline %></span>
-							</div>
-
-
-					<div class='property-detail company-funded-status'>
-						<span class='propety-detail-left'>Category</span>
-						<span class='property-detail-right'><%= company.campaign.category %></span>
-					</div>
-
-					<div class='property-detail company-funded-status'>
-						<span class='propety-detail-left'>Status</span>
-						<span class='property-detail-right'>Funded </span>
-					</div>
-
-
-				</article>
-			</div>
-		<% end %>
+					</article>
+				</div>
+			<% end %>
+		</div>
 	</section>
 </div>
 

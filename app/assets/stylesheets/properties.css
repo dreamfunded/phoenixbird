@@ -5,7 +5,7 @@
 .property-box {
     /*width: 22.5%;*/
     margin: 25px auto;
-    min-height: 500px;
+    /*min-height: 500px;*/
     width: 290px;
     -moz-box-shadow: 2px 1px 2px 1px #d1d3d4;
     -webkit-box-shadow: 2px 1px 2px 1px #d1d3d4;
@@ -19,6 +19,9 @@
 }
 .property-box .card-body {
     height: 163px;
+}
+.no-height{
+    height: initial !important;
 }
 
 .property-box:last-of-type {
@@ -55,7 +58,9 @@
     height: 5.5rem;
     word-break: break-word;
 }
-
+.property-detail-no-height{
+    height: initial !important;
+}
 .company-funded-status{
     height: inherit;
 }

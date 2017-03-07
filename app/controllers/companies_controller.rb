@@ -63,12 +63,12 @@ class CompaniesController < ApplicationController
 		@company = @campaign.company
 		unless @campaign.testimonials.size >= @testimonials_limit
 		@campaign.testimonials.build
+		@comments = @company.comments
+		@members = @company.founders
+		@formc = @company.general_info
     end
 
-	  # @formc = @company.general_info
 	  # @investment_perks = @formc.build_or_get_investment_perks
-	  # @members = @company.founders
-	  # @comments = @company.comments
 	  # @campaign_quote = @campaign.quote || @campaign.build_quote
 	  # render template: 'campaigns/edit_campaign'
 	end
