@@ -80,6 +80,9 @@ Rails.application.routes.draw do
 
   get "company_not_accretited", to: "companies#company_not_accretited", as: "company_not_accretited"
 
+  get "explore", to: "companies#explore", as: "explore" #Testing the waters for Reg A+
+  get "explore/:id", to: "companies#reg_a_company", as: "reg_a_company" #Testing the waters for Reg A+
+
 
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
 
@@ -155,9 +158,12 @@ Rails.application.routes.draw do
   get '/contact', to: 'home#contact_us'
   post '/contact_us', to: 'home#contact_us_send_email'
 
-  post '/join_waitlist', to: 'companies#join_waitlist_send_email'
-  get '/join_waitlist_thank_you', to: 'companies#join_waitlist_thank_you'
-  post '/join_waitlist_send_email_with_invest', to: 'companies#join_waitlist_send_email_with_invest'
+
+  # WAITLIST
+  post '/join_waitlist', to: 'waitlist#join_waitlist_send_email'
+  post '/join_waitlist_reg_a', to: 'waitlist#join_waitlist_reg_a'
+  get '/join_waitlist_thank_you', to: 'waitlist#join_waitlist_thank_you'
+  post '/join_waitlist_send_email_with_invest', to: 'waitlist#join_waitlist_send_email_with_invest'
 
 
   get '/liquidate', to: 'home#liquidate'
@@ -205,8 +211,9 @@ Rails.application.routes.draw do
   post '/send_advisors_csv_invites', to: 'invites#send_advisors_csv_invites'
 
   post '/invite_from_startup', to: "invites#invite_from_startup", as: :invite_from_startup
-
   post '/invite_to_group', to: "invites#invite_to_group", as: :invite_to_group
+
+  get '/unsubscribe/:email', to: 'guests#unsubscribe'
 
   #resources :teams
 

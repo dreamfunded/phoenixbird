@@ -120,6 +120,7 @@ class CampaignsController < ApplicationController
     redirect_to :controller => 'companies', :action => 'show', :id => @company.slug
   end
 
+
   def team
     @company = current_user.company
     @campaign = @company.campaign

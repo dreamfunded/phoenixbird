@@ -199,16 +199,17 @@
                               </div>
                             </div>
                           <%# end %> -->
+
                         </div>
                       </div>
                     <% end %>
                   </div>
                 </div>
               </div>
+
               <hr class="div">
 
               <div>
-
                 <h2 class="section-title">Our Mission</h2>
                 <div class='section-content'>
                   <%= f.fields_for :campaign, @company.campaign do |campaign_fields| %>
@@ -241,18 +242,29 @@
 
             <hr class="div">
 
+            <div>
+              <h2 class="section-title">Why <%= @company.name %>?</h2>
+              <div class='section-content'>
+                <%= f.fields_for :campaign, @company.campaign do |campaign_fields| %>
+                  <p class= "fifteen"><%= campaign_fields.text_area :elevator_pitch, rows: 10, :class => 'ckeditor edit_textarea twenty  no-margin',  required:true %></p>
+                <% end %>
+              </div>
+            </div>
+
+            <hr class="div">
+
             <div class='testimonial'>
               <h2 class="section-title">What Others Are Saying</h2>
               <div id="testimonials" data-limit="<%= @testimonials_limit %>" class='fluid-container flex-grid'>
                 <div class='row'>
-                 <!--  <%#= f.fields_for :campaign do |campaign_fields| %>
-                    <%#= campaign_fields.fields_for :testimonials do |testimonials| %>
-                      <%#= render partial: 'testimonial_fields', locals: {f: testimonials} %>
-                    <%# #end  %>
+                  <%= f.fields_for :campaign do |campaign_fields| %>
+                    <%= campaign_fields.fields_for :testimonials do |testimonials| %>
+                      <%= render partial: 'campaigns/testimonial_fields', locals: {f: testimonials} %>
+                    <% end  %>
                     <div class='links'>
-                      <%#= link_to_add_association 'Add', campaign_fields, :testimonials %>
+                      <%= link_to_add_association 'Add', campaign_fields, :testimonials, partial: 'campaigns/testimonial_fields' %>
                     </div>
-                  <%# end %> -->
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -275,9 +287,10 @@
                           </p>
 
                           <p class='form-group'>Image <%= founder.file_field :image %></p>
-                          <p class='form-group'><%= founder.text_field :name, class: "form-field " %></p>
-                          <p class='form-group'><%= founder.text_field :position, class: "form-field " %></p>
-                          <p class="form-group"><%= founder.text_area :content, class: "form-field " %></p>
+                          <p class='form-group'><%= founder.text_field :name, class: "form-field" %></p>
+                          <p class='form-group'><%= founder.text_field :title, class: "form-field" %></p>
+                          <p class='form-group'><%= founder.select :position, options_for_select((1..10).to_a, founder.object.position),{:include_blank => 'Position on a page'},  {class: "form-select form-field required-field"} %></p>
+                          <p class="form-group"><%= founder.text_area :content, class: "form-field" %></p>
                         </div>
 
                     <% end %>
@@ -292,7 +305,7 @@
 
           <hr class='div'>
 
-          <section class='company-section'>
+          <section id='terms-or-offering-section' class='company-section'>
             <div class='section-container'>
               <h1 class= "section-title">Terms or Offering</h1>
               <div>
@@ -311,8 +324,25 @@
                 <div class='section-content'>
                   <%= f.fields_for :financial_detail do |fin_details| %>
                     <%= fin_details.text_area :fin_risks, rows: 6, :class => 'ckeditor ' %>
-
                   <% end %>
+                </div>
+              </div>
+
+              <hr class='div'>
+
+              <div id='investment-perks'>
+                <h2 class='section-title'>Investment Perks</h2>
+                <div class='section-content'>
+                  <div class='width-50'>
+                    <%= f.fields_for :general_info, @formc do |general_info_builder| %>
+                      <%= general_info_builder.fields_for :investment_perks, @investment_perks do |investment_perk_builder| %>
+                        <%= render partial: 'investment_perk_fields', locals: {f: investment_perk_builder} %>
+                      <% end %>
+                      <div class="links">
+                        <%= link_to_add_association 'Add', general_info_builder, :investment_perks %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
               </div>
 
@@ -407,7 +437,7 @@
 
           <hr class='div'>
 
-          <section class='company-section'>
+          <section id='comments-section' class='company-section'>
             <div class='section-container'>
               <h1 class='section-title'>Comments</h1>
               <div class='section-content'>

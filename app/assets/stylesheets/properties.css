@@ -55,6 +55,10 @@
     word-break: break-word;
 }
 
+.company-funded-status{
+    height: inherit;
+}
+
 .propety-detail-left{
     line-height: 1.5em;
     padding-right: 10px;
@@ -186,41 +190,69 @@
     padding-top: 15px;
 }
 
-// @media (max-width: 1210px) {
-//   .properties-wrapper{
-//     margin-left: 8%;
-//   }
-// }
-// @media (max-width: 1156px) {
-//   .properties-wrapper .property-box {
-//     width:  27%;
-//   }
-//   .properties-wrapper{
-//     margin-left: 3%;
-//   }
-// }
-// @media (max-width: 1020px) {
-//   .properties-wrapper .property-box{
-//     margin: 25px 10px;
-//     width: 30%;
-//   }
-// }
+@media (max-width: 1210px) {
+  .properties-wrapper{
+    margin-left: 8%;
+  }
+}
+@media (max-width: 1156px) {
+  .properties-wrapper .property-box {
+    width:  27%;
+  }
+  .properties-wrapper{
+    margin-left: 3%;
+  }
+}
+@media (max-width: 1020px) {
+  .properties-wrapper .property-box{
+    margin: 25px 10px;
+    width: 30%;
+  }
+}
+
+.accredited-investor-title {
+    font-size: 30px;
+}
+
+/*@media (max-width: 1210px) {
+  .properties-wrapper{
+    margin-left: 8%;
+  }
+}
+@media (max-width: 1156px) {
+  .properties-wrapper .property-box {
+    width:  27%;
+  }
+  .properties-wrapper{
+    margin-left: 3%;
+  }
+}
+@media (max-width: 1020px) {
+  .properties-wrapper .property-box{
+    margin: 25px 10px;
+    width: 30%;
+  }
+}
+*/
+
 @media (max-width: 930px) {
     .properties-wrapper{
         margin-left: inherit;
         text-align: center;
     }
-    // .properties-wrapper .property-box{
-    //   width: 35%;
-    // }
+
+    /*.properties-wrapper .property-box{
+      width: 35%;
+    }*/
 }
 /*  M O B I L E */
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
-    // .properties-wrapper {
-    //     margin-left: 5%;
-    // }
+
+    /*.properties-wrapper {
+        margin-left: 5%;
+    }*/
     /*.property-box {
         width: 90% !important;
         max-width: 90% !important;
@@ -275,6 +307,9 @@ and (max-device-width : 1024px)  {
         margin: 25px 11px;
     }*/
 
+
+.card-topbar .follow .fa-heart-o:hover {
+    opacity: 1;
 }
 
 .card-topbar {

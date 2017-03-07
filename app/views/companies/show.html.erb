@@ -41,7 +41,9 @@
     <section id="cover-photo" class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
         <div class='company-info top'>
             <div class='company-info-container'>
+
                 <!-- <span class='follow' data-following='<%#= @company.followed_by_current_user %>' data-company-id="<%#= @company.id %>"></span>FOLLOW US FOR UPDATES -->
+
             </div>
         </div>
         <button id="video-play-button" data-video-src='<%= @company.video_link + "?enablejsapi=1&version=3" %>'>
@@ -85,6 +87,7 @@
 
                     <div class='company-detail'>
                         <div class='company-finance-info'> $<%= @company.min_investment%> </div>
+
                         <div class='company-info-category'>MINIMUM INVESTMENT</div>
                     </div>
 
@@ -130,7 +133,8 @@
                                 Invest in <%= @company.name %>
                             </button>
                         <%else%>
-                            <%= form_tag("/companies/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
+
+                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
                                 <span class="currency_input">
                                     <span>$</span>
                                     <%= text_field_tag "invest_amount", nil, placeholder: '100' %>
@@ -156,7 +160,8 @@
             <!-- A D M I N   E D I T I N G -->
             <div class='company-admin-editing'>
                 <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                    <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @id }, class: 'edit-company-button' ) do %>
+
+                    <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
                         <i class="fa fa-user-secret" aria-hidden="true"></i>
                         <span class='edit-my-company-button'> Edit as Admin</span>
                     <% end %>
@@ -206,6 +211,7 @@
                             <!-- <div id='offering-summary' class="col-6">
                                 <h2 class="section-sub-heading">Offering Summary</h2>
 
+
                                     <% if @formc %>
                                         <div>
                                             <div class='sub-section-content'>
@@ -242,6 +248,7 @@
                                     <% end %>
 
                             </div> -->
+
                         </div>
                     </div>
                     <hr class="div">
@@ -252,6 +259,7 @@
                         </div>
                     </div>
                     <!-- <hr class="div">
+
                     <div class='testimonial'>
                         <h2 class="section-title">What Others Are Saying</h2>
                         <div class='section-content'>
@@ -263,6 +271,7 @@
 
                                 <div class='fluid-container flex-grid radio-label-tabs'>
                                     <% @campaign.testimonials.each_with_index do |testimonial, i| %>
+
 
                                             <% radio_id = "testimonial-#{i}-radio"
                                                tab_id = "testimonial-#{i}-tab" %>
@@ -296,11 +305,13 @@
                             <p class= "fifteen "><%= @campaign.business_plan.html_safe if @campaign.business_plan %></p>
                         </div>
                     </div> -->
+
                     <hr class="div">
                     <div>
                         <h2 class='section-title'>Highlight</h2>
                         <div class='section-content'>
                             <p class= "fifteen "><%= @company.description.html_safe if @company.description %></p>
+
                         </div>
                     </div>
                     <hr class="div">
@@ -380,6 +391,8 @@
                         <div>
                             <h2 class="section-title">Documents</h2>
                             <div class='section-content'>
+
+                                <% if current_user %>
                                     <% if @financial_details.balance_sheet_file_name %>
                                         <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Balance Sheet", @financial_details.balance_sheet.url, target: "_blank", class: 'document-url' %></p>
                                     <% end %>
@@ -435,10 +448,20 @@
                                             <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
                                         </p>
                                     <% end %>
-
+                                <% else %>
+                                    <article class='centered'>
+                                        <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                                        <%= link_to "Sign In to View", new_user_session_path%>
+                                    </article>
+                                <%end%>
                             </div>
                         </div>
-
+                    <%else%>
+                        <article class='centered'>
+                            <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
+                            <%= link_to "Sign In to View", new_user_session_path%>
+                        </article>
+                    <%end%>
                 </div>
             </section>
             <hr class="div">

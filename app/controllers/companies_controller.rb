@@ -1,162 +1,43 @@
 class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
-	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :join_waitlist_send_email_with_invest]
+
+
+	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist, :make_profile, :remove_company, :join_waitlist_send_email_with_invest ]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
-		@companies = @companies = Company.all_accredited
+		@companies = Company.with_followers(current_user).all_accredited
+		@funded_companies = Company.all_funded
 	end
 
 	def company_profile
-		if params[:id] != nil
-			@id = params[:id]
-			@financial_details = @company.financial_detail
-			@progress = @company.invested_amount / @company.goal_amount rescue 0
-			@comments = @company.comments
-			@members = @company.founders.order(:position)
-			@section = @company.sections.first
-		else
-			redirect_to "/companies"
-		end
+		@financial_details = @company.financial_detail
+		@comments = @company.comments
+		@members = @company.founders.order(:position)
 	end
 
 	def show
-		if params[:id] != nil
-			@id = params[:id]
-			@financial_details = @company.financial_detail
-			@progress = @company.invested_amount / @company.goal_amount rescue 0
-			@comments = @company.comments
-			@members = @company.founders.order(:position)
-			@section = @company.sections.first
-			@campaign = @company.campaign
-			@campaign_quote = @campaign.quote
-			@formc = GeneralInfo.new(company_id: @company.id)
-			@investment_perks = @formc.investment_perks
-		else
-			redirect_to "/companies"
-		end
+		@financial_details = @company.financial_detail
+		@comments = @company.comments
+		@section = @company.sections.first
+		@members = @company.founders.order(:position)
+		@campaign = @company.campaign
+		@campaign_quote = @campaign.quote
+		@formc = @company.general_info
+		@investment_perks = @formc.investment_perks
 	end
 
 	def edit_profile
-		if current_user == nil || current_user.authority < User.Authority[:Admin]
-			redirect_to url_for(:controller => 'home', :action => 'unauthorized')
-		end
 	end
 
 	def update
-		if @company.update(company_params)
-			redirect_to company_path(@company)
-		else
-			@error_update = ""
-			@company.errors.full_messages.each do |error|
-				@error_update = @error_update + error + ". "
-			end
-			flash[:problem_update] = @error_update
-			redirect_to :controller => 'companies', :action => 'edit_profile', :id => params[:id]
-		end
+		@company.update(company_params)
+		redirect_to company_path(@company)
 	end
 
-	def new
-		redirect_to funding_goal_path
-		@company = Company.new
-	end
-
-	def create
-		@company = Company.new(company_params)
-		if @company.save
-			@company.campaign = Campaign.create
-			@company.sections << Section.new
-			redirect_to "/companies"
-		else
-			@error_message = ""
-			@company.errors.full_messages.each do |error|
-				@error_message = @error_message + error + ". "
-			end
-			flash[:message] = @error_message
-			redirect_to "/companies/new"
-		end
-	end
-
-	def edit
-		@companies = Company.all
-	end
-
-# can be refactored
-	def action
-		@my_company = Company.find_by(id: params[:id])
-		if @my_company == nil
-			@message = ""
-			@message = "No company with that ID exists. Please create the company first."
-			flash[:fail] = @message
-			redirect_to url_for(:controller => 'companies', :action => 'edit')
-		elsif params[:id] != nil && params[:desired_action] == "1"
-			redirect_to url_for(:controller => 'companies', :action => 'make_team', :id => params[:id])
-		elsif params[:id] != nil && params[:desired_action] == "2"
-			redirect_to url_for(:controller => 'companies', :action => 'make_profile', :id => params[:id])
-		end
-	end
-
-	def make_team
-		@founder = Founder.new
-		@companies = Company.all
-	end
-
-	def add_team_member
-		@founder = Founder.new(founder_params)
-		if @founder.save
-			redirect_to "/companies"
-		else
-			redirect_to "/companies/make_team"
-		end
-	end
-
-	def make_profile
-		@section = @company.sections.first
-	end
-
-	def submit_profile
-		@company = Company.find(params[:section][:id])
-		@section = @company.sections.first
-
-		if @section.update(section_params)
-			redirect_to "/companies"
-		else
-			@error_message3 = ""
-			section.errors.full_messages.each do |error|
-				@error_message3 = @error_message3 + error + ". "
-			end
-			flash[:problem] = @error_message3
-			redirect_to "/companies/make_profile/#{@company.id}"
-		end
-	end
-
-	def remove_company
-    	@company.destroy
-   		redirect_to "/companies"
-	end
-
-	def remove_founder
-    	@founder = Founder.find(params[:id])
-    	@company = @founder.company
-    	@founder.destroy
-    	redirect_to company_path(@company)
- 	end
-
-	def join_waitlist
-	end
-
-	def join_waitlist_send_email
-		company_name = params[:company_name]
-		@name = params[:name]
-		@email = params[:email]
-		@phone = params[:phone]
-		@message = params[:message]
-		Guest.create(email: params[:email], company: company_name, user_id: current_user.id)
-		ContactMailer.contact_us_email(@name, @email, @phone, @message).deliver
-		flash[:thank_you_notice] = 'Thank you'
-		redirect_to "/join_waitlist_thank_you"
+	def company_not_accretited
 	end
 
 	def join_waitlist_send_email_with_invest
@@ -169,38 +50,50 @@ class CompaniesController < ApplicationController
 	def join_waitlist_thank_you
 	end
 
-	def company_not_accretited
+	def explore
+		@companies = Company.where(reg_a: true)
+	end
+
+	def reg_a_company
 	end
 
 	def edit_campaign
 		@testimonials_limit = Campaign::TESTIMONIALS_LIMIT
-	  @campaign = Campaign.find(params[:id])
-	  @company = @campaign.company
-
-	  unless @campaign.testimonials.size >= @testimonials_limit
-      @campaign.testimonials.build
+		@campaign = Campaign.find(params[:id])
+		@company = @campaign.company
+		unless @campaign.testimonials.size >= @testimonials_limit
+		@campaign.testimonials.build
     end
-	  # if current_user.company != @company
-	  #   redirect_to company_path(@company)
-	  # end
-	  @formc = @company.general_info
-	  @investment_perks = @formc.build_or_get_investment_perks
-	  @members = @company.founders
-	  @comments = @company.comments
-	  @campaign_quote = @campaign.quote || @campaign.build_quote
-	  render template: 'campaigns/edit_campaign'
+
+	  # @formc = @company.general_info
+	  # @investment_perks = @formc.build_or_get_investment_perks
+	  # @members = @company.founders
+	  # @comments = @company.comments
+	  # @campaign_quote = @campaign.quote || @campaign.build_quote
+	  # render template: 'campaigns/edit_campaign'
 	end
 
 	def update_campaign
 	  @campaign = Campaign.find(params[:company][:campaign_attributes][:id])
 	  @company = @campaign.company
+	  @financial_detail = @company.financial_detail
+
 	  @company.update(company_params)
+	  @campaign.update(tagline: params[:company][:campaign_attributes][:tagline],
+	  				  elevator_pitch: params[:company][:campaign_attributes][:elevator_pitch],
+	  				  about_campaign: params[:company][:campaign_attributes][:about_campaign],
+	  				  category: params[:company][:campaign_attributes][:category],
+	  				  employees_numer: params[:company][:campaign_attributes][:employees_numer],
+	  				  company_location_city: params[:company][:campaign_attributes][:company_location_city],
+	  				  company_location_state: params[:company][:campaign_attributes][:company_location_state])
+	  @financial_detail.update(offering_terms:  params[:company][:financial_detail_attributes][:offering_terms],
+	  						  fin_risks:  params[:company][:financial_detail_attributes][:fin_risks])
 	  redirect_to :controller => 'companies', :action => 'show', :id => @company.slug
 	end
 
 private
 	def set_company
-	  @company = Company.friendly.find(params[:id])
+	  @company = Company.with_followers(current_user).friendly.find(params[:id])
 	end
 
 	def verify
@@ -242,7 +135,8 @@ private
 	def company_params
 	  params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
 	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
-	   :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code,
+
+	   :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a,
 	   campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
 	   	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
       quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],

@@ -3,9 +3,10 @@ class CampaignQuote < ActiveRecord::Base
   belongs_to :campaign
   validates :said_by, :main, presence: true
 
+
   ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url]
 
-  belongs_to :campaign
+
 
   has_attached_file :photo,
     :styles => { :thumb => "180x180#" },

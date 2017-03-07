@@ -10,6 +10,7 @@ $(document).on('page:change ready',function() {
   var $fixed_nav = $('#company-nav');
   var $window = $(window);
 
+
   var tag = document.createElement('script');
 
   tag.src = "https://www.youtube.com/iframe_api";
