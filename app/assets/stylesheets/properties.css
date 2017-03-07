@@ -27,6 +27,7 @@
 .property-box:last-of-type {
     margin-bottom: 50px;
 }
+
 .property-box:hover{
     box-shadow: 1px 1px 5px 2px #d1d3d4;
 }
@@ -61,6 +62,20 @@
 .property-detail-no-height{
     height: initial !important;
 }
+
+.company-tagline {
+    position: relative;
+}
+.company-tagline-text{
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3em; /* (Number of lines you want visible) * (line-height) */
+  line-height: 1.5em;
+  text-align:justify;
+}
+
 .company-funded-status{
     height: inherit;
 }
@@ -156,6 +171,11 @@
     background-color: #fff;
 }
 
+.back-margin{
+    margin-right: 12%;
+}
+
+
 .invest-link {
     display: block;
     width: 100%;
@@ -201,7 +221,18 @@
     font-size: 30px;
 }
 
-/*@media (max-width: 1210px) {
+
+.funded-by-accredited{
+    font-size: 12px;
+}
+
+@media (max-width: 1380px) {
+  .properties-wrapper{
+    margin-left: 8%
+  }
+}
+
+@media (max-width: 1210px) {
   .properties-wrapper{
     margin-left: 8%;
   }
@@ -214,13 +245,14 @@
     margin-left: 3%;
   }
 }
+
 @media (max-width: 1020px) {
   .properties-wrapper .property-box{
     margin: 25px 10px;
     width: 30%;
   }
 }
-*/
+
 
 @media (max-width: 930px) {
     .properties-wrapper{

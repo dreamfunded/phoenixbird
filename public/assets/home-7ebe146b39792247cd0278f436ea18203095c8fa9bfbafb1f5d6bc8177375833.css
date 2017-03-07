@@ -19,11 +19,28 @@
   padding-right: 10px;
 }
 
-@media (min-width: 1220px) {
+@media (min-width: 768px) {
   .container {
-      width: 1200px;
+      width: 740px;
   }
 }
+@media (min-width: 1020px){
+  .container {
+      width: 850px;
+  }
+}
+@media (min-width: 1100px) {
+  .container {
+      width: 960px;
+  }
+}
+@media (min-width: 1220px) {
+  .container {
+      width: 1000px;
+  }
+}
+
+
 .mainSeen__slider1__wrap{
   position: relative;
 }
@@ -94,8 +111,8 @@
   padding-left: 30px;
 }
 .footer-disclaimer{
-  background-color: #4b4b4b;
-  color: #fff;
+  background-color: #262626;
+  color: #b8b8b8;
   padding: 25px;
   font-size: 12px;
   text-align: justify;
@@ -546,13 +563,7 @@ and (max-device-width : 568px) {
   .desktop_logos{
     display: none;
   }
-	#mobile-menu{
-		float: right !important;
-		visibility: visible !important;
-	}
-	#mobile-menu li{
-		visibility: visible;
-	}
+
 	#left{
 		visibility: visible;
 		position: absolute;
@@ -980,7 +991,6 @@ and (max-device-width : 1024px)  {
 .aca-logo{
   width: 150px;
   vertical-align: top;
-  margin-left: 5%;
 }
 .perkins-logo{
   width: 190px;

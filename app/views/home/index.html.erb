@@ -1,4 +1,4 @@
-<% title "DreamFunded | Equity Crowdfunding Platform" %>
+<% title "Invest in Startups and Small Businesses - Equity Crowdfunding | DreamFunded" %>
 <% facebook_url "https://dreamfunded.vc/" %>
 <% meta_tag "DreamFunded is a Silicon Valley equity crowdfunding platform.  " %>
 <% facebook_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
@@ -13,23 +13,92 @@
             <div class= "centered button-box">
                 <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'invest-button new-invest-button'} %>
             </div>
+            <span class="task-rabbit-was-funded hide-on-mobile">TaskRabbit was funded on DreamFunded in 2015</span>
         </div>
     </section>
 
 
+    <div class='section-title'>Companies Raising Right Now</div>
+    <section class='centered homepage-companies-section'>
+        <% @companies.each do |company| %>
+
+            <div class='property-box'>
+
+                <%= link_to company do %>
+                <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+                    <%#= image_tag( company.cover.url, :class => "property-image") %>
+                </div>
+                <div class='logo-image-wrapper'>
+                    <span class="helper"></span>
+                    <%= image_tag( company.image.url, :class => "property-logo-image") %>
+                </div>
+
+
+                <article>
+                    <div class='company-campaign-name'><%= company.name %></div>
+
+                    <div class='company-tagline'>
+                        <span class='company-tagline-text'><%= company.campaign.tagline %></span>
+                    </div>
+
+                    <div class='property-detail'>
+                        <span class='propety-detail-left'>Category</span>
+                        <span class='property-detail-right'><%= company.category %></span>
+                    </div>
+
+                    <section class='campaigb-basic-numbers'>
+                        <div class='company-details-small-box'>
+                            <div class='companies-box-name'>Target</div>
+                            <div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
+                        </div>
+                        <div class='company-details-small-box'>
+                            <div class='companies-box-name'>Raised</div>
+                            <% if company.status == 2 %>
+                                <div class='companies-box-value'><%=  raised_amount(company) %></div>
+                            <% else %>
+                                <div class='companies-box-value'><%= raised_amount(company) %></div>
+                            <% end %>
+                        </div>
+                    </section>
+
+                </article>
+                <% end %>
+                <%= link_to "Learn More", company, class:'invest-link' %>
+            </div>
+        <% end %>
+        <center><%= link_to "View More", companies_path, class: 'homepage-view-more-companies-link' %></center>
+    </section>
+
 
     <section class='what-is-dreamfunded centered'>
-        <div class='section-title'>What is DreamFunded?</div>
+        <div class='section-title'>Over $35 Million Invested in Companies Listed on DreamFunded</div>
 
         <div>
-            <span class="about-startups about-us-icons active-tab">Startups</span>
-            <span class="about-investors about-us-icons">Investors</span>
+            <span class="about-investors about-us-icons active-tab">Investors</span>
+            <span class="about-startups about-us-icons ">Startups</span>
+        </div>
+
+        <div class='about-investors-tab'>
+            <article class='inline-block-icons ' >
+                <%= image_tag "access_icon_clean.png", class: "about-us-images" %>
+                <p class='icon-description'>Insider Access:<br> Become an Insider by Investing in Pre-Screened Startups</p>
+            </article>
+
+            <article class='inline-block-icons '>
+                <%= image_tag "browse_clear.png", class: "about-us-images" %>
+                <p class='icon-description'>Browse Investments:<br> As a Member, You Can Review Our Selection of Innovative Companies</p>
+            </article>
+
+            <article class='inline-block-icons '>
+                <%= image_tag "low_mins.png", class: "about-us-images" %>
+                <p class='icon-description'>Low Minimums:<br> You Can Invest as Little as $60 to Build a Diversified Portfolio</p>
+            </article>
         </div>
 
         <div class='about-startups-tab'>
             <article class='inline-block-icons ' >
                 <%= image_tag "communication-1297544_640.png", class: "about-us-images" %>
-                <p class='icon-description'>Reach out to our Network of 100K+  Investors &<br>Utilize our Free Marketing Tools</p>
+                <p class='icon-description'>Access our Network of 150,000+  Investors</p>
             </article>
 
             <article class='inline-block-icons '>
@@ -43,22 +112,6 @@
             </article>
         </div>
 
-        <div class='about-investors-tab'>
-            <article class='inline-block-icons ' >
-                <%= image_tag "access_icon_clean.png", class: "about-us-images" %>
-                <p class='icon-description'>Insider Access:<br> Become an Insider by Investing in Pre-Screened Startups</p>
-            </article>
-
-            <article class='inline-block-icons '>
-                <%= image_tag "browse_clear.png", class: "about-us-images" %>
-                <p class='icon-description'>Browse Investments:<br> As a Member, You Can Review Our Selection of Innovative Tech Companies</p>
-            </article>
-
-            <article class='inline-block-icons '>
-                <%= image_tag "low_mins.png", class: "about-us-images" %>
-                <p class='icon-description'>Low Minimums:<br> You Can Invest as Little as $10 to Build a Diversified Portfolio</p>
-            </article>
-        </div>
 
     </section>
 
@@ -92,6 +145,9 @@
                     <%= image_tag("static/nbc-logo.png") %>
                 </div>
                 <div class="item">
+                    <%= image_tag("static/usatoday.png") %>
+                </div>
+                <div class="item">
                     <%= image_tag("static/fortune.png") %>
                 </div>
 
@@ -111,30 +167,55 @@
 
 <br><br><br><br><br><br><br><br><br>
 
-        <div class= "centered   bottom-buttons">
-            <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'invest-button invest-now-button margin-get-started-btn new-invest-button'} %>
-            <%#= link_to "Liquidate Now", {:action => 'liquidate'}, {:class => 'invest-button liquidate-now-button'} %>
-        </div>
+    <% if current_user == nil %>
+    <div class="homepage-bottom hide-on-mobile">
+        <section class='sign-up-homepage'>
+            <div class='section-title signup-homepage-title'>Join DreamFunded</div>
 
-        <div class="investor-logos">
-            <!-- <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div> -->
-            <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-
-            <%= image_tag("static/aca_logo.png", :class => 'aca-logo') %>
-            <%= image_tag("static/perkins.png", :class => 'perkins-logo') %>
-            <a class= "indent foot-text hide-on-desktop"> COPYRIGHT © <%= Time.now.year %></a>
-        </div>
-<!--        <div class= "foot-bar">
-            <div class= "foot-wrap">
-                <div class= "image3-box gap"><%= image_tag("static/DreamFunded-Logo-Vertical-lightblue.png", :class => 'image3') %></div>
-                <div class= "image4-box gap">
-                    <%= link_to image_tag("static/facebook.png", :class => 'image4'), "https://www.facebook.com/dreamfundedcom", :target => "_blank" %>
-                    <%= link_to image_tag("static/twitter.png", :class => 'image4'), "https://twitter.com/dreamfunded", :target => "_blank" %>
-                    <%= link_to image_tag("static/linkedin.png", :class => 'image4'), "https://www.linkedin.com/company/dreamfunded-com", :target => "_blank" %>
-                    <%= link_to image_tag("static/angel.png", :class => 'image4'), "https://angel.co/dreamfunded-1", :target => "_blank" %>
+            <section class="sign-up-homepage-social-media-links">
+                <div class='social-login-ions centered'>
+                  <%= link_to  '/auth/facebook', class: 'facebook-link social-media-links-homepage first-link-no-margin'  do %>
+                    <span>Facebook</span>
+                  <%end%>
+                  <%= link_to '/auth/google_oauth2', class: 'google-link social-media-links-homepage' do %>
+                    <span>Google</span>
+                  <%end%>
+                  <%= link_to '/auth/linkedin', class: 'linkedin-link social-media-links-homepage' do %>
+                    <span>LinkedIn</span>
+                  <%end%>
                 </div>
-            </div>
-        </div> -->
+            </section>
+
+            <section class="sign-up-homepage-form">
+                <%= form_tag( "/registration_from_homepage", method: 'post' ) do |f| %>
+                   <%= text_field_tag(:first_name, nil, :placeholder => "First Name", :class => "form-field homepage-form-field", required: true) %>
+                   <%= text_field_tag(:last_name, nil, :placeholder => "Last Name", :class => " form-field homepage-form-field", required: true) %>
+                   <%= text_field_tag(:email, nil, :placeholder => "Email", :class => "form-field homepage-form-field  email-signup", required: true) %>
+                   <%= submit_tag("Sign Up", id: 'submit-button', class: "submit-button-homepage") %>
+                <% end %>
+            </section>
+
+        </section>
+    </div>
+
+
+   <!--  <div class="investor-logos">
+
+        <div class="fb-like" data-href="https://www.facebook.com/dreamfundedcom/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+
+        <%#= image_tag("static/aca_logo.png", :class => 'aca-logo') %>
+
+        <a class= "indent foot-text hide-on-desktop"> COPYRIGHT © <%#= Time.now.year %></a>
+    </div> -->
+    <% end %>
+
+
+
+
+
+
+
+
 <% if current_user != nil %>
     <% if User.find(current_user.id).try(:confirmed) == false %>
         <!-- ---------------------- -->

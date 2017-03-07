@@ -123,6 +123,8 @@ Rails.application.routes.draw do
   get "check-status", to: "sellers#check_status", as: :check_status
   #post '/account/1613988/envelopes', to: "sellers#send", as: :send_docusign
 
+  post '/registration_from_homepage', to: 'home#registration_from_homepage'
+
   get '/manny-fernandez', to: 'members#manny', as: :manny
   get '/rexford-r-hibbs', to: 'members#rexford', as: :rexford
 

@@ -3015,7 +3015,7 @@ center .close {
 
 /* line 170, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/companies.css.scss */
 .company-info-cateogry:nth-child(1) {
-  margin-top: 100px;
+  margin-top: 160px;
 }
 
 /* line 173, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/companies.css.scss */
@@ -4559,6 +4559,91 @@ iframe {
 .footer_links{
   display: inline-block;
 }
+
+.footer-row{
+    background-color: #262626;
+}
+
+.footer-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px 10px;
+    max-width: 1200px;
+}
+
+.footer-column{
+    display: inline-block;
+    width: auto;
+    min-width: 164px;
+    vertical-align: top;
+    margin-right: 8%
+}
+
+.first-footer-column{
+    margin-right: 9%;
+}
+
+.footer-column-title{
+    font-size: 18px;
+    font-family: 'Gotham',sans-serif;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 3px;
+}
+
+.footer-links-white{
+    text-decoration: none !important;
+    color: #8c8c8c;
+    font-family: 'Gotham',sans-serif;
+    padding-left: 5px;
+    font-size: 15px;
+    font-weight: 300;
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+    display: block;
+    margin-top: 5px;
+}
+
+.footer-links-white:hover{
+    color: #10a1d6;
+}
+
+.footer-margin-top{
+    margin-top: 10px;
+}
+
+.logo-image-footer{
+    width: 200px;
+}
+
+
+
+@media screen and (max-width : 1190px){
+    .footer-column{
+        margin-right: 3%;
+    }
+}
+
+@media screen and (max-width : 910px){
+    .footer-column{
+        min-width: inherit;
+    }
+}
+
+
+/*M O B I L E*/
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+    .footer-links-white, .footer-column-title{
+        font-size: 2em;
+    }
+
+
+}
 /* line 1, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/formc.scss */
 .formc-disclosure {
   font-size: 14px;
@@ -4857,9 +4942,85 @@ td {
 }
 
 .container {
-	max-width: 100% !important;
-	position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
+@media (min-width: 768px) {
+  .container {
+      width: 740px;
+  }
+}
+@media (min-width: 992px){
+  .container {
+      width: 960px;
+  }
+}
+@media (min-width: 1220px) {
+  .container {
+      width: 1000px;
+  }
+}
+
+
+.mainSeen__slider1__wrap{
+  position: relative;
+}
+.slick-slide {
+   height:200px;
+}
+
+.slick-slide img {
+   height:200px;
+}
+
+.main-invs__sl_btn.__left{
+  right: 100%;
+  margin-right: 26px;
+}
+.main-invs__sl_btn{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 73%;
+  /*opacity: 0.6;*/
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  margin-top: -31px;
+}
+.main-invs__sl_btn.__left .ico {
+    left: 11px;
+}
+.main-invs__sl_btn.__right .ico {
+    left: 17px;
+}
+.main-invs__sl_btn.__right {
+    left: 100%;
+    margin-left: 26px;
+}
+.ico-ar-right {
+  background-image: url(/assets/chevron-left.png);
+  width: 100%;
+  height: 50px;
+}
+.main-invs__sl_btn .ico {
+    position: absolute;
+    top: 5px;
+}
+.ico-ar-left {
+  background-image: url(/assets/chevron-left.png);
+  width: 100%;
+  height: 50px;
+}
+.ico {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .cover-image{
 	width: 100%;
 }
@@ -4874,8 +5035,8 @@ td {
   padding-left: 30px;
 }
 .footer-disclaimer{
-  background-color: #4b4b4b;
-  color: #fff;
+  background-color: #262626;
+  color: #b8b8b8;
   padding: 25px;
   font-size: 12px;
   text-align: justify;
@@ -5326,13 +5487,7 @@ and (max-device-width : 568px) {
   .desktop_logos{
     display: none;
   }
-	#mobile-menu{
-		float: right !important;
-		visibility: visible !important;
-	}
-	#mobile-menu li{
-		visibility: visible;
-	}
+
 	#left{
 		visibility: visible;
 		position: absolute;
@@ -5760,7 +5915,6 @@ and (max-device-width : 1024px)  {
 .aca-logo{
   width: 150px;
   vertical-align: top;
-  margin-left: 5%;
 }
 .perkins-logo{
   width: 190px;
@@ -5778,6 +5932,181 @@ and (max-device-width : 1024px)  {
 .cnn-logo{
   height: auto !important;
   /*width: 200px !important;*/
+}
+/* line 1, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.background-image {
+  background-image: url(/assets/tower.jpg);
+  height: 500px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-y: 71%;
+  width: 100%;
+  color: #fff;
+  position: relative;
+}
+
+/* line 11, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.background-opacity {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 500px;
+}
+
+/* line 16, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.website-title {
+  padding-top: 130px;
+  margin: 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* line 21, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.website-subtitle {
+  font-family: 'Gotham',sans-serif;
+  font-size: 1.5em;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  font-size: 25px;
+  padding: 10px 0;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* line 31, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.new-invest-button {
+  margin: 0px;
+  /*-webkit-font-smoothing: antialiased;
+  letter-spacing: .1px;
+  font-weight: 700;
+  font-family: 'proxima-nova',sans-serif;*/
+  font-family: 'Gotham',sans-serif;
+  font-size: 1.3em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
+}
+
+/* line 43, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.margin-get-started-btn {
+  margin-bottom: 100px;
+}
+
+/* line 47, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.homepage-view-more-companies-link {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Gotham',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 55, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.homepage-companies-section {
+  margin-bottom: 5%;
+}
+
+/* line 59, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.section-title {
+  font-family: 'Gotham',sans-serif;
+  font-size: 1.5em;
+  color: #424242;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 15px;
+  font-weight: bold;
+  margin: 3% 1% 1% 1%;
+}
+
+/* line 69, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.about-us-icons {
+  cursor: pointer;
+  font-family: 'Gotham',sans-serif;
+  color: #424242;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0 140px;
+}
+
+/* line 77, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.inline-block-icons {
+  display: inline-block;
+  border-radius: 12px;
+  margin: 50px 50px;
+  width: 19%;
+  vertical-align: top;
+}
+
+/* line 84, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.about-us-images {
+  width: 150px;
+  height: 150px;
+  padding: 25px;
+}
+
+/* line 89, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.icon-description {
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 3px;
+  font-family: 'Gotham',sans-serif;
+  color: #424242;
+  -webkit-font-smoothing: antialiased;
+  padding: 10px;
+  text-align: center;
+}
+
+/* line 100, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.mainSeen__slider1 .item img {
+  height: 75px;
+  width: auto;
+  position: relative;
+}
+
+/* line 106, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.about-startups-tab {
+  display: block;
+}
+
+/* line 110, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.about-startups-tab {
+  display: none;
+}
+
+/* line 114, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+.task-rabbit-was-funded {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  color: #fff;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  /* line 129, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+  .inline-block-icons {
+    margin: 50px 10px;
+    width: 28%;
+  }
+
+  /* line 133, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+  .icon-description {
+    font-size: 1.5em;
+  }
+
+  /* line 136, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+  .website-title {
+    font-size: 3em;
+  }
+
+  /* line 139, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+  .website-subtitle, .about-us-icons {
+    font-size: 2.2em;
+  }
+
+  /* line 142, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/homepage.scss */
+  .website-title {
+    font-size: 3em;
+  }
 }
 /* line 5, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/invest.css.scss */
 .checkbox_agreement {
@@ -6841,7 +7170,7 @@ and (max-device-width : 568px) {
 /* line 51, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 #mobile-menu {
   float: left;
-  visibility: hidden;
+  display: none;
 }
 
 /* line 55, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
@@ -6887,11 +7216,10 @@ a {
 
 /* line 89, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .menu > ul > li:hover, .menu li:hover, .sub-menu li:hover, button:hover {
-  cursor: hand;
   cursor: pointer;
 }
 
-/* line 94, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 93, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .sub-menu {
   width: 130%;
   min-width: 170px;
@@ -6906,24 +7234,24 @@ a {
   box-shadow: 0 6px 8px rgba(9, 94, 125, 0.2);
 }
 
-/* line 108, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 107, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .sub-menu button {
   min-width: 170px;
   text-align: left;
 }
 
-/* line 113, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 112, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .sub-menu li:hover {
   background: #B4B4B4;
 }
 
-/* line 117, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 116, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .menu li:hover .sub-menu {
   display: block;
   opacity: 1;
 }
 
-/* line 122, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 121, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 button {
   outline: 0;
   border: none;
@@ -6932,27 +7260,34 @@ button {
   color: white;
 }
 
-/* line 130, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 129, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .main-menu button {
   color: #10a1d6;
 }
 
-/* line 134, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 133, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .menu button {
   font-size: 15px;
   padding: 0 17px;
   height: 52px;
-  font-weight: 500;
-  font-family: 'proxima-nova',sans-serif;
+  font-family: 'Gotham',sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
 }
 
 /* line 143, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+.margin-menu-middle {
+  float: left !important;
+}
+
+/* line 147, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .arrow {
   font-size: 9px;
   line-height: 0%;
 }
 
-/* line 148, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 152, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .logo {
   background: transparent url("/assets/DreamFundedLogo.png") no-repeat top left;
   background-size: contain;
@@ -6966,12 +7301,12 @@ button {
 /*.logo:hover{
 	background-color: #ECECEC;
 }*/
-/* line 161, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 165, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 #nopadding {
   padding: 0;
 }
 
-/* line 165, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 169, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 #left {
   margin-left: 40px;
   float: left;
@@ -6980,18 +7315,18 @@ button {
   left: 0;
 }
 
-/* line 176, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 180, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 #sign-in-button {
   background-color: #FFA600;
   color: white;
 }
 
-/* line 180, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 184, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 #last-menu-button {
   width: 77px;
 }
 
-/* line 183, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 187, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .invite-menu-text {
   display: block;
   margin-left: 10px;
@@ -7000,54 +7335,72 @@ button {
   color: #0D87B3;
 }
 
-/* line 190, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 194, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 .invite-menu-button {
   height: 70px !important;
 }
 
-/* line 193, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+/* line 197, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
 #hidden-menu {
   display: none;
 }
 
+/* line 201, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+.menu .margin-for-how-it-works {
+  margin-left: 235px;
+}
+
 /*M O B I L E*/
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  /* line 203, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  /* line 210, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   .arrow {
     font-size: 28px;
   }
+
+  /* line 213, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  #mobile-menu {
+    float: right !important;
+    display: block;
+    visibility: visible;
+  }
+
+  /* line 218, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  #mobile-menu li {
+    display: block;
+    visibility: visible;
+  }
 }
 @media screen and (max-width: 1275px) {
-  /* line 210, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  /* line 225, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   .menu button {
     font-size: 15px;
     padding: 0 12px;
   }
 
-  /* line 214, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  /* line 229, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   #left {
     margin-left: 20px;
   }
 }
 @media screen and (max-width: 1163px) {
-  /* line 219, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  /* line 234, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   .menu button {
     font-size: 14px;
     padding: 0 10px;
   }
 
-  /* line 223, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  /* line 238, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   #left {
     margin-left: 10px;
   }
 }
-@media screen and (max-width: 963px) {
-  /* line 228, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+@media screen and (max-width: 742px) {
+  /* line 243, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   #hidden-menu {
     display: block;
   }
 
-  /* line 231, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
+  /* line 246, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/menu.css.scss */
   .items-to-hide {
     display: none !important;
   }
@@ -7497,8 +7850,9 @@ button {
     background-color: #fff;
 }
 .property-box:last-of-type {
-    margin-bottom: 15%;
+    /*margin-bottom: 8%;*/
 }
+
 .property-box:hover{
     box-shadow: 1px 1px 5px 2px #d1d3d4;
 }
@@ -7534,6 +7888,23 @@ button {
     text-align: center;
 }
 
+.company-tagline {
+    position: relative;
+}
+.company-tagline-text{
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3em; /* (Number of lines you want visible) * (line-height) */
+  line-height: 1.5em;
+  text-align:justify;
+}
+
+.company-funded-status{
+    height: inherit;
+}
+
 .propety-detail-left{
     line-height: 1.5em;
     padding: 0 10px;
@@ -7543,7 +7914,7 @@ button {
     position: relative;
 }
 .company-tagline-text {
-    line-height: 1.5em;
+    /*line-height: 1.5em;*/
     padding: 0 10px;
     z-index: 1;
     background: #fff;
@@ -7626,6 +7997,9 @@ button {
 .properties-wrapper .property-box{
     width: 25%;
 }
+.back-margin{
+    margin-right: 12%;
+}
 
 .invest-link {
     display: block;
@@ -7665,6 +8039,21 @@ button {
 .campaigb-basic-numbers{
     border-top: 1px solid #d1d3d4;
     padding-top: 15px;
+    text-align: center;
+}
+
+.accredited-investor-title {
+    font-size: 30px;
+}
+
+.funded-by-accredited{
+    font-size: 12px;
+}
+
+@media (max-width: 1380px) {
+  .properties-wrapper{
+    margin-left: 8%
+  }
 }
 
 @media (max-width: 1210px) {
@@ -7680,12 +8069,14 @@ button {
     margin-left: 3%;
   }
 }
+
 @media (max-width: 1020px) {
   .properties-wrapper .property-box{
     margin: 25px 10px;
     width: 30%;
   }
 }
+
 @media (max-width: 930px) {
     .properties-wrapper{
         margin-left: inherit;
@@ -8065,6 +8456,179 @@ and (max-device-width : 1024px)  {
     width: 134px;
   }
 }
+/* line 1, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.homepage-bottom {
+  width: 100%;
+  background-color: #4b4b4b;
+  padding: 20px 0;
+}
+
+/* line 6, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.sign-up-homepage {
+  max-width: 800px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 300px;
+  text-align: center;
+}
+
+/* line 16, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.sign-up-homepage-social-media-links {
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+  border-right: 1px solid white;
+}
+
+/* line 23, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.sign-up-homepage-form {
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+}
+
+/* line 29, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.signup-homepage-title {
+  color: #fff;
+}
+
+/* line 33, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.homepage-form-field {
+  margin: 0 5px 13px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 39, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.submit-button-homepage {
+  width: 220px !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-radius: 4px;
+  margin-top: 0 !important;
+}
+
+/* line 47, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.homepage-form-field {
+  max-width: 220px;
+}
+
+/* line 51, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.social-media-links-homepage {
+  box-sizing: border-box;
+  height: 50px;
+  margin: 13px auto;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 60, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.first-link-no-margin {
+  margin-top: 0;
+}
+
+/* line 64, /Users/apprentice/Desktop/dreamfundedvc/app/assets/stylesheets/signup_homepage.scss */
+.social-media-links-homepage span {
+  margin-top: 14px;
+}
+/*====================================
+=            slick slider            =
+====================================*/
+/* Slider */
+
+.slick-slider {
+  position: relative;
+  display: block;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.slick-track:before,
+.slick-track:after {
+  display: table;
+  content: '';
+}
+.slick-track:after {
+  clear: both;
+}
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+[dir='rtl'] .slick-slide {
+  float: right;
+}
+.slick-slide img {
+  display: block;
+}
+.slick-slide.slick-loading img {
+  display: none;
+}
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+.slick-initialized .slick-slide {
+  display: block;
+}
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+  display: none;
+}
+/*=====  End of slick slider  ======*/
 .error {
 	width: 460px;
 	padding: 20px 40px;

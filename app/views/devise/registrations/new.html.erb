@@ -12,6 +12,10 @@
       </div>
 
       <div class= "signup-content">
+        <div class = "notice centered">
+          <%= flash[:signup_errors] if flash[:signup_errors] %>
+          <%= @error_message %>
+        </div>
         <h4>Basic Information</h4>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -25,7 +29,7 @@
            <%= f.text_field(:last_name, :placeholder => "Last Name", :class => "form-field form-field-half") %><br>
            <%= f.text_field(:phone, :placeholder => "Phone", :class => "form-field form-field-half") %><br>
 
-        <h4>Login Information</h4>
+          <h4>Login Information</h4>
            <%= f.text_field(:email, :placeholder => "Email", :class => "form-field  email-signup") %>
            <%= f.password_field(:password, :placeholder => "Password ", :class => "form-field form-field-half little-margin", required: true, pattern: ".{6,}") %>
            <%= f.password_field(:password_confirmation, :placeholder => "Confirm Password", required: true, pattern: ".{6,}", :class => "form-field form-field-half  little-margin") %>
@@ -51,10 +55,6 @@
           </div><br>
 
 
-           <div class = "notice centered">
-              <%= flash[:signup_errors] if flash[:signup_errors] %>
-              <%= @error_message %>
-           </div>
 
            <div class= "centered">
            <p class='check_box hide-on-mobile'>By signing up you agree with our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %> & <%= link_to 'Privacy Policy', asset_path("DreamFunded_PrivacyPolicy.pdf"), target: '_blank' %></p>
