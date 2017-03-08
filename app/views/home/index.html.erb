@@ -25,7 +25,7 @@
                 <div class="col-">
                     <div class='property-box'>
                         <div class="card-content">
-                            <%= link_to company do %>
+                            <%= link_to company, "data-no-turbolink" => true do %>
                             <div class="card-topbar primary-color">
                                 <%= company.name %>
                             </div>
@@ -73,7 +73,7 @@
                 </div>
             <% end %>
         </div>
-        <center><%= link_to "View More", companies_path, class: 'homepage-view-more-companies-link' %></center>
+        <center><%= link_to "View More", companies_path, "data-no-turbolink" => true, class: 'homepage-view-more-companies-link' %></center>
     </section>
 
 
