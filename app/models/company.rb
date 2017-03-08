@@ -146,7 +146,7 @@ class Company < ActiveRecord::Base
         rescue JSON::ParserError => e
           puts e
           puts 'ERROR'
-          return 'TBA'
+          return invested_amount
         rescue FundAmerica::Error => e
           # Print response from FundAmerica API in case of unsuccessful response
           puts e.parsed_response
