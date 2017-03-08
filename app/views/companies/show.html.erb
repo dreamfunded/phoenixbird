@@ -199,30 +199,14 @@
                     <div>
                         <h2 class='section-title'>Highlight</h2>
                         <div class='section-content tab-content'>
-                            <% if current_user %>
                                 <p class= "fifteen "><%= @company.description.html_safe if @company.description %></p>
-                            <%else%>
-                                <p class= "fifteen "><%= @company.description.split(' ').first(30).join(' ').html_safe %>...</p>
-                                <article class='centered'>
-                                    <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
-                                    <%= link_to "Sign In to View", new_user_session_path%>
-                                </article>
-                            <%end%>
                         </div>
                     </div>
                     <hr class="div">
                     <div>
                         <h2 class='section-title'>Why <%= @company.name %>?</h2>
                         <div class='section-content tab-content'>
-                            <% if current_user %>
                                 <p class='sign-in-blur'><%= @campaign.elevator_pitch.html_safe  if @campaign.elevator_pitch %></p>
-                            <% else %>
-                                <p class= "fifteen "><%= @campaign.elevator_pitch.split(' ').first(30).join(' ').html_safe if @campaign.elevator_pitch%>...</p>
-                                <article class='centered'>
-                                    <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
-                                    <%= link_to "Sign In to View", new_user_session_path%>
-                                </article>
-                            <%end%>
                         </div>
                     </div>
 
@@ -231,15 +215,9 @@
                     <div>
                         <h2 class="section-title">Our Mission</h2>
                         <div class="section-content tab-content">
-                            <% if current_user %>
+
                                 <p><%= @campaign.about_campaign.html_safe if @campaign.about_campaign %></p>
-                            <% else %>
-                                <p class= "fifteen "><%= @campaign.about_campaign.split(' ').first(30).join(' ').html_safe if @campaign.about_campaign%>...</p>
-                                <article class='centered'>
-                                    <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
-                                    <%= link_to "Sign In to View", new_user_session_path%>
-                                </article>
-                            <%end%>
+
                         </div>
                     </div>
 
@@ -311,7 +289,7 @@
                         <div>
                             <h2 class="section-title">Documents</h2>
                             <div class='section-content'>
-                                <% if current_user %>
+
                                     <% if @financial_details.balance_sheet_file_name %>
                                         <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Balance Sheet", @financial_details.balance_sheet.url, target: "_blank", class: 'document-url' %></p>
                                     <% end %>
@@ -367,12 +345,7 @@
                                             <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
                                         </p>
                                     <% end %>
-                                <% else %>
-                                    <article class='centered'>
-                                        <%= image_tag("lock-icon", width: 50,  class: 'icon-lock')%>
-                                        <%= link_to "Sign In to View", new_user_session_path%>
-                                    </article>
-                                <%end%>
+
                             </div>
                         </div>
 
