@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import 'colors';
+@import 'z_index';
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
 
 .wrap {
 	font-family: "Calibri";
@@ -11,11 +13,6 @@
 
 .gray {
 	color: $lightgray;
-}
-.grey-section{
-  background-color: #f5f5f5;
-  padding: 5% 12%;
-  padding-bottom: 0;
 }
 
 .edit-company-button{
@@ -36,10 +33,10 @@
 .edit-my-company-button{
 
 }
-
+.company-detail:nth-child(1){
+  margin-top: 100px;
+}
 .white-section{
-  background-color: #fff;
-  padding-top: 18px;
   padding-bottom: 100px;
 }
 
@@ -81,6 +78,7 @@
 .campaign-website{
   margin-top: 50px;
   margin-left: -20px !important;
+  margin-bottom: 50px;
 }
 .website-url{
   font-size: 13px;
@@ -91,9 +89,6 @@
 }
 .social-media-campaign{
   display: inline-block;
-  vertical-align: top;
-  margin-top: 65px;
-  margin-left: 60px;
 }
 .help-our-campaign{
   color: gray;
@@ -103,16 +98,131 @@
   font-family: Gotham;
   text-align: center;
 }
-.section-title{
-  font-family: Gotham, sans-serif;
+
+hr.div {
+  margin: 0 15px;
+  border: none;
+  border-bottom: 1px rgba(74,74,74,0.2) solid;
+}
+
+.company-header.company-section {
+  h1.section-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.company-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.company-section {
+  font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
   color: rgb(66, 66, 66);
   -webkit-font-smoothing: antialiased;
-  text-align: center;
-  font-size: 30px;
+  font-smoothing: antialiased;
+  padding-top: 75px;
+  margin-bottom: 75px;
+
+  hr.div {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px rgba(74,74,74,0.05) solid;
+  }
+
+  .fluid-container {
+    hr.div {
+      margin-top: 15px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  h1, h2 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  h1.section-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  h2.section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-content {
+    line-height: 1.7rem;
+  }
+
+  .section-content, h2.section-title {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .section-sub-heading {
+    margin-bottom: 1rem;
+  }
+
+  .company-section-tagline {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    font-family: 'Droid Serif', serif;
+  }
+
+  .company-quote, .company-section-tagline {
+    padding-left: 1rem;
+  }
+
+  .company-quote {
+    margin-bottom: 1rem;
+  }
+
+  .said-by {
+    padding-left: 1rem;
+
+    img {
+      width: 50px;
+      height: auto;
+      border-radius: 50%;
+      float: left;
+      margin-right: 10px;
+    }
+
+    & > span {
+      line-height: 1.3rem;
+    }
+
+    .said-by-title {
+      opacity: .5;
+    }
+  }
 }
+
+.company-quote {
+  position: relative;
+  font-family: 'Droid Serif', serif;
+  font-size: 2.1rem;
+  line-height: 1.5rem;
+  opacity: .75;
+  letter-spacing: 1px;
+
+  .sub-quote {
+    padding-top: 8px;
+    font-size: .9rem;
+  }
+}
+
 .category-name{
   font-family: Gotham, sans-serif;
-  color: rgb(66, 66, 66);
+  color: rgb(74, 74, 74);
   -webkit-font-smoothing: antialiased;
   text-align: left;
   font-size: 25px;
@@ -120,7 +230,7 @@
 .company-profile-bottom-line{
   position: absolute;
   bottom: 0;
-  left: 10%;
+  width: 100%;
 }
 .company-basic-info {
   width: 500px;
@@ -129,57 +239,89 @@
   font-family: Gotham, sans-serif;
   letter-spacing: -1px;
   color: #fff;
-  padding-left: 15px;
-  padding-top: 15px;
   display: inline-block;
   vertical-align: top;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
+
 .company-info-cateogry{
-  letter-spacing: 1px;
   font-size: 12px;
   color: #fff;
   opacity: 0.9;
-  font-family: Arial;
   margin-left: 50px;
+}
+
+.company-info-cateogry,
+.company-info-category {
+  letter-spacing: 1px;
+  font-family: Arial;
   text-transform: uppercase;
 }
+
+
 .company-finance-info{
-  font-size: 20px;
-  color: #fff;
-  line-height: 2.1;
-  font-family: Gotham;
-  margin-left: 66px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
-.fund-america-invest-button{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
+
 .company-admin-editing{
   position: absolute;
-  right: 2%;
-  margin-top: -50px;
+  right: 0;
+
+  & > a {
+    display: block;
+    margin-bottom: 5px;
+  }
 }
-.fund-america-invest-button button{
-  font-size: 18px;
+.fund-america-invest-button {
+  position: absolute;
+  bottom: 1.25rem;
+  width: 100%;
+  text-align: center;
+}
+.fund-america-invest-button button {
+  font-size: 1.1rem;
   border-radius: 3px;
-  font-family: Gotham;
-  padding: 14px;
+  padding: 12px;
 }
-.company-info-cateogry:nth-child(1){
-  margin-top: 160px;
+
+.fund-america-invest-button .company-button{
+  font-size: 1.1rem;
+  border-radius: 3px;
+  padding: 12px;
+  display: block;
+  width: 80%;
+  margin-left: 10%;
+}
+.fund-america-invest-button .waitlist-b{
+  margin-left: 0;
+  margin-right: 2%;
+}
+
+.fund-america-invest-button form {
+  display: flex;
+  margin-left: 3%;
 }
 .no-margin-top{
   margin-top: 50px !important;
 }
 .company-info-right-panel{
+  font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
   position: absolute;
   width: 25%;
+  min-width: 310px;
   max-width: 400px;
   right: 18%;
-  height: 450px;
   background-color: rgba(0,0,0,0.6);
+  color: white;
+  height: 100%;
+  /*padding: 3rem 1.5rem;*/
+
+  box-sizing: border-box;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 }
 
 .company-slogan{
@@ -230,7 +372,6 @@
   border-bottom: 2px solid $darkblue;
 }
 .tab-content{
-  display: none;
   width: 76%;
   max-width: 800px;
   margin-left: 12%;
@@ -277,11 +418,6 @@
 	position: relative;
 }
 
-.comments{
-  width: 69%;
-  max-width: 700px;
-}
-
 .comment .headline {
   padding: 5px 14px;
   font-size: 12px;
@@ -312,7 +448,7 @@
 }
 .comment{
   max-width: 700px;
-  margin: 20px 0;
+  margin: 20px auto;
   position: relative;
 }
 .reply_comment_form{
@@ -404,10 +540,9 @@
 }
 
 .company-button {
+  flex: 0 0 120px;
 	background: $darkblue;
-	margin-top: 10px;
 	padding: 10px;
-	width: 100%;
 	border: none;
 	color: white;
 	cursor: pointer;
@@ -424,10 +559,8 @@
 }
 
 .profile-button {
-	width: 80%;
-	margin: 20px auto;
-	display: block;
-	font-size: 17px;
+	font-size: 1.1rem;
+  font-weight: bold;
 }
 .mail-to-button {
 	text-align: center;
@@ -561,8 +694,8 @@
 	position: relative;
 	background: #fff;
   opacity: 0.9;
-  width: 86%;
   margin-left: 7%;
+  width: 86%;
   margin-top: 8px;
   margin-bottom: 3px;
 	-moz-border-radius: 25px;
@@ -603,8 +736,6 @@
 
 .video-box {
 	margin-top: 10px;
-  margin-bottom: 100px;
-  display: inline-block;
 }
 .max-width-image{
 	max-width: 500px;
@@ -667,7 +798,6 @@
 
 .team-band div {
 	display: inline-block;
-  margin: 0 22px;
 }
 
 .team-box {
@@ -862,9 +992,7 @@ input[type=range]:focus::-ms-fill-upper {
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
   .company-button{
-    -webkit-appearance: none;
-    font-size: 2em;
-    font-weight: bold;
+
   }
   .twenty{
     font-family: Helvetica;
@@ -893,22 +1021,16 @@ and (max-device-width : 568px) {
   .nav-links a{
     font-size: 12px;
   }
-  .grey-section{
-    padding-bottom: 10%;
-  }
-  .company-info-cateogry:nth-child(1){
-    margin-top: 3vh;
-  }
-  .company-info-cateogry{
-    font-size: 1.5em;
-  }
-  .company-finance-info{
-    font-size: 2em;
-    font-weight: bold;
+  .company-info-cateogry, .company-info-category{
+    font-size: 1.5em !important;
   }
   .company-basic-info{
     font-size: 4em;
     font-weight: bold;
+    margin-left: 3%;
+  }
+  .company-logo{
+    margin-left: 3%;
   }
   .company-slogan {
     font-size: 40px;
@@ -918,6 +1040,355 @@ and (max-device-width : 568px) {
   .company-location{
     font-size: 40px;
   }
+  .company-section h2.section-title{
+    margin-left: 12%;
+  }
 
+}
 
+.icon-play {
+  border: 5px white solid;
+  border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 0 40px #000;
+
+  &::before {
+    content: '\25BA';
+    position: absolute;
+    left: 2rem;
+    top: 1.5rem;
+  }
+}
+
+#video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  z-index: $video-play-button;
+
+  .icon::before {
+    font-size: 3rem;
+  }
+}
+
+.video-popup-overlay:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.company-detail {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  letter-spacing: 1px;
+}
+
+.company-info-category {
+  opacity: .5;
+  font-size: .65rem;
+}
+
+.company-info-container {
+  max-width: 1030px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.fund-america-invest-button {
+  .currency_input, #invest_amount {
+    font-size: 1.4rem;
+    * {
+      font-size: 1.4rem;
+    }
+  }
+
+  .currency_input {
+    flex: 1;
+    padding-left: 8px;
+    margin-right: 8px;
+    border-bottom: 2px $darkblue solid;
+  }
+}
+
+.currency_input {
+  text-align: left;
+
+  input {
+    border: none;
+  }
+}
+
+#invest_amount {
+  padding: 8px;
+  padding-left: 0;
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  width: 76%;
+}
+
+.company-info {
+  color: white;
+}
+
+.company-info.top {
+  background: linear-gradient(to bottom,#000 0,rgba(0,0,0,0) 100%);
+  top: 0;
+  padding: 25px 0;
+  font-size: 12px;
+  opacity: .9;
+  font-weight: bold;
+  text-transform: capitalize;
+  position: absolute;
+  width: 100%;
+
+  .follow {
+    margin-right: 5px;
+  }
+}
+
+.company-content {
+  background-color: white;
+  padding: 3rem 0;
+
+  box-sizing: border-box;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+}
+
+.company-content-container {
+  margin: 0 auto;
+  max-width: 1030px;
+  position: relative;
+}
+
+#company-nav {
+  z-index: 1000;
+  color: #424242;
+  box-shadow: 0 5px 8px -8px rgba(74,74,74,0.5);
+  font-family: 'Gotham',sans-serif;
+
+  .media-logo {
+    display: inline-block;
+    float: left;
+    margin: 5px 15px;
+    border-radius: 3px;
+  }
+
+  .company-content-container > .company-nav-links {
+    padding-top: 1.5rem;
+  }
+
+  .company-content-container {
+    .social-invites {
+      padding-top: 5px;
+    }
+
+    ul {
+      display: inline-block;
+      list-style: none;
+      padding: 0;
+      float: left;
+      padding: 0;
+      margin: 0;
+      font-size: .75rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+
+      &.float-opposite {
+        float: right;
+        .share-invites-social {
+          margin: 0;
+        }
+
+        li {
+          margin-right: 0;
+          margin-left: 1.5rem;
+        }
+      }
+
+      li {
+        display: inline-block;
+        margin-right: 1.5rem;
+      }
+    }
+  }
+}
+
+.media-logo {
+  width: 46px;
+  height: auto;
+}
+
+.fixed-nav {
+  position: fixed;
+  top: -70px;
+  width: 100%;
+  background-color: white;
+}
+
+.tags {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: .9rem;
+  font-weight: normal;
+  text-shadow: none;
+  padding-top: 1rem;
+
+  li {
+    display: inline-block;
+    text-align: center;
+
+    a {
+      color: rgba(74, 74, 74, 0.5);
+      background-color: white;
+      padding: 5px 8px;
+      border: 1px solid rgba(74, 74, 74, 0.2);
+      border-radius: 50px;
+    }
+
+    a:hover {
+      background-color: rgb(238, 238, 238);
+    }
+  }
+}
+
+.testimonial-card {
+  img {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  input {
+    margin-bottom: 10px;
+  }
+}
+
+.testimonial .section-content, .testimonial .fluid-container{
+  text-align: center;
+  img {
+    width: 92px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonial-details {
+    font-family: 'Gotham', sans-serif;
+  }
+
+  .panel {
+    display: none;
+  }
+}
+
+.radio-tabs .state {
+  position: absolute;
+  left: -10000px;
+}
+
+.radio-tabs .radio-tab {
+  cursor: pointer;
+  opacity: .4;
+  display: block;
+  padding-top: 20px;
+  border-radius: 5px;
+}
+
+.radio-tabs .radio-tab:hover {
+    background-color: rgba(100,100,100, .1);
+    opacity: .6;
+}
+
+.radio-tabs {
+  .panels {
+    border-top: 1px solid rgba(100,100,100, .05);
+  }
+
+  .panels-content {
+    max-width: 500px;
+    min-height: 150px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 20px;
+
+    i {
+      font-family: 'Droid Serif', serif;
+      color: rgba(74,74,74,0.7);
+      line-height: 1.7rem;
+    }
+  }
+}
+
+#testimonial-0-radio:checked ~ .radio-label-tabs #testimonial-0-tab,
+#testimonial-1-radio:checked ~ .radio-label-tabs #testimonial-1-tab,
+#testimonial-2-radio:checked ~ .radio-label-tabs #testimonial-2-tab {
+  opacity: 1;
+}
+
+#testimonial-0-radio:checked ~ .panels #testimonial-0-panel,
+#testimonial-1-radio:checked ~ .panels #testimonial-1-panel,
+#testimonial-2-radio:checked ~ .panels #testimonial-2-panel {
+  display: block;
+}
+
+#team-section {
+  .links {
+    padding: 0 15px;
+  }
+
+  .nested-fields {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+.quote-symbol {
+  font-size: 4rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
+.content-title {
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: lighter;
+  color: rgba(74,74,74,0.5);
+  font-size: 1.1rem;
+}
+
+.sub-section-content {
+  &, p {
+    font-size: .875rem;
+  }
+}
+
+.investment-perk {
+  line-height: 1.5rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.8px;
+
+  .perk-amount {
+    padding-right: 1.5rem !important;
+  }
+
+  .perk-content {
+    font-family: 'Droid Serif', serif;
+    font-weight: lighter;
+    color: rgba(74,74,74, 0.7)
+  }
 }

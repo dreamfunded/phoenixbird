@@ -24,12 +24,22 @@ class ContactMailer < ActionMailer::Base
     mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
   end
 
+
   def waitlist(name, email, phone,amount, message)
     @name = name
     @email= email
     @phone = phone
     @amount = amount
     @message = message
+    mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
+  end
+
+  def join_waitlist_with_invest(company, user, amount)
+    @company = company
+    @name = user.name
+    @email = user.email
+    @phone = user.phone
+    @amount = amount
     mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
   end
 

@@ -1,23 +1,22 @@
 class Company < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
-  def self.all_accredited
-    all.order(:position).where(hidden: false, accredited: true).where.not(status: 3)
-  end
+  scope :all_accredited, -> {
+    order(:position).where(hidden: false, accredited: true).where.not(status: 3)
+  }
+
+	has_many :users
+  has_many :followers, inverse_of: :company
+  has_many :user_followers, through: :followers, source: :user, inverse_of: :company
 
   def self.all_funded
     all.order(:position).where(hidden: false, accredited: true, status: 3)
   end
 
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-
-
-  has_many :users
-
 
 
   has_many :investments
-
   has_many :sections
   has_many :comments
   has_many :bids
@@ -30,9 +29,11 @@ class Company < ActiveRecord::Base
   has_many :docusigns
   has_one :campaign
   has_many :general_infos
+  has_one :general_info, -> { order('id DESC') }, inverse_of: :company
   has_one :financial_detail
   accepts_nested_attributes_for :financial_detail
   accepts_nested_attributes_for :campaign
+  accepts_nested_attributes_for :general_info, reject_if: :all_blank, allow_destroy: true
 
   has_attached_file :image,
     :styles =>{
@@ -79,6 +80,15 @@ class Company < ActiveRecord::Base
   validates :goal_amount, numericality: { less_than_or_equal_to: 1000000 }
   validates_attachment_content_type :document, :content_type =>['application/pdf']
 
+  scope :all_accredited, -> {
+    order(:position).where(hidden: false, accredited: true).where.not(status: 3)
+  }
+
+
+  scope :with_followers, Proc.new {|user|
+    select('DISTINCT(companies.id), companies.*, (followers.id IS NOT NULL) as followed_by_current_user').
+      joins("LEFT JOIN followers ON companies.id = followers.company_id AND followers.user_id = #{user.id}") # this is an id so this should be safe
+  }
 
   def self.Status
 		{

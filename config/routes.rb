@@ -160,10 +160,12 @@ Rails.application.routes.draw do
   get '/contact', to: 'home#contact_us'
   post '/contact_us', to: 'home#contact_us_send_email'
 
+
   # WAITLIST
   post '/join_waitlist', to: 'waitlist#join_waitlist_send_email'
   post '/join_waitlist_reg_a', to: 'waitlist#join_waitlist_reg_a'
   get '/join_waitlist_thank_you', to: 'waitlist#join_waitlist_thank_you'
+  post '/join_waitlist_send_email_with_invest', to: 'waitlist#join_waitlist_send_email_with_invest'
 
 
   get '/liquidate', to: 'home#liquidate'
@@ -274,8 +276,16 @@ Rails.application.routes.draw do
   match "/regulation-mini-ipos-way-rule-change-allows-regular-joes-invest-startups/" => redirect("news/regulation-a-mini-ipos-on-the-way-as-rule-change-allows-regular-joes-to-invest-in-startups"), via: 'get'
   get '/funding', to: 'home#index'
 
-
   resources :users, only: [:update, :edit, :create, :new]
+
+  namespace :api, format: :json do
+    resources :companies, only: [] do
+      member do
+        post :follow
+        delete :unfollow, path: "/follow"
+      end
+    end
+  end
   get ':controller(/:action(/:id))'
   post ':controller(/:action(/:id))'
 

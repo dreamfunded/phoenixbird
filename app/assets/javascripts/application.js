@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.readyselector
 //= require ckeditor/init
 //= require bootstrap.min
 //= require instafilta.min

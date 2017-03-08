@@ -4,93 +4,96 @@
 	<div class= "header"><h1 class= "centered">Invest in the People You Believe in</h1></div>
 
 	<section class='properties-wrapper'>
-		<% @companies.each do |company| %>
+		<div class='fluid-container flex-grid'>
+			<% @companies.each do |company| %>
+				<div class="col-">
+					<div class='property-box'>
+						<div class="card-content">
+							<%= link_to company do %>
+							<div class="card-topbar primary-color">
+								<%= company.name %>
+							</div>
 
-			<div class='property-box'>
-
-				<%= link_to company do %>
-				<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-					<%#= image_tag( company.cover.url, :class => "property-image") %>
-				</div>
-				<div class='logo-image-wrapper'>
-					<span class="helper"></span>
-					<%= image_tag( company.image.url, :class => "property-logo-image") %>
-				</div>
+							<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+								<%#= image_tag( company.cover.url, :class => "property-image") %>
+								<div class='logo-image-wrapper'>
+									<span class="helper"></span>
+									<%= image_tag( company.image.url, :class => "property-logo-image") %>
+								</div>
+							</div>
 
 
-				<article>
-					<div class='company-campaign-name'><%= company.name %></div>
+							<article class='card-body'>
+								<div class='company-tagline'>
+									<span class='company-tagline-text'><%= company.campaign.tagline %></span>
+								</div>
 
-					<div class='company-tagline'>
-						<span class='company-tagline-text'><%= company.campaign.tagline %></span>
-					</div>
+								<div class='property-detail'>
+									<span class='propety-detail-left'>Category</span>
+									<span class='property-detail-right'><%= company.campaign.category %></span>
+								</div>
+							</article>
+							<article>
+								<section class='campaigb-basic-numbers'>
+									<div class='company-details-small-box'>
+										<div class='companies-box-name'>Target</div>
+										<div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
+									</div>
+									<div class='company-details-small-box'>
+										<div class='companies-box-name'>Raised</div>
+										<% if company.status == 2 %>
+											<div class='companies-box-value'><%= company.fund_america_invested_amount %></div>
+										<% else %>
+											<div class='companies-box-value'><%= raised_amount(company) %></div>
+										<% end %>
+									</div>
 
-					<div class='property-detail'>
-						<span class='propety-detail-left'>Category</span>
-						<span class='property-detail-right'><%= company.category %></span>
-					</div>
-
-					<section class='campaigb-basic-numbers'>
-						<div class='company-details-small-box'>
-							<div class='companies-box-name'>Target</div>
-							<div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
-						</div>
-						<div class='company-details-small-box'>
-							<div class='companies-box-name'>Raised</div>
-							<% if company.status == 2 %>
-								<div class='companies-box-value'><%=  raised_amount(company) %></div>
-							<% else %>
-								<div class='companies-box-value'><%= raised_amount(company) %></div>
+								</section>
+							</article>
 							<% end %>
+							<%= link_to "Learn More", company, class:'invest-link' %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+		<h1 class='centered accredited-investor-title'>Funded by Accredited Investors</h1>
+		<div class='fluid-container flex-grid'>
+			<% @funded_companies.each do |company| %>
+				<div class='property-box'>
+
+					<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+						<div class='logo-image-wrapper'>
+							<span class="helper"></span>
+							<%= image_tag( company.image.url, :class => "property-logo-image") %>
+						</div>
+					</div>
+
+
+					<article class='card-body no-height'>
+						<div class='company-tagline'>
+							<span class='company-tagline-text'><%= company.campaign.tagline %></span>
 						</div>
 
-					</section>
+						<div class='property-detail company-funded-status property-detail-no-height'>
+							<span class='propety-detail-left'>Category</span>
+							<span class='property-detail-right'><%= company.campaign.category %></span>
+						</div>
 
-
-				</article>
-				<% end %>
-				<%= link_to "Learn More", company, class:'invest-link' %>
-			</div>
-		<% end %>
-
-		<div class='centered company-campaign-name back-margin'>Funded by Accredited Investors</div>
-		<% @funded_companies.each do |company| %>
-
-			<div class='property-box'>
-
-				<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-					<%#= image_tag( company.cover.url, :class => "property-image") %>
-				</div>
-				<div class='logo-image-wrapper'>
-					<span class="helper"></span>
-					<%= image_tag( company.image.url, :class => "property-logo-image") %>
-				</div>
-
-
-				<article>
-					<div class='company-campaign-name'><%= company.name %></div>
-
-					<div class='company-tagline'>
-						<span class='company-tagline-text'><%= company.campaign.tagline %></span>
-					</div>
-
-					<div class='property-detail company-funded-status'>
-						<span class='propety-detail-left'>Category</span>
-						<span class='property-detail-right'><%= company.campaign.category %></span>
-					</div>
-
-					<div class='property-detail company-funded-status'>
-						<span class='propety-detail-left'>Status</span>
-						<span class='property-detail-right'>Funded </span>
-					</div>
+						<div class='property-detail company-funded-status property-detail-no-height'>
+							<span class='propety-detail-left'>Status</span>
+							<span class='property-detail-right'>Funded </span>
+						</div>
 
 					<div class='company-tagline funded-by-accredited'>
 						<span class='company-tagline-text'>Funded by Accredited Investors using 506 (D)</span>
 					</div>
 
-				</article>
-			</div>
-		<% end %>
+					</article>
+				</div>
+			<% end %>
+		</div>
 	</section>
 </div>
 

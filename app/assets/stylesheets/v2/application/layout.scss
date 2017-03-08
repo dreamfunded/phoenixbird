@@ -1,0 +1,42 @@
+@import 'typography';
+
+$padding: 0.9375rem;
+$margin-bottom: 0.625rem;
+
+.v2 {
+  box-sizing: border-box;
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  .form-group {
+    margin: 0;
+    margin-bottom: $margin-bottom;
+    text-align: left;
+
+    .currency_input, .form-field {
+      padding: $padding;
+      margin: 0;
+      width: 100%;
+    }
+
+    .currency_input {
+      padding-right: 0;
+    }
+
+    .currency_input {
+      .form-field {
+        display: inline-block;
+        width: auto;
+      }
+    }
+
+    textarea.form-field {
+      min-height: 6.25rem;
+    }
+
+    input[type='text'].form-field {
+      height: auto;
+    }
+  }
+}

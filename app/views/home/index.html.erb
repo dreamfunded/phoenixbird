@@ -18,54 +18,61 @@
     </section>
 
 
-    <div class='section-title'>Companies Raising Right Now</div>
-    <section class='centered homepage-companies-section'>
-        <% @companies.each do |company| %>
+    <div class='section-title centered'>Companies Raising Right Now</div>
+    <section class='centered homepage-companies-section properties-wrapper'>
+        <div class='fluid-container flex-grid'>
+            <% @companies.each do |company| %>
+                <div class="col-">
+                    <div class='property-box'>
+                        <div class="card-content">
+                            <%= link_to company do %>
+                            <div class="card-topbar primary-color">
+                                <%= company.name %>
+                            </div>
 
-            <div class='property-box'>
-
-                <%= link_to company do %>
-                <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-                    <%#= image_tag( company.cover.url, :class => "property-image") %>
-                </div>
-                <div class='logo-image-wrapper'>
-                    <span class="helper"></span>
-                    <%= image_tag( company.image.url, :class => "property-logo-image") %>
-                </div>
+                            <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+                                <%#= image_tag( company.cover.url, :class => "property-image") %>
+                                <div class='logo-image-wrapper'>
+                                    <span class="helper"></span>
+                                    <%= image_tag( company.image.url, :class => "property-logo-image") %>
+                                </div>
+                            </div>
 
 
-                <article>
-                    <div class='company-campaign-name'><%= company.name %></div>
+                            <article class='card-body'>
+                                <div class='company-tagline'>
+                                    <span class='company-tagline-text'><%= company.campaign.tagline %></span>
+                                </div>
 
-                    <div class='company-tagline'>
-                        <span class='company-tagline-text'><%= company.campaign.tagline %></span>
-                    </div>
+                                <div class='property-detail'>
+                                    <span class='propety-detail-left'>Category</span>
+                                    <span class='property-detail-right'><%= company.campaign.category %></span>
+                                </div>
+                            </article>
+                            <article>
+                                <section class='campaigb-basic-numbers'>
+                                    <div class='company-details-small-box'>
+                                        <div class='companies-box-name'>Target</div>
+                                        <div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
+                                    </div>
+                                    <div class='company-details-small-box'>
+                                        <div class='companies-box-name'>Raised</div>
+                                        <% if company.status == 2 %>
+                                            <div class='companies-box-value'><%= company.fund_america_invested_amount %></div>
+                                        <% else %>
+                                            <div class='companies-box-value'><%= raised_amount(company) %></div>
+                                        <% end %>
+                                    </div>
 
-                    <div class='property-detail'>
-                        <span class='propety-detail-left'>Category</span>
-                        <span class='property-detail-right'><%= company.category %></span>
-                    </div>
-
-                    <section class='campaigb-basic-numbers'>
-                        <div class='company-details-small-box'>
-                            <div class='companies-box-name'>Target</div>
-                            <div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
-                        </div>
-                        <div class='company-details-small-box'>
-                            <div class='companies-box-name'>Raised</div>
-                            <% if company.status == 2 %>
-                                <div class='companies-box-value'><%=  raised_amount(company) %></div>
-                            <% else %>
-                                <div class='companies-box-value'><%= raised_amount(company) %></div>
+                                </section>
+                            </article>
                             <% end %>
+                            <%= link_to "Learn More", company, class:'invest-link' %>
                         </div>
-                    </section>
-
-                </article>
-                <% end %>
-                <%= link_to "Learn More", company, class:'invest-link' %>
-            </div>
-        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
         <center><%= link_to "View More", companies_path, class: 'homepage-view-more-companies-link' %></center>
     </section>
 

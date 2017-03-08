@@ -1,3 +1,5 @@
 class InvestmentPerk < ActiveRecord::Base
-  belongs_to :general_info
+  ACCESSIBLE_ATTRIBUTES = [:id, :amount, :content]
+
+  belongs_to :general_info, inverse_of: :investment_perks
 end

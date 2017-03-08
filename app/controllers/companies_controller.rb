@@ -1,8 +1,10 @@
 class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
+
+
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist, :make_profile, :remove_company, :join_waitlist_send_email_with_invest ]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -17,10 +19,14 @@ class CompaniesController < ApplicationController
 	end
 
 	def show
-			@financial_details = @company.financial_detail
-			@comments = @company.comments
-			@section = @company.sections.first
-			@members = @company.founders.order(:position)
+		@financial_details = @company.financial_detail
+		@comments = @company.comments
+		@section = @company.sections.first
+		@members = @company.founders.order(:position)
+		@campaign = @company.campaign
+		@campaign_quote = @campaign.quote
+		@formc = @company.general_info
+		#@investment_perks = @formc.investment_perks
 	end
 
 	def edit_profile
@@ -34,6 +40,16 @@ class CompaniesController < ApplicationController
 	def company_not_accretited
 	end
 
+	def join_waitlist_send_email_with_invest
+		company_name = @company.name
+		Guest.create(email: current_user.email, company: company_name, user_id: current_user.id)
+		ContactMailer.join_waitlist_with_invest(@company, current_user, params[:invest_amount]).deliver
+		redirect_to "/join_waitlist_thank_you"
+	end
+
+	def join_waitlist_thank_you
+	end
+
 	def explore
 		@companies = Company.where(reg_a: true)
 	end
@@ -42,11 +58,19 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit_campaign
-	  @campaign = Campaign.find(params[:id])
-	  @company = @campaign.company
-	  @formc = @company.general_infos.last
-	  @members = @company.founders
-	  @comments = @company.comments
+		@testimonials_limit = Campaign::TESTIMONIALS_LIMIT
+		@campaign = Campaign.find(params[:id])
+		@company = @campaign.company
+		unless @campaign.testimonials.size >= @testimonials_limit
+		@campaign.testimonials.build
+		@comments = @company.comments
+		@members = @company.founders
+		@formc = @company.general_info
+    end
+
+	  # @investment_perks = @formc.build_or_get_investment_perks
+	  # @campaign_quote = @campaign.quote || @campaign.build_quote
+	  # render template: 'campaigns/edit_campaign'
 	end
 
 	def update_campaign
@@ -111,8 +135,13 @@ private
 	def company_params
 	  params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
 	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
+
 	   :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
-	   campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state],
+	   campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
+	   	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
+      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],
+     general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
+
 	   founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
 	   documents_attributes: [:id, :file, :name, :company_id ],
 	  financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",
