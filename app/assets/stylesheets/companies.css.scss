@@ -277,16 +277,31 @@ hr.div {
 .fund-america-invest-button {
   position: absolute;
   bottom: 1.25rem;
-  padding-right: 3rem;
   width: 100%;
+  text-align: center;
 }
-.fund-america-invest-button button{
-  font-size: 1.4rem;
+.fund-america-invest-button button {
+  font-size: 1.1rem;
   border-radius: 3px;
-  padding: 14px;
+  padding: 12px;
 }
+
+.fund-america-invest-button .company-button{
+  font-size: 1.1rem;
+  border-radius: 3px;
+  padding: 12px;
+  display: block;
+  width: 80%;
+  margin-left: 10%;
+}
+.fund-america-invest-button .waitlist-b{
+  margin-left: 0;
+  margin-right: 2%;
+}
+
 .fund-america-invest-button form {
   display: flex;
+  margin-left: 3%;
 }
 .no-margin-top{
   margin-top: 50px !important;
@@ -301,7 +316,7 @@ hr.div {
   background-color: rgba(0,0,0,0.6);
   color: white;
   height: 100%;
-  padding: 3rem 1.5rem;
+  /*padding: 3rem 1.5rem;*/
 
   box-sizing: border-box;
   *, *:before, *:after {
@@ -679,6 +694,8 @@ hr.div {
 	position: relative;
 	background: #fff;
   opacity: 0.9;
+  margin-left: 7%;
+  width: 86%;
   margin-top: 8px;
   margin-bottom: 3px;
 	-moz-border-radius: 25px;
@@ -975,9 +992,7 @@ input[type=range]:focus::-ms-fill-upper {
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
   .company-button{
-    -webkit-appearance: none;
-    font-size: 2em;
-    font-weight: bold;
+
   }
   .twenty{
     font-family: Helvetica;
@@ -1006,12 +1021,16 @@ and (max-device-width : 568px) {
   .nav-links a{
     font-size: 12px;
   }
-  .company-info-cateogry{
-    font-size: 1.5em;
+  .company-info-cateogry, .company-info-category{
+    font-size: 1.5em !important;
   }
   .company-basic-info{
     font-size: 4em;
     font-weight: bold;
+    margin-left: 3%;
+  }
+  .company-logo{
+    margin-left: 3%;
   }
   .company-slogan {
     font-size: 40px;
@@ -1021,7 +1040,9 @@ and (max-device-width : 568px) {
   .company-location{
     font-size: 40px;
   }
-
+  .company-section h2.section-title{
+    margin-left: 12%;
+  }
 
 }
 
@@ -1068,6 +1089,7 @@ and (max-device-width : 568px) {
 
 .company-detail {
   margin-bottom: 1rem;
+  margin-left: 2rem;
   letter-spacing: 1px;
 }
 

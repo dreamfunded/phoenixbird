@@ -81,7 +81,27 @@ and (max-device-width : 568px) {
     }
     .company-profile-bottom-line{
         bottom: 5%;
-        left: 5%;
+     /*   left: 5%;*/
+    }
+    .fund-america-invest-button .profile-button {
+        font-size: 2.5em;
+    }
+    .form-inline input{
+        display: inline-block;
+        width: 84%;
+        height: 50px;
+        -webkit-appearance: initial;
+        font-size: x-large;
+    }
+    .fund-america-invest-button form{
+        display: inherit;
+    }
+    .fund-america-invest-button .currency_input{
+        flex: inherit;
+    }
+    .fund-america-invest-button .waitlist-b {
+        font-size: x-large;
+        margin-left: 10%;
     }
 
 }

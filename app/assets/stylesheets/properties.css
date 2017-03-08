@@ -24,9 +24,6 @@
     height: initial !important;
 }
 
-.property-box:last-of-type {
-    margin-bottom: 50px;
-}
 
 .property-box:hover{
     box-shadow: 1px 1px 5px 2px #d1d3d4;
@@ -121,13 +118,13 @@
     border-top-left-radius: 3px;
 }
 .logo-image-wrapper{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background-color: #fff;
     text-align: center;
     white-space: nowrap;
     border: 1px solid #d1d3d4;
-    border-radius: 50%;
+    border-radius: 4px;
 }
 
 .logo-image-wrapper {
@@ -137,10 +134,9 @@
 }
 
 .property-logo-image {
-    width:100%;
-    height:100%;
+    width: 90%;
+    height: auto;
     vertical-align: middle;
-    border-radius: 50%;
 }
 .helper {
     display: inline-block;
@@ -226,32 +222,7 @@
     font-size: 12px;
 }
 
-@media (max-width: 1380px) {
-  .properties-wrapper{
-    margin-left: 8%
-  }
-}
 
-@media (max-width: 1210px) {
-  .properties-wrapper{
-    margin-left: 8%;
-  }
-}
-@media (max-width: 1156px) {
-  .properties-wrapper .property-box {
-    width:  27%;
-  }
-  .properties-wrapper{
-    margin-left: 3%;
-  }
-}
-
-@media (max-width: 1020px) {
-  .properties-wrapper .property-box{
-    margin: 25px 10px;
-    width: 30%;
-  }
-}
 
 
 @media (max-width: 930px) {
@@ -267,21 +238,31 @@
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
-    /*.properties-wrapper {
-        margin-left: 5%;
-    }*/
-    /*.property-box {
-        width: 90% !important;
-        max-width: 90% !important;
-    }*/
+    .fluid-container [class*="col-"]{
+        width: 100%;
+    }
+    .property-box .card-body{
+        height: inherit;
+    }
+    .card-topbar{
+        font-size: 2em;
+        font-weight: bold;
+    }
+    .property-box {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
     .property-image, .companies-back-image{
         height: 25vh;
+    }
+    .card-topbar{
+        line-height: 3rem !important;
     }
     .logo-image-wrapper{
         width: 10vh;
         height: 10vh;
         box-shadow: 2px 1px 2px 1px #d1d3d4;
-        top: 21vh;
+        top: 8vh;
         left: 50%;
         margin-left: -5vh;
     }
