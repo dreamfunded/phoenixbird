@@ -4,8 +4,20 @@
 <% facebook_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
 <% facebook_secure_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
 
-    <section class='background-image centered'>
-        <div class='background-opacity'>
+    <div class="fullscreen-bg">
+        <video loop muted autoplay poster="assets/tower.jpg" class="fullscreen-bg__video">
+
+            <source src="assets/background.mp4" type="video/mp4">
+            <h1 class='website-title' >Invest in Startups</h1>
+            <h3 class='website-subtitle '>Now Everyone Can Back Companies They Love.</h3>
+            <div class= "centered button-box">
+                <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'invest-button new-invest-button'} %>
+            </div>
+        </video>
+    </div>
+
+    <section class=' centered'>
+        <div class='background-top-text'>
 
             <h1 class='website-title' >Invest in Startups</h1>
             <h3 class='website-subtitle '>Now Everyone Can Back Companies They Love.</h3>
