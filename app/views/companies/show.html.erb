@@ -44,9 +44,11 @@
 
             </div>
         </div>
-        <button id="video-play-button" data-video-src='<%= @company.video_link + "?enablejsapi=1&version=3" %>'>
-            <span class='icon icon-play'></span>
-        </button>
+        <% if !@company.video_link.empty? %>
+            <button id="video-play-button" data-video-src='<%= @company.video_link + "?enablejsapi=1&version=3" %>'>
+                <span class='icon icon-play'></span>
+            </button>
+        <% end %>
         <div class='company-profile-bottom-line'>
             <div class="company-info-container">
                 <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
