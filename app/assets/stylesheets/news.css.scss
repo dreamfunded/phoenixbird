@@ -153,13 +153,13 @@ and (max-device-width : 1024px)  {
 	  width: 90%;
 	  height: 285px;
 	}
-	.news{
+	.news-col{
 	  width: 64%;
 	}
-	.news .title-container{
+	.news-col .title-container{
 		font-family: Geneva, Helvetica;
 	}
-	.news .content-container{
+	.news-col .content-container{
 		font-family: Geneva, Helvetica;
 	}
 }
@@ -173,10 +173,10 @@ and (max-device-width : 568px) {
 	.article-overlfow{
 		overflow-x: auto;
 	}
-	.news .title-container{
+	.news-col .title-container{
 		font-family: Geneva, Helvetica;
 	}
-	.news .content-container{
+	.news-col .content-container{
 		font-family: Geneva, Helvetica;
 	}
 	.article-button{
