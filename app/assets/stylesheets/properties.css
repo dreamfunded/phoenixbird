@@ -18,7 +18,7 @@
     display: inline-block;
 }
 .property-box .card-body {
-    height: 163px;
+    height: 135px;
 }
 .no-height{
     height: initial !important;
@@ -53,7 +53,7 @@
     width: 100%;
     clear: both;
     margin:  0.3em 0;
-    height: 5.5rem;
+    height: 4.5rem;
     word-break: break-word;
 }
 .property-detail-no-height{
@@ -68,8 +68,6 @@
   display: inline-block;
   word-wrap: break-word;
   overflow: hidden;
-  max-height: 3em; /* (Number of lines you want visible) * (line-height) */
-  line-height: 1.5em;
   text-align:justify;
 }
 
