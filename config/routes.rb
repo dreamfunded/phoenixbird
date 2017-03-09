@@ -276,7 +276,7 @@ Rails.application.routes.draw do
   match "/regulation-mini-ipos-way-rule-change-allows-regular-joes-invest-startups/" => redirect("news/regulation-a-mini-ipos-on-the-way-as-rule-change-allows-regular-joes-to-invest-in-startups"), via: 'get'
   get '/funding', to: 'home#index'
 
-  resources :users, only: [:update, :edit, :create, :new]
+  resources :users, only: [:show, :update, :edit, :create, :new]
 
   namespace :api, format: :json do
     resources :companies, only: [] do

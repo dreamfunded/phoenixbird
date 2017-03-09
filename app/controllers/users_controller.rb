@@ -6,6 +6,11 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def show
+		@user = User.friendly.find(params[:id])
+		render action: :profile
+	end
+
 	def profile
 	end
 

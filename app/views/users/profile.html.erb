@@ -4,7 +4,7 @@
 	</div>
 	<div class='content-container'>
 		<div class='compact-max-width-layout center-block'>
-			<%= react_component 'UserScreen', {user: UserSerializer.new(current_user).as_json(include: {investments: :company})} %>
+			<%= react_component 'UserScreen', {user: UserSerializer.new(@user).as_json(include: {investments: :company})} %>
 		</div>
 	</div>
 </div>k

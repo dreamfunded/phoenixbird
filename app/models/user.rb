@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	extend FriendlyId
+	friendly_id :name, use: :slugged
 	ACCESSIBLE_ATTRIBUTES = [
 		:first_name, :last_name, :login, {skills: []},
 		:bio, :aspirations, :achievements, :looking_for,

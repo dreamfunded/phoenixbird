@@ -10,7 +10,7 @@ function dreamfunded_portfolio() {
 }
 
 function profile() {
-	window.location = "/users/profile";
+	window.location = "/users/" + App.current_user.slug;
 }
 
 function signOut() {

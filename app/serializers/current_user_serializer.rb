@@ -1,3 +1,3 @@
 class CurrentUserSerializer < ApplicationSerializer
-  attributes :id, :name
+  attributes :id, :name, :slug
 end
