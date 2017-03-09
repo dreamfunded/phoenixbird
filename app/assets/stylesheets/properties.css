@@ -164,6 +164,9 @@
     max-width: 1000px;
     background-color: #fff;
 }
+.home .properties-wrapper{
+    padding-top: 0%;
+}
 
 .back-margin{
     margin-right: 12%;
