@@ -6,7 +6,8 @@
 
       <%= f.text_field :title,  :placeholder => "Name of Your Article", :class => "input-box"%><br>
       <div class= "description-wrap">
-        <%= f.text_area(:content, :placeholder => "Article Content", :class => "description-box") %>
+        <%#= f.text_area(:content, :placeholder => "Article Content", :class => "description-box") %>
+        <%= f.text_area :content, size: "70x15", class: 'posts-textarea ckeditor'  %>
       </div>
 
       <div class= "description-wrap">
