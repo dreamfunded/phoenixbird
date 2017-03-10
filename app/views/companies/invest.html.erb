@@ -1,51 +1,56 @@
+<% title "DreamFunded | Invest in #{@company.name}" %>
 <div class= "wrapper">
   <div class="header-container shadow">
     <div class= "header centered"><h2 id='payment-title'>Please Complete Your Investment Below</h2></div>
   </div>
 
   <div class= " payment-box">
-    <%= form_tag( '/submit_payment', method: :post) do %>
-      <%= hidden_field_tag(:company_id, @company_id) %>
+    <%= form_tag( '/submit_api_payment', method: :post) do %>
+      <%= hidden_field_tag(:company_id, @company.id) %>
+      <%= hidden_field_tag(:email, current_user.email ) %>
 
       <div class='get-funded-section-name'>Amount</div>
       <%= text_field_tag :amount, nil, placeholder: 'Investment Amount', class: 'form-field' %>
 
 
-      <%= text_field_tag :name, nil, placeholder: 'First and Last name', class: 'form-field ' %>
+      <%= text_field_tag :name, current_user.name, placeholder: 'First and Last name', class: 'form-field ' %>
       <br>
 
       <div class='get-funded-section-name'>Date of Birth</div>
       <%= date_field_tag :date_of_birth, nil, class: 'form-field form-field-half' %>
 
-      <%= text_field_tag :country, nil, placeholder: 'Country', class: 'form-field form-field-half' %>
+      <%#= text_field_tag :country, nil, placeholder: 'Country', class: 'form-field form-field-half' %>
       <br>
 
       <div class='get-funded-section-name'>Address</div>
       <%= text_field_tag :address, nil, placeholder: 'Street', class: 'form-field form-field-half' %>
       <%= text_field_tag :city, nil, placeholder: 'City', class: 'form-field form-field-half' %>
 
-      <%= text_field_tag :state, nil, placeholder: 'State', class: 'form-field form-field-half' %>
+      <%#= text_field_tag :state, nil, placeholder: 'State', class: 'form-field form-field-half' %>
+      <div class="styled-select form-field-dropdown" >
+        <%= select_tag( :state, options_for_select(all_states),  prompt: "State" ) %>
+      </div>
       <%= text_field_tag :zipcode, nil,placeholder: 'Zipcode', class: 'form-field form-field-half' %>
 
 
       <div class='get-funded-section-name form-field-half'>Phone</div><br>
-      <%= text_field_tag :phone, nil,placeholder: 'Phone Number', class: 'form-field form-field-half' %>
+      <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', class: 'form-field form-field-half' %>
       <br>
 
       <input type="checkbox" name="us_person"  required checked>
       <span class="checkbox-label">I am a US citizen or other US person</span>
+      <br><br>
 
-
-      <div class='get-funded-section-name'>Payment</div><br>
+      <div class='get-funded-section-name'>Payment</div>
 
       <div class=''>Account Type</div>
-      <div class="styled-select form-field-half" >
-        <%= select_tag( :account_type, options_for_select([['Checking'],['Savings']]) ) %>
+      <div class="styled-select" >
+        <%= select_tag( :account_type, options_for_select([['checking'],['savings']]) ) %>
       </div>
 
       <div class=''>Check Type</div>
-      <div class="styled-select form-field-half" >
-        <%= select_tag( :check_type, options_for_select([['Personal'],['Business']]) ) %>
+      <div class="styled-select" >
+        <%= select_tag( :check_type, options_for_select([['personal'],['business']]) ) %>
       </div>
       <br><br>
 

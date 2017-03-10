@@ -212,7 +212,10 @@ Rails.application.routes.draw do
   get '/team/:id', to: "members#show", as: :team
 
   get '/payment', to: "payments#index", as: :payment
+
   post '/submit_payment', to: "payments#payment"
+  post '/submit_api_payment', to: "companies#submit_payment"
+
   get '/congratulation/:id', to: "payments#congrats", as: :congratulation
 
   get '/blog', to: "posts#blog", as: :blog

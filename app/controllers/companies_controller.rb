@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist ]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :invest ]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -161,37 +161,50 @@ class CompaniesController < ApplicationController
 	def company_not_accretited
 	end
 
+	def invest
+	end
+
+
+
 	def submit_payment
-		@company = Company.find(@company_id)
-		  options = {
-		       :city => params[:city],
-		       :country => params[:country],
-		       :email => "john_wick@gmail.com",
-		       :name => params[:name],
-		       :phone => [:phone],
-		       :postal_code => params[:zipcode],
-		       :region => params[:state],
-		       :street_address_1 => params[:address],
-		       :tax_id_number => '000000000',
-		       :type => "person",
-		       :date_of_birth => params[:date_of_birth]
-		  }
-		entity = FundAmerica::Entity.create(options)
+		@company = Company.find(params[:company_id])
+		#ENTITY
+		options = {
+		   :city => params[:city],
+		   :country => 'US',
+		   :email => "barcelona@champions.com",
+		   :name => params[:name],
+		   :phone => params[:phone],
+		   :postal_code => params[:zipcode],
+		   :region => params[:state],
+		   :street_address_1 => params[:address],
+		   :tax_id_number => '000000000',
+		   :type => "person",
+		   :date_of_birth => params[:date_of_birth]
+		}
+
+		begin
+			entity = FundAmerica::Entity.create(options)
+		rescue FundAmerica::Error => e
+		    p 'ERROR'
+		    puts e.parsed_response
+		end
 		p entity
 
+		#ACH
 		ach_auth_options = {
+		  :name_on_account => params[:name],
 		  :account_number => params[:account_number],
-		  :account_type => params[:checking],
-		  :address => params[:address],
+		  :routing_number => params[:routing_number],
+		  :account_type => params[:account_type],
 		  :check_type => params[:check_type],
-		  :city => params[:city],
 		  :email => params[:email],
 		  :entity_id => entity['id'],
 		  :ip_address => request.remote_ip,
 		  :literal => "Test User",
-		  :name_on_account => params[:name],
-		  :phone => params[:name],
-		  :routing_number => params[:routing_number],
+		  :phone => params[:phone],
+		  :address => params[:address],
+		  :city => params[:city],
 		  :state => params[:state],
 		  :zip_code => params[:zipcode]
 		}
@@ -203,9 +216,26 @@ class CompaniesController < ApplicationController
 		    puts e.parsed_response
 		end
 
-		redirect_to "/companies/invest/#{@company.slug}"
+		#INVESTMENT
+		investment_options = {
+		    amount: params[:amount],
+		    equity_share_count: "30",
+		    offering_id: @company.offering_code,
+		    payment_method: "ach",
+		    entity_id: "9ex0lsCNQjSQPUtdzQ0Nrw",
+		    ach_authorization_id: "iud2svLXRROOk2-791CVaQ"
+		}
+		p investment_options
+		begin
+		    FundAmerica::Investment.create(investment_options)
+		rescue FundAmerica::Error => e
+		    p 'ERROR'
+		    puts e.parsed_response
+		end
 
+		redirect_to "/companies/invest/#{@company.slug}"
 	end
+
 
 
 private
