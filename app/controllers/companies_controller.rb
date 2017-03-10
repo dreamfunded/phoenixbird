@@ -62,11 +62,11 @@ class CompaniesController < ApplicationController
 		@campaign = Campaign.find(params[:id])
 		@company = @campaign.company
 		unless @campaign.testimonials.size >= @testimonials_limit
-		@campaign.testimonials.build
+			@campaign.testimonials.build
+		end
 		@comments = @company.comments
 		@members = @company.founders
 		@formc = @company.general_info
-    end
 
 	  # @investment_perks = @formc.build_or_get_investment_perks
 	  # @campaign_quote = @campaign.quote || @campaign.build_quote
