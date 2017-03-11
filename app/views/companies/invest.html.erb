@@ -1,18 +1,69 @@
 <% title "DreamFunded | Invest in #{@company.name}" %>
-<div class= "wrapper">
-  <div class="header-container shadow">
-    <div class= "header centered"><h2 id='payment-title'>Please Complete Your Investment Below</h2></div>
-  </div>
+<% meta_tag @company.campaign.tagline %>
+
+<% facebook_og_title ("Invest in #{@company.name} on DreamFunded.com") %>
+<% facebook_url("https://dreamfunded.com/companies/#{@company.slug}")%>
+
+<% facebook_image @company.cover.url %>
+<% facebook_secure_image @company.cover.url %>
+
+<% twitter_image @company.cover.url %>
+
+
+  <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
+
+      <div class='company-profile-bottom-line'>
+          <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
+          <section class='company-basic-info'>
+              <div>   <%= @company.name %>  </div>
+              <div class='company-slogan'>    <%= @company.campaign.tagline %>  </div>
+              <div class='company-location'><i class="fa fa-map-marker"></i> <%= @company.campaign.place %> </div>
+          </section>
+      </div>
+
+      <div class='company-info-right-panel'>
+                  <div class='company-info-cateogry'>RAISED</div>
+                  <div class='company-finance-info'>
+                      <%= number_to_currency @company.fund_america_invested_amount, precision: 0 %>
+                  </div>
+
+                  <div class='company-info-cateogry'>TARGET</div>
+                  <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+
+                  <div class='company-info-cateogry'>DAYS LEFT</div>
+                  <div class='company-finance-info'> <%= @company.left_days %></div>
+
+                  <div class='company-info-cateogry'>minimum investment</div>
+                  <div class='company-finance-info'> $<%= @company.min_investment%> </div>
+
+                  <div class="meter orange">
+                      <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                      <% if @progress == 0 %>
+                          <span class= "front" style="width: 5px"></span>
+                      <% elsif @progress > 100 %>
+                          <span style= 'width: 100%'></span>
+                      <% else %>
+                          <span style='width: <%= @progress %>%'></span>
+                      <% end %>
+                  </div>
+                  <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
+      </div>
+  </section>
+
 
   <div class= " payment-box">
-    <%= form_tag( '/submit_api_payment', method: :post) do %>
+    <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form') do %>
       <%= hidden_field_tag(:company_id, @company.id) %>
       <%= hidden_field_tag(:email, current_user.email ) %>
 
-      <div class='get-funded-section-name'>Amount</div>
-      <%= text_field_tag :amount, nil, placeholder: 'Investment Amount', class: 'form-field' %>
+      <span class='section-title invest-title'>I want to invest:</span>
+      <div class="currency_input">
+        <span>$</span>
+        <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount" %>
+      </div>
 
 
+      <div class='get-funded-section-name'>Full Name</div>
       <%= text_field_tag :name, current_user.name, placeholder: 'First and Last name', class: 'form-field ' %>
       <br>
 
@@ -43,26 +94,34 @@
 
       <div class='get-funded-section-name'>Payment</div>
 
-      <div class=''>Account Type</div>
-      <div class="styled-select" >
-        <%= select_tag( :account_type, options_for_select([['checking'],['savings']]) ) %>
+      <div class='payment-accoutt-col'>
+        <div class=''>Account Type</div>
+        <div class="styled-select form-field-dropdown" >
+          <%= select_tag( :account_type, options_for_select([['checking'],['savings']]) ) %>
+        </div>
       </div>
 
-      <div class=''>Check Type</div>
-      <div class="styled-select" >
-        <%= select_tag( :check_type, options_for_select([['personal'],['business']]) ) %>
+      <div class='payment-accoutt-col'>
+        <div class=''>Check Type</div>
+        <div class="styled-select form-field-dropdown" >
+          <%= select_tag( :check_type, options_for_select([['personal'],['business']]) ) %>
+        </div>
       </div>
+
       <br><br>
 
       <%= text_field_tag :routing_number, nil, placeholder: 'Routing Number', class: 'form-field form-field-half' %>
       <%= text_field_tag :account_number, nil,placeholder: 'Account Number', class: 'form-field form-field-half' %>
 
-      <%= submit_tag %>
+      <div class='centered'>
+        <%= submit_tag "Complete Investment", class: 'company-button payment-button' %>
+      </div>
+
     <% end %>
-  <p class='centered'>
-    <b><%= flash[:message] %></b>
-  </p>
+    <p class='centered'>
+      <b><%= flash[:message] %></b>
+    </p>
   </div>
 
   </div>
-</div>
+
