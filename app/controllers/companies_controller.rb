@@ -194,7 +194,7 @@ class CompaniesController < ApplicationController
 
 		if @entity
 			#ACH
-			@ach_auth_options = {
+			ach_auth_options = {
 			  :name_on_account => params[:name],
 			  :account_number => params[:account_number],
 			  :routing_number => params[:routing_number],
