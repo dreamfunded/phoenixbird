@@ -172,7 +172,7 @@ class CompaniesController < ApplicationController
 		options = {
 		   :city => params[:city],
 		   :country => 'US',
-		   :email => "barcelona@champions.com",
+		   :email => current_user.email,
 		   :name => params[:name],
 		   :phone => params[:phone],
 		   :postal_code => params[:zipcode],
@@ -184,56 +184,63 @@ class CompaniesController < ApplicationController
 		}
 
 		begin
-			entity = FundAmerica::Entity.create(options)
+			@entity = FundAmerica::Entity.create(options)
 		rescue FundAmerica::Error => e
 		    p 'ERROR'
 		    puts e.parsed_response
+		    @error = e.parsed_response
 		end
-		p entity
+		p @entity
 
-		#ACH
-		ach_auth_options = {
-		  :name_on_account => params[:name],
-		  :account_number => params[:account_number],
-		  :routing_number => params[:routing_number],
-		  :account_type => params[:account_type],
-		  :check_type => params[:check_type],
-		  :email => params[:email],
-		  :entity_id => entity['id'],
-		  :ip_address => request.remote_ip,
-		  :literal => "Test User",
-		  :phone => params[:phone],
-		  :address => params[:address],
-		  :city => params[:city],
-		  :state => params[:state],
-		  :zip_code => params[:zipcode]
-		}
-		p ach_auth_options
-		begin
-		    ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
-		rescue FundAmerica::Error => e
-		    p 'ERROR'
-		    puts e.parsed_response
-		end
-
-		#INVESTMENT
-		investment_options = {
-		    amount: params[:amount],
-		    equity_share_count: "30",
-		    offering_id: @company.offering_code,
-		    payment_method: "ach",
-		    entity_id: "9ex0lsCNQjSQPUtdzQ0Nrw",
-		    ach_authorization_id: "iud2svLXRROOk2-791CVaQ"
-		}
-		p investment_options
-		begin
-		    FundAmerica::Investment.create(investment_options)
-		rescue FundAmerica::Error => e
-		    p 'ERROR'
-		    puts e.parsed_response
+		if @entity
+			#ACH
+			@ach_auth_options = {
+			  :name_on_account => params[:name],
+			  :account_number => params[:account_number],
+			  :routing_number => params[:routing_number],
+			  :account_type => params[:account_type],
+			  :check_type => params[:check_type],
+			  :email => params[:email],
+			  :entity_id => @entity['id'],
+			  :ip_address => request.remote_ip,
+			  :literal => "Test User",
+			  :phone => params[:phone],
+			  :address => params[:address],
+			  :city => params[:city],
+			  :state => 'California',
+			  :zip_code => params[:zipcode]
+			}
+			p ach_auth_options
+			begin
+			    @ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
+			rescue FundAmerica::Error => e
+			    p 'ERROR'
+			    puts e.parsed_response
+			    @error = e.parsed_response
+			end
 		end
 
-		redirect_to "/companies/invest/#{@company.slug}"
+		if @entity && @ach_authorization
+			#INVESTMENT
+			investment_options = {
+			    amount: params[:amount],
+			    equity_share_count: "30",
+			    offering_id: @company.offering_code,
+			    payment_method: "ach",
+			    entity_id: @entity["id"],
+			    ach_authorization_id: @ach_authorization["id"]
+			}
+			p investment_options
+			begin
+			    FundAmerica::Investment.create(investment_options)
+			rescue FundAmerica::Error => e
+			    p 'ERROR'
+			    puts e.parsed_response
+			    @error = e.parsed_response
+			end
+		end
+
+		render :invest
 	end
 
 

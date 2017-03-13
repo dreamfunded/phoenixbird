@@ -13,7 +13,7 @@
 .payment-box {
 	margin: 0 auto;
 	font-family: "Lato", sans-serif;
-	width: 500px;
+	width: 700px;
 	border: none;
 	background: #ffffff;
 	padding: 10px 40px 40px 40px;
@@ -182,8 +182,9 @@
 }
 
 .form-field-dropdown{
-  height: 48px;
-  width: 238px;
+  height: 50px;
+  width: 336px;
+  box-sizing: border-box;
   border: 1px solid #ccc;
   vertical-align: top;
   margin-top: 0;

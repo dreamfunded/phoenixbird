@@ -52,6 +52,17 @@
 
 
   <div class= " payment-box">
+    <p class='centered'>
+      <% if @error %>
+        <% @error.keys.sort.each do |key| %>
+          <% @error[key].each do |val| %>
+            <b> <%=  val.flatten.join(' ') %> </b>
+            <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    </p>
+
     <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form') do %>
       <%= hidden_field_tag(:company_id, @company.id) %>
       <%= hidden_field_tag(:email, current_user.email ) %>
@@ -59,7 +70,7 @@
       <span class='section-title invest-title'>I want to invest:</span>
       <div class="currency_input">
         <span>$</span>
-        <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount" %>
+        <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount", required: true %>
       </div>
 
 
@@ -88,8 +99,8 @@
       <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', class: 'form-field form-field-half' %>
       <br>
 
-      <input type="checkbox" name="us_person"  required checked>
-      <span class="checkbox-label">I am a US citizen or other US person</span>
+      <input type="checkbox" name="us_person" id="us_citizen" required checked>
+      <label class="checkbox-label" for="us_citizen">I am a US citizen or other US person</label>
       <br><br>
 
       <div class='get-funded-section-name'>Payment</div>
@@ -118,9 +129,6 @@
       </div>
 
     <% end %>
-    <p class='centered'>
-      <b><%= flash[:message] %></b>
-    </p>
   </div>
 
   </div>
