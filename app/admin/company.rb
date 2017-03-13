@@ -4,7 +4,7 @@ ActiveAdmin.register Company do
 
     private
     def authenticate
-      if current_user.authority != authority[:Admin]
+      if current_user.authority < authority[:Editor]
         redirect_to root_path
       end
     end
