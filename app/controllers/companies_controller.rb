@@ -168,6 +168,8 @@ class CompaniesController < ApplicationController
 
 	def submit_payment
 		@company = Company.find(params[:company_id])
+		@error = {}
+		date_of_birth = params[:birth_date] + '/' + params[:birth_month] + '/' + params[:birth_year]
 		#ENTITY
 		options = {
 		   :city => params[:city],
@@ -178,9 +180,9 @@ class CompaniesController < ApplicationController
 		   :postal_code => params[:zipcode],
 		   :region => params[:state],
 		   :street_address_1 => params[:address],
-		   :tax_id_number => '000000000',
+		   :tax_id_number => params[:ssn],
 		   :type => "person",
-		   :date_of_birth => params[:date_of_birth]
+		   :date_of_birth => date_of_birth
 		}
 
 		begin
@@ -190,6 +192,7 @@ class CompaniesController < ApplicationController
 		    puts e.parsed_response
 		    @error = e.parsed_response
 		end
+		p "ENTITY"
 		p @entity
 
 		if @entity
@@ -210,13 +213,14 @@ class CompaniesController < ApplicationController
 			  :state => 'California',
 			  :zip_code => params[:zipcode]
 			}
-			p ach_auth_options
 			begin
 			    @ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
+				p "ACH"
+				p @ach_authorization
 			rescue FundAmerica::Error => e
 			    p 'ERROR'
 			    puts e.parsed_response
-			    @error = e.parsed_response
+			    @error = @error.merge(e.parsed_response)
 			end
 		end
 
@@ -230,14 +234,15 @@ class CompaniesController < ApplicationController
 			    entity_id: @entity["id"],
 			    ach_authorization_id: @ach_authorization["id"]
 			}
-			p investment_options
 			begin
-			    FundAmerica::Investment.create(investment_options)
+			    @investment = FundAmerica::Investment.create(investment_options)
 			rescue FundAmerica::Error => e
 			    p 'ERROR'
 			    puts e.parsed_response
-			    @error = e.parsed_response
+			    @error = @error.merge(e.parsed_response)
 			end
+			p "INVESTMENT"
+			p @investment
 		end
 
 		render :invest

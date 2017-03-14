@@ -30,8 +30,6 @@
                   <div class='company-info-cateogry'>TARGET</div>
                   <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
 
-                  <div class='company-info-cateogry'>DAYS LEFT</div>
-                  <div class='company-finance-info'> <%= @company.left_days %></div>
 
                   <div class='company-info-cateogry'>minimum investment</div>
                   <div class='company-finance-info'> $<%= @company.min_investment%> </div>
@@ -79,10 +77,17 @@
       <br>
 
       <div class='get-funded-section-name'>Date of Birth</div>
-      <%= date_field_tag :date_of_birth, nil, class: 'form-field form-field-half' %>
+      <%#= date_field_tag :date_of_birth, nil, class: 'form-field form-field-half' %>
 
+      <div class="styled-select form-field-dropdown birth-date-width" >
+        <%= select_tag( :birth_month, options_for_select(all_month),  prompt: "Month" ) %>
+      </div>
+      <div class="styled-select form-field-dropdown birth-date-width" >
+        <%= select_tag( :birth_date, options_for_select(all_dates),  prompt: "Date" ) %>
+      </div>
+      <%= text_field_tag :birth_year, nil, placeholder: 'Year', class: 'form-field form-field-half birth-date-width' %>
       <%#= text_field_tag :country, nil, placeholder: 'Country', class: 'form-field form-field-half' %>
-      <br>
+      <br><br>
 
       <div class='get-funded-section-name'>Address</div>
       <%= text_field_tag :address, nil, placeholder: 'Street', class: 'form-field form-field-half' %>
@@ -93,11 +98,20 @@
         <%= select_tag( :state, options_for_select(all_states),  prompt: "State" ) %>
       </div>
       <%= text_field_tag :zipcode, nil,placeholder: 'Zipcode', class: 'form-field form-field-half' %>
-
+      <br>
 
       <div class='get-funded-section-name form-field-half'>Phone</div><br>
       <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', class: 'form-field form-field-half' %>
-      <br>
+      <br><br>
+
+      <div class='get-funded-section-name'>Government-issued identification number (SSN, SIN, or tax ID)</div>
+      <%= text_field_tag :ssn, nil, placeholder: 'SSN', class: 'form-field form-field-half' %>
+      <div class='disclaimer-box'>
+        <div class='disclaimer-container'>
+          <i class="fa fa-times close-disclaimer"  ></i>
+          <span class='disclaimer-text'> We understand your concern regarding the security of your SSN. This is used for identity verification, investor screening, and tax forms associated with this investment. We ask it due to anti-money laundering regulations and fraud checks.</span>
+        </div>
+      </div>
 
       <input type="checkbox" name="us_person" id="us_citizen" required checked>
       <label class="checkbox-label" for="us_citizen">I am a US citizen or other US person</label>
@@ -123,6 +137,7 @@
 
       <%= text_field_tag :routing_number, nil, placeholder: 'Routing Number', class: 'form-field form-field-half' %>
       <%= text_field_tag :account_number, nil,placeholder: 'Account Number', class: 'form-field form-field-half' %>
+      <br>
 
       <div class='centered'>
         <%= submit_tag "Complete Investment", class: 'company-button payment-button' %>
