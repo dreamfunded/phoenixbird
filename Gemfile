@@ -53,7 +53,7 @@ gem 'wkhtmltopdf-heroku'
 gem 'pdf-forms'
 gem 'delayed_job_active_record'
 gem 'csv-importer'
-gem 'fund_america'
+gem 'fund_america', :git => "git://github.com/yuri-zubov/fund_america"
 gem "oink"
 gem 'htmltoword'
 

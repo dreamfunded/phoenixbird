@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207203858) do
+ActiveRecord::Schema.define(version: 20170314201205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,20 @@ ActiveRecord::Schema.define(version: 20170207203858) do
 
   add_index "campaign_events", ["campaign_id"], name: "index_campaign_events_on_campaign_id", using: :btree
 
+  create_table "campaign_quotes", force: true do |t|
+    t.string   "said_by"
+    t.string   "position"
+    t.string   "main"
+    t.integer  "campaign_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "campaigns", force: true do |t|
     t.integer "company_id"
     t.integer "funding_goal"
@@ -108,6 +122,7 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.integer "totat_income"
     t.integer "total_taxable_income"
     t.integer "total_taxes_paid"
+    t.text    "business_plan"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -184,6 +199,10 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.string   "slug"
     t.text     "fund_america_code",      default: ""
     t.integer  "min_investment",         default: 100
+    t.string   "status_of_company"
+    t.datetime "timestamp"
+    t.boolean  "reg_a"
+    t.string   "category"
   end
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", using: :btree
@@ -332,6 +351,13 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.decimal  "sustain_amount"
   end
 
+  create_table "followers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "founders", force: true do |t|
     t.string   "name"
     t.string   "position"
@@ -459,6 +485,18 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.string   "company"
     t.string   "name"
   end
+
+  create_table "investment_for_fundamericas", force: true do |t|
+    t.integer  "user_id"
+    t.string   "investor_id"
+    t.string   "subscription_agreement_id"
+    t.string   "investment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "issuer_id"
+  end
+
+  add_index "investment_for_fundamericas", ["user_id"], name: "index_investment_for_fundamericas_on_user_id", using: :btree
 
   create_table "investment_perks", force: true do |t|
     t.text     "content"
@@ -606,6 +644,68 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.integer "position"
   end
 
+  create_table "plaid_accounts", force: true do |t|
+    t.string   "access_token"
+    t.string   "token"
+    t.string   "plaid_type"
+    t.string   "name"
+    t.string   "bank_name"
+    t.integer  "number"
+    t.string   "plaid_id"
+    t.string   "owner_type"
+    t.string   "owner_id"
+    t.datetime "last_sync"
+    t.decimal  "current_balance"
+    t.decimal  "available_balance"
+    t.string   "error"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "plaid_accounts", ["user_id"], name: "index_plaid_accounts_on_user_id", using: :btree
+
+  create_table "plaid_rails_accounts", force: true do |t|
+    t.string   "access_token"
+    t.string   "token"
+    t.string   "plaid_type"
+    t.string   "name"
+    t.string   "bank_name"
+    t.integer  "number"
+    t.string   "plaid_id"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.datetime "last_sync"
+    t.decimal  "current_balance",         precision: 10, scale: 2
+    t.decimal  "available_balance",       precision: 10, scale: 2
+    t.string   "error"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "transactions_start_date"
+  end
+
+  add_index "plaid_rails_accounts", ["access_token"], name: "index_plaid_rails_accounts_on_access_token", using: :btree
+  add_index "plaid_rails_accounts", ["owner_id"], name: "index_plaid_rails_accounts_on_owner_id", using: :btree
+  add_index "plaid_rails_accounts", ["plaid_id"], name: "index_plaid_rails_accounts_on_plaid_id", using: :btree
+
+  create_table "plaid_rails_webhooks", force: true do |t|
+    t.integer  "code"
+    t.string   "message"
+    t.string   "access_token"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plaid_webhooks", force: true do |t|
+    t.integer  "code"
+    t.string   "message"
+    t.string   "access_token"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", force: true do |t|
     t.text     "content"
     t.text     "title"
@@ -744,6 +844,19 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.datetime "updated_at"
   end
 
+  create_table "testimonials", force: true do |t|
+    t.string   "name"
+    t.string   "position"
+    t.text     "message"
+    t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -752,22 +865,22 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.integer  "authority"
     t.string   "salt"
     t.string   "password_digest"
-    t.boolean  "confirmed",              default: false
+    t.boolean  "confirmed",                   default: false
     t.string   "slug"
-    t.integer  "invested_amount",        default: 0
+    t.integer  "invested_amount",             default: 0
     t.string   "phone"
     t.string   "uid"
     t.string   "provider"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
-    t.integer  "credit",                 default: 0
-    t.integer  "invite_credit",          default: 0
-    t.string   "encrypted_password",     default: "",    null: false
+    t.integer  "credit",                      default: 0
+    t.integer  "invite_credit",               default: 0
+    t.string   "encrypted_password",          default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",               default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -780,7 +893,15 @@ ActiveRecord::Schema.define(version: 20170207203858) do
     t.datetime "image_updated_at"
     t.string   "title"
     t.text     "bio"
-    t.integer  "position",               default: 0
+    t.integer  "position",                    default: 0
+    t.string   "type"
+    t.string   "user_type"
+    t.text     "users_type"
+    t.text     "bank_info"
+    t.text     "selected_bank_account"
+    t.string   "investor_id_for_fundamerica"
+    t.string   "entity_id"
+    t.string   "ach_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
