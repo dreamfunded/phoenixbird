@@ -216,7 +216,7 @@ class CompaniesController < ApplicationController
 			investment_options = get_investment_options(params, @company, @entity, @ach_authorization)
 			begin
 			    @investment = FundAmerica::Investment.create(investment_options)
-			    ContactMailer.investment_made( current_user)
+			    ContactMailer.investment_made( current_user).deliver
 			rescue FundAmerica::Error => e
 			    p 'ERROR'
 			    puts e.parsed_response
