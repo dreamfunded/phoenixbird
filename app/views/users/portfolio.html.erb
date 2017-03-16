@@ -48,7 +48,12 @@
                               </div>
                             </td>
                             <td><span><%= date_format investment.created_at %></span></td>
-                            <td><span><%= investment.status%></span></td>
+                            <td>
+                            	<span><%= investment.status%></span><br>
+                            	<% if investment.status == 'not_received' %>
+                            		<span class='password-six-chars'>It may take 1-3 days to receive your investment.</span>
+                            	<% end %>
+                            </td>
                             <td><span><%= number_to_currency investment.fund_america_invested_amount %></span></td>
                           </tr>
                         <% end %>
