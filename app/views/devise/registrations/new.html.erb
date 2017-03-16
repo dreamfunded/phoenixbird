@@ -39,18 +39,18 @@
            <div class = "check_box hide-on-mobile">
              <div class="checbox-block">
               <input type="checkbox" name="net_worth" id="box1" required>
-              <span class="checkbox-label"> I have read the important notice and consent to the Site’s use of <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %>.</span>
+              <label class="checkbox-label" for='box1'> I have read the important notice and consent to the Site’s use of <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %>.</label>
             </div><br>
 
              <div>
                 <input type="checkbox" name="income" id="box3" required>
-                <span class="checkbox-label"> I acknowledge that I have reviewed and understand the <%= link_to 'Educational Materials', asset_path("investor-guide.pdf"), target: '_blank' %> and understand the risks involved in the offerings on the Site.</span>
+                <label for='box3' class="checkbox-label"> I acknowledge that I have reviewed and understand the <%= link_to 'Educational Materials', asset_path("investor-guide.pdf"), target: '_blank' %> and understand the risks involved in the offerings on the Site.</label>
               </div><br>
 
              <div>
               <input type="checkbox" name="investor" id="box4" required>
-              <span class="checkbox-label"> I have read and signed the
-                <%= link_to 'Compensation Disclosure', asset_path("compensation.pdf"), target: '_blank' %>.</span>
+              <label for='box4' class="checkbox-label"> I have read and signed the
+                <%= link_to 'Compensation Disclosure', asset_path("compensation.pdf"), target: '_blank' %>.</label>
               </div>
           </div><br>
 
