@@ -61,7 +61,7 @@
       <% end %>
     </p>
 
-    <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form') do %>
+    <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form', id: 'pay-form') do %>
       <%= hidden_field_tag(:id, @company.id) %>
       <%= hidden_field_tag(:email, current_user.email ) %>
 
@@ -176,6 +176,18 @@
         }else{
             $(".payment-section").show();
         }
+
+
+        // FORM VALIDATION
+        var form = document.getElementById('pay-form'); // form has to have ID: <form id="formID">
+        form.noValidate = true;
+        form.addEventListener('submit', function(event) { // listen for form submitting
+                if (!event.target.checkValidity()) {
+                    event.preventDefault(); // dismiss the default functionality
+                    alert('Please, fill the form'); // error message
+                }
+            }, false);
+
     })
 </script>
 
