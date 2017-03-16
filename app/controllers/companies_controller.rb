@@ -228,7 +228,11 @@ class CompaniesController < ApplicationController
 			p @investment
 		end
 
-		render :invest
+		if @investment
+			redirect_to portfolio_path
+		else
+			render :invest
+		end
 	end
 
 

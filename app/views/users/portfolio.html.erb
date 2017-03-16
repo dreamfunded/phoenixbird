@@ -1,57 +1,67 @@
-<html>
-	<head>
-		<% title "DreamFunded | Portfolio" %>
-	</head>
+<%#= link_to image_tag( investment.company.image.url, :class => "image"), {controller: 'companies', :action => 'company_profile', :id => investment.company.id} %>
+<%#= number_to_currency investment.fund_america_invested_amount %>
+<% title "DreamFunded | Portfolio" %>
 
-	<body>
-		<div class= "wrapper">
-			<div class="header">
-				<h1 class="centered">Portfolio</h1>
-			</div>
-			<div class= "word-content"><div class= "text-content">
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <symbol viewBox="0 0 41.999 41.999" id="play-icon">
+      <path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z M7.5,39.095V2.904l26.239,18.096L7.5,39.095z"></path>
+    </symbol>
+  </defs>
+</svg>
+<div class="page-wrapp">
+  <div class="content-without-footer">
 
-				<div class= "companies-container margin-bottom-50">
-					<% @investments.each do |investment| %>
-						<div class= "company-container">
+    <div class="cnt-w-sidebar">
+      <div class="container">
+        <div class="row">
 
 
+          <div class="col-sm-9 portfolio-column">
 
-							<div class= "company-image"><div class= "image-wrap">
-								<%= link_to image_tag( investment.company.image.url, :class => "image"), {controller: 'companies', :action => 'company_profile', :id => investment.company.id} %>
-							</div></div>
-							<div class= "">
-								<br>
-								<div class= "right-column-portfolio">
-									<div>
-										<p class= "twenty no-margin center"><span class= "darkblue twenty">Invested </span>
-											<%= number_to_currency investment.fund_america_invested_amount %>
-										</p>
-									</div>
-								</div>
-								<br>
-							</div>
-								<div class= "button-wrap">
-								</div>
-								<div class= "button-wrap"><%= button_to "Learn More", {controller: 'companies', :action => 'company_profile', :id => investment.company.id }, {:class => 'company-button twenty'} %>
-								</div>
-						</div>
-					<% end %>
-				</div>
+                <div class="dashboard-invs">
+                  <div class="dash-invs__ttl">
+                    <h2>My Investments</h2>
+                  </div>
+                  <div class="dashboard-tbl-scroll">
+                    <div class="dashboard-tbl-inn">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th> <span>Company</span></th>
 
-				<div class= "centered twenty margin-bottom-50">
-					<% if current_user.authority > 1 %>
-				  	<%= link_to "Go Back to Offerings", {controller: 'companies' , :action => 'index'}, method: 'get', :id => 'go_back_button' %>
-				  <% else %>
-				  	<%= link_to "Go Back to Offerings", {controller: 'companies' , :action => 'nonaccredited_index'}, method: 'get', :id => 'go_back_button' %>
-				  <% end %>
-				</div>
+                            <th><span>Investment Date</span></th>
+                            <th><span>Investment Status</span></th>
+                            <th><span>Invested Amout</span></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <% @investments.each do |investment| %>
 
-		  </div></div>
-		</div>
-	</body>
-	<style>
-	.foot-text.darkblue{
-	 	display: none;
-	}
-	</style>
-</html>
+                          <tr>
+                            <td>
+                              <div class="dashboard-tbl-prop">
+                                <a href="#" class="dashboard-tbl-prop__img ofit-block">
+                                  <%= image_tag(investment.company.image.url) %>
+                                </a>
+                                <a href="#"><%= investment.company.name %></a>
+                              </div>
+                            </td>
+                            <td><span><%= date_format investment.created_at %></span></td>
+                            <td><span><%= investment.status%></span></td>
+                            <td><span><%= number_to_currency investment.fund_america_invested_amount %></span></td>
+                          </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

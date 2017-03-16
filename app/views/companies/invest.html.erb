@@ -65,10 +65,12 @@
       <%= hidden_field_tag(:id, @company.id) %>
       <%= hidden_field_tag(:email, current_user.email ) %>
 
-      <span class='section-title invest-title'>I want to invest:</span>
-      <div class="currency_input">
-        <span>$</span>
-        <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount", required: true %>
+      <div class='invest-line'>
+        <div class='section-title invest-title'>I want to invest:</div>
+        <div class="currency_input">
+          <span>$</span>
+          <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount", required: true %>
+        </div>
       </div>
 
 
