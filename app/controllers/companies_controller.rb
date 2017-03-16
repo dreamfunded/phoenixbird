@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
 
 
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist, :make_profile, :remove_company, :join_waitlist_send_email_with_invest ]
+	before_action :set_company, only: [:company_profile, :delete_document, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist, :make_profile, :remove_company, :join_waitlist_send_email_with_invest ]
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -27,6 +27,12 @@ class CompaniesController < ApplicationController
 		@campaign_quote = @campaign.quote
 		@formc = @company.general_info
 		#@investment_perks = @formc.investment_perks
+	end
+
+	def delete_document
+		doc_name = params[:document] + "_file_name"
+		@company.financial_detail.update(doc_name => nil)
+		redirect_to @company
 	end
 
 	def edit_profile

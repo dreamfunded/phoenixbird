@@ -72,6 +72,8 @@ Rails.application.routes.draw do
   get '/edit_campaign/:id', to: 'companies#edit_campaign', as: 'edit_campaign'
   patch '/update_campaign', to: 'companies#update_campaign'
 
+  post 'delete_document/:id/:document', to: 'companies#delete_document'
+
   get '/manage_team', to: 'campaigns#team', as: "manage_team"
 
   get 'formc/print/:id', to: "formc#print", as: 'formc'
