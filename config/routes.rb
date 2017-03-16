@@ -213,6 +213,7 @@ Rails.application.routes.draw do
 
   get '/payment', to: "payments#index", as: :payment
 
+  get 'invest/:id', to: 'companies#invest', as: :invest
   post '/submit_payment', to: "payments#payment"
   post '/submit_api_payment', to: "companies#submit_payment"
 
