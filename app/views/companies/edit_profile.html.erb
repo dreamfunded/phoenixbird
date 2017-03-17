@@ -70,6 +70,10 @@
 								<p class= "twenty no-margin center"><span class= "darkblue twenty">Hidden: </span> </p>
 								<%= f.select( :hidden, [["Yes", true],["No", false] ])  %>
 							</div>
+							<div>
+								<p class= "twenty no-margin center"><span class= "darkblue twenty">Reg A+: </span> </p>
+								<%= f.select( :reg_a, [["Yes", true],["No", false] ], include_blank: true)  %>
+							</div>
 
 							<div>
 								<p class= "twenty no-margin center"><%= f.number_field :invested_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Invested </span> </p>

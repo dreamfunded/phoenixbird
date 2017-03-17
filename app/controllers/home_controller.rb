@@ -2,9 +2,11 @@ class HomeController < ApplicationController
 	invisible_captcha only: [:liquidate_form, :contact_us_send_email, :get_funded_send]
 
 	def index
+		@companies = Company.where.not(invested_amount: nil).order("invested_amount DESC").first(3)
 	end
 
 	def staging
+		@companies = Company.where.not(invested_amount: nil).order("invested_amount DESC").first(3)
 	end
 
 	def about
@@ -63,6 +65,11 @@ class HomeController < ApplicationController
 
 	def diversitynetwork
 		@logos = Logo.all.order(:position)
+	end
+
+	def registration_from_homepage
+		@resource = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email])
+		render 'devise/registrations/new'
 	end
 
 private

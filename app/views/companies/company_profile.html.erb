@@ -84,7 +84,7 @@
                 <!-- A D M I N   E D I T I N G -->
                 <div class='company-admin-editing'>
                     <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                        <%= link_to 'Edit as Admin', {:controller => 'companies', :action => 'edit_profile', :id => @id }, {:class => 'left'} %>
+                        <%= link_to 'Edit as Admin', {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, {:class => 'left'} %>
                     <% end %>
                     <br>
                     <% if current_user.company == @company %>

@@ -24,14 +24,19 @@
       width: 740px;
   }
 }
-@media (min-width: 992px){
+@media (min-width: 1020px){
+  .container {
+      width: 850px;
+  }
+}
+@media (min-width: 1100px) {
   .container {
       width: 960px;
   }
 }
 @media (min-width: 1220px) {
   .container {
-      width: 1200px;
+      width: 1000px;
   }
 }
 
@@ -106,8 +111,8 @@
   padding-left: 30px;
 }
 .footer-disclaimer{
-  background-color: #4b4b4b;
-  color: #fff;
+  background-color: #262626;
+  color: #b8b8b8;
   padding: 25px;
   font-size: 12px;
   text-align: justify;
@@ -558,13 +563,7 @@ and (max-device-width : 568px) {
   .desktop_logos{
     display: none;
   }
-	#mobile-menu{
-		float: right !important;
-		visibility: visible !important;
-	}
-	#mobile-menu li{
-		visibility: visible;
-	}
+
 	#left{
 		visibility: visible;
 		position: absolute;
@@ -631,6 +630,7 @@ and (max-device-width : 568px) {
 		height: 80px !important;
 		font-size: 33px !important;
     font-weight: 100;
+    letter-spacing: -2px;
 	}
 	.invest-button{
 		font-size: 30px !important;
@@ -646,6 +646,10 @@ and (max-device-width : 568px) {
 	.section2-box{
 		height: 490px;
 	}
+  .homepage-view-more-companies-link{
+    font-size: 2em !important;
+  }
+
   #toast-container{
     display: none;
   }
@@ -681,7 +685,7 @@ and (max-device-width : 568px) {
     width: 90% !important;
     height: 285px!important;
   }
-  .news{
+  .news-col{
     width: 64% !important ;
   }
   .team{
@@ -778,7 +782,7 @@ and (max-device-width : 568px) {
 }
 
  /*i P A D*/
-@media only screen
+/*@media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)  {
   .main-menu li{
@@ -852,7 +856,7 @@ and (max-device-width : 1024px)  {
   .news{
     width: 64% !important ;
   }
-}
+}*/
 
 .transparent {
 	color: transparent;
@@ -992,7 +996,6 @@ and (max-device-width : 1024px)  {
 .aca-logo{
   width: 150px;
   vertical-align: top;
-  margin-left: 5%;
 }
 .perkins-logo{
   width: 190px;

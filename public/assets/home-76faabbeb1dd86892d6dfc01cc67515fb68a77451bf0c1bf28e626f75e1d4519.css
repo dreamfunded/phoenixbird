@@ -13,9 +13,85 @@
 }
 
 .container {
-	max-width: 100% !important;
-	position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
+@media (min-width: 768px) {
+  .container {
+      width: 740px;
+  }
+}
+@media (min-width: 992px){
+  .container {
+      width: 960px;
+  }
+}
+@media (min-width: 1220px) {
+  .container {
+      width: 1000px;
+  }
+}
+
+
+.mainSeen__slider1__wrap{
+  position: relative;
+}
+.slick-slide {
+   height:200px;
+}
+
+.slick-slide img {
+   height:200px;
+}
+
+.main-invs__sl_btn.__left{
+  right: 100%;
+  margin-right: 26px;
+}
+.main-invs__sl_btn{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 73%;
+  /*opacity: 0.6;*/
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  margin-top: -31px;
+}
+.main-invs__sl_btn.__left .ico {
+    left: 11px;
+}
+.main-invs__sl_btn.__right .ico {
+    left: 17px;
+}
+.main-invs__sl_btn.__right {
+    left: 100%;
+    margin-left: 26px;
+}
+.ico-ar-right {
+  background-image: url(/assets/chevron-left.png);
+  width: 100%;
+  height: 50px;
+}
+.main-invs__sl_btn .ico {
+    position: absolute;
+    top: 5px;
+}
+.ico-ar-left {
+  background-image: url(/assets/chevron-left.png);
+  width: 100%;
+  height: 50px;
+}
+.ico {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .cover-image{
 	width: 100%;
 }
@@ -30,8 +106,8 @@
   padding-left: 30px;
 }
 .footer-disclaimer{
-  background-color: #4b4b4b;
-  color: #fff;
+  background-color: #262626;
+  color: #b8b8b8;
   padding: 25px;
   font-size: 12px;
   text-align: justify;
@@ -482,13 +558,7 @@ and (max-device-width : 568px) {
   .desktop_logos{
     display: none;
   }
-	#mobile-menu{
-		float: right !important;
-		visibility: visible !important;
-	}
-	#mobile-menu li{
-		visibility: visible;
-	}
+
 	#left{
 		visibility: visible;
 		position: absolute;
@@ -916,7 +986,6 @@ and (max-device-width : 1024px)  {
 .aca-logo{
   width: 150px;
   vertical-align: top;
-  margin-left: 5%;
 }
 .perkins-logo{
   width: 190px;

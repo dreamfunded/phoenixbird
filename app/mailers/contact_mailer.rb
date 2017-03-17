@@ -24,6 +24,25 @@ class ContactMailer < ActionMailer::Base
     mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
   end
 
+
+  def waitlist(name, email, phone,amount, message)
+    @name = name
+    @email= email
+    @phone = phone
+    @amount = amount
+    @message = message
+    mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
+  end
+
+  def join_waitlist_with_invest(company, user, amount)
+    @company = company
+    @name = user.name
+    @email = user.email
+    @phone = user.phone
+    @amount = amount
+    mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
+  end
+
   def account_created(user)
     @name = user.last_name
     @email= user.email
@@ -33,7 +52,7 @@ class ContactMailer < ActionMailer::Base
   def personal_hello(user)
     @name = user.first_name
     @email= user.email
-    mail(to: @email, subject: 'Following up', from: 'Manny Fernandez <manny@dreamfunded.com>')
+    mail(to: @email, subject: 'Following up', from: 'Manny Fernandez <info@dreamfunded.com>')
   end
 
   def reset_password_request(user)
@@ -79,6 +98,7 @@ class ContactMailer < ActionMailer::Base
 
   # Invites
   def invite_to_sign_up(email, name)
+    @email = email
     mail(to: email, subject: "#{name.try(:capitalize)}, please accept my invite to DreamFunded")
   end
 

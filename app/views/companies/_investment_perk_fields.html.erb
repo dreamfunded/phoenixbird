@@ -1,0 +1,16 @@
+<div class='nested-fields'>
+  <div class='investment_perk'>
+    <div class='form-group'>
+      <strong><label>Those investing at or over:</label></strong>
+      <div>
+        <span class='currency_input width-50'>
+          <span>$</span>
+          <%= f.text_field :amount, class: 'form-field' %>
+        </span>
+      </div>
+    </div>
+    <div class='form-group'>
+      <%= f.text_area :content, class: 'form-field' %>
+    </div>
+  </div>
+</div>

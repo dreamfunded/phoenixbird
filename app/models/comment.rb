@@ -6,12 +6,12 @@ class Comment < ActiveRecord::Base
 
     def comment_owner
         if comment_belongs_to_company_owner?
-            self.company.name + "Team"
+            self.company.name + " Team"
         end
     end
 
     def comment_belongs_to_company_owner?
-        self.user.company == self.user.company
+        self.user.company == self.company
     end
 
 end

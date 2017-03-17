@@ -2,6 +2,7 @@
 <html>
 <head>
 		<title><%= yield(:title) %></title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	  <%= stylesheet_link_tag    'application', media: 'all' %>
 	  <%= stylesheet_link_tag		"menu", media: 'all' %>
 	  <%= javascript_include_tag 'application'  %>
@@ -10,8 +11,9 @@
 	  <%= favicon_link_tag 'favicon.ico' %>
 	  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	  <meta name="google-site-verification" content="wDfklCmOnWRWqI7fQWn19zbJ-Gh-SNxWG-KmuinEq5c" />
-	  <meta name="description" content="DreamFunded is a Silicon Valley equity crowdfunding platform. ">
-	  <meta name="keywords" content="angel investors, equity crowdfunding, startup investing, Silicon Valley investing, San Francisco angel investing">
+	  <meta name="description" content="Invest as low as $60 in startups and small businesses you love.  DreamFunded is the most notable
+	   Regulation Crowdfunding portal with the largest investor base in America investing in equity or debt.">
+	  <meta name="keywords" content="Silicon Valley, business ideas, small business, startups, business idea, start ups, startup funding, start up companies, business funding, equity crowdfunding, crowdfunding, jobs act, angel investors, accredited investors, venture capital, seed capital, startups, startup.">
 
 	  <!-- facebook share metatags -->
 	  <meta property="og:title" content="<%= yield(:og_title) %>" />
@@ -72,6 +74,23 @@
 		</script>
 		<!-- facebook end -->
 
+		<!-- Facebook Pixel Code -->
+		<script>
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+		n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+		document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1719294921695747'); // Insert your pixel ID here.
+		fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=1719294921695747&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- DO NOT MODIFY -->
+		<!-- End Facebook Pixel Code -->
+
+
 		<!-- CKEDITOR PRELOAD -->
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -112,7 +131,7 @@
 		    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
 		</script>
 </head>
-<body>
+<body class='<%= "#{controller_name} #{action_name}" %>'>
 
 		<%= render 'layouts/header' %>
 		<div class= "wrapper">

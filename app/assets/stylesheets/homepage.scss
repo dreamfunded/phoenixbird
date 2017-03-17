@@ -6,6 +6,7 @@
      background-position-y: 71%;
      width: 100%;
      color: #fff;
+     position: relative;
 }
 .background-opacity{
     background-color: rgba(0,0,0,0.4);
@@ -43,6 +44,19 @@
     margin-bottom: 100px;
 }
 
+.homepage-view-more-companies-link{
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Gotham',sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.homepage-companies-section{
+    margin-bottom: 5%;
+    background-color: #ececec !important;
+}
+
 .section-title{
     font-family: 'Gotham',sans-serif;
     font-size: 1.5em;
@@ -51,8 +65,7 @@
     -moz-osx-font-smoothing: grayscale;
     padding-bottom: 15px;
     font-weight: bold;
-    margin-top: 3%;
-    margin-bottom: 1%;
+    margin: 3% 1% 1% 1%;
 }
 .about-us-icons{
     cursor: pointer;
@@ -84,15 +97,31 @@
     padding: 10px;
     text-align: center;
 }
+
 .mainSeen__slider1 .item img {
     height: 75px;
     width: auto;
     position: relative;
 }
 
-.about-investors-tab{
+.about-startups-tab{
+    display: block;
+}
+
+.about-startups-tab{
     display: none;
 }
+
+.task-rabbit-was-funded{
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    color: #fff;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
 
 
 @media only screen

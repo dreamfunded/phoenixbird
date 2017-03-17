@@ -157,3 +157,9 @@
   width: 100%;
   height: 235px;
 }
+
+#quote-section {
+  .media-object, .media-left input {
+    max-width: 160px;
+  }
+}

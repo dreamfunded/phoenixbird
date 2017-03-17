@@ -69,8 +69,10 @@ Rails.application.routes.draw do
   post '/financial_info_submit', to: 'campaigns#financial_info_submit'
   get '/campaign_review/:id', to: 'campaigns#campaign_review', as: 'campaign_review'
 
-  get '/edit_campaign/:id', to: 'campaigns#edit_campaign', as: 'edit_campaign'
-  patch '/update_campaign', to: 'campaigns#update_campaign'
+  get '/edit_campaign/:id', to: 'companies#edit_campaign', as: 'edit_campaign'
+  patch '/update_campaign', to: 'companies#update_campaign'
+
+  post 'delete_document/:id/:document', to: 'companies#delete_document'
 
   get '/manage_team', to: 'campaigns#team', as: "manage_team"
 
@@ -79,6 +81,9 @@ Rails.application.routes.draw do
   get 'formc/edit/:id', to: "formc#edit", as: :edit_formc
 
   get "company_not_accretited", to: "companies#company_not_accretited", as: "company_not_accretited"
+
+  get "explore", to: "companies#explore", as: "explore" #Testing the waters for Reg A+
+  get "explore/:id", to: "companies#reg_a_company", as: "reg_a_company" #Testing the waters for Reg A+
 
 
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
@@ -120,6 +125,8 @@ Rails.application.routes.draw do
   get "check-status", to: "sellers#check_status", as: :check_status
   #post '/account/1613988/envelopes', to: "sellers#send", as: :send_docusign
 
+  post '/registration_from_homepage', to: 'home#registration_from_homepage'
+
   get '/manny-fernandez', to: 'members#manny', as: :manny
   get '/rexford-r-hibbs', to: 'members#rexford', as: :rexford
 
@@ -155,8 +162,12 @@ Rails.application.routes.draw do
   get '/contact', to: 'home#contact_us'
   post '/contact_us', to: 'home#contact_us_send_email'
 
-  post '/join_waitlist', to: 'companies#join_waitlist_send_email'
-  get '/join_waitlist_thank_you', to: 'companies#join_waitlist_thank_you'
+
+  # WAITLIST
+  post '/join_waitlist', to: 'waitlist#join_waitlist_send_email'
+  post '/join_waitlist_reg_a', to: 'waitlist#join_waitlist_reg_a'
+  get '/join_waitlist_thank_you', to: 'waitlist#join_waitlist_thank_you'
+  post '/join_waitlist_send_email_with_invest', to: 'waitlist#join_waitlist_send_email_with_invest'
 
 
   get '/liquidate', to: 'home#liquidate'
@@ -204,8 +215,9 @@ Rails.application.routes.draw do
   post '/send_advisors_csv_invites', to: 'invites#send_advisors_csv_invites'
 
   post '/invite_from_startup', to: "invites#invite_from_startup", as: :invite_from_startup
-
   post '/invite_to_group', to: "invites#invite_to_group", as: :invite_to_group
+
+  get '/unsubscribe/:email', to: 'guests#unsubscribe'
 
   #resources :teams
 
@@ -270,8 +282,16 @@ Rails.application.routes.draw do
   match "/regulation-mini-ipos-way-rule-change-allows-regular-joes-invest-startups/" => redirect("news/regulation-a-mini-ipos-on-the-way-as-rule-change-allows-regular-joes-to-invest-in-startups"), via: 'get'
   get '/funding', to: 'home#index'
 
-
   resources :users, only: [:update, :edit, :create, :new]
+
+  namespace :api, format: :json do
+    resources :companies, only: [] do
+      member do
+        post :follow
+        delete :unfollow, path: "/follow"
+      end
+    end
+  end
   get ':controller(/:action(/:id))'
   post ':controller(/:action(/:id))'
 
