@@ -48,7 +48,7 @@ $.fn.videoPopup = function() {
       if (_this.$overlay) {
         _this.$overlay.show();
       } else {
-        let content_container = $('<div>', {id: 'video-content-container'});
+        var content_container = $('<div>', {id: 'video-content-container'});
         content_container.css({
           width: '100%',
           position: 'relative',
@@ -106,7 +106,7 @@ $.fn.videoPopup = function() {
       this.player.pauseVideo();
     }
   }
-  let _this = this;
+  var _this = this;
   var video = new Video(_this.data('video-src'));
   var overlay = new Overlay(video);
 
