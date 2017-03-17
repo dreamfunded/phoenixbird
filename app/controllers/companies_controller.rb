@@ -99,10 +99,14 @@ class CompaniesController < ApplicationController
 	end
 
 	def invest
-		begin
-			@entity = FundAmerica::Entity.details( current_user.entity_id ) if current_user.entity_id
-			@ach_authorization = FundAmerica::AchAuthorization.details( current_user.ach_id ) if current_user.ach_id
-		rescue
+		if current_user.entity_id
+			begin
+				@entity = FundAmerica::Entity.details( current_user.entity_id )
+				@ach_authorization = FundAmerica::AchAuthorization.details( current_user.ach_id )
+			rescue
+				@entity, @ach_authorization = {}, {}
+			end
+		else
 			@entity, @ach_authorization = {}, {}
 		end
 	end
