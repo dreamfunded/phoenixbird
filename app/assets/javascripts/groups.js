@@ -2,7 +2,6 @@
 
       var activeWindow;
           var id = '#invite-dialog'
-          console.log(id);
           activeWindow = $('.window' + id)
 
 

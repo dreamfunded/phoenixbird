@@ -6,6 +6,14 @@ GIT
       cocaine
       orm_adapter (~> 0.5.0)
 
+GIT
+  remote: git://github.com/yuri-zubov/fund_america
+  revision: 38fb89cf3f51e54ea86dc84f2e3f5f932af9bb5d
+  specs:
+    fund_america (0.0.7)
+      httparty (>= 0.13.3)
+      json (>= 1.8.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -140,9 +148,6 @@ GEM
     formtastic_i18n (0.6.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    fund_america (0.0.1)
-      httparty
-      json
     gibbon (1.1.5)
       httparty
       multi_json (>= 1.9.0)
@@ -363,7 +368,7 @@ DEPENDENCIES
   docusign_rest
   font-awesome-rails
   friendly_id
-  fund_america
+  fund_america!
   gibbon
   google_contacts_api
   hellosign-ruby-sdk

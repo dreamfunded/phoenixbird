@@ -150,6 +150,8 @@
 .disclaimer-container span{
   font-size: 14px;
   line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .edit_textarea{
   width: 100%;

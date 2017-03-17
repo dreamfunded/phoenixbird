@@ -4,7 +4,8 @@ class CompaniesController < ApplicationController
 
 
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile]
-	before_action :set_company, only: [:company_profile, :delete_document, :edit_profile, :update, :show, :join_waitlist, :reg_a_company, :waitlist, :make_profile, :remove_company, :join_waitlist_send_email_with_invest ]
+	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :invest, :submit_payment, :reg_a_company, :waitlist, :join_waitlist_send_email_with_invest, :delete_document ]
+
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
 	def index
@@ -97,7 +98,131 @@ class CompaniesController < ApplicationController
 	  redirect_to :controller => 'companies', :action => 'show', :id => @company.slug
 	end
 
+	def invest
+		@entity, @ach_authorization = {}, {}
+		@entity = FundAmerica::Entity.details( current_user.entity_id ) if current_user.entity_id
+		@ach_authorization = FundAmerica::AchAuthorization.details( current_user.ach_id ) if current_user.ach_id
+	end
+
+
+
+	def submit_payment
+		options = entity_options(params)
+
+		if current_user.entity_id
+			begin
+				@entity = FundAmerica::Entity.update(current_user.entity_id, options)
+			rescue FundAmerica::Error => e
+			    p 'ERROR'
+			    @entity, @ach_authorization = {}, {}
+			    puts e.parsed_response
+			    @error = e.parsed_response
+			end
+		else
+			begin
+				@entity = FundAmerica::Entity.create(options)
+			rescue FundAmerica::Error => e
+			    p 'ERROR'
+			    puts e.parsed_response
+			    @error = e.parsed_response
+			end
+		end
+
+		p @entity
+
+		if @entity
+			current_user.update(entity_id: @entity["id"])
+			if params[:ach] == 'exist'
+				@ach_authorization = FundAmerica::AchAuthorization.details( current_user.ach_id )
+			else
+				ach_auth_options = get_ach_options(params, @entity)
+				begin
+				    @ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
+					p "ACH"
+					p @ach_authorization
+				rescue FundAmerica::Error => e
+				    p 'ERROR'
+				    puts e.parsed_response
+				    @error = @error.merge(e.parsed_response)
+				end
+			end
+		end
+
+		if @entity && @ach_authorization
+			current_user.update(ach_id: @ach_authorization["id"] )
+			investment_options = get_investment_options(params, @company, @entity, @ach_authorization)
+			begin
+			    @investment = FundAmerica::Investment.create(investment_options)
+			    Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
+			    ContactMailer.investment_made( current_user).deliver
+			    ContactMailer.new_investment_made(current_user, params[:id]).deliver
+			rescue FundAmerica::Error => e
+			    p 'ERROR'
+			    puts e.parsed_response
+			    @error = @error.merge(e.parsed_response)
+			end
+			p "INVESTMENT"
+			p @investment
+		end
+
+		if @investment
+			redirect_to portfolio_path
+		else
+			render :invest
+		end
+	end
+
+
+
 private
+	def entity_options(params)
+		date_of_birth = params[:birth_date] + '/' + params[:birth_month] + '/' + params[:birth_year]
+		options = {
+		   :city => params[:city],
+		   :country => 'US',
+		   :email => current_user.email,
+		   :name => params[:name],
+		   :phone => params[:phone],
+		   :postal_code => params[:zipcode],
+		   :region => params[:state],
+		   :street_address_1 => params[:address],
+		   :tax_id_number => params[:ssn],
+		   :type => "person",
+		   :date_of_birth => date_of_birth
+		}
+	end
+
+	def get_ach_options(params, entity)
+		get_ach_options = {
+		  :name_on_account => params[:name],
+		  :account_number => params[:account_number],
+		  :routing_number => params[:routing_number],
+		  :account_type => params[:account_type],
+		  :check_type => params[:check_type],
+		  :email => params[:email],
+		  :entity_id => entity['id'],
+		  :ip_address => request.remote_ip,
+		  :literal => "Test User",
+		  :phone => params[:phone],
+		  :address => params[:address],
+		  :city => params[:city],
+		  :state => 'California',
+		  :zip_code => params[:zipcode]
+		}
+	end
+
+	def get_investment_options(params, company, entity, ach)
+		investment_options = {
+		    amount: params[:amount],
+		    equity_share_count: params[:amount],
+		    offering_id: company.offering_code,
+		    payment_method: "ach",
+		    entity_id: entity["id"],
+		    ach_authorization_id: ach["id"]
+		}
+	end
+
+
 	def set_company
 	  @company = Company.friendly.find(params[:id])
 	end

@@ -1,0 +1,192 @@
+<% title "DreamFunded | Invest in #{@company.name}" %>
+<% meta_tag @company.campaign.tagline %>
+
+<% facebook_og_title ("Invest in #{@company.name} on DreamFunded.com") %>
+<% facebook_url("https://dreamfunded.com/companies/#{@company.slug}")%>
+
+<% facebook_image @company.cover.url %>
+<% facebook_secure_image @company.cover.url %>
+
+<% twitter_image @company.cover.url %>
+
+
+  <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
+
+      <div class='company-profile-bottom-line'>
+          <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
+          <section class='company-basic-info'>
+              <div>   <%= @company.name %>  </div>
+              <div class='company-slogan'>    <%= @company.campaign.tagline %>  </div>
+              <div class='company-location'><i class="fa fa-map-marker"></i> <%= @company.campaign.place %> </div>
+          </section>
+      </div>
+
+      <div class='company-info-right-panel'>
+                  <div class='company-info-cateogry'>RAISED</div>
+                  <div class='company-finance-info'>
+                      <%= number_to_currency @company.fund_america_invested_amount, precision: 0 %>
+                  </div>
+
+                  <div class='company-info-cateogry'>TARGET</div>
+                  <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+
+
+                  <div class='company-info-cateogry'>minimum investment</div>
+                  <div class='company-finance-info'> $<%= @company.min_investment%> </div>
+
+                  <div class="meter orange">
+                      <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                      <% if @progress == 0 %>
+                          <span class= "front" style="width: 5px"></span>
+                      <% elsif @progress > 100 %>
+                          <span style= 'width: 100%'></span>
+                      <% else %>
+                          <span style='width: <%= @progress %>%'></span>
+                      <% end %>
+                  </div>
+                  <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
+      </div>
+  </section>
+
+
+  <div class= " payment-box">
+    <p class='centered'>
+      <% if @error %>
+        <% @error.keys.sort.each do |key| %>
+          <% @error[key].each do |val| %>
+            <b> <%=  val.flatten.join(' ') %> </b>
+            <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    </p>
+
+    <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form', id: 'pay-form') do %>
+      <%= hidden_field_tag(:id, @company.id) %>
+      <%= hidden_field_tag(:email, current_user.email ) %>
+
+      <div class='invest-line'>
+        <div class='section-title invest-title'>I want to invest:</div>
+        <div class="currency_input">
+          <span>$</span>
+          <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount", required: true %>
+        </div>
+      </div>
+
+
+      <div class='get-funded-section-name'>Full Name</div>
+      <%= text_field_tag :name, current_user.name, placeholder: 'First and Last name', class: 'form-field ', required: true %>
+      <br>
+
+      <div class='get-funded-section-name'>Date of Birth</div>
+      <%#= date_field_tag :date_of_birth, nil, class: 'form-field form-field-half' %>
+
+      <div class="styled-select form-field-dropdown birth-date-width" >
+        <%= select_tag( :birth_month, options_for_select(all_month),  prompt: "Month" ) %>
+      </div>
+      <div class="styled-select form-field-dropdown birth-date-width" >
+        <%= select_tag( :birth_date, options_for_select(all_dates),  prompt: "Date" ) %>
+      </div>
+      <%= text_field_tag :birth_year, nil, placeholder: 'Year', class: 'form-field form-field-half birth-date-width', required: true %>
+      <%#= text_field_tag :country, nil, placeholder: 'Country', class: 'form-field form-field-half' %>
+      <br><br>
+
+        <div class='get-funded-section-name'>Address</div>
+        <%= text_field_tag :address, @entity["street_address_1"], placeholder: 'Street', class: 'form-field form-field-half', required: true %>
+        <%= text_field_tag :city, @entity["city"], placeholder: 'City', class: 'form-field form-field-half', required: true %>
+
+        <%#= text_field_tag :state, nil, placeholder: 'State', class: 'form-field form-field-half' %>
+        <div class="styled-select form-field-dropdown" >
+            <%= select_tag( :state, options_for_select(all_states, @entity["region"]),  prompt: "State" ) %>
+        </div>
+        <%= text_field_tag :zipcode, @entity["postal_code"], placeholder: 'Zipcode', class: 'form-field form-field-half', required: true %>
+        <br>
+
+        <div class='get-funded-section-name form-field-half'>Phone</div><br>
+            <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', class: 'form-field form-field-half', required: true %>
+        <br><br>
+
+        <div class='get-funded-section-name'>Government-issued identification number (SSN, SIN, or tax ID)</div>
+        <%= text_field_tag :ssn, nil, placeholder: 'SSN', class: 'form-field form-field-half', required: true %>
+        <div class='disclaimer-box'>
+            <div class='disclaimer-container'>
+              <span class='disclaimer-text'> We understand your concern regarding the security of your SSN. This is used for identity verification, investor screening, and tax forms associated with this investment. We ask it due to anti-money laundering regulations and fraud checks.</span>
+            </div>
+        </div>
+
+        <input type="checkbox" name="us_person" id="us_citizen" required checked>
+        <label class="checkbox-label" for="us_citizen">I am a US citizen or other US person</label>
+        <br><br>
+
+        <% if @ach_authorization["name"] %>
+          <div class='get-funded-section-name ach-exist'>Payment Method</div>
+          <div class="styled-select form-field-dropdown" >
+            <select id='payment-method' name='ach'>
+                <option value='exist' ><%= @ach_authorization["name"] %></option>
+                <option value='ach'>ACH</option>
+            </select>
+          </div>
+        <% end%>
+
+        <section class='payment-section'>
+            <div class='get-funded-section-name'>Payment</div>
+            <div class='payment-accoutt-col'>
+                <div class=''>Account Type</div>
+                <div class="styled-select form-field-dropdown" >
+                    <%= select_tag( :account_type, options_for_select([['checking'],['savings']]) ) %>
+                </div>
+            </div>
+
+            <div class='payment-accoutt-col'>
+                <div class=''>Check Type</div>
+                <div class="styled-select form-field-dropdown" >
+                    <%= select_tag( :check_type, options_for_select([['personal'],['business']]) ) %>
+                </div>
+            </div>
+
+          <br><br>
+
+          <%= text_field_tag :routing_number, nil, placeholder: 'Routing Number', class: 'form-field form-field-half' %>
+          <%= text_field_tag :account_number, nil,placeholder: 'Account Number', class: 'form-field form-field-half' %>
+          <br>
+        </section>
+
+      <div class='centered'>
+        <%= submit_tag "Complete Investment", class: 'company-button payment-button' %>
+      </div>
+
+    <% end %>
+
+  </div>
+  </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#payment-method').on('change',function(){
+            if(this.value == 'ach'){
+                $(".payment-section").show();
+            }
+            else{
+                $(".payment-section").hide();
+            }
+        })
+        if($(".ach-exist").length == 1){
+            $(".payment-section").hide();
+        }else{
+            $(".payment-section").show();
+        }
+
+
+        // FORM VALIDATION
+        var form = document.getElementById('pay-form'); // form has to have ID: <form id="formID">
+        form.noValidate = true;
+        form.addEventListener('submit', function(event) { // listen for form submitting
+                if (!event.target.checkValidity()) {
+                    event.preventDefault(); // dismiss the default functionality
+                    alert('Please, fill the form'); // error message
+                }
+            }, false);
+
+    })
+</script>
+

@@ -25,4 +25,22 @@ class Investment < ActiveRecord::Base
     end
   end
 
+  def status
+    investment_code = self.fund_america_id
+    begin
+     p "PULLING FundAmerica API"
+      investment =  FundAmerica::Investment.details(investment_code)
+      return  investment["status"]
+    rescue JSON::ParserError => e
+      puts e
+      puts 'ERROR'
+      return 'TBA'
+    rescue FundAmerica::Error => e
+      # Print response from FundAmerica API in case of unsuccessful response
+      puts e.parsed_response
+    else
+      'N/A'
+    end
+  end
+
 end

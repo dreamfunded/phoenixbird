@@ -157,4 +157,8 @@ class Company < ActiveRecord::Base
         invested_amount
     end
   end
+
+  def offering_code
+    self.fund_america_code.split(':').second
+  end
 end
