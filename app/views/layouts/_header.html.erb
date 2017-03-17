@@ -51,8 +51,8 @@
 
             <li id="last-menu-button"></li>
             <% if !current_user %>
-              <li><button onclick= "signIn()" id="sign-in-button">Sign Up</button></li>
-              <li><button onclick= "login()">Login</button></li>
+              <li><button onclick= 'window.location = "/users/sign_up";' id="sign-in-button">Sign Up</button></li>
+              <li><button onclick='window.location = "/users/sign_in";'>Login</button></li>
             <% else %>
               <li><button onclick= "profile()" >Welcome <%= current_user.first_name.capitalize%> <span class="arrow">&#9660;</span></button>
                 <ul class= "sub-menu">
