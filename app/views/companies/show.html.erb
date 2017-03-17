@@ -120,10 +120,10 @@
                 <% if user_signed_in? %>
                     <%if @company.accredited %>
                         <% if @company.status == 2 %>
-                            <!-- <button type="button" data-fa-invest-now="<%#= @company.fund_america_code%>" class=" company-button profile-button mail-to-button" >
-                                Invest in <%#= @company.name %>
-                            </button> -->
-                            <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'company-button profile-button mail-to-button' %>
+                            <button type="button" data-fa-invest-now="<%= @company.fund_america_code%>" class=" company-button profile-button mail-to-button" >
+                                Invest in <%= @company.name %>
+                            </button>
+                            <%#= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'company-button profile-button mail-to-button' %>
                         <%else%>
                             <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
                                 <span class="currency_input">
