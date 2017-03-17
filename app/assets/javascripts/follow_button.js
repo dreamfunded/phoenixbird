@@ -1,29 +1,29 @@
 $.fn.followBtn = function() {
   function FollowButton(following) {
-    let _this = this;
-    _this.following = following || false;
+    let that = this;
+    that.following = following || false;
 
-    _this.click = function() {
-      _this.following = !_this.following;
+    that.click = function() {
+      that.following = !that.following;
       $.ajax({
-        url: '/api/companies/'+ _this.company_id +'/follow',
-        method: {true: "POST", false: "DELETE"}[_this.following],
+        url: '/api/companies/'+ that.company_id +'/follow',
+        method: {true: "POST", false: "DELETE"}[that.following],
         dataType: "json",
         error: function() {
-          _this.following = !_this.following;
-          _toggleClass(_this.$el);
+          that.following = !that.following;
+          _toggleClass(that.$el);
         }
       })
     }
 
     function _toggleClass($el) {
-      let className = {true: 'fa fa-heart', false: 'fa fa-heart-o'}[_this.following];
+      let className = {true: 'fa fa-heart', false: 'fa fa-heart-o'}[that.following];
       $el.attr('class', className);
     }
 
-    _this.render = function() {
-      _this.$el = $('<div>');
-      _toggleClass(_this.$el)
+    that.render = function() {
+      that.$el = $('<div>');
+      _toggleClass(that.$el)
       return this;
     }
   }
