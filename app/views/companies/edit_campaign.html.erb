@@ -1,3 +1,4 @@
+<% title "DreamFunded | #{@company.name}" %>
 <%= form_for(@company, :url => url_for( :action => 'update_campaign') ) do |f| %>
 
   <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url %>)" >
