@@ -93,7 +93,7 @@ class CampaignsController < ApplicationController
     @campaign.complete
     ContactMailer.campaign_submitted(current_user).deliver
     ContactMailer.check_campaign(@campaign).deliver
-    redirect_to "/companies/company_profile/#{@campaign.company.id}"
+    redirect_to company_path(@campaign.company)
   end
 
   def edit_campaign
