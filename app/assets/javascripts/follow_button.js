@@ -1,6 +1,6 @@
 $.fn.followBtn = function() {
   function FollowButton(following) {
-    let that = this;
+    var that = this;
     that.following = following || false;
 
     that.click = function() {
@@ -17,7 +17,7 @@ $.fn.followBtn = function() {
     }
 
     function _toggleClass($el) {
-      let className = {true: 'fa fa-heart', false: 'fa fa-heart-o'}[that.following];
+      var className = {true: 'fa fa-heart', false: 'fa fa-heart-o'}[that.following];
       $el.attr('class', className);
     }
 
