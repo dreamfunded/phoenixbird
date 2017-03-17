@@ -27,16 +27,13 @@
 
         <div class='company-info-right-panel'>
             <div class='company-info-cateogry no-margin-top'>RAISED</div>
-            <div class='company-finance-info'><%= number_to_currency @company.invested, precision: 0 %></div>
+            <div class='company-finance-info company-detail'><%= number_to_currency @company.invested, precision: 0 %></div>
 
             <div class='company-info-cateogry'>TARGET</div>
-            <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
-
-            <div class='company-info-cateogry'>DAYS LEFT</div>
-            <div class='company-finance-info'> <%= @company.left_days %></div>
+            <div class='company-finance-info company-detail'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
 
             <div class='company-info-cateogry'>minimum investment</div>
-            <div class='company-finance-info'> $100 </div>
+            <div class='company-finance-info company-detail'> <%= number_to_currency @company.min_investment, precision: 0 %> </div>
 
             <div class='company-info-cateogry'>Background Cover:</div>
             <div class='company-finance-info'> <%= f.file_field "cover" %> </div>
@@ -52,7 +49,8 @@
                   <% end %>
               </div>
               <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
-            <%= f.submit "Update", :class => 'company-button profile-button mail-to-button' %>
+
+            <%= f.submit "Update", :class => 'company-button profile-button mail-to-button company-update-btn edit-company-button' %>
 
           </div>
   </section>
