@@ -12,7 +12,7 @@
 
   <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
 
-      <div class='company-profile-bottom-line'>
+      <div class='company-profile-bottom-line paymennt-page-logo'>
           <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
           <section class='company-basic-info'>
               <div>   <%= @company.name %>  </div>
@@ -22,29 +22,36 @@
       </div>
 
       <div class='company-info-right-panel'>
-                  <div class='company-info-cateogry'>RAISED</div>
-                  <div class='company-finance-info'>
-                      <%= number_to_currency @company.fund_america_invested_amount, precision: 0 %>
-                  </div>
+            <div class='company-detail'>
 
-                  <div class='company-info-cateogry'>TARGET</div>
-                  <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+                <div class='company-finance-info'>
+                    <%= number_to_currency @company.fund_america_invested_amount, precision: 0 %>
+                </div>
+                <div class='company-info-category'>RAISED</div>
+            </div>
 
+            <div class='company-detail'>
+                <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+                <div class='company-info-category'>TARGET</div>
+            </div>
 
-                  <div class='company-info-cateogry'>minimum investment</div>
-                  <div class='company-finance-info'> $<%= @company.min_investment%> </div>
+            <div class='company-detail'>
+                <div class='company-finance-info'> $<%= @company.min_investment%> </div>
+                <div class='company-info-category'>MINIMUM INVESTMENT</div>
+            </div>
 
-                  <div class="meter orange">
-                      <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                      <% if @progress == 0 %>
-                          <span class= "front" style="width: 5px"></span>
-                      <% elsif @progress > 100 %>
-                          <span style= 'width: 100%'></span>
-                      <% else %>
-                          <span style='width: <%= @progress %>%'></span>
-                      <% end %>
-                  </div>
-                  <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
+            <div class="meter orange">
+                <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                <% if @progress == 0 %>
+                    <span class= "front" style="width: 5px"></span>
+                <% elsif @progress > 100 %>
+                    <span style= 'width: 100%'></span>
+                <% else %>
+                    <span style='width: <%= @progress %>%'></span>
+                <% end %>
+            </div>
+
+            <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
       </div>
   </section>
 
