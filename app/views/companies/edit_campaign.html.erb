@@ -160,13 +160,19 @@
           </div>
 
           <div class='finance_tab_content tab-content'>
-            <%= f.fields_for :financial_detail do |fin_details| %>
+            <%#= f.fields_for :financial_detail do |fin_details| %>
               <h2 class= " category-name indent">Offering Terms</h2>
-              <%= fin_details.text_area :offering_terms, rows: 6, :class => 'ckeditor ' %>
+              <div class=''>
+                <p class= "fifteen"><%= @company.financial_detail.offering_terms.html_safe if @company.financial_detail.offering_terms %></p>
+              </div>
+              <%#= fin_details.text_area :offering_terms, rows: 6, :class => 'ckeditor ' %>
 
                <h2 class= " category-name indent">Financial Risks</h2>
-              <%= fin_details.text_area :fin_risks, rows: 6, :class => 'ckeditor ' %>
-            <% end %>
+               <div class=''>
+                   <p class= "fifteen"><%= @company.financial_detail.fin_risks.html_safe if @company.financial_detail.fin_risks %></p>
+               </div>
+              <%#= fin_details.text_area :fin_risks, rows: 6, :class => 'ckeditor ' %>
+            <%# end %>
           </div>
 
           <div class='documents_tab_content tab-content'>
