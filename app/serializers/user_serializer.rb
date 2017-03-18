@@ -4,6 +4,8 @@ class UserSerializer < ApplicationSerializer
              :skills, :email, :phone, :verifications
 
   has_many :investments
+  has_many :work_experiences
+  has_many :educations
 
   def image_url
     @object.image.url
@@ -11,5 +13,9 @@ class UserSerializer < ApplicationSerializer
 
   def verifications
     UserVerification.new(@object).to_json
+  end
+
+  def work_experiences
+    @object.work_experiences.order('id DESC')
   end
 end

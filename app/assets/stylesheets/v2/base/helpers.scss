@@ -55,6 +55,10 @@
   .font-smaller {
     font-size: 12px;
   }
+
+  .no-border {
+    border: none;
+  }
 }
 
 .clearfix:after {
@@ -69,4 +73,27 @@
 
 .margin-top-none {
   margin-top: 0;
+}
+
+.vertical-align-middle {
+  vertical-align: middle
+}
+
+.vertical-align-middle::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.with-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.margin-button-10 {
+  margin-bottom: 10px;
+}
+
+.m-width-100p {
+  min-width: 100px
 }

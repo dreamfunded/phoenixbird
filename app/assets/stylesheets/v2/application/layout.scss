@@ -12,40 +12,15 @@ $margin-bottom: 0.625rem;
     box-sizing: inherit;
   }
 
-  .form-group {
-    margin: 0;
-    margin-bottom: $margin-bottom;
-    text-align: left;
-
-    .currency_input, .form-field {
-      padding: $padding;
-      margin: 0;
-      width: 100%;
-    }
-
-    .currency_input {
-      padding-right: 0;
-    }
-
-    .currency_input {
-      .form-field {
-        display: inline-block;
-        width: auto;
-      }
-    }
-
-    textarea.form-field {
-      min-height: 6.25rem;
-    }
-
-    input[type='text'].form-field {
-      height: auto;
-    }
-  }
-
   .content-container {
     margin: 0 auto;
     padding-top: 30px;
+  }
+
+  .form-group.no-margin {
+    .form-field {
+      margin-bottom: 0;
+    }
   }
 
   .form-group {
@@ -85,5 +60,10 @@ $margin-bottom: 0.625rem;
     input[type='text'].form-field {
       height: auto;
     }
+  }
+
+  .btn.btn-small {
+    padding: 5px;
+    font-size: 12px;
   }
 }

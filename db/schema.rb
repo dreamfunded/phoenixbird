@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303075135) do
+ActiveRecord::Schema.define(version: 20170316071218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,12 @@ ActiveRecord::Schema.define(version: 20170303075135) do
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
 
+  create_table "community_companies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "companies", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -257,6 +263,18 @@ ActiveRecord::Schema.define(version: 20170303075135) do
     t.string  "envelope_id"
     t.integer "user_id"
     t.integer "company_id"
+  end
+
+  create_table "educations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.string   "degree_type"
+    t.string   "major"
+    t.text     "achievements"
+    t.integer  "graduated_year"
+    t.integer  "graduated_month"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -777,6 +795,12 @@ ActiveRecord::Schema.define(version: 20170303075135) do
     t.integer  "general_info_id"
   end
 
+  create_table "schools", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sections", force: true do |t|
     t.integer  "company_id"
     t.text     "overview"
@@ -920,5 +944,17 @@ ActiveRecord::Schema.define(version: 20170303075135) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
+
+  create_table "work_experiences", force: true do |t|
+    t.integer  "community_company_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.date     "date_start"
+    t.date     "date_end"
+    t.boolean  "present"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
 
 end

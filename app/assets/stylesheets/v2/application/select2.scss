@@ -1,0 +1,15 @@
+.select2-container {
+  .select2-selection--single,
+  .select2-selection__rendered,
+  .select2-selection__arrow {
+    min-height: 3rem;
+  }
+
+  &.select2-container--default {
+    .select2-selection--single {
+      .select2-selection__rendered {
+        line-height: 3rem;
+      }
+    }
+  }
+}

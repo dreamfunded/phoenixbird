@@ -14,7 +14,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 	belongs_to :company
-	 has_and_belongs_to_many :groups
+	has_and_belongs_to_many :groups
 
 	has_many :identities
 	has_many :investments
@@ -28,6 +28,8 @@ class User < ApplicationRecord
 	has_many :followers, inverse_of: :user
 	has_many :followings, through: :followers, source: :company, inverse_of: :user_followers
 	has_many :identities
+	has_many :work_experiences, inverse_of: :user, dependent: :destroy
+	has_many :educations, inverse_of: :user, dependent: :destroy
 
 	has_one :investor
 	#Getter
@@ -40,8 +42,7 @@ class User < ApplicationRecord
 
 
 	has_attached_file :image,
-	  :styles =>{
-	    },
+	  :styles => { :thumb => "200x200#" },
 	  :storage => :s3,
 	  :bucket => 'dreamfunded',
 	  :path => "users/:filename",
@@ -58,6 +59,8 @@ class User < ApplicationRecord
 
 	serialize :websites
 	serialize :skills
+
+	accepts_nested_attributes_for :work_experiences, reject_if: :all_blank, allow_destroy: true
 
 	def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

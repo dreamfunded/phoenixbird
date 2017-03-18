@@ -1,4 +1,5 @@
 @import 'typography';
+@import 'colors';
 
 .v2 {
   color: rgb(66, 66, 66);
@@ -19,9 +20,15 @@
     text-align: center;
   }
 
+  .form-horizontal {
+    label.vmiddle {
+      line-height: 50px;
+    }
+  }
+
   .form-group {
     label {
-      font-size: $small-font;
+      font-size: $font-small;
       font-weight: 100;
       color: #10a1d6;
     }
@@ -55,6 +62,23 @@
         font-weight: bold;
         color: #000;
       }
+    }
+  }
+
+  .btn {
+    padding: 15px 20px;
+    border: 1px rgba(74,74,74, 0.15) solid;
+    font-size: $font-smaller;
+    border-radius: 1px;
+
+    &.btn-default {
+      background-color: white;
+      color: rgb(66, 66, 66);
+    }
+
+    &.btn-primary {
+      background-color: $darkblue;
+      color: white;
     }
   }
 }

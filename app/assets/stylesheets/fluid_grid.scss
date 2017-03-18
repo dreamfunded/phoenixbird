@@ -39,6 +39,14 @@
     display: block;
   }
 
+  .row .no-margin {
+    margin-bottom: 0;
+
+    [class*='col-'] {
+      margin-bottom: 0;
+    }
+  }
+
   .row:after {
     content: " ";
     display: table;

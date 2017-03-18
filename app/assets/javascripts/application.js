@@ -33,3 +33,4 @@
 //= require_tree .
 
 window.App = window.App || {}
+App.concerns = App.concerns || {}

@@ -6,22 +6,46 @@
 
 .users.profile,
 .users.show {
+
+  .image-container {
+    padding: 10px;
+    background-color: $lightgray;
+    border: 1px $darkgray solid;
+    display: inline-table;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+
+    a {
+      display: block;
+      text-align: center;
+    }
+
+    .fa {
+      line-height: 80px;
+      font-size: 2.5rem;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+
+    .media-object {
+      width: 80px;
+      height: 80px;
+      background-color: white;
+    }
+  }
+
   .user-investment {
     margin-bottom: 1rem;
 
     img {
       width: 70px;
       height: 70px;
-      vertical-align: middle;
     }
 
     .image-container {
       padding: 20px;
-      background-color: $lightgray;
-      border: 1px $darkgray solid;
-      display: inline-table;
-      border-radius: 2px;
-      margin-bottom: 1rem;
     }
 
     h4 {

@@ -34,7 +34,7 @@ class FormGroup extends React.Component {
 class SubmitButton extends React.Component {
   render() {
     return (
-      <input type='submit' {...this.props} />
+      <input type='submit' className='btn btn-default' {...this.props} />
       )
   }
 }
@@ -43,6 +43,14 @@ class TextareaField extends React.Component {
   render() {
     return (
       <textarea className='form-field' {...this.props}></textarea>
+      )
+  }
+}
+
+class HiddenField extends React.Component {
+  render() {
+    return (
+      <input type='hidden' {...this.props} />
       )
   }
 }
@@ -63,13 +71,48 @@ class SelectTag extends React.Component {
 
   render() {
     let {className, ...props} = this.props;
-    className = ['js-select2-tags', className].join(' ');
     return (
       <select
         ref={(el) => this.el = el}
         defaultValue={this.props.values}
-        className={className} {...props}>
+        {...props}>
         {$.map(this.props.values, this.renderOptions)}
+      </select>
+      )
+  }
+}
+
+class SelectField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 0
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  componentDidMount() {
+    let $el = $(this.el)
+    $el.select2({width: '100%'})
+      .on('change', this.handleChange);
+  }
+
+  handleChange(e) {
+    this.setState({selected: e.target.value})
+  }
+
+  renderOptions(item, index) {
+    return <option key={item}>{item}</option>
+  }
+
+  render() {
+    let {options, prompt, ...props} = this.props;
+    options = [prompt, ...options];
+    return (
+      <select
+        ref={(el) => this.el = el}
+        value={this.state.selected}
+        {...props}>
+        {$.map(options, this.renderOptions)}
       </select>
       )
   }
@@ -77,4 +120,8 @@ class SelectTag extends React.Component {
 
 SelectTag.defaultProps = {
   values: []
+}
+
+SelectField.defaultProps = {
+  prompt: "---"
 }

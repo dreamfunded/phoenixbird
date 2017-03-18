@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  school_name: MyString
+  degree_type: MyString
+  major: MyString
+  achievements: MyText
+
+two:
+  school_name: MyString
+  degree_type: MyString
+  major: MyString
+  achievements: MyText

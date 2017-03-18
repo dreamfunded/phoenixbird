@@ -135,10 +135,8 @@ class UserInfo extends React.Component {
               Hello
             </UserInfoSection>
             <UserFormContainer user={userData} childView='UserAboutSectionContainer' />
-            <UserInvestmentSection user={userData}/>
-            <UserInfoSection title='Work Experience & Education'>
-              Hello
-            </UserInfoSection>
+            <UserInvestmentSection user={userData} />
+            <WorkExperienceInfoSection user={userData} />
             <UserInfoSection title='Connections/Mutual Connections'>
               Hello
             </UserInfoSection>
@@ -148,6 +146,489 @@ class UserInfo extends React.Component {
           </div>
         </GridRow>
       </div>
+      )
+  }
+}
+
+class WorkExperienceInfoSection extends React.Component {
+  render() {
+    let userData = this.props.user;
+    let workExperiences = userData.work_experiences;
+    let educations = userData.educations;
+
+    return (
+      <UserInfoSection id='experience-education-section' title='Work Experience & Education'>
+        <WorkExperienceContainer work_experiences={workExperiences} />
+        <EducationContainer educations={educations} />
+      </UserInfoSection>
+      )
+  }
+}
+
+class EducationContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      educations: props.educations,
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var _this = this;
+    let $form = $(e.target);
+    let serializedData = $.deparam($form.serialize());
+    var education = serializedData.school_attributes;
+    education.new_item = true
+    var educations = this.state.educations;
+    this.setState({educations: [education, ...educations]});
+
+    $.ajax({
+      url: '/api/users/educations',
+      method: 'POST',
+      data: {education: serializedData},
+      success: function(response) {
+        $.extend(education, response);
+        educations = [education, ...educations];
+        _this.setState({educations: educations});
+      }
+      });
+  }
+
+  handleDelete(e) {
+
+  }
+
+  render() {
+    let educations = this.state.educations;
+
+    return (
+      <div>
+        <h4>Education</h4>
+        <QuickAddEducationForm onSubmit={this.handleSubmit} />
+        <EducationList
+          onDelete={this.handleDelete}
+          educations={educations}
+          />
+      </div>
+      )
+  }
+}
+
+class WorkExperienceContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      work_experiences: props.work_experiences,
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var _this = this;
+    let $form = $(e.target);
+    let serializedData = $.deparam($form.serialize());
+    var workExperience = serializedData.community_company_attributes
+    workExperience.new_item = true
+    var workExperiences = this.state.work_experiences;
+    this.setState({work_experiences: [workExperience, ...workExperiences]});
+
+    $.ajax({
+      url: '/api/users/work_experiences',
+      method: 'POST',
+      data: {work_experience: serializedData},
+      success: function(response) {
+        $.extend(workExperience, response);
+        workExperiences = [workExperience, ...workExperiences];
+        _this.setState({work_experiences: workExperiences});
+      }
+      });
+  }
+
+  handleDelete(e) {
+    var $target = $(e.target);
+    var targetId = $target.data('id');
+    let workExperiences = this.state.work_experiences.filter(function(item) {
+      return item.id != targetId
+      });
+    this.setState({work_experiences: workExperiences});
+
+    $.ajax({
+      url: '/api/users/destroy_work_experience',
+      method: 'DELETE',
+      data: {id: targetId}
+      })
+  }
+
+  render() {
+    let workExperiences = this.state.work_experiences;
+
+    return (
+      <div>
+        <h4>Experience</h4>
+        <QuickAddExperienceForm onSubmit={this.handleSubmit}/>
+        <WorkExperienceList
+          onDelete={this.handleDelete}
+          workExperiences={workExperiences}/>
+      </div>
+      )
+  }
+}
+
+class EducationList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
+  handleDelete(e) {
+    this.props.onDelete(e);
+  }
+
+  renderItem(item, index) {
+    return (
+      <EditableEducationItem
+        onDelete={this.handleDelete}
+        education={item}
+        new_item={item.new_item}
+        key={index}/>
+      )
+  }
+
+  render() {
+    let educations = this.props.educations;
+    return (
+      <div>
+        {$.map(educations, this.renderItem)}
+      </div>
+      )
+  }
+}
+
+class EditableEducationItem extends React.Component {
+  render() {
+    let education = this.props.education;
+    return (
+      (this.props.is_editing)
+        ? "Hello"
+        : <EducationItem education={education} />
+      )
+  }
+}
+EditableEducationItem = App.concerns.Editable(EditableEducationItem)
+
+class EducationItem extends React.Component {
+  render() {
+    let education = this.props.education;
+    return (
+      <div className='media with-margin-bottom'>
+        <div className='media-left'>
+          <div className='image-container'>
+            <a href='#'>
+              <i className='fa fa-graduation-cap media-object'></i>
+            </a>
+          </div>
+        </div>
+        <div className='media-body'>
+          {education.school_name || education.name}
+          <h4>{education.major}</h4>
+        </div>
+      </div>
+      )
+  }
+}
+
+class WorkExperienceList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
+  handleDelete(e) {
+    this.props.onDelete(e);
+  }
+
+  renderItem(item, index) {
+    return (
+      <EditableWorkExperienceItem
+        onDelete={this.handleDelete}
+        work_experience={item}
+        new_item={item.new_item}
+        key={index}/>
+      )
+  }
+
+  render() {
+    let workExperiences = this.props.workExperiences;
+    return (
+      <div>
+        {$.map(workExperiences, this.renderItem)}
+      </div>
+      )
+  }
+}
+
+class EditableWorkExperienceItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      work_experience: props.work_experience
+      }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(e) {
+    this.props.onDelete(e);
+  }
+
+  handleSubmit(e) {
+    let $form = $(e.target);
+    let formData = $.deparam($form.serialize())
+    $.ajax({
+      url: '/api/users/update_profile',
+      method: 'PUT',
+      data: {user: formData},
+      })
+    let workExperience = $.extend(
+      {},
+      this.state.work_experience,
+      formData.work_experiences_attributes);
+    this.setState({work_experience: workExperience});
+    this.props.cancelEdit(e);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      work_experience: nextProps.work_experience
+      });
+  }
+
+  render() {
+    let work_experience = this.state.work_experience;
+    return (
+      (this.props.is_editing)
+        ? <WorkExperienceEditForm
+            onSubmit={this.handleSubmit}
+            onCancel={this.props.cancelEdit}
+            onDelete={this.handleDelete}
+            work_experience={work_experience} />
+        : <WorkExperienceItem
+            onEdit={this.props.toggleEdit}
+            work_experience={work_experience} />
+      )
+  }
+}
+EditableWorkExperienceItem = App.concerns.Editable(EditableWorkExperienceItem)
+
+class WorkExperienceEditForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleCancel(e) {
+    this.props.onCancel(e);
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+  }
+
+  handleDelete(e) {
+    e.preventDefault(e);
+    if (confirm('Are you sure you want to delete this entry?')) {
+      this.props.onDelete(e)
+    };
+  }
+
+  render() {
+    let work_experience = this.props.work_experience;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div className='media with-margin-bottom'>
+          <div className='media-left'>
+            <a href='#'>
+              <img className='media-object'/>
+            </a>
+          </div>
+          <div className='media-body'>
+            <div className='clearfix margin-button-10'>
+              <div>
+                <span>{work_experience.company_name || work_experience.name}</span>
+                <div className='pull-right action-buttons'>
+                  <SubmitButton
+                    className='btn btn-primary btn-small action-button-item'
+                    value='Save'/>
+                  <button
+                    onClick={this.handleDelete}
+                    className='btn btn-default btn-small action-button-item'
+                    data-id={work_experience.id}>
+                    Delete
+                  </button>
+                  <a
+                    onClick={this.handleCancel}
+                    href='#'
+                    className='font-smaller grey-color action-button-item'>Cancel</a>
+                </div>
+              </div>
+            </div>
+            <div className='well no-border'>
+              <HiddenField name='work_experiences_attributes[id]' defaultValue={work_experience.id}/>
+              <div className='form-group'>
+                <label>Title</label>
+                <InputField defaultValue={work_experience.title} name='work_experiences_attributes[title]'/>
+              </div>
+              <div className='form-group'>
+                <label>Description</label>
+                <TextareaField defaultValue={work_experience.description} name='work_experiences_attributes[description]'/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      )
+  }
+}
+
+class WorkExperienceItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  handleEdit(e) {
+    this.props.onEdit(e);
+  }
+
+  render() {
+    let {work_experience, index} = this.props;
+    return (
+      <div
+        className='media with-margin-bottom'>
+        <div className='context-actions'>
+          <span
+            onClick={this.handleEdit}
+            className='context-action-item'><i className='fa fa-pencil'></i></span>
+        </div>
+        <div className='media-left'>
+          <div className='image-container'>
+            <a href='#'>
+              <i className='fa fa-building-o media-object'></i>
+            </a>
+          </div>
+        </div>
+        <div className='media-body'>
+          {work_experience.company_name || work_experience.name}
+          <h4>{work_experience.title}</h4>
+        </div>
+      </div>
+      )
+  }
+}
+
+class QuickAddExperienceForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = { value: '' };
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+    this.setState({value: ''});
+  }
+
+  handleChange(e) {
+    this.setState({value: e.target.value});
+  }
+
+  render() {
+    let value = this.state.value;
+
+    return (
+      <Well>
+        <form onSubmit={this.handleSubmit} className='form-horizontal'>
+          <GridRow className='no-margin'>
+            <div className='col-3'>
+              <label className='vmiddle'>ADD EXPERIENCE</label>
+            </div>
+            <div className='col-9'>
+                <div className='form-inline'>
+                  <div className='form-group no-margin'>
+                    <InputField
+                      value={value}
+                      onChange={this.handleChange}
+                      placeholder="Company"
+                      name='community_company_attributes[name]'/>
+                  </div>
+                  <div className='form-group no-margin'>
+                    <SubmitButton value='Add'/>
+                  </div>
+                </div>
+            </div>
+          </GridRow>
+        </form>
+      </Well>
+      )
+  }
+}
+
+class QuickAddEducationForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = { value: '' };
+  }
+
+  handleSubmit(e) {
+    this.props.onSubmit(e);
+    this.setState({value: ''});
+  }
+
+  handleChange(e) {
+    this.setState({value: e.target.value});
+  }
+
+  render() {
+    let value = this.state.value;
+    return (
+      <Well>
+        <form onSubmit={this.handleSubmit} className='form-horizontal'>
+          <GridRow className='no-margin'>
+            <div className='col-3'>
+              <label className='vmiddle'>ADD EDUCATION</label>
+            </div>
+            <div className='col-9'>
+              <div className='form-inline'>
+                <div className='form-group no-margin'>
+                  <InputField
+                    value={value}
+                    onChange={this.handleChange}
+                    name='school_attributes[name]'
+                    placeholder='School name' />
+                </div>
+                <div className='form-group no-margin m-width-100p'>
+                  <YearRangeSelect name="graduation_year" />
+                </div>
+                <div className='form-group no-margin'>
+                  <SubmitButton value='Add' />
+                </div>
+              </div>
+            </div>
+          </GridRow>
+        </form>
+      </Well>
       )
   }
 }
@@ -171,7 +652,7 @@ class UserFormContainer extends React.Component {
     e.preventDefault();
     let $form = $(e.target);
     let formData = new FormData();
-    let serializedData = $form.serializeObject();
+    let serializedData = $.deparam($form.serialize());
     let userData = {user: serializedData}
     let imageData = this.files[0]; // this assumes we upload only one file in this form;
 
@@ -197,6 +678,7 @@ class UserFormContainer extends React.Component {
     let ChildView = window[this.props.childView];
     return (
       <ChildView
+        {...this.props}
         user={userData}
         onSubmit={this.handleSubmit}
         onFileUpload={this.handleFileUpload}/>
@@ -485,7 +967,7 @@ class UserBasicInfoForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <div className='row'>
           <div className='pull-right margin-top-none'>
-            <SubmitButton value="SAVE"/>
+            <SubmitButton value="SAVE" />
           </div>
         </div>
         <GridRow>
@@ -569,9 +1051,6 @@ class OAuthConnector extends React.Component {
           url: '/api/users/check_identity',
           method: 'GET',
           data: {provider: _this.props.provider},
-          success: function() {
-            alert('Success!');
-          },
           complete: function() {
             _this.setState({name: _this.props.name, disabled: false});
           }
@@ -598,7 +1077,7 @@ class OAuthConnector extends React.Component {
 class UserInfoSection extends React.Component {
   render() {
     return (
-      <div className='panel panel-minimal'>
+      <div id={this.props.id} className='panel panel-minimal'>
         <div className='panel-heading'>
           <h4>{this.props.title}</h4>
         </div>

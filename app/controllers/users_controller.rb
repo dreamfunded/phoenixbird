@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.friendly.find(params[:id])
+		@user_data = UserSerializer.new(@user).as_json(include: [:work_experiences, :educations, {investments: :company}])
 		render action: :profile
 	end
 

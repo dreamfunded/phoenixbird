@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  community_company_id: 1
+  title: MyString
+  date_start: 2017-03-09
+  date_end: 2017-03-09
+  present: false
+
+two:
+  community_company_id: 1
+  title: MyString
+  date_start: 2017-03-09
+  date_end: 2017-03-09
+  present: false

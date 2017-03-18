@@ -277,6 +277,7 @@ Rails.application.routes.draw do
   get '/funding', to: 'home#index'
 
   resources :users, only: [:show, :update, :edit, :create, :new]
+  resources :work_experience, only: [:show]
 
   namespace :api, format: :json do
     resources :companies, only: [] do
@@ -290,6 +291,9 @@ Rails.application.routes.draw do
       collection do
         put :update_profile
         get :check_identity
+        post :work_experiences, action: :create_work_experience
+        post :educations, action: :create_education
+        delete :destroy_work_experience
       end
     end
   end
