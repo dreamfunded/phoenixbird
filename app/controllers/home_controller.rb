@@ -49,7 +49,7 @@ class HomeController < ApplicationController
 		@email = params[:email]
 		@phone = params[:phone]
 		@message = params[:message].first
-		ContactMailer.contact_us_email(@name, @email, @phone, @message).deliver
+		ContactMailer.delay.contact_us_email(@name, @email, @phone, @message)
 		flash[:notice] = 'Thank you'
 		redirect_to '/contact'
 	end

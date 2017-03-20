@@ -13,7 +13,7 @@ class InvitesController < ApplicationController
     @invite = Invite.create(invite_params)
     email = @invite.email
     name = @invite.name
-    InviteMailer.invite_from_user(email, name, current_user).deliver
+    InviteMailer.delay.invite_from_user(email, name, current_user)
     flash[:email_sent] = "Email Sent"
     redirect_to '/invite'
   end
@@ -21,7 +21,7 @@ class InvitesController < ApplicationController
   def invite_to_group
       @invite = Invite.create(invite_params)
       @group = Group.find(params[:group_id])
-      InviteMailer.invite_to_group(@invite.email, @invite.name, current_user, @group).deliver
+      InviteMailer.delay.invite_to_group(@invite.email, @invite.name, current_user, @group)
       redirect_to @group
   end
 
@@ -30,7 +30,7 @@ class InvitesController < ApplicationController
     email = @invite.email
     name = @invite.name
     company_name = current_user.company.name
-    ContactMailer.csv_invite(@invite, current_user.name, company_name).deliver
+    ContactMailer.delay.csv_invite(@invite, current_user.name, company_name)
     flash[:email_sent] = "Email Sent"
     redirect_to '/invite'
   end
@@ -126,9 +126,9 @@ class InvitesController < ApplicationController
     if invited_person
       current_user.company.users << invited_person
       invited_person.update(role: params[:role])
-      ContactMailer.invite_cofounder_exist(email, name, current_user).deliver
+      ContactMailer.delay.invite_cofounder_exist(email, name, current_user)
     else
-      ContactMailer.invite_cofounder_dont_exist(email, name, current_user).deliver
+      ContactMailer.delay.invite_cofounder_dont_exist(email, name, current_user)
     end
     redirect_to company_path(current_user.company)
   end
@@ -146,7 +146,7 @@ class InvitesController < ApplicationController
     emails = params[:emails]
     emails.each do |email|
       @invite = Invite.create(email: email, user_id: current_user.id)
-      ContactMailer.invite(@invite).deliver
+      ContactMailer.delay.invite(@invite)
     end
     redirect_to '/invite'
   end

@@ -5,8 +5,8 @@ class RegistrationsController < Devise::RegistrationsController
     p "REGISTRATION CONTROLLER"
     if @user.persisted?
       @user.update_attribute(:authority, 2)
-      ContactMailer.verify_email(@user).deliver
-      ContactMailer.account_created(@user).deliver
+      ContactMailer.delay.verify_email(@user)
+      ContactMailer.delay.account_created(@user)
     end
     check_if_was_invited(@user)
   end

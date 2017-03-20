@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
 
   def join_group
     current_user.groups << @group
-    ContactMailer.join_group_request(current_user, @group).deliver
+    ContactMailer.delay.join_group_request(current_user, @group)
     redirect_to @group, notice: "Request to join #{@group.name} was sent."
   end
 

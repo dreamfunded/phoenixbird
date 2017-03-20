@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 		user = User.find_by(email: params[:email].delete(' '))
 		user.confirmed = true
 		user.save(:validate => false)
-		ContactMailer.personal_hello(user).deliver
+		ContactMailer.delay({run_at: Time.now+1.minute}).personal_hello(user)
 		redirect_to root_path
 	end
 
@@ -38,8 +38,8 @@ class UsersController < ApplicationController
 		if user.first_name && user.last_name && user.email && Rails.env.production?
 			Infusionsoft.contact_add({:FirstName => user.first_name , :LastName => user.last_name, :Email => user.email})
 		end
-		ContactMailer.personal_hello(user).deliver
-		ContactMailer.account_created(user).deliver
+		ContactMailer.delay.personal_hello(user)
+		ContactMailer.delay.account_created(user)
 		redirect_to root_path
 	end
 
