@@ -1,4 +1,4 @@
-FundAmerica.api_key = 'nSgy4St7K_vFsyaBXypCI6ls6SGEFduM'
+FundAmerica.api_key = 'n3_7NrhVfWuwptBzcKQkLzMMtTLF2Cdm'
 FundAmerica.mode = 'production'
 
 # STAGING
