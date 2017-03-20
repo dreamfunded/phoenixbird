@@ -139,8 +139,11 @@
                         </button>
                     <%end%>
                 <% else %>
-
-                    <%= link_to "Invest in #{@company.name}", new_user_registration_path, class: 'company-button profile-button mail-to-button' %>
+                    <% if @company.status == 2 %>
+                        <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'company-button profile-button mail-to-button' %>
+                    <% else %>
+                        <%= link_to "Invest in #{@company.name}", show_unathorized_path(@company.slug), class: 'company-button profile-button mail-to-button' %>
+                    <% end %>
 
                 <% end %>
             </div>

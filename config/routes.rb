@@ -85,6 +85,8 @@ Rails.application.routes.draw do
   get "explore", to: "companies#explore", as: "explore" #Testing the waters for Reg A+
   get "explore/:id", to: "companies#reg_a_company", as: "reg_a_company" #Testing the waters for Reg A+
 
+  get 'show_unathorized/:id', to: "companies#show_unathorized", as: "show_unathorized"
+
 
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
 

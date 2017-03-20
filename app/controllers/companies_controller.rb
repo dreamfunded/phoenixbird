@@ -2,9 +2,8 @@ class CompaniesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
 	before_action :verify, except: [:index, :company_profile, :show]
 
-
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile]
-	before_action :set_company, only: [:company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :invest, :submit_payment, :reg_a_company, :waitlist, :join_waitlist_send_email_with_invest, :delete_document ]
+	before_action :set_company, only: [:show_unathorized, :company_profile, :edit_profile, :update, :make_profile, :remove_company, :show, :join_waitlist, :invest, :submit_payment, :reg_a_company, :waitlist, :join_waitlist_send_email_with_invest, :delete_document ]
 
 	before_action :check_company_accreditation, only: [:show, :company_profile]
 
@@ -28,6 +27,10 @@ class CompaniesController < ApplicationController
 		@campaign_quote = @campaign.quote
 		@formc = @company.general_info
 		#@investment_perks = @formc.investment_perks
+	end
+
+	def show_unathorized
+		redirect_to company_path(@company)
 	end
 
 	def delete_document

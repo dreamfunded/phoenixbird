@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 		user = User.find_by(email: params[:email].delete(' '))
 		user.confirmed = true
 		user.save(:validate => false)
-		ContactMailer.delay({run_at: Time.now+1.minute}).personal_hello(user)
+		ContactMailer.delay({run_at: Time.now+1.hour}).personal_hello(user)
 		redirect_to root_path
 	end
 
