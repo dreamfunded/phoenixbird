@@ -17,8 +17,8 @@ class Team < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
   # validates_attachment_presence :image
   validates_attachment_size :image, :less_than => 5.megabytes

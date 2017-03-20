@@ -9,8 +9,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :balance_sheet, :content_type =>['application/pdf']
 
@@ -21,8 +21,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :income_statements, :content_type =>['application/pdf']
 
@@ -33,8 +33,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :statement_of_cash_flow, :content_type =>['application/pdf']
 
@@ -45,8 +45,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :statement_changes_of_equity, :content_type =>['application/pdf']
 
@@ -57,8 +57,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :business_plan, :content_type =>['application/pdf']
 
@@ -69,8 +69,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :party_transaction, :content_type =>['application/pdf']
 
@@ -81,8 +81,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :intended_use_of_proceeds, :content_type =>['application/pdf']
 
@@ -93,8 +93,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :capital_structure, :content_type =>['application/pdf']
 
@@ -105,8 +105,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :material_terms, :content_type =>['application/pdf']
 
@@ -117,8 +117,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :directors_background, :content_type =>['application/pdf']
 
@@ -129,8 +129,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :accountant_review, :content_type =>['application/pdf']
 
@@ -141,8 +141,8 @@ class FinancialDetail < ActiveRecord::Base
     :url =>':s3_domain_url',
     :s3_protocol => :https,
     :s3_credentials => {
-      :access_key_id => "AKIAJWDE6UJS56MXQYPQ",
-      :secret_access_key => "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"
+      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+      :secret_access_key => "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"
     }
     validates_attachment_content_type :financial_conditions, :content_type =>['application/pdf']
 
