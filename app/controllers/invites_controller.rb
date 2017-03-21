@@ -21,7 +21,7 @@ class InvitesController < ApplicationController
   def invite_to_group
       @invite = Invite.create(invite_params)
       @group = Group.find(params[:group_id])
-      InviteMailer.delay.invite_to_group(@invite.email, @invite.name, current_user, @group)
+      InviteMailer.invite_to_group(@invite.email, @invite.name, current_user, @group.id).deliver
       redirect_to @group
   end
 

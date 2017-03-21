@@ -8,6 +8,14 @@
 <table cellspacing="0" cellpadding="16px" border="0" width="100%" style="border-collapse:collapse;min-width:100%!important;width:100%!important"><tbody><tr><td style="border-collapse:collapse"><table cellspacing="0" cellpadding="0" border="0" width="520" align="center" style="border-collapse:collapse;table-layout:fixed;margin:0 auto"><tbody><tr><td style="border-collapse:collapse">
 <div>
 
+    <div style="text-align:center">
+    <div style="display:inline-block;display:inline-flex;overflow:hidden;background:white;width:104px;min-height:104px;border-radius:3px;vertical-align:middle">
+    <div style="display:inline-block;display:inline-flex;overflow:hidden;background:white;width:104px;height:104px;border-radius:3px;vertical-align:middle;border-radius:100%">
+    <img alt="Manny Fernandez" title="Manny Fernandez" src=<%=@group.image.url%> style="width:104px;height:104px;border:0 none;line-height:100%;outline:none;text-decoration:none;display:inline-block;" >
+    </div>
+    </div>
+    </div>
+
 <h1 style="margin:0;margin-top:16px;font-size:28px;line-height:48px;color:#333333;font-weight:200;text-align:center;margin-bottom:16px">
 Your friend <%= @user.name%> has invited you to join <%= @group.name %> group on DreamFunded, an equity crowdfunding platform where anyone can invest in startups or raise capital.
 </h1>
@@ -65,7 +73,7 @@ Support companies you believe in and help them reach their goals.
 <p style="margin:0;font-size:14px;line-height:24px;margin-top:16px;text-align:center;color:#aaaaaa">
 Equity Crowdfunding investments like all other investments have a degree of risk and can result in total loss, and resale may not be possible.<br>
  <a href="https://dreamfunded.com/education" target='_blank'>Learn more »</a>
- <a href="https://dreamfunded.com/unsubscribe/<%= @invite.email %>" target='_blank'>Unsubscribe</a>
+ <a href="https://dreamfunded.com/unsubscribe/<%= @email %>" target='_blank'>Unsubscribe</a>
  </p>
 </div>
 </td></tr></tbody></table></td></tr></tbody></table>
