@@ -150,8 +150,8 @@ Rails.application.routes.draw do
   post '/reset_password', to: "users#reset_password", as: :reset_password
 
   post '/users/verify', to: 'users#verify', as: 'user_verify'
-
   get '/users/certify', to: "users#certify", as: 'certify'
+  get '/resend_verification', to: 'users#resend_verification', as: :resend_verification
 
   get 'users/admin', to: "users#admin"
   get 'users/admin-companies', to: "admin#companies"
