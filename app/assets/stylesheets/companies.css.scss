@@ -32,9 +32,7 @@
   width: 80%;
   margin: auto 10%;
 }
-.paymennt-page-logo {
-  margin: auto 15%;
-}
+
 .edit-company-button:hover{
   background-color: #eee;
 }
@@ -239,6 +237,10 @@ hr.div {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.paymennt-page-logo {
+  left: 15%;
+  width: 85%;
 }
 .company-basic-info {
   width: 500px;
