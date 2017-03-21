@@ -43,6 +43,11 @@ class UsersController < ApplicationController
 		redirect_to root_path
 	end
 
+	def resend_verification
+		ContactMailer.delay.verify_email(current_user)
+		redirect_to root_path
+	end
+
 	def become
 	    return unless current_user.authority == User.Authority[:Admin]
 	    sign_in(:user, User.find(params[:id]))

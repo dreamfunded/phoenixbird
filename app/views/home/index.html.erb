@@ -240,7 +240,7 @@
                 <p class='verify-modal-text'>Thank you for joining DreamFunded. A verification email has been sent to <%= current_user.email %>. Please complete your signup by clicking the link in this email.</p>
                 <center>
                     <a href="#" class="close">Close</a>
-
+                    <%= link_to "Resend", resend_verification_path, class: 'resend-button' %>
                 </center>
             </div>
          </div>
