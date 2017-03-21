@@ -80,8 +80,8 @@
         </div>
       </div>
 
-
-      <div class='get-funded-section-name'>Full Name</div>
+      <div class='get-funded-section-name'>Name</div>
+      <span class='password-six-chars' >Sign your name in the field below by typing your full legal name.</span>
       <%= text_field_tag :name, current_user.name, placeholder: 'First and Last name', class: 'form-field ', required: true %>
       <br>
 
@@ -121,26 +121,11 @@
             </div>
         </div>
 
-        <input type="checkbox" name="us_person" id="us_citizen" required checked>
+        <input type="checkbox" name="us_person" id="us_citizen" required >
         <label class="checkbox-label" for="us_citizen">I am a US citizen or other US person</label>
         <br>
-        <input type="checkbox" name="agreement" id="agreement" required checked>
+        <input type="checkbox" name="agreement" id="agreement" required >
         <label class="checkbox-label" for="agreement">I have read and accept <a href="#sbsc_agr" class="model_open">Subscription Agreement</a></label>
-
-
-        <div id="modal">
-          <!-- First modal window -->
-           <div id="sbsc_agr" class="window subscriptin-agreement">
-            <div class="contents">
-                <div class='close-icon'>
-                    <a href="#" class="close"><i class="fa fa-times"></i></a>
-                </div>
-                <textarea style="overflow:scroll"  class='subcription-agreement' readonly>
-                  <%= render 'subscription_agreement'%>
-                </textarea>
-            </div>
-         </div>
-        </div>
 
         <br><br>
 
@@ -184,6 +169,21 @@
     <% end %>
 
   </div>
+  </div>
+
+
+  <div id="modal">
+    <!-- First modal window -->
+     <div id="sbsc_agr" class="window subscriptin-agreement">
+      <div class="contents">
+          <div class='close-icon'>
+              <a href="#" class="close"><i class="fa fa-times"></i></a>
+          </div>
+          <textarea style="overflow:scroll"  class='subcription-agreement' readonly>
+            <%= render 'subscription_agreement'%>
+          </textarea>
+      </div>
+   </div>
   </div>
 
 <script type="text/javascript">
