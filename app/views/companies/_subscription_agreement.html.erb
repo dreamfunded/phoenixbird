@@ -100,8 +100,8 @@ If to the Company:
 E-mail: <%= User.find(@company.user_id).name%>
 Attention: CEO
 with a copy to:
-Attention: <%= @user.name%>
-E-mail: <%= @user.email%>
+Attention: <%= current_user.name%>
+E-mail: <%= current_user.email%>
 
 19. Binding Effect. The provisions of this Subscription Agreement shall be binding upon and accrue to the benefit of the parties hereto and their respective heirs, legal representatives, successors and assigns.
 
@@ -124,55 +124,12 @@ Subscriber
 By
 ______________________________
 Name
-______________________________
-Title
-______________________________
-____________________
-Name:
-Subscriber
-
-By
-______________________________
-Name
-______________________________
+<%= current_user.name %>
 Title
 ______________________________
 
 
-
-PURCHASER (if an entity):
-__
-Subscriber
-
-By
-______________________________
-Name
-______________________________
-Title
-______________________________
-_____________________
-Legal Name of Entity
-
-By_____
-Subscriber
-
-By
-______________________________
-Name
-______________________________
-Title
-______________________________
-________________
-Name:
-
-
-Title:<%= @user.name %>
-
-State/Country of Domicile or Formation: ______________________________________
-
-
-
-The offer to purchase Securities as set forth above is confirmed and accepted by the Company for <%= funding_goal_with_precision(@amount) %>.
+The offer to purchase Securities as set forth above is confirmed and accepted by the Company for ______.
 
 <%= @company.name%>
 By____
@@ -181,10 +138,9 @@ Issuer
 By
 ______________________________
 Name
-______________________________
-Title
-______________________________
-_________________
-Name: <%= @company.name%>
+<%= @company.users.first.name%>
 Title: CEO
+CEO
+
+Name: <%= @company.name%>
 

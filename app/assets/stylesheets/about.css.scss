@@ -2,6 +2,7 @@
 {
    /* style the modal's contents, in this case we're just adding padding */
    padding:24px;
+   height: 100%;
 }
 #blind
 {
@@ -17,7 +18,7 @@
    /* set the background to a suitably dark tone */
    background-color:#000000;
 }
-#invite-dialog{
+#invite-dialog, #sbsc_agr{
   display: none;
 }
 .modalLink{
@@ -53,6 +54,17 @@
   top: 250px;
   /*display: none;*/
 }
+#modal .subscriptin-agreement {
+  margin-left:0px;
+  margin-top:0px;
+  width: 50%;
+  left: 25%;
+  height: 90%;
+  overflow-y: scroll;
+  /*top: 250px;*/
+  /*display: none;*/
+}
+
 #modal .google-clients{
   /* position the element so that the z-index can be applied */
   position:absolute;
