@@ -219,13 +219,13 @@
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
   .styled-select {
-    height: 50px;
-    width: 46.5%;
-    margin: 20px auto;
+    height: 84px;
+    width: 48%;
+    /*margin: 20px auto;*/
   }
   .styled-select select{
-    height: 50px;
-    font-size: 40px;
+    height: 2em;
+    font-size: 2.5em;
   }
   .liquidate-form-company{
     width:95%;

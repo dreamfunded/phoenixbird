@@ -64,3 +64,37 @@
 .birth-date-width{
     width: 221px;
 }
+
+
+/*M O B I L E*/
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+
+    .payment-box{
+        width: inherit;
+    }
+    .invest-title, #invest_amount{
+        font-size: 2em;
+    }
+    .get-funded-section-name{
+        font-size: 2em;
+    }
+    .payment-accoutt-col{
+        width: 48%;
+        margin-right: 5px;
+    }
+    .payment-accoutt-col .styled-select{
+        width: 100%;
+    }
+    .check-type{
+        font-size: 1.5em;
+    }
+    .payment-button{
+        font-size:1.7em;
+        height: 70px;
+    }
+}
+
+

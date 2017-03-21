@@ -142,14 +142,14 @@
         <section class='payment-section'>
             <div class='get-funded-section-name'>Payment</div>
             <div class='payment-accoutt-col'>
-                <div class=''>Account Type</div>
+                <div class='check-type'>Account Type</div>
                 <div class="styled-select form-field-dropdown" >
                     <%= select_tag( :account_type, options_for_select([['checking'],['savings']]) ) %>
                 </div>
             </div>
 
             <div class='payment-accoutt-col'>
-                <div class=''>Check Type</div>
+                <div class='check-type'>Check Type</div>
                 <div class="styled-select form-field-dropdown" >
                     <%= select_tag( :check_type, options_for_select([['personal'],['business']]) ) %>
                 </div>
@@ -161,9 +161,9 @@
           <%= text_field_tag :account_number, nil,placeholder: 'Account Number', class: 'form-field form-field-half' %>
           <br>
         </section>
-
+        <br><br>
       <div class='centered'>
-        <%= submit_tag "Complete Investment", class: 'company-button payment-button' %>
+        <%= submit_tag "Complete Investment", class: 'company-button payment-button profile-button' %>
       </div>
 
     <% end %>
