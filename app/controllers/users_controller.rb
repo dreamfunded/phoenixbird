@@ -58,19 +58,6 @@ class UsersController < ApplicationController
 		@advisors = User.where(advisor: true).order(:position)
 	end
 
-	# def campaign
-	# 	if current_user.companies.any?
-	# 		company = current_user.companies.last
-	# 		if company.campaign.finished?
-	# 			redirect_to(:controller => 'companies', :action => :company_profile, id: company.id)
-	# 		else
-	# 			redirect_to edit_campaign_path(company.campaign.id)
-	# 		end
-	# 	else
-	# 		redirect_to  funding_goal_path
-	# 	end
-	# end
-
 	def campaign
 		if current_user.company
 			company = current_user.company

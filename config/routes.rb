@@ -260,6 +260,7 @@ Rails.application.routes.draw do
 
   # G R O U P S
   get '/join_group/:id', to: 'groups#join_group', as: 'join_group'
+  get '/add_to_group/:token', to: 'groups#add_to_group', as: 'add_to_group'
 
 
   get '/resources', to: 'home#resources'

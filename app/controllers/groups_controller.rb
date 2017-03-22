@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group]
-  before_action :admin_check, except: [:show, :join_group]
-  before_action :authenticate_user!, except: [:show ]
+  before_action :admin_check, except: [:show, :join_group, :add_to_group ]
+  before_action :authenticate_user!, except: [:show, :add_to_group ]
 
 
   def index
@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
 
   def show
     @posts = Post.order(:created_at).where(page: 'group')
-    @members = @group.users
+    @members = @group.users.first(5)
   end
 
 
@@ -63,6 +63,18 @@ class GroupsController < ApplicationController
     current_user.groups << @group
     ContactMailer.delay.join_group_request(current_user, @group)
     redirect_to @group, notice: "Request to join #{@group.name} was sent."
+  end
+
+  def add_to_group
+    @invite = Invite.find_by(token: params[:token])
+    @group = Group.find(@invite.group_id )
+    user = User.find_by(email: @invite.email)
+    if user
+      user.groups << @group
+      redirect_to @group
+    else
+       redirect_to new_user_registration_path
+    end
   end
 
   private
