@@ -9,6 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
       ContactMailer.delay.account_created(@user)
     end
     check_if_was_invited(@user)
+    invite_to_group(@user)
   end
 
 protected
@@ -28,6 +29,15 @@ protected
     if supporter
       supporter.try(:user).try(:company).users << invited_person
       user.make_supporter
+    end
+  end
+
+  def invite_to_group(user)
+    email = user.email
+    invite = Invite.find_by(email: email)
+    if invite
+      group = Group.find(invite.group_id)
+      user.groups << group
     end
   end
 

@@ -1,7 +1,7 @@
 require 'csv'
 class Invite < ActiveRecord::Base
   belongs_to :user
-  #before_save :set_token
+  before_save :set_token
 
   # has_attached_file :file,
   #   :styles =>{
