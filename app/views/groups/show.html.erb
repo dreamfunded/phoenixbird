@@ -82,7 +82,7 @@
                             </div>
                         <% end %>
                         <% if current_user != nil && current_user.authority >= authority[:Editor] %>
-                            <h3 class='centered'><%= link_to 'Write New Group Post', "/posts/new/group" %></h3>
+                            <h3 class='centered'><%= link_to 'Write New Group Post', "/posts/new/#{@group.slug}" %></h3>
                         <% end %>
                     </div>
                 </section>

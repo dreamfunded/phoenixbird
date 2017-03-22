@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
 
 
   def show
-    @posts = Post.order(:created_at).where(page: 'group')
+    @posts = Post.order(:created_at).where(page: @group.slug)
     @members = @group.users.first(5)
   end
 

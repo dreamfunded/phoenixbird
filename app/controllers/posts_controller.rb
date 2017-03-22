@@ -96,7 +96,7 @@ class PostsController < ApplicationController
       elsif page == 'fund_raising_guide'
         return fund_raising_guide_path
       else
-        return education_path
+        return root_path
       end
     end
 
