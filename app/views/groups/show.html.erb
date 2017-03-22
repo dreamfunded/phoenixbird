@@ -13,12 +13,6 @@
 
     <section class='group-cover-photo' style="background-image:url(<%= @group.background.url %>)" >
 
-        <% if flash[:notice]%>
-            <div class='alert-warning join-group-alert password-change-notification hide-on-mobile'>
-               <%= flash[:notice]%>
-            </div>
-        <% end %>
-
         <div class='group-opacity-on-background'>
         </div>
 
