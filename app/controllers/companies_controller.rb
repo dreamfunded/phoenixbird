@@ -118,7 +118,7 @@ class CompaniesController < ApplicationController
 
 	def submit_payment
 		options = entity_options(params)
-
+		@error = {}
 		if current_user.entity_id
 			begin
 				@entity = FundAmerica::Entity.update(current_user.entity_id, options)
@@ -163,6 +163,7 @@ class CompaniesController < ApplicationController
 			investment_options = get_investment_options(params, @company, @entity, @ach_authorization)
 			begin
 			    @investment = FundAmerica::Investment.create(investment_options)
+
 			    Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
 			    ContactMailer.delay.investment_made( current_user)
 			    ContactMailer.delay.new_investment_made(current_user, params[:id])
