@@ -34,7 +34,7 @@ protected
 
   def invite_to_group(user)
     email = user.email
-    invite = Invite.find_by(email: email)
+    invite = GroupInvite.find_by(email: email)
     if invite
       group = Group.find(invite.group_id)
       user.groups << group

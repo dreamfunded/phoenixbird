@@ -110,7 +110,7 @@
                 </div>
                 <h3>Invite Friend </h3>
                 <!-- <hr class='line-verify-modal'> -->
-                <%= form_for Invite.new, url: invite_to_group_path do |f| %>
+                <%= form_for GroupInvite.new, url: invite_to_group_path do |f| %>
                     <%= f.hidden_field(:group_id, value: @group.id) %>
                     <%= f.text_field(:name, :placeholder => "Name", :class => "form-field") %>
                     <%= f.text_field(:email, :placeholder => "Email", :class => "form-field") %>
