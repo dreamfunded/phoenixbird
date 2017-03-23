@@ -119,6 +119,7 @@ class CompaniesController < ApplicationController
 	def submit_payment
 		options = entity_options(params)
 		@error = {}
+		@entity, @ach_authorization = {}, {}
 		if current_user.entity_id
 			begin
 				@entity = FundAmerica::Entity.update(current_user.entity_id, options)
@@ -132,7 +133,7 @@ class CompaniesController < ApplicationController
 			begin
 				@entity = FundAmerica::Entity.create(options)
 			rescue FundAmerica::Error => e
-			    p 'ERROR'
+			    p 'ERROR1'
 			    puts e.parsed_response
 			    @error = e.parsed_response
 			end
@@ -195,7 +196,7 @@ private
 		   :name => params[:name],
 		   :phone => params[:phone],
 		   :postal_code => params[:zipcode],
-		   :region => params[:state],
+		   :region => '',
 		   :street_address_1 => params[:address],
 		   :tax_id_number => params[:ssn],
 		   :type => "person",
