@@ -66,7 +66,7 @@ class GroupsController < ApplicationController
   end
 
   def add_to_group
-    @invite = Invite.find_by(token: params[:token])
+    @invite = GroupInvite.find_by(token: params[:token])
     @group = Group.find(@invite.group_id )
     user = User.find_by(email: @invite.email)
     if user

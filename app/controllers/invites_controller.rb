@@ -19,7 +19,7 @@ class InvitesController < ApplicationController
   end
 
   def invite_to_group
-    @invite = Invite.create(invite_params)
+    @invite = GroupInvite.create(group_invite_params)
     @group = Group.find( @invite.group_id )
     InviteMailer.delay.invite_to_group(@invite, current_user)
     redirect_to @group
@@ -179,6 +179,10 @@ class InvitesController < ApplicationController
 
   def invite_params
     params.require(:invite).permit(:user_id, :email, :token, :name, :file, :group_id)
+  end
+
+  def group_invite_params
+    params.require(:group_invite).permit(:user_id, :email, :token, :name, :file, :group_id)
   end
 
   def csv_file_params
