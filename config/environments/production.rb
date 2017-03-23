@@ -70,10 +70,10 @@ Rails.application.configure do
  config.action_mailer.perform_deliveries = true
  config.action_mailer.delivery_method = :smtp
  ActionMailer::Base.smtp_settings = {
-   # :user_name => 'dreamfundedvc',
-   # :password => 'kjSa@91k',
-   :user_name => 'realtyreturns',
-   :password => 'jani@78A',
+   :user_name => 'dreamfundedvc',
+   :password => 'joassJ@89',
+   # :user_name => 'realtyreturns',
+   # :password => 'jani@78A',
    :domain => "dreamfunded.vc",
    :address => 'smtp.sendgrid.net',
    :port => 587,
