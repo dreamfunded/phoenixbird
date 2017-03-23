@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
       ContactMailer.delay.account_created(@user)
     end
     check_if_was_invited(@user)
-    invite_to_group(@user)
+    #invite_to_group(@user)
   end
 
 protected
