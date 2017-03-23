@@ -133,7 +133,7 @@ class CompaniesController < ApplicationController
 			begin
 				@entity = FundAmerica::Entity.create(options)
 			rescue FundAmerica::Error => e
-			    p 'ERROR1'
+			    p 'ERROR'
 			    puts e.parsed_response
 			    @error = e.parsed_response
 			end
@@ -196,7 +196,7 @@ private
 		   :name => params[:name],
 		   :phone => params[:phone],
 		   :postal_code => params[:zipcode],
-		   :region => '',
+		   :region => params[:state],
 		   :street_address_1 => params[:address],
 		   :tax_id_number => params[:ssn],
 		   :type => "person",
