@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, except: [:destroy]
   # GET /documents
   # GET /documents.json
   def index
@@ -70,7 +70,7 @@ class DocumentsController < ApplicationController
     end
 
     def authorize
-      if current_user == nil || current_user.authority < User.Authority[:Admin]
+      if current_user.authority < User.Authority[:Editor]
         redirect_to url_for(:controller => 'home', :action => 'unauthorized')
       end
     end

@@ -64,7 +64,6 @@
         </div>
 
         <div class='company-info-right-panel'>
-
                 <% if @company.status == 2 %>
                     <div class='company-detail'>
                         <div class='company-finance-info'>
@@ -348,7 +347,7 @@
                                     <% end %>
 
                                     <% @company.documents.each do |doc| %>
-                                        <p class= "fifteen ">Pitch Deck:</p>
+                                        <p class= "fifteen "><%= doc.name %></p>
                                         <p class= "no-margin doc_name_overflow">
                                             <%= image_tag "static/pdf_icon.png" %>
                                             <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
