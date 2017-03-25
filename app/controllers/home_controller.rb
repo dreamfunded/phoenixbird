@@ -30,6 +30,10 @@ class HomeController < ApplicationController
 	def unverified
 	end
 
+	def latino
+		@post = Post.find_by(page: 'latino')
+	end
+
 	def faq
 		@posts = Post.order(:position).where(page: 'faq')
 	end

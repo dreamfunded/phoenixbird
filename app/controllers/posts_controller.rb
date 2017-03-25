@@ -69,6 +69,8 @@ class PostsController < ApplicationController
     def find_redirect(page)
       if page == 'about_us'
         return about_path
+      elsif page == 'latino'
+        return latino_path
       elsif page == 'blog'
         return blog_path
       elsif page == 'group'

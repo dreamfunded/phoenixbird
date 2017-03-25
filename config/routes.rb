@@ -236,6 +236,8 @@ Rails.application.routes.draw do
   get '/blog', to: "posts#blog", as: :blog
   get '/blog_post/:id', to: "posts#blog_post", as: :blog_post
 
+  get '/latino', to: 'home#latino', as: :latino
+
   #URLs from old site
   get '/how-it-works', to: 'home#why'
   get '/why-invest-with-dream-funded', to: 'home#why'
