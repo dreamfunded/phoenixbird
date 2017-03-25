@@ -5,7 +5,7 @@
     <div class= "word-content">
         <div class= "text-content">
 
-            <% if current_user.authority == authority[:Admin] %>
+            <% if current_user != nil current_user.authority == authority[:Admin] %>
                 <%= link_to 'Edit', "/posts/#{@post.id}/edit/latino", :"data-no-turbolink" => true, :class => 'right' %>
             <% end %>
 
