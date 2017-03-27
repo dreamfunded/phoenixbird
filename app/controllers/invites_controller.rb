@@ -102,7 +102,8 @@ class InvitesController < ApplicationController
   def invites_to_group
     begin
         @group = Group.find(params[:group])
-        SubscribeJob.new.async.csv_group_emails(params[:file], @group )
+        name = params[:name]
+        SubscribeJob.new.async.csv_group_emails(params[:file], @group, name )
         flash[:email_sent] = "Emails sent from #{@group.name}"
         redirect_to  invite_users_path
       rescue

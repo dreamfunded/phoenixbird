@@ -115,7 +115,7 @@ class SubscribeJob
     end
   end
 
-  def csv_group_emails(file, group)
+  def csv_group_emails(file, group, name)
     ActiveRecord::Base.connection_pool.with_connection do
       invites = []
       begin
@@ -130,7 +130,7 @@ class SubscribeJob
           end # end CSV.foreach
           invites.each do |invite|
             #ContactMailer.delay.send_from_advisor(invite, advisor)
-            InviteMailer.delay.invite_to_group_from_csv(invite, 'Jim')
+            InviteMailer.delay.invite_to_group_from_csv(invite, name)
           end
           invites = []
       rescue Exception => e
