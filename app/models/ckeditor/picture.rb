@@ -6,8 +6,8 @@ class Ckeditor::Picture < Ckeditor::Asset
                     :url =>':s3_domain_url',
                     :s3_protocol => :https,
                     :s3_credentials => {
-                      :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
-                      :secret_access_key => "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"
+                           :access_key_id => "AKIAIX55AGQZA4VAPJYQ",
+                          :secret_access_key => "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"
                     },
                     :styles => { :content => '800>' }
 

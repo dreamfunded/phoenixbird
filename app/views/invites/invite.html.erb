@@ -159,6 +159,23 @@
           <!-- <span class='password-six-chars'>Please see proper <%#= link_to "CSV file", asset_path("test_users.csv"), target: '_blank' %> format. It should containt 2 table headers: "Name" and "Email". Both <span class='capitalized-word'>Capitalized</span> </span> -->
         </div>
       </div>
+
+      <!--   To Groups -->
+      <div class="invite-via-email">
+        <span class='invite-email-icon'><%=  fa_icon("users 2x")%> </span>
+        <span class='invite-text'>To Group</span>
+        <span class='invite-form'>
+          <%= form_tag('/invites_to_group', multipart: true) do  %>
+            <%= text_field_tag(:name,nil, placeholder: 'Name',class: 'invite-text-input', required: true) %>
+            <%= select_tag(:group, options_from_collection_for_select(@groups, "id", "name"), required: true ) %>
+            <%= file_field_tag :file, required: true %>
+            <%= submit_tag "Send", class: 'invite-button' %>
+          <% end %>
+        </span>
+        <div>
+          <!-- <span class='password-six-chars'>Please see proper <%#= link_to "CSV file", asset_path("test_users.csv"), target: '_blank' %> format. It should containt 2 table headers: "Name" and "Email". Both <span class='capitalized-word'>Capitalized</span> </span> -->
+        </div>
+      </div>
     <% end %>
 
 

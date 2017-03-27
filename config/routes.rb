@@ -215,6 +215,7 @@ Rails.application.routes.draw do
 
   post '/send_from_advisor', to: 'invites#send_from_advisor'
   post '/send_advisors_csv_invites', to: 'invites#send_advisors_csv_invites'
+  post '/invites_to_group', to: 'invites#invites_to_group'
 
   post '/invite_from_startup', to: "invites#invite_from_startup", as: :invite_from_startup
   post '/invite_to_group', to: "invites#invite_to_group", as: :invite_to_group
