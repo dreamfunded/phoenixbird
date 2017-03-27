@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group]
   before_action :admin_check, except: [:show, :join_group, :add_to_group ]
-  before_action :authenticate_user!, except: [:show, :add_to_group ]
+  before_action :authenticate_user!, except: [:show, :add_to_group, :index ]
 
 
   def index
@@ -89,7 +89,7 @@ class GroupsController < ApplicationController
     end
 
     def admin_check
-      if current_user.authority < User.Authority[:Editor]
+      if current_user != nil && current_user.authority < User.Authority[:Editor]
         redirect_to url_for(:controller => 'home', :action => 'unauthorized')
       end
     end

@@ -67,5 +67,11 @@ class InviteMailer < ActionMailer::Base
     mail(to: @invite.email, subject: "Hi #{@invite.name}, your friend #{@user.name} has invited you to join #{@group.name} group on DreamFunded" )
   end
 
+  def invite_to_group_from_csv(invite, name)
+    @invite, @name = invite, name
+    @group = Group.find(@invite.group_id)
+    mail(to: @invite.email, subject: "Hi #{@invite.name}, your friend #{@name} has invited you to join #{@group.name} group on DreamFunded" )
+  end
+
 end
 

@@ -6,6 +6,7 @@ class InvitesController < ApplicationController
     @invites = Invite.where(user_id: current_user.id).where.not(email: nil).reverse
     @companies = Company.where(accredited: true)
     @members = Member.all
+    @groups = Group.all
     @advisors = User.where(advisor: true)
   end
 
@@ -18,12 +19,6 @@ class InvitesController < ApplicationController
     redirect_to '/invite'
   end
 
-  def invite_to_group
-    @invite = GroupInvite.create(group_invite_params)
-    @group = Group.find( @invite.group_id )
-    InviteMailer.delay.invite_to_group(@invite, current_user)
-    redirect_to @group
-  end
 
   def invite_from_startup
     @invite = Invite.create(invite_params)
@@ -102,6 +97,25 @@ class InvitesController < ApplicationController
         flash[:upload_error] = "Invalid CSV file format."
         redirect_to  invite_users_path
     end
+  end
+
+  def invites_to_group
+    begin
+        @group = Group.find(params[:group])
+        SubscribeJob.new.async.csv_group_emails(params[:file], @group )
+        flash[:email_sent] = "Emails sent from #{@group.name}"
+        redirect_to  invite_users_path
+      rescue
+        flash[:upload_error] = "Invalid CSV file format."
+        redirect_to  invite_users_path
+    end
+  end
+
+  def invite_to_group
+    @invite = GroupInvite.create(group_invite_params)
+    @group = Group.find( @invite.group_id )
+    InviteMailer.delay.invite_to_group(@invite, current_user)
+    redirect_to @group
   end
 
 

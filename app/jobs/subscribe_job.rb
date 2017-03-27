@@ -115,6 +115,31 @@ class SubscribeJob
     end
   end
 
+  def csv_group_emails(file, group)
+    ActiveRecord::Base.connection_pool.with_connection do
+      invites = []
+      begin
+          CSV.foreach(file.path, headers: false, :encoding => 'ISO-8859-1') do |row|
+            begin
+              p row[1]
+              invites << GroupInvite.create!( name: row[0], email: row[1], group_id: group.id )
+            rescue ActiveRecord::RecordInvalid => invalid
+              puts invalid.record.errors
+            end
+
+          end # end CSV.foreach
+          invites.each do |invite|
+            #ContactMailer.delay.send_from_advisor(invite, advisor)
+            InviteMailer.delay.invite_to_group_from_csv(invite, 'Jim')
+          end
+          invites = []
+      rescue Exception => e
+        SuckerPunch.logger.error("subscribe failed: due to #{e.message}")
+        raise e
+      end
+    end
+  end
+
   def csv_send_checked_emails(file, invitee_name, company_name)
     ActiveRecord::Base.connection_pool.with_connection do
       invites = []
