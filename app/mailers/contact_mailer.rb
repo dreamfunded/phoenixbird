@@ -74,7 +74,7 @@ class ContactMailer < ActionMailer::Base
 
   def check_campaign(campaign)
     @campaign = campaign
-    mail(to: "info@dreamfunded.com", subject: 'Company Submitted')
+    mail(to: ["info@dreamfunded.com", "victor@dreamfunded.com"], subject: 'Company Submitted')
   end
 
   def investment_submitted(user, investment_id)

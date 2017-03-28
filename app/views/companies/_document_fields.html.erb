@@ -1,0 +1,19 @@
+<div class="nested-fields member-box document-box">
+
+  <div class="field">
+    <%= f.text_field :name, class: 'form-field required-field', placeholder: "File Name" %>
+  </div>
+  <br>
+
+  <%= f.file_field :file, class: "required-field" %>
+
+  <br>
+
+  <%= link_to_remove_association( f, class: "add-remove-member" ) do %>
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+    <span>Remove Document</span>
+  <% end %>
+
+  <br/>
+
+</div>
