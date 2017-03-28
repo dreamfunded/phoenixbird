@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-field form-field-half' %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'form-field form-field-half' %>
   </div>
   <div class="field">
     <%= f.label :image %><br>
@@ -28,6 +28,6 @@
     <%= f.file_field :background %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update", class: 'company-button join-group-button mail-to-button invt-fr-btn' %>
   </div>
 <% end %>

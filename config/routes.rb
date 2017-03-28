@@ -265,6 +265,9 @@ Rails.application.routes.draw do
   get '/join_group/:id', to: 'groups#join_group', as: 'join_group'
   get '/add_to_group/:token', to: 'groups#add_to_group', as: 'add_to_group'
 
+  get '/add_admin_to_group/:id', to: 'groups#add_admin_to_group', as: 'add_admin_to_group'
+  post '/add_group_admin/:id', to: 'groups#add_group_admin', as: 'add_group_admin'
+
 
   get '/resources', to: 'home#resources'
   get '/marketplace', to: 'home#marketplace'

@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :add_group_admin, :group_admin]
   before_action :admin_check, except: [:show, :join_group, :add_to_group ]
   before_action :authenticate_user!, except: [:show, :add_to_group, :index ]
 
@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
 
   def show
     @posts = Post.order(:created_at).where(page: @group.slug)
-    @members = @group.users.first(5)
+    @admins = @group.group_admins
   end
 
 
@@ -65,6 +65,10 @@ class GroupsController < ApplicationController
     redirect_to @group, notice: "Request to join #{@group.name} was sent."
   end
 
+  def add_admin_to_group
+    @group_admin  = GroupAdmin.new
+  end
+
   def add_to_group
     @invite = GroupInvite.find_by(token: params[:token])
     @group = Group.find(@invite.group_id )
@@ -77,6 +81,13 @@ class GroupsController < ApplicationController
     end
   end
 
+
+  def add_group_admin
+    @admin = GroupAdmin.create(group_admin_params)
+    @group.group_admins << @admin
+    redirect_to @group
+  end
+
   private
 
     def set_group
@@ -86,6 +97,10 @@ class GroupsController < ApplicationController
 
     def group_params
       params.require(:group).permit(:name, :description, :image, :background)
+    end
+
+    def group_admin_params
+      params.require(:group_admin).permit(:name, :photo, :bio, :group_id)
     end
 
     def admin_check
