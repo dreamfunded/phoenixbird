@@ -36,6 +36,7 @@
 }
 .group-box{
   display: inline-block;
+  width: 65%;
 }
 
 .number-of-members{
@@ -72,7 +73,7 @@
   background-color: #fff;
   vertical-align: top;
   box-sizing: border-box;
-  margin-top: 98px;
+  margin-top: 30px;
 }
 
 .group-admin-editing{
@@ -112,9 +113,79 @@
 .group-tab{
   border-bottom: 2px solid #10a1d6;
   padding-bottom: 10px !important;
+  display: inline-block;
 }
 
 .group-box .section-title{
   display: inline-block;
   cursor: pointer;
+}
+
+.group-admin-photo{
+  border-radius: 50%;
+}
+
+.group-admins-list{
+  vertical-align: top;
+}
+
+.group-admin{
+  display: inline-block;
+  width: 45%;
+  vertical-align: top;
+  padding: 10px 5px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+.group-admin-box {
+  width: 380px;
+  padding: 10px;
+  display: none;
+  border: 2px solid #10a1d6;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.group-admin:hover >   .group-admin-box {
+    display: block;
+    position: absolute;
+    right: -128px;
+    bottom: 126px;
+}
+
+.group-admin-box:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -8px;
+  right: 185px;
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  border-right:2px solid #10a1d6;
+  border-bottom:2px solid #10a1d6;
+  -moz-transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+}
+
+.group-admin-name {
+  color: #333;
+  font-size: 16px;
+  letter-spacing: .1px;
+  font-family: GothamBook;
+}
+
+.group-admin-box-photo{
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
+}
+.group-admin-box-text{
+  display: inline-block;
+  width: 75%;
+  text-align: left;
+}
+
+.bold-name{
+  font-weight: bold;
 }

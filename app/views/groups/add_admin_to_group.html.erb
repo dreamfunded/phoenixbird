@@ -1,0 +1,27 @@
+<div class= "word-content">
+    <div class= "text-content centered">
+        <h1>Editing group</h1>
+
+        <%= form_for @group_admin, :url => {:action => "add_group_admin"}  do |f| %>
+
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name, class: 'form-field form-field-half' %>
+          </div>
+          <div class="field">
+            <%= f.label :bio %><br>
+            <%= f.text_area :bio, class: 'form-field form-field-half' %>
+          </div>
+          <div class="field">
+            <%= f.label :photo %><br>
+            <%= f.file_field :photo %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Create", class: 'company-button join-group-button mail-to-button invt-fr-btn' %>
+          </div>
+        <% end %>
+
+    </div>
+</div>
+

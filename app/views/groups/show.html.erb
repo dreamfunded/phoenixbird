@@ -49,12 +49,17 @@
                        <i class="fa fa-cogs" aria-hidden="true"></i>
                        <span class='edit-my-company-button'> Edit Group</span>
                     <% end %>
+                    <br>
+                    <%= link_to( add_admin_to_group_path(@group), class: 'edit-company-button' ) do %>
+                       <i class="fa fa-users" aria-hidden="true"></i>
+                       <span class='edit-my-company-button'> Add Admin</span>
+                    <% end %>
                 <% end %>
             </div>
 
+            <h2 class='section-title group-tab'>Group Blog</h2>
             <div>
                 <section class= "group-box">
-                    <h2 class='section-title group-tab'>Group Blog</h2>
                     <!-- <h2 class='section-title '>Discussion</h2> -->
 
                     <div class= "news-container">
@@ -88,12 +93,25 @@
                 </section>
 
                 <section class="group-members-box">
-                    <div class='group-members-header'>Group Members</div>
-                    <ul>
-                        <% @members.each do |member| %>
-                            <li> <%= member.name %> </li>
+                    <div class='group-members-header'>Group Admins</div>
+                    <div class='group-admins-list'>
+                        <% @admins.each do |admin| %>
+                            <span class='group-admin'>
+                                <%= image_tag( admin.photo(:thumbnail), class: 'group-admin-photo') %><br>
+                                <span class='group-admin-name'> <%= admin.name %> </span>
+
+                                <div class='group-admin-box'>
+                                    <section class='group-admin-box-photo'>
+                                        <%= image_tag( admin.photo(:thumbnail), class: 'group-admin-photo') %>
+                                    </section>
+                                    <section class='group-admin-box-text'>
+                                        <div class='group-admin-name bold-name centered'> <%= admin.name %> </div>
+                                        <span class='group-admin-name'> <%= admin.bio %> </span>
+                                    </section>
+                                </div>
+                            </span>
                         <% end%>
-                    </ul>
+                    </div>
                     <%= link_to "Invite Friend", "#", class: 'company-button join-group-button mail-to-button invt-fr-btn' %>
                 </section>
             </div>
