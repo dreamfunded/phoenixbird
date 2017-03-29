@@ -53,7 +53,7 @@ class CompaniesController < ApplicationController
 	def join_waitlist_send_email_with_invest
 		company_name = @company.name
 		Guest.create(email: current_user.email, company: company_name, user_id: current_user.id)
-		ContactMailer.delay.join_waitlist_with_invest(@company, current_user, params[:invest_amount])
+		ContactMailer.join_waitlist_with_invest(@company, current_user, params[:invest_amount]).deliver
 		redirect_to "/join_waitlist_thank_you"
 	end
 
@@ -166,8 +166,8 @@ class CompaniesController < ApplicationController
 			    @investment = FundAmerica::Investment.create(investment_options)
 
 			    Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
-			    ContactMailer.delay.investment_made( current_user)
-			    ContactMailer.delay.new_investment_made(current_user, params[:id])
+			    ContactMailer.investment_made( current_user).deliver
+			    ContactMailer.new_investment_made(current_user, params[:id]).deliver
 			rescue FundAmerica::Error => e
 			    p 'ERROR'
 			    puts e.parsed_response

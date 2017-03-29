@@ -76,8 +76,8 @@ class CampaignsController < ApplicationController
     @campaign.update(campaign_params)
     @campaign.financial
     @campaign.complete
-    ContactMailer.delay.campaign_submitted(current_user)
-    ContactMailer.delay.check_campaign(@campaign)
+    ContactMailer.campaign_submitted(current_user).deliver
+    ContactMailer.check_campaign(@campaign).deliver
     redirect_to company_path(@campaign.company)
   end
 
@@ -91,8 +91,8 @@ class CampaignsController < ApplicationController
     @financial_details = FinancialDetail.find(params[:financial_details])
     @financial_details.update(financial_details_params)
     @campaign.complete
-    ContactMailer.delay.campaign_submitted(current_user)
-    ContactMailer.delay.check_campaign(@campaign)
+    ContactMailer.campaign_submitted(current_user).deliver
+    ContactMailer.check_campaign(@campaign).deliver
     redirect_to company_path(@campaign.company)
   end
 
