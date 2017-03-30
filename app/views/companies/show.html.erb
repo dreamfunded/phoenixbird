@@ -178,22 +178,26 @@
             <section id="company-header" class="company-header company-section">
                 <div class="section-container">
                     <h1 class="section-title">Invest in <%= @company.name %></h1>
+
                     <div class="fluid-container">
                         <div class='row'>
-                            <% if @campaign_quote %>
-                                <div class="col-6">
-                                    <h2 class="section-sub-heading">Who Are We?</h2>
-                                    <h2 class="company-section-tagline"><%= @campaign.tagline %></h2>
+                            <% if @quote %>
+                                <div class="col-9">
+
                                     <div class="company-quote">
-                                        <div class='quote-symbol'>"</div>
-                                        <%= @campaign_quote.main %>
-                                        <div class="sub-quote"><%= @campaign_quote.description %></div>
+                                        <h2 class="company-section-tagline">
+                                            <%= @quote.description %>
+                                        </h2>
+
+                                        <!-- <div class='quote-symbol'>"</div>
+                                        <%#= @quote.main %>
+                                        <div class="sub-quote"><%#= @quote.description %></div> -->
                                     </div>
                                     <div class='said-by'>
-                                        <%= image_tag(@campaign_quote.photo.url) %>
+                                        <%= image_tag(@quote.photo.url) %>
                                         <span>
-                                            <div><%= @campaign_quote.said_by %></div>
-                                            <div class="said-by-title"><%= @campaign_quote.position %></div>
+                                            <div><%= @quote.said_by %></div>
+                                            <div class="said-by-title"><%= @quote.position %></div>
                                         </span>
                                     </div>
                                 </div>

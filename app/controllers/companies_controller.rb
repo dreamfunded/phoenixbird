@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
 		@section = @company.sections.first
 		@members = @company.founders.order(:position)
 		@campaign = @company.campaign
-		@campaign_quote = @campaign.quote
+		@quote = @company.quote
 		@formc = @company.general_info
 		#@investment_perks = @formc.investment_perks
 	end
@@ -76,6 +76,11 @@ class CompaniesController < ApplicationController
 		@comments = @company.comments
 		@members = @company.founders
 		@formc = @company.general_info
+		if @company.quote == nil
+			@quote = CampaignQuote.new
+		else
+			@quote = @company.quote
+		end
     end
 
 	  # @investment_perks = @formc.build_or_get_investment_perks
@@ -278,11 +283,11 @@ private
 	def company_params
 	  params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
 	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
-
-	   :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
-	   campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
-	   	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
+	 :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
+	  campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
+	  testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
       quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],
+      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
      general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
 
 	   founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
