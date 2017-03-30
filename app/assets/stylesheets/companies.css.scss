@@ -1382,7 +1382,8 @@ and (max-device-width : 568px) {
 
 .company-section-tagline:after, .company-section-tagline:before{
   content: '"';
-  font-size: 4rem;
+  font-size: 3rem;
+  font-family: monospace;
   font-style: italic;
 }
 
