@@ -5,7 +5,7 @@ class CampaignQuote < ActiveRecord::Base
   validates :said_by, :description, :photo, :position,  presence: true
 
 
-  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url]
+  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url, :_destroy]
 
 
 

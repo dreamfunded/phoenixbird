@@ -1398,6 +1398,18 @@ and (max-device-width : 568px) {
 .quote-section{
   min-width: 400px;
   display: inline-block;
+  position: relative;
+}
+
+.remove-quote{
+  color: red;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
 }
 
 .quote-label{
