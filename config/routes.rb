@@ -268,6 +268,8 @@ Rails.application.routes.draw do
   get '/add_admin_to_group/:id', to: 'groups#add_admin_to_group', as: 'add_admin_to_group'
   post '/add_group_admin/:id', to: 'groups#add_group_admin', as: 'add_group_admin'
 
+  get 'group_members/:id', to: 'groups#group_members', as: 'group_members'
+
 
   get '/resources', to: 'home#resources'
   get '/marketplace', to: 'home#marketplace'

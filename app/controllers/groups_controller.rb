@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :add_group_admin, :group_admin]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :add_group_admin, :group_admin, :group_members]
   before_action :admin_check, except: [:show, :join_group, :add_to_group ]
   before_action :authenticate_user!, except: [:show, :add_to_group, :index ]
 
@@ -81,11 +81,13 @@ class GroupsController < ApplicationController
     end
   end
 
-
   def add_group_admin
     @admin = GroupAdmin.create(group_admin_params)
     @group.group_admins << @admin
     redirect_to @group
+  end
+
+  def group_members
   end
 
   private

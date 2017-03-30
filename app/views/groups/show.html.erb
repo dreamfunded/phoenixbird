@@ -53,6 +53,11 @@
                        <i class="fa fa-users" aria-hidden="true"></i>
                        <span class='edit-my-company-button'> Add Admin</span>
                     <% end %>
+                    <br>
+                    <%= link_to( group_members_path(@group), class: 'edit-company-button' ) do %>
+                       <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                       <span class='edit-my-company-button'> Members</span>
+                    <% end %>
                 <% end %>
             </div>
 
