@@ -39,6 +39,13 @@ class CompaniesController < ApplicationController
 		redirect_to @company
 	end
 
+	def remove_quote
+		@quote =  CampaignQuote.find(params[:id])
+		@company = @quote.company
+		@quote.delete
+		redirect_to @company
+	end
+
 	def edit_profile
 	end
 
