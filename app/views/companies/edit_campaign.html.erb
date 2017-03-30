@@ -68,6 +68,7 @@
                 <div class='centered'>
                     <section class='centered quote-section'>
                         <%= f.fields_for :quote, @quote do |quote| %>
+                            <%= button_to "X", { action: 'remove_quote',controller: "companies", id: quote.object.id}  %>
                             <h2 class= "category-name indent">Quote</h2>
                             <div class='left'>
                                 <label class='quote-label'>Quote</label><br>

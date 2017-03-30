@@ -285,8 +285,9 @@ private
 	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
 	 :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
 	  campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
-	  testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
-      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],
+	  						testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
+      						quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES
+      						],
       quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
      general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
 
