@@ -181,6 +181,7 @@ hr.div {
     font-size: 2rem;
     letter-spacing: 2px;
     font-family: 'Droid Serif', serif;
+    color: #717171;
   }
 
   .company-quote, .company-section-tagline {
@@ -216,7 +217,6 @@ hr.div {
   position: relative;
   font-family: 'Droid Serif', serif;
   font-size: 2.1rem;
-  line-height: 1.5rem;
   opacity: .75;
   letter-spacing: 1px;
 
@@ -1368,10 +1368,46 @@ and (max-device-width : 568px) {
 .quote-symbol {
   font-size: 4rem;
   position: absolute;
-  top: 0;
+  top: -15%;
   left: 0;
   opacity: 0.5;
+  font-style: italic;
 }
+
+.closing-quote{
+  font-size: 4rem;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.company-section-tagline:after, .company-section-tagline:before{
+  content: '"';
+  font-size: 4rem;
+  font-style: italic;
+}
+
+.company-section-tagline:before{
+  top: -15px;
+  left: 0px;
+}
+
+.quote-section{
+  min-width: 400px;
+  display: inline-block;
+}
+
+.quote-label{
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 3px;
+  font-family: 'Gotham',sans-serif;
+  color: #424242;
+  -webkit-font-smoothing: antialiased;
+}
+.company-section-tagline:after{
+  top: 21px;
+}
+
 
 .content-title {
   margin: 0;
