@@ -1,0 +1,13 @@
+<div class="word-content">
+    <div class="text-content centered">
+        <h2> <%= @group.name %> Members</h2>
+
+        <% @group.users.uniq.each do |member| %>
+            <div>
+                <%= member.name%> - <%= member.email%>
+            </div>
+
+        <% end %>
+
+    </div>
+</div>

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
 	has_many :identities
 
 	has_one :investor
+	has_one :group_admin
 	#Getter
 	validates :first_name, presence:true
 	validates :last_name, presence:true
