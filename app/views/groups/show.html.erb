@@ -61,12 +61,12 @@
                 <% end %>
             </div>
 
-            <h2 class='section-title group-tab'>Group Blog</h2>
-            <!-- <h2 class='section-title group-tab'>Discussion</h2> -->
+            <h2 class='section-title group-tab group-blog active-tab'>Group Blog</h2>
+            <h2 class='section-title group-tab discussion-tab'>Discussion</h2>
             <div>
                 <section class= "group-box">
 
-                    <div class= "news-container">
+                    <div class= "news-container group-tab-content group-blog-content">
                         <% @posts.each do |article| %>
                             <div class= "group-blog_wrapper">
                                 <% if current_user %>
@@ -97,8 +97,12 @@
                                 <h3 class='centered'><%= link_to 'Write New Group Post', "/posts/new/#{@group.slug}" %></h3>
                             <% end %>
                         <% end %>
-
                     </div>
+
+                    <div class='tab-content group-tab-content discussion-tab-content'>
+                        Messages. COmments
+                    </div>
+
                 </section>
 
                 <section class="group-members-box">
@@ -193,4 +197,24 @@
         }
       // close NewsLetter Subscription Box
     });
+    //T A B S
+    $(document).ready(function(){
+
+        $('.group-blog').click(function(e){
+            console.log('click');
+            $('.group-tab-content').hide();
+            $('.group-blog-content').show();
+            $('.group-tab').removeClass('active-tab');
+            $(".group-blog").addClass('active-tab');
+        });
+
+        $('.discussion-tab').click(function(e){
+            console.log('click');
+            $('.group-tab-content').hide();
+            $('.discussion-tab-content').show();
+            $('.group-tab').removeClass('active-tab');
+            $('.discussion-tab').addClass('active-tab');
+        });
+
+    })
 </script>
