@@ -15,10 +15,10 @@ ActiveAdmin.register GroupAdmin  do
 # config.filters = false
 
 
-permit_params  :user_id,  :name, :bio, :group_id, :photo
+permit_params  :user_id,  :name, :bio, :group_id, :photo, :email
 
 
-  index :title => 'Waitlist' do
+  index :title => 'Group Admins' do
     column  "name"
     column("group") {|user| user.group.name }
     actions
@@ -27,6 +27,7 @@ permit_params  :user_id,  :name, :bio, :group_id, :photo
   form do |f|
     f.inputs 'User Details' do
       f.input   :name
+      f.input   :email
       f.input   :bio
       f.input   :photo, :required => false, :as => :file
       f.input   :group
@@ -37,6 +38,7 @@ permit_params  :user_id,  :name, :bio, :group_id, :photo
   show do |ad|
     attributes_table do
       row :name
+      row :email
       row :bio
       row :group
       row :photo do

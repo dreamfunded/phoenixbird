@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328174706) do
+ActiveRecord::Schema.define(version: 20170330223201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170328174706) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "company_id"
   end
 
   create_table "campaigns", force: true do |t|
@@ -459,6 +460,7 @@ ActiveRecord::Schema.define(version: 20170328174706) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "email"
   end
 
   create_table "group_invites", force: true do |t|
@@ -484,7 +486,7 @@ ActiveRecord::Schema.define(version: 20170328174706) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
-    t.integer  "members"
+    t.integer  "member"
   end
 
   add_index "groups", ["slug"], name: "index_groups_on_slug", using: :btree

@@ -70,9 +70,11 @@
                     <div class= "news-container">
                         <% @posts.each do |article| %>
                             <div class= "group-blog_wrapper">
-                                <% if current_user != nil && current_user.authority >= authority[:Editor] %>
-                                    <%= link_to 'Delete', article, method: :delete, data: { confirm: 'Are you sure?'}, :class => 'right red_link' %>
-                                    <%= link_to 'Edit', "/posts/#{article.id}/edit/group", {:class => 'right red_link'} %>
+                                <% if current_user %>
+                                    <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
+                                        <%= link_to 'Delete', article, method: :delete, data: { confirm: 'Are you sure?'}, :class => 'right red_link' %>
+                                        <%= link_to 'Edit', "/posts/#{article.id}/edit/#{@group.slug}", {:"data-no-turbolink" => true, :class => 'right red_link'} %>
+                                    <% end %>
                                 <% end %>
 
 
@@ -91,9 +93,12 @@
                                 </div>
                             </div>
                         <% end %>
-                        <% if current_user != nil && current_user.authority >= authority[:Editor] %>
-                            <h3 class='centered'><%= link_to 'Write New Group Post', "/posts/new/#{@group.slug}" %></h3>
+                        <%if current_user%>
+                            <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
+                                <h3 class='centered'><%= link_to 'Write New Group Post', "/posts/new/#{@group.slug}" %></h3>
+                            <% end %>
                         <% end %>
+
                     </div>
                 </section>
 

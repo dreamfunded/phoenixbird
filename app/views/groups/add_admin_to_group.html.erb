@@ -1,9 +1,13 @@
 <div class= "word-content">
     <div class= "text-content centered">
         <h1>Editing group</h1>
+        <div class='notice'><%= flash[:error] %></div>
+        <%= form_for GroupAdmin.new, :url => {:action => "add_group_admin"}  do |f| %>
 
-        <%= form_for @group_admin, :url => {:action => "add_group_admin"}  do |f| %>
-
+          <div class="field">
+            <%= f.label :email %><br>
+            <%= f.text_field :email, class: 'form-field form-field-half' %>
+          </div>
           <div class="field">
             <%= f.label :name %><br>
             <%= f.text_field :name, class: 'form-field form-field-half' %>

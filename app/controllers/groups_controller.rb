@@ -66,7 +66,19 @@ class GroupsController < ApplicationController
   end
 
   def add_admin_to_group
-    @group_admin  = GroupAdmin.new
+  end
+
+  def add_group_admin
+    user = User.find_by(email: params[:group_admin][:email])
+    if user
+      @admin = GroupAdmin.create(group_admin_params)
+      @group.group_admins << @admin
+      user.group_admin = @admin
+      redirect_to @group
+    else
+      flash[:error] = 'Could not find user email. User needs to sign up first.'
+      render :add_admin_to_group
+    end
   end
 
   def add_to_group
@@ -81,11 +93,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  def add_group_admin
-    @admin = GroupAdmin.create(group_admin_params)
-    @group.group_admins << @admin
-    redirect_to @group
-  end
 
   def group_members
   end
@@ -102,7 +109,7 @@ class GroupsController < ApplicationController
     end
 
     def group_admin_params
-      params.require(:group_admin).permit(:name, :photo, :bio, :group_id)
+      params.require(:group_admin).permit(:name, :photo, :bio, :group_id, :user_id, :email)
     end
 
     def admin_check
