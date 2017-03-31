@@ -31,6 +31,15 @@ class PressPostsController < ApplicationController
     end
   end
 
+  def destroy
+    @press_post = PressPost.find(params[:id])
+    @press_post.destroy
+    respond_to do |format|
+      format.html { redirect_to '/press', notice: 'Document was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def press_post_params
