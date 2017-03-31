@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
   def show
     @posts = Post.order(:created_at).where(page: @group.slug)
     @admins = @group.group_admins
+    @comments = @group.comments
   end
 
 

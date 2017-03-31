@@ -31,6 +31,6 @@
 
   private
   def comment_params
-    params.require(:comment).permit(:content, :user_id, :company_id, :parent_id, :created_at, :updated_at)
+    params.require(:comment).permit(:content, :user_id, :company_id, :parent_id, :group_id,  :created_at, :updated_at)
   end
 end
