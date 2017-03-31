@@ -18,8 +18,8 @@
                 <%= f.fields_for :campaign  do |campaign_fields| %>
                   <%= campaign_fields.text_area :tagline, placeholder: 'Describe your company in one sentence',:class => " form-field", required:true %><br>
                   <!-- <i class="fa fa-map-marker darkblue company_located"></i> -->
-                  <%= campaign_fields.text_field :company_location_city, placeholder: 'City',:class => "form-field form-field-half", required:true %>
-                  <%= campaign_fields.text_field :company_location_state, placeholder: 'State',:class => "form-field form-field-half", required:true %>
+                  <%= campaign_fields.text_field :company_location_city, placeholder: 'City', class: "form-field form-field-half", required:true %>
+                  <%= campaign_fields.text_field :company_location_state, placeholder: 'State', class: "form-field form-field-half", required:true %>
                 <% end %>
                 <%= f.select(:category, options_for_select(company_categories, @company.category), {}, {class: " form-field form-field-half "} ) %>
             </section>
@@ -61,14 +61,38 @@
 
 
           <div style="text-align:center;">
-              <section class= "video-box">
-                  <h2 class='section-title'>Who Are We?</h2>
-                  <% if @company.video_link.empty? %>
-                      <%= image_tag( @company.image.url, class: 'image-max-width')%>
-                  <% else %>
-                      <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0" %> frameborder="0" allowfullscreen ></iframe>
-                  <% end %>
-              </section>
+
+            <section class= "video-box ">
+                <div class='centered'>
+                    <section class='centered quote-section'>
+                        <%= f.fields_for :quote, @quote do |quote| %>
+                            <%= link_to "Delete", { action: 'remove_quote',controller: "companies", id: quote.object.id} , {:class => 'remove-quote'} %>
+                            <h2 class= "category-name indent">Quote</h2>
+                            <div class='left'>
+                                <label class='quote-label'>Quote</label><br>
+                                <%= quote.text_field :description, class: "form-field "  %><br>
+                            </div>
+                            <div class='left'>
+                                <label class='quote-label'>Said By</label><br>
+                                <%= quote.text_field :said_by, class: "form-field " %><br>
+                            </div>
+                            <div class='left'>
+                                <label class='quote-label'>Title</label><br>
+                                <%= quote.text_field :position, class: "form-field " %><br>
+                                <label class='quote-label'>Quote Photo</label><br>
+                                <%= quote.file_field :photo %>
+                            </div>
+                        <% end %>
+                    </section>
+                </div>
+
+                <h2 class='section-title'>Who Are We?</h2>
+                <% if @company.video_link.empty? %>
+                  <%= image_tag( @company.image.url, class: 'image-max-width')%>
+                <% else %>
+                  <iframe  class='youtube-video' src= <%= @company.video_link + "?rel=0" %> frameborder="0" allowfullscreen ></iframe>
+                <% end %>
+            </section>
 
               <section class='social-media-campaign'>
                   <p class='help-our-campaign'>

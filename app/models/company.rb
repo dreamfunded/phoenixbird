@@ -15,16 +15,20 @@ class Company < ActiveRecord::Base
   end
 
 
-
   has_many :investments
   has_many :sections
   has_many :comments
   has_many :bids
   has_many :founders
+
   accepts_nested_attributes_for :founders, reject_if: :all_blank, allow_destroy: true
   has_many :documents
+
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
   has_many :liquidate_shares
+
+  has_one :quote, class_name: 'CampaignQuote'
+  accepts_nested_attributes_for :quote, reject_if: :all_blank, allow_destroy: true
 
   has_many :docusigns
   has_one :campaign

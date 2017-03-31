@@ -20,7 +20,7 @@ class InvestController < ApplicationController
 
   def investment_made
     Investment.create(user_id: current_user.id, fund_america_id: params[:id], company_id: params[:company_id])
-    ContactMailer.delay.new_investment_made(current_user, params[:company_id])
+    ContactMailer.new_investment_made(current_user, params[:company_id]).deliver
     head :ok
   end
 

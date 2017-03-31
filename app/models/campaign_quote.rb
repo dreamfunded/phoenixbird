@@ -1,10 +1,11 @@
 class CampaignQuote < ActiveRecord::Base
 
+  belongs_to :company
   belongs_to :campaign
-  validates :said_by, :main, presence: true
+  validates :said_by, :description, :photo, :position,  presence: true
 
 
-  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url]
+  ACCESSIBLE_ATTRIBUTES = [:id, :main, :description, :said_by, :position, :photo, :remote_image_url, :_destroy]
 
 
 
@@ -22,7 +23,7 @@ class CampaignQuote < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_size :photo, :less_than => 5.megabytes
-  validates :said_by, :main, presence: true
+
 
   def photo_remote_url=(photo_remote_url)
     self.photo = URI.parse(photo_remote_url)

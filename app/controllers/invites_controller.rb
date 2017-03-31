@@ -14,7 +14,7 @@ class InvitesController < ApplicationController
     @invite = Invite.create(invite_params)
     email = @invite.email
     name = @invite.name
-    InviteMailer.delay.invite_from_user(email, name, current_user)
+    InviteMailer.invite_from_user(email, name, current_user).deliver
     flash[:email_sent] = "Email Sent"
     redirect_to '/invite'
   end
@@ -25,7 +25,7 @@ class InvitesController < ApplicationController
     email = @invite.email
     name = @invite.name
     company_name = current_user.company.name
-    ContactMailer.delay.csv_invite(@invite, current_user.name, company_name)
+    ContactMailer.csv_invite(@invite, current_user.name, company_name).deliver
     flash[:email_sent] = "Email Sent"
     redirect_to '/invite'
   end
@@ -35,7 +35,7 @@ class InvitesController < ApplicationController
     begin
         @csv_file = CsvFile.new(csv_file_params)
         if @csv_file.save
-          ContactMailer.delay.file_uploaded(current_user)
+          ContactMailer.file_uploaded(current_user).deliver
           flash[:email_sent] = "File has been uploaded, we will contact you after we have reviewed it."
           redirect_to  invite_users_path
         else
@@ -83,7 +83,7 @@ class InvitesController < ApplicationController
 
   def send_from_advisor
     @invite = Invite.create(name: params[:name], email: params[:email] )
-    ContactMailer.delay.send_from_advisor(@invite, current_user.name)
+    ContactMailer.send_from_advisor(@invite, current_user.name).deliver
     redirect_to '/invite'
   end
 
@@ -115,7 +115,7 @@ class InvitesController < ApplicationController
   def invite_to_group
     @invite = GroupInvite.create(group_invite_params)
     @group = Group.find( @invite.group_id )
-    InviteMailer.delay.invite_to_group(@invite, current_user)
+    InviteMailer.invite_to_group(@invite, current_user).deliver
     redirect_to @group
   end
 
@@ -141,9 +141,9 @@ class InvitesController < ApplicationController
     if invited_person
       current_user.company.users << invited_person
       invited_person.update(role: params[:role])
-      ContactMailer.delay.invite_cofounder_exist(email, name, current_user)
+      ContactMailer.invite_cofounder_exist(email, name, current_user).deliver
     else
-      ContactMailer.delay.invite_cofounder_dont_exist(email, name, current_user)
+      ContactMailer.invite_cofounder_dont_exist(email, name, current_user).deliver
     end
     redirect_to company_path(current_user.company)
   end

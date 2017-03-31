@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
 
   def join_group
     current_user.groups << @group
-    ContactMailer.delay.join_group_request(current_user, @group)
+    ContactMailer.join_group_request(current_user, @group).deliver
     redirect_to @group, notice: "Request to join #{@group.name} was sent."
   end
 
@@ -105,7 +105,7 @@ class GroupsController < ApplicationController
 
 
     def group_params
-      params.require(:group).permit(:name, :description, :image, :background, :members)
+      params.require(:group).permit(:name, :description, :image, :background, :member )
     end
 
     def group_admin_params

@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
 		@section = @company.sections.first
 		@members = @company.founders.order(:position)
 		@campaign = @company.campaign
-		@campaign_quote = @campaign.quote
+		@quote = @company.quote
 		@formc = @company.general_info
 		#@investment_perks = @formc.investment_perks
 	end
@@ -36,6 +36,13 @@ class CompaniesController < ApplicationController
 	def delete_document
 		doc_name = params[:document] + "_file_name"
 		@company.financial_detail.update(doc_name => nil)
+		redirect_to @company
+	end
+
+	def remove_quote
+		@quote =  CampaignQuote.find(params[:id])
+		@company = @quote.company
+		@quote.delete
 		redirect_to @company
 	end
 
@@ -53,7 +60,7 @@ class CompaniesController < ApplicationController
 	def join_waitlist_send_email_with_invest
 		company_name = @company.name
 		Guest.create(email: current_user.email, company: company_name, user_id: current_user.id)
-		ContactMailer.delay.join_waitlist_with_invest(@company, current_user, params[:invest_amount])
+		ContactMailer.join_waitlist_with_invest(@company, current_user, params[:invest_amount]).deliver
 		redirect_to "/join_waitlist_thank_you"
 	end
 
@@ -76,6 +83,11 @@ class CompaniesController < ApplicationController
 		@comments = @company.comments
 		@members = @company.founders
 		@formc = @company.general_info
+		if @company.quote == nil
+			@quote = CampaignQuote.new
+		else
+			@quote = @company.quote
+		end
     end
 
 	  # @investment_perks = @formc.build_or_get_investment_perks
@@ -166,8 +178,8 @@ class CompaniesController < ApplicationController
 			    @investment = FundAmerica::Investment.create(investment_options)
 
 			    Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
-			    ContactMailer.delay.investment_made( current_user)
-			    ContactMailer.delay.new_investment_made(current_user, params[:id])
+			    ContactMailer.investment_made( current_user).deliver
+			    ContactMailer.new_investment_made(current_user, params[:id]).deliver
 			rescue FundAmerica::Error => e
 			    p 'ERROR'
 			    puts e.parsed_response
@@ -278,11 +290,12 @@ private
 	def company_params
 	  params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
 	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
-
-	   :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
-	   campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
-	   	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
-      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES],
+	 :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
+	  campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
+	  						testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
+      						quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES
+      						],
+      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
      general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
 
 	   founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
