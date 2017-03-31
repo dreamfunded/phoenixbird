@@ -13,6 +13,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
 protected
+  def after_sign_up_path_for(resource)
+      email = resource.email
+      invite = GroupInvite.find_by(email: email)
+      if invite
+        group = Group.find(invite.group_id)
+        return group
+      else
+        return root_path
+      end
+   end
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
@@ -33,15 +44,15 @@ protected
   end
 
   def invite_to_group(user)
-    p 'Inviting to Group'
-    email = user.email
-    invite = GroupInvite.find_by(email: email)
-    p email
-    p invite
-    if invite
-      group = Group.find(invite.group_id)
-      user.groups << group
-    end
+      p 'Inviting to Group'
+      email = user.email
+      invite = GroupInvite.find_by(email: email)
+      p email
+      p invite
+      if invite
+        group = Group.find(invite.group_id)
+        user.groups << group
+      end
   end
 
 private
