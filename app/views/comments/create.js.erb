@@ -1,5 +1,5 @@
 <% if @comment.parent %>
-  $(".comment<%= @comment.parent.id %>~.nested_messages").append("<%= j render(@comment) %>");
+  $(".comment<%= @comment.parent.id %>").append("<%= j render(@comment) %>");
   $(".reply_comment_form").hide();
 <%else %>
   $('.comments').append("<%= j render(@comment) %>");

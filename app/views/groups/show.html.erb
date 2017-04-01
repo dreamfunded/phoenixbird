@@ -100,7 +100,34 @@
                     </div>
 
                     <div class='tab-content group-tab-content discussion-tab-content'>
-                        Messages. COmments
+                       <div class='section-content'>
+                           <div class="comments">
+                               <%= nested_messages(@comments.arrange(:order => :created_at))%>
+                           </div>
+                               <% if current_user %>
+                                   <div class="comment">
+                                     <div class="headline">
+                                       <span class="name">
+                                         <span class='comment_as'>New comment as</span>
+                                         <a><%= current_user.comments_name%></a>
+                                       </span>
+                                     </div>
+                                     <div class="comment_content">
+                                           <%= form_for Comment.new, remote: true  do |f|%>
+                                                <%= f.hidden_field "user_id", value: current_user.id %>
+                                                <%= f.hidden_field "group_id", value: @group.id %>
+                                                <%= f.hidden_field :parent_id %>
+                                               <div>
+                                                   <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
+                                               </div>
+                                               <%= f.submit "Post Comment", class: 'comment_submit_button' %>
+                                           <% end %>
+                                   </div>
+                               <%else%>
+                                     <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
+                               <%end%>
+                           </div>
+                       </div>
                     </div>
 
                 </section>
@@ -215,6 +242,11 @@
             $('.group-tab').removeClass('active-tab');
             $('.discussion-tab').addClass('active-tab');
         });
+    });
 
-    })
+    $(".comments .reply_comment_button").click(function(e){
+          e.preventDefault()
+          $(this).parent().parent().parent().next().show();
+    });
+
 </script>
