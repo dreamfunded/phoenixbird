@@ -97,6 +97,8 @@ class PostsController < ApplicationController
         return jobs_act_path
       elsif page == 'fund_raising_guide'
         return fund_raising_guide_path
+      elsif Group.all.pluck(:slug).include?(page)
+        return "/groups/#{page}"
       else
         return root_path
       end
