@@ -85,10 +85,10 @@
                                             <%= article.content.html_safe %>
                                         </div>
                                         <%#= link_to "Read more", blog_post_path(article) %>
-                                        <%#= link_to "Read more", '/', class: 'read-more-link' %>
                                     </div>
                                     <div class="press-post-item press-date">
                                         <%= article.created_at.strftime("%b %e %Y") %>
+                                        <%= link_to "Show more", '#', class: 'read-more-link' %>
                                     </div>
                                     <!-- <div class='news-read-more-buton'>
                                         <%#= link_to "Read More", blog_post_path(article), :class =>'article-button' %>
@@ -257,10 +257,19 @@
             $('.company-tab').addClass('active-tab');
         });
 
-        $('.group-blog-title').on('click', function(event) {
+        $('.read-more-link').on('click', function(event) {
 
-            var height = $(this).next().find(".article-ctn").outerHeight() + 15;
-            $(this).next().css('height', height);
+            if( $(this).hasClass('expanded') ){
+                console.log('IF');
+                $(this).parent().prev().css('height', 90);
+                $(this).removeClass('expanded').text('Show more');
+            }else{
+                console.log('else');
+                var height = $(this).parent().prev().find(".article-ctn").outerHeight() + 15;
+                $(this).parent().prev().css('height', height);
+                $(this).addClass('expanded').text('Show less');
+            }
+
             event.preventDefault();
         });
 
