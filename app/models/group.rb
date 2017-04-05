@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
   has_many :group_admins
   has_many :comments
 
-    has_attached_file :image,
+  has_attached_file :image,
       :styles =>{
         },
       :storage => :s3,
@@ -19,7 +19,7 @@ class Group < ActiveRecord::Base
         :secret_access_key => "MIKaOefz+v4pruAnB/rVwI/iXw/w6iyRXm7fhyA/"
       }
 
-    has_attached_file :background,
+  has_attached_file :background,
       :styles =>{
         },
       :storage => :s3,

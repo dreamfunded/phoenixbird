@@ -197,3 +197,26 @@
 .group-blog-content{
   display: block;
 }
+
+.companies-endorsed{
+  font-size: 1em;
+  font-family: 'Gotham',sans-serif;
+  color: #424242;
+  margin-top: 11px;
+  font-weight: bold;
+}
+
+.group_blog_content{
+    text-align: justify;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: .1px;
+    font-family: GothamBook;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    transition: height 1s ease;
+}

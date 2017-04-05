@@ -63,6 +63,7 @@
 
             <h2 class='section-title group-tab group-blog active-tab'>Group Blog</h2>
             <h2 class='section-title group-tab discussion-tab'>Discussion</h2>
+            <h2 class='section-title group-tab company-tab'>Companies</h2>
             <div>
                 <section class= "group-box">
 
@@ -79,9 +80,12 @@
 
                                 <div class= "">
                                     <div class= "group-blog-title"> <%= article.title %> </div>
-                                    <div class= "blog_content">
-                                        <%= article.content.first(300).html_safe %>...
-                                        <%= link_to "Read more", blog_post_path(article) %>
+                                    <div class= "group_blog_content">
+                                        <div class='article-ctn'>
+                                            <%= article.content.html_safe %>
+                                        </div>
+                                        <%#= link_to "Read more", blog_post_path(article) %>
+                                        <%#= link_to "Read more", '/', class: 'read-more-link' %>
                                     </div>
                                     <div class="press-post-item press-date">
                                         <%= article.created_at.strftime("%b %e %Y") %>
@@ -99,7 +103,7 @@
                         <% end %>
                     </div>
 
-                    <div class='tab-content group-tab-content discussion-tab-content'>
+                    <div class=' group-tab-content discussion-tab-content'>
                        <div class='section-content'>
                            <div class="comments">
                                <%= nested_messages(@comments.arrange(:order => :created_at))%>
@@ -128,6 +132,11 @@
                                <%end%>
                            </div>
                        </div>
+                    </div>
+
+
+                    <div class=' group-tab-content company-tab-content'>
+                        <div class='companies-endorsed'>Companies endorsed by <%= @group.name %></div>
                     </div>
 
                 </section>
@@ -228,7 +237,6 @@
     $(document).ready(function(){
 
         $('.group-blog').click(function(e){
-            console.log('click');
             $('.group-tab-content').hide();
             $('.group-blog-content').show();
             $('.group-tab').removeClass('active-tab');
@@ -236,12 +244,26 @@
         });
 
         $('.discussion-tab').click(function(e){
-            console.log('click');
             $('.group-tab-content').hide();
             $('.discussion-tab-content').show();
             $('.group-tab').removeClass('active-tab');
             $('.discussion-tab').addClass('active-tab');
         });
+
+        $('.company-tab').click(function(e){
+            $('.group-tab-content').hide();
+            $('.company-tab-content').show();
+            $('.group-tab').removeClass('active-tab');
+            $('.company-tab').addClass('active-tab');
+        });
+
+        $('.group-blog-title').on('click', function(event) {
+
+            var height = $(this).next().find(".article-ctn").outerHeight() + 15;
+            $(this).next().css('height', height);
+            event.preventDefault();
+        });
+
     });
 
     $(".comments .reply_comment_button").click(function(e){
