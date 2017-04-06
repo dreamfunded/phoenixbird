@@ -7,6 +7,7 @@ class Company < ActiveRecord::Base
   }
 
 	has_many :users
+  has_and_belongs_to_many :groups
   has_many :followers, inverse_of: :company
   has_many :user_followers, through: :followers, source: :user, inverse_of: :company
 

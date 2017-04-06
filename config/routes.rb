@@ -269,6 +269,9 @@ Rails.application.routes.draw do
   post '/add_group_admin/:id', to: 'groups#add_group_admin', as: 'add_group_admin'
 
   get 'group_members/:id', to: 'groups#group_members', as: 'group_members'
+  get 'group_companies/:id', to: 'groups#group_companies', as: 'group_companies'
+  post 'endorse_company', to: 'groups#endorse_company'
+  post 'delete_endorsed_company/:company_id', to: 'groups#delete_endorsed_company'
 
 
   get '/resources', to: 'home#resources'

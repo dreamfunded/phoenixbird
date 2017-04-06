@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :add_group_admin, :group_admin, :group_members]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :add_group_admin, :group_admin, :group_members, :group_companies, :endorse_company, :delete_endorsed_company]
   before_action :admin_check, except: [:show, :join_group, :add_to_group ]
   before_action :authenticate_user!, except: [:show, :add_to_group, :index ]
 
@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
     @posts = Post.order("created_at DESC").where(page: @group.slug)
     @admins = @group.group_admins
     @comments = @group.comments
+    @companies = @group.companies
   end
 
 
@@ -97,6 +98,24 @@ class GroupsController < ApplicationController
 
   def group_members
   end
+
+  def group_companies
+    @companies = Company.all_accredited
+    @my_companies = @group.companies
+  end
+
+  def endorse_company
+    @company = Company.find(params[:company_id])
+    @group.companies << @company
+    redirect_to @group
+  end
+
+  def delete_endorsed_company
+    @company = Company.find(params[:company_id])
+    @group.companies.delete(@company)
+    redirect_to @group
+  end
+
 
   private
 
