@@ -109,5 +109,8 @@ function svexchange(){
 	window.location = "http://svexchange.com/";
 }
 function diversity_network(){
-	window.location = "/diversitynetwork"
+	window.location = "/diversitynetwork";
+}
+function group(){
+	window.location = "/my_group";
 }

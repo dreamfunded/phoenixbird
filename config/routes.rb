@@ -156,6 +156,7 @@ Rails.application.routes.draw do
   get 'users/admin', to: "users#admin"
   get 'users/admin-companies', to: "admin#companies"
   get '/my_campaigns', to: "users#campaign"
+  get '/my_group', to: "users#my_group"
 
   post '/marketplace_signup', to: 'guests#marketplace'
 

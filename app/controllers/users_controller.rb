@@ -73,6 +73,11 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def my_group
+		group = current_user.groups.first
+		redirect_to group
+	end
+
 private
 	def find_campaign_step(page,id)
 		if page == 'goal'
