@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :join_group, :add_group_admin, :group_admin, :group_members, :group_companies, :endorse_company, :delete_endorsed_company]
+  before_action :set_group, except: [:index, :new, :create, :add_to_group ]
+
   before_action :admin_check, except: [:show, :join_group, :add_to_group ]
   before_action :authenticate_user!, except: [:show, :add_to_group, :index ]
 
