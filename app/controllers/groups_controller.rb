@@ -117,6 +117,19 @@ class GroupsController < ApplicationController
     redirect_to @group
   end
 
+  def delete_group_admin
+    @group_admin = GroupAdmin.find(params[:admin_id])
+    @group.group_admins.delete(@group_admin)
+    redirect_to @group
+  end
+
+  def delete_group_member
+    @user = User.find(params[:user_id])
+    @group.users.delete(@user)
+    redirect_to @group
+  end
+
+
 
   private
 

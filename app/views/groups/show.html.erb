@@ -51,7 +51,7 @@
                     <br>
                     <%= link_to( add_admin_to_group_path(@group), class: 'edit-company-button' ) do %>
                        <i class="fa fa-users" aria-hidden="true"></i>
-                       <span class='edit-my-company-button'> Add Admin</span>
+                       <span class='edit-my-company-button'>  Admins </span>
                     <% end %>
                     <br>
                     <%= link_to( group_members_path(@group), class: 'edit-company-button' ) do %>
@@ -60,8 +60,17 @@
                     <% end %>
                     <br>
                     <%= link_to( group_companies_path(@group), class: 'edit-company-button' ) do %>
-                       <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                       <i class="fa fa-university" aria-hidden="true"></i>
                        <span class='edit-my-company-button'> Companies</span>
+                    <% end %>
+                <% end %>
+                <br>
+                <% if current_user %>
+                    <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
+                        <%= link_to( group_invites_path(@group), class: 'edit-company-button' ) do %>
+                           <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
+                           <span class='edit-my-company-button'> Invite</span>
+                        <% end %>
                     <% end %>
                 <% end %>
             </div>
@@ -190,12 +199,12 @@
                     <div class='group-admins-list'>
                         <% @admins.each do |admin| %>
                             <span class='group-admin'>
-                                <%= image_tag( admin.photo(:thumbnail), class: 'group-admin-photo') %><br>
+                                <%= image_tag( admin.photo.url(:thumbnail), class: 'group-admin-photo') %><br>
                                 <span class='group-admin-name'> <%= admin.name %> </span>
 
                                 <div class='group-admin-box'>
                                     <section class='group-admin-box-photo'>
-                                        <%= image_tag( admin.photo(:thumbnail), class: 'group-admin-photo') %>
+                                        <%= image_tag( admin.photo.url(:thumbnail), class: 'group-admin-photo') %>
                                     </section>
                                     <section class='group-admin-box-text'>
                                         <div class='group-admin-name bold-name centered'> <%= admin.name %> </div>

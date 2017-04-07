@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
       if @post.save
-        redirect_to find_redirect(@post.page)
+        redirect_to find_redirect_create(@post.page)
       else
         render :new
         render json: @post.errors, status: :unprocessable_entity
@@ -98,6 +98,45 @@ class PostsController < ApplicationController
       elsif page == 'fund_raising_guide'
         return fund_raising_guide_path
       elsif Group.all.pluck(:slug).include?(page)
+        return "/groups/#{page}"
+      else
+        return root_path
+      end
+    end
+
+    def find_redirect_create(page)
+      if page == 'about_us'
+        return about_path
+      elsif page == 'latino'
+        return latino_path
+      elsif page == 'blog'
+        return blog_path
+      elsif page == 'group'
+        return root_path
+      elsif page == 'faq'
+        return faq_path
+      elsif page == 'basics'
+        return education_path
+      elsif page == 'terms'
+        return education_path
+      elsif page == 'tips'
+        return education_tips_path
+      elsif page == 'taxes'
+        return education_taxes_path
+      elsif page == 'investor-qa'
+        return investorqa_path
+      elsif page == 'employee-qa'
+        return employeeqa_path
+      elsif page == 'market_trends'
+        return market_trends_path
+      elsif page == 'how_works'
+        return '/how_it_works'
+      elsif page == 'jobs_act'
+        return jobs_act_path
+      elsif page == 'fund_raising_guide'
+        return fund_raising_guide_path
+      elsif Group.all.pluck(:slug).include?(page)
+        SubscribeJob.new.async.new_group_post(page)
         return "/groups/#{page}"
       else
         return root_path

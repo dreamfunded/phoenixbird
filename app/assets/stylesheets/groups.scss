@@ -123,6 +123,7 @@
 
 .group-admin-photo{
   border-radius: 50%;
+  width: 60px;
 }
 
 .group-admins-list{
@@ -228,4 +229,19 @@
 
 .endorsed-company{
   margin-right: 4% !important;
+}
+
+.group-members-table{
+
+}
+
+.grp-mmbr-col{
+  display: inline-block;
+  text-align: left;
+  width: 30%;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: .1px;
+  font-family: GothamBook;
 }

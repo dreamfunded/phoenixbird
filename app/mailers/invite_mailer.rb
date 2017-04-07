@@ -73,5 +73,10 @@ class InviteMailer < ActionMailer::Base
     mail(to: @invite.email, subject: "Hi #{@invite.name}, your friend #{@name} has invited you to join #{@group.name} group on DreamFunded" )
   end
 
+  def new_group_post(group, user)
+    @group, @user = group, user
+    mail(to: @user.email, subject: "Hi #{@user.name}, new blog post in your #{group.name} Group " )
+  end
+
 end
 

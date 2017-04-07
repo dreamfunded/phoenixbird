@@ -26,6 +26,14 @@
           </div>
         <% end %>
 
+        <br>
+        <div class='companies-endorsed'>Group Admins</div>
+        <% @group.group_admins.each do |admin| %>
+          <div><%= admin.name%></div>
+          <%= button_to 'Remove', "/delete_group_admin/#{admin.id}", params: {'id' => @group.id} %>
+
+        <% end %>
+
     </div>
 </div>
 

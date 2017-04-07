@@ -1,0 +1,30 @@
+<% title "DreamFunded | Invite" %>
+<% twitter_image  "https://dreamfunded.com/assets/smaller_bg.jpg" %>
+<% facebook_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
+<% facebook_secure_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
+
+<div class= "wrapper"> <!-- wrapper Starts -->
+
+  <div class="header">
+    <h1 class="centered">Invites </h1>
+  </div>
+
+  <div class= "invite-content">
+    <%= flash[:email_sent] %>
+
+      <!--   To Groups -->
+      <div class="invite-via-email">
+        <span class='invite-email-icon'><%=  fa_icon("users 2x")%> </span>
+        <span class='invite-text'>To Group</span>
+        <span class='invite-form'>
+          <%= form_tag('/invites_to_group', multipart: true) do  %>
+            <%= text_field_tag(:name,current_user.name, placeholder: 'Name',class: 'invite-text-input', required: true) %>
+            <%= select_tag(:group, options_from_collection_for_select(Group.all, "id", "name"), required: true ) %>
+            <%= file_field_tag :file, required: true %>
+            <%= submit_tag "Send", class: 'invite-button' %>
+          <% end %>
+        </span>
+      </div>
+  </div>
+
+</div>

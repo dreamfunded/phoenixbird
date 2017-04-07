@@ -120,4 +120,8 @@ class User < ActiveRecord::Base
 		false
 	end
 
+	def belongs_to_a_group?
+        self.groups.any?
+    end
+
 end
