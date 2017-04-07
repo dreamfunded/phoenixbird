@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, except: [:index, :new, :create, :add_to_group ]
 
   before_action :admin_check, except: [:show, :join_group, :add_to_group ]
-  before_action :authenticate_user!, except: [:show, :add_to_group, :index ]
+  before_action :authenticate_user!, except: [:show, :add_to_group ]
 
 
   def index
