@@ -74,8 +74,12 @@ class UsersController < ApplicationController
 	end
 
 	def my_group
-		group = current_user.groups.first
-		redirect_to group
+		group = current_user.groups.try(:first)
+		if group
+			redirect_to group
+		else
+			redirect_to root_path
+		end
 	end
 
 private
