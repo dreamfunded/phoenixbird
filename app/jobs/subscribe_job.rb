@@ -163,6 +163,20 @@ class SubscribeJob
     end
   end
 
+  def new_group_post(group_slug)
+    @group = Group.find_by(slug: group_slug)
+    ActiveRecord::Base.connection_pool.with_connection do
+      begin
+          @group.users.uniq.each do |user|
+            InviteMailer.delay.new_group_post(@group, user)
+          end
+      rescue Exception => e
+        SuckerPunch.logger.error("subscribe failed: due to #{e.message}")
+        raise e
+      end
+    end
+  end
+
   def csv_importer_gem(invite,user, email_template)
       ActiveRecord::Base.connection_pool.with_connection do
 
