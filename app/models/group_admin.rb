@@ -6,7 +6,7 @@ class GroupAdmin < ActiveRecord::Base
 
     has_attached_file :photo,
       :styles =>{
-        thumbnail: "60x60^",
+        thumbnail: "100x100#",
         small: "360x",
         large: "900x"
         },

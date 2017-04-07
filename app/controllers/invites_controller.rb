@@ -105,10 +105,10 @@ class InvitesController < ApplicationController
         name = params[:name]
         SubscribeJob.new.async.csv_group_emails(params[:file], @group, name )
         flash[:email_sent] = "Emails sent from #{@group.name}"
-        redirect_to  invite_users_path
+        redirect_to  back
       rescue
         flash[:upload_error] = "Invalid CSV file format."
-        redirect_to  invite_users_path
+        redirect_to  :back
     end
   end
 

@@ -221,6 +221,8 @@ Rails.application.routes.draw do
   post '/invite_from_startup', to: "invites#invite_from_startup", as: :invite_from_startup
   post '/invite_to_group', to: "invites#invite_to_group", as: :invite_to_group
 
+  get '/group_invites/:id', to: 'invites#group_invites', as: :group_invites
+
   get '/unsubscribe/:email', to: 'guests#unsubscribe'
 
   #resources :teams
@@ -273,6 +275,9 @@ Rails.application.routes.draw do
   get 'group_companies/:id', to: 'groups#group_companies', as: 'group_companies'
   post 'endorse_company', to: 'groups#endorse_company'
   post 'delete_endorsed_company/:company_id', to: 'groups#delete_endorsed_company'
+  post 'delete_group_admin/:admin_id', to: 'groups#delete_group_admin'
+  post 'delete_group_member/:user_id', to: 'groups#delete_group_member'
+
 
 
   get '/resources', to: 'home#resources'
