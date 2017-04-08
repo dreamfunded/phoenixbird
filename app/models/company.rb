@@ -166,4 +166,11 @@ class Company < ActiveRecord::Base
   def offering_code
     self.fund_america_code.split(':').second
   end
+
+  def submit_application(user)
+    if !self.campaign.submitted?
+      ContactMailer.submit_application(self, user).deliver
+    end
+  end
+
 end
