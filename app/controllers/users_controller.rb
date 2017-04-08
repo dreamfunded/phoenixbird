@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 				redirect_to campaign_step
 			end
 		else
-			redirect_to  funding_goal_path
+			redirect_to  campaign_basics_path
 		end
 	end
 

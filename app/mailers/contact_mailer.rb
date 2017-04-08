@@ -171,4 +171,8 @@ class ContactMailer < ActionMailer::Base
     mail(to: "info@dreamfunded.com", subject: "#{@user.name} submitted Form C")
   end
 
+  def submit_application(company, user)
+    @user = user
+    mail(to: @user.email, subject: "Congrats on creating a campaign on DreamFunded!")
+  end
 end

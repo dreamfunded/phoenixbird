@@ -7,7 +7,7 @@ class Founder < ActiveRecord::Base
 	validates :company_id, presence:true
 
   has_attached_file :image,
-    :styles => { :thumb => "180x180#", :big => "500x500#", :big => "300x300#"  },
+    :styles => { :thumb => "180x180#", :big => "500x500#"  },
     :storage => :s3,
     :bucket => 'dreamfunded',
     :path => "founders/:filename",

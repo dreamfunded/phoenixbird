@@ -57,16 +57,22 @@ Rails.application.routes.draw do
   # Company Compaign Submit
   get '/funding_goal', to: 'campaigns#funding_goal', as: 'funding_goal'
   post '/funding_goal_submit', to: 'campaigns#funding_goal_submit'
+
   get '/funding_campaing_goal/:id', to: 'campaigns#funding_goal_exist', as: 'funding_goal_exist'
   patch '/funding_goal_update', to: 'campaigns#funding_goal_update'
-  get '/campaign_basics/:id', to: 'campaigns#basics', as: 'campaign_basics'
+
+  get '/campaign_basics', to: 'campaigns#basics', as: 'campaign_basics'
   post '/basics_submit', to: 'campaigns#basics_submit'
+
   get '/company_description/:id', to: 'campaigns#description', as: 'description'
   patch '/company_description_submit', to: 'campaigns#company_description_submit'
+
   get '/legal_info/:id', to: 'campaigns#legal_info', as: 'legal_info'
   post '/legal_info_submit', to: 'campaigns#legal_info_submit'
+
   get '/financial_info/:id', to: 'campaigns#financial_info', as: 'financial_info'
   post '/financial_info_submit', to: 'campaigns#financial_info_submit'
+
   get '/campaign_review/:id', to: 'campaigns#campaign_review', as: 'campaign_review'
 
   get '/edit_campaign/:id', to: 'companies#edit_campaign', as: 'edit_campaign'

@@ -3,7 +3,7 @@
   <div class="header education-center">
     <div class='education-title'>Edit My Campaign</div>
     <section class='campaign-links'>
-      <a href="/funding_campaing_goal/<%=@campaign_id%>" class='education-links '>Funding Goal</a> <%= fa_icon "chevron-right"%>
+      <!-- <a href="/funding_campaing_goal/<%#=@campaign_id%>" class='education-links '>Funding Goal</a> <%#= fa_icon "chevron-right"%> -->
       <a href="#" class='education-links active-link'>Basics</a> <%= fa_icon "chevron-right"%>
       <a href="#" class='education-links disabled-link'>Description</a> <%= fa_icon "chevron-right"%>
       <a href="#" class='education-links disabled-link'> Legal Info </a>
@@ -29,8 +29,9 @@
 
   <div class= "login-container">
     <%= form_for @company, :url => {:action => "basics_submit"},method: "post", html: { multipart: true } do |f| %>
-      <%= hidden_field_tag :campaign_id, @campaign_id %>
+      <%#= hidden_field_tag :campaign_id, @campaign_id %>
       <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :goal_amount, value: 1000000 %>
 
       <div class='disclaimer-box'>
         <div class='disclaimer-container'>
@@ -51,7 +52,7 @@
       </div>
 
       <div class='text_field'>
-        <%= text_field_tag :tagline, @campaign.tagline ,placeholder: 'Describe your company in one sentence',:class => "form-field required-field" %>
+        <%= text_field_tag :tagline, nil ,placeholder: 'Describe your company in one sentence',:class => "form-field required-field" %>
       </div>
 
       <label>Category</label>

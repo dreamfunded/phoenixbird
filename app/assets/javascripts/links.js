@@ -85,7 +85,7 @@ function how_it_works() {
 	window.location = "/how_it_works";
 }
 function get_funded(){
-	window.location = "/funding_goal";
+	window.location = "/campaign_basics";
 }
 function invite(){
 	window.location = "/invite";
