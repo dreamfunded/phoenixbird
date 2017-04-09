@@ -20,7 +20,7 @@ permit_params  :user_id,  :name, :bio, :group_id, :photo, :email
 
   index :title => 'Group Admins' do
     column  "name"
-    column("group") {|user| user.group.name }
+    #column("group") {|user| user.group.name }
     actions
   end
 
