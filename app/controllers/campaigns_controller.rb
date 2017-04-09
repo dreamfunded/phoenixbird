@@ -34,20 +34,31 @@ class CampaignsController < ApplicationController
   end
 
   def basics
-    @campaign_id = params[:id]
-    @campaign = Campaign.find(params[:id])
-    @company = @campaign.company
+    #@campaign_id = params[:id]
+    #@campaign = Campaign.find(params[:id])
+    @company = Company.new
     @founders = @company.founders
   end
 
   def basics_submit
-    @campaign = Campaign.find(params[:campaign_id])
-    @company = @campaign.company
-    @company.update(company_params)
-    current_user.update(phone: params[:phone])
-    @campaign.description
-    @campaign.update( tagline: params[:tagline], category: params[:category])
-    redirect_to description_path(@campaign.id)
+    @company = Company.new(company_params)
+    if @company.save
+      @company.users << current_user
+      current_user.make_founder
+      current_user.update(phone: params[:phone])
+      @campaign = Campaign.create(funding_goal: 1000000, company_id: @company.id)
+      @campaign.basics
+      @campaign.description
+      FinancialDetail.create(company_id: @company.id)
+      @campaign.update( tagline: params[:tagline], category: params[:category])
+      @company.delay(run_at: 1.day.from_now).submit_application(current_user)
+      redirect_to description_path(@campaign.id)
+    else
+      p @company.errors
+      render :basics
+    end
+
+
   end
 
   def description
