@@ -173,4 +173,10 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def invest_reminder(user)
+    if !user.investments.pluck(:company_id).include?(self.id)
+      ContactMailer.invest_reminder(self, user).deliver
+    end
+  end
+
 end

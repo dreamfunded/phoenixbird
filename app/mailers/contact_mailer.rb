@@ -175,4 +175,9 @@ class ContactMailer < ActionMailer::Base
     @user = user
     mail(to: @user.email, subject: "Congrats on creating a campaign on DreamFunded!")
   end
+
+  def invest_reminder(company, user)
+    @user, @company = user, company
+    mail(to: @user.email, subject: "Reminder: Complete your Investment")
+  end
 end
