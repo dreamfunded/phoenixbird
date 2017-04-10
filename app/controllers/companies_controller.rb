@@ -114,7 +114,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def invest
-		@company.delay(run_at: 10.seconds.from_now).invest_reminder(current_user)
+		@company.delay(run_at: 1.day.from_now).invest_reminder(current_user)
 		if current_user.entity_id
 			begin
 				@entity = FundAmerica::Entity.details( current_user.entity_id )
