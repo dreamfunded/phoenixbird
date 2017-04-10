@@ -340,3 +340,11 @@ and (max-device-width : 1024px)  {
 .card-topbar .follow .fa-heart-o:hover {
     opacity: 1;
 }
+
+.connected-data-accquired{
+    position: absolute;
+    bottom: 3px;
+    font-size: 18px;
+    font-family: Arial;
+    font-weight: bold;
+}
