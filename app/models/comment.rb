@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
     end
 
     def comment_belongs_to_company_owner?
-        self.user.company == self.company
+        self.user.company == self.company && self.company!= nil
     end
 
 end
