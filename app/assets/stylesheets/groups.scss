@@ -107,7 +107,7 @@
 }
 
 .group-description-margin{
-  margin-left: 10%;
+
 }
 
 .group-tab{
@@ -244,4 +244,25 @@
   line-height: 1.8;
   letter-spacing: .1px;
   font-family: GothamBook;
+}
+
+.group-logo{
+  padding-left: 10%;
+}
+
+/*M O B I L E*/
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+
+  .group-blog-section{
+    padding: 1% 2%;
+  }
+  .join-group-button{
+    font-size: 2.5em !important;
+  }
+  .group-tab{
+    font-size: 2em;
+  }
 }

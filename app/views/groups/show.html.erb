@@ -16,7 +16,7 @@
         </div>
 
         <div class='company-profile-bottom-line group-description-margin'>
-            <%= image_tag( @group.image.url, class: 'image-max-width company-logo')%>
+            <%= image_tag( @group.image.url, class: 'image-max-width company-logo group-logo')%>
             <section class='company-basic-info'>
                 <div>   <%= @group.name %>  </div>
                 <div class='company-slogan'>    <%= @group.description %>  </div>
@@ -42,7 +42,7 @@
     <div class='group-blog-section'>
         <div class=" stretch">
             <!-- A D M I N   E D I T I N G -->
-            <div class='group-admin-editing'>
+            <div class='group-admin-editing hide-on-mobile'>
                 <% if current_user != nil && current_user.authority == authority[:Admin] %>
                     <%= link_to( edit_group_path(@group), class: 'edit-company-button' ) do %>
                        <i class="fa fa-cogs" aria-hidden="true"></i>
