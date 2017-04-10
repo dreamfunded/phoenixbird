@@ -261,8 +261,45 @@ and (max-device-width : 568px) {
   }
   .join-group-button{
     font-size: 2.5em !important;
+    width: 80%;
   }
   .group-tab{
-    font-size: 2em;
+    font-size: 2em !important;
+  }
+  .group-admins-list{
+    text-align: center;
+  }
+
+  .group_blog_content p{
+    font-size: 1.5rem !important;
+  }
+
+  .group_blog_content{
+    height: 140px;
+  }
+
+  .read-more-link{
+    font-size: 1.7em !important;
+  }
+
+  .group-blog-title{
+    font-size: 2rem !important;
+  }
+
+  .group-members-box{
+    margin-left: 1%;
+  }
+
+  .group-box{
+    width: 70%;
+  }
+
+  #invite-dialog{
+    width: 50% !important;
+    height: 22% !important;
+  }
+
+  .companies-endorsed{
+    font-size: 1.5em !important
   }
 }
