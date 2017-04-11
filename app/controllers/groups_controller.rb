@@ -75,6 +75,7 @@ class GroupsController < ApplicationController
     user = User.find_by(email: params[:group_admin][:email])
     if user
       @admin = GroupAdmin.create(group_admin_params)
+      user.groups << @group
       @group.group_admins << @admin
       user.group_admin = @admin
       redirect_to @group
