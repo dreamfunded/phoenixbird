@@ -5,7 +5,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
                                 site: 'https://graph.facebook.com/v2.6',
                                 authorize_url: "https://www.facebook.com/v2.6/dialog/oauth"
                                 }, token_params: { parse: :json }
-  provider :yahoo_oauth2, "dj0yJmk9ZW1XSENiYzNHMkFVJmQ9WVdrOVdHOVplRmxLTnpnbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00Ng--", "dd234123852df0e19bf355a73718afa37c05435b", name: 'yahoo'
+  provider :yahoo_oauth2, "dj0yJmk9ZW1XSENiYzNHMkFVJmQ9WVdrOVdHOVplRmxLTnpnbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00Ng--", "dd234123852df0e19bf355a73718afa37c05435b", name: 'yahoo', :callback_path => "/callback"
 end
 
 OmniAuth.config.on_failure = Proc.new do |env|
