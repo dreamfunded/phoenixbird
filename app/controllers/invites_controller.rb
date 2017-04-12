@@ -156,14 +156,26 @@ class InvitesController < ApplicationController
     redirect_to  invite_users_path
   end
 
+  def group_invites
+    session[:group_id] = params[:id]
+     p session[:group_id]
+  end
   #F R O M    S O C I A L   M E D I A
   def google_contacts
+    id =  session[:group_id]
+    group_id = Group.find_by(slug: session[:group_id] ).id
     emails = params[:emails]
-    emails.each do |email|
-      @invite = Invite.create(email: email, user_id: current_user.id)
-      ContactMailer.delay.invite(@invite)
+
+    emails.each do |name_email|
+      email = name_email.split(',').second
+      name = name_email.split(',').first
+
+      @invite = GroupInvite.create(email: email, name: name, group_id: group_id)
+      InviteMailer.delay.invite_to_group(@invite, current_user)
+      #@invite = Invite.create(email: email, user_id: current_user.id)
+      #ContactMailer.delay.invite(@invite)
     end
-    redirect_to '/invite'
+    redirect_to "/group_invites/#{id}"
   end
 
 
