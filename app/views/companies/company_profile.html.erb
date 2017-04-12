@@ -26,17 +26,20 @@
         </div>
 
         <div class='company-info-right-panel'>
-            <div class='company-info-cateogry'>RAISED</div>
+            <div class="company-detail">
                 <div class='company-finance-info'><%= number_to_currency @company.invested, precision: 0 %></div>
+                <div class='company-info-cateogry'>RAISED</div>
+            </div>
 
-            <div class='company-info-cateogry'>TARGET</div>
+            <div class="company-detail">
                 <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
+                <div class='company-info-cateogry'>TARGET</div>
+            </div>
 
-            <div class='company-info-cateogry'>DAYS LEFT</div>
-                <div class='company-finance-info'> Coming Soon </div>
-
-            <div class='company-info-cateogry'>minimum investment</div>
+            <div class="company-detail">
+                <div class='company-info-cateogry'>minimum investment</div>
                 <div class='company-finance-info'> $<%= @company.min_investment%> </div>
+            </div>
 
             <div class="meter orange">
                 <% @progress = ((@company.invested.to_f / @company.goal_amount.to_f).to_f) *100 %>
@@ -48,6 +51,7 @@
                     <span style='width: <%= @progress %>%'></span>
                 <% end %>
             </div>
+
             <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
 
             <div class='fund-america-invest-button'>
@@ -87,7 +91,7 @@
                         <%= link_to 'Edit as Admin', {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, {:class => 'left'} %>
                     <% end %>
                     <br>
-                    <% if current_user.company == @company %>
+                    <% if current_user != nil && current_user.company == @company %>
                         <%= link_to 'Edit My Campaign', {:controller => 'campaigns', :action => 'edit_campaign', :id => @company.campaign.id}, {:class => 'right'} %>
                     <% end %>
                 </div>
