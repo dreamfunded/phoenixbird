@@ -104,6 +104,13 @@ Rails.application.routes.draw do
   get '/authorise', to: 'import#authorise'
   get '/import', to: 'import#import'
 
+  get '/contacts_callback', to: "omniauth_callbacks#contacts_callback"
+  post '/contacts_callback', to: "omniauth_callbacks#contacts_callback"
+
+  get "/contacts/:importer/callback", to: "omniauth_callbacks#contacts_callback"
+  post "/contacts/:importer/callback", to: "omniauth_callbacks#contacts_callback"
+  get '/contacts/failure', to: 'home#index'
+
   post '/authenticate', to: 'import#authenticate'
   post '/authorise', to: 'import#authorise'
   post '/import', to: 'import#import'
