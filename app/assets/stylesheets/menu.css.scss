@@ -239,6 +239,27 @@ and (max-device-width : 568px) {
 		margin-left: 10px
 	}
 }
+@media screen and (max-width : 980px){
+	.menu button {
+		font-size: 13px;
+		padding: 0 9px;
+	}
+	#left{
+		margin-left: 10px
+	}
+	.menu .margin-for-how-it-works{
+		margin-left: 190px;
+	}
+	.logo{
+		width:160px;
+	}
+}
+@media screen and (max-width : 980px){
+	.menu > ul > .latino-button{
+		display: none;
+	}
+}
+
 @media screen and (max-width : 742px){
 	#hidden-menu{
 		display: block;
