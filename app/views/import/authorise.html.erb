@@ -49,7 +49,7 @@
               <%= hidden_field_tag :hash, @hash%>
               <ul class='instafilta-section imported-contacts'>
                 <div class=''>
-                  <input type="checkbox" onchange="checkAll(this)" name="chk[]" id='check_all'/>
+                  <input type="checkbox" onchange="checkAll(this)" name="chk[]" id='check_all' checked/>
                   <label for='check_all'>Check All</label>
                   <br>
                 </div>
@@ -59,7 +59,7 @@
                     <label>
                       <li class='imported-name'>
                         <% name_email = name + ',' + email %>
-                        <%= check_box_tag "emails[]", name_email %>
+                        <%= check_box_tag "emails[]", name_email, true %>
                         <%= name %></li>
                       <li class='imported-email'><%= email %></li>
                     </label>

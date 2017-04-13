@@ -31,7 +31,7 @@
         <span class='invite-text'>Invite from Gmail</span>
         <span class='invite-form-google'>
           <%= button_to  '/authenticate', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-            Invite Contacts from Gmail
+            Invite Contacts from Gmail  &nbsp;
             <%= image_tag "static/gmail-icon.png", class: 'gmail-icon' %>
           <% end %>
 
@@ -43,7 +43,7 @@
         <span class='invite-text'>Invite from Yahoo</span>
         <span class='invite-form-google'>
           <%= button_to  '/contacts/yahoo',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-            Invite Contacts from Yahoo
+            Invite Contacts from Yahoo  &nbsp;
             <%= image_tag "static/yahoo_logo.png", class: 'yahoo-icon' %>
           <% end %>
 
@@ -55,7 +55,7 @@
         <span class='invite-text'>Invite from Outlook</span>
         <span class='invite-form-google'>
           <%= button_to  '/contacts/outlook',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-            Invite Contacts from Yahoo
+            Invite Contacts from Outlook
             <%= image_tag "static/outlook.png", class: 'gmail-icon outlook-icon' %>
           <% end %>
 
