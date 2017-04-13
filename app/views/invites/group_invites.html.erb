@@ -38,6 +38,18 @@
         </span>
       </div>
 
+      <div class="invite-via-email">
+        <span class='invite-email-icon'><%=  fa_icon("yahoo 2x")%> </span>
+        <span class='invite-text'>Invite from Yahoo</span>
+        <span class='invite-form-google'>
+          <%= button_to  '/contacts/yahoo',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+            Invite Contacts from Yahoo
+            <%= image_tag "static/yahoo_logo.png", class: 'yahoo-icon' %>
+          <% end %>
+
+        </span>
+      </div>
+
   </div>
 
 </div>

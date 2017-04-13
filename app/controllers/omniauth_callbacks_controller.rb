@@ -38,12 +38,18 @@ class OmniauthCallbacksController < ApplicationController
 
   def contacts_callback
     @contacts = request.env['omnicontacts.contacts']
+    p @contacts
     @user = request.env['omnicontacts.user']
     puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
+    @hash = {}
     @contacts.each do |contact|
-      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
+
+        @hash[contact[:name]] = contact[:email]
+
+        puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
+
     end
-    redirect_to root_path
+    render "import/authorise"
   end
 
 end
