@@ -50,6 +50,18 @@
         </span>
       </div>
 
+      <div class="invite-via-email">
+        <span class='invite-email-icon'><%=  fa_icon("windows 2x")%> </span>
+        <span class='invite-text'>Invite from Outlook</span>
+        <span class='invite-form-google'>
+          <%= button_to  '/contacts/outlook',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+            Invite Contacts from Yahoo
+            <%= image_tag "static/outlook.png", class: 'gmail-icon outlook-icon' %>
+          <% end %>
+
+        </span>
+      </div>
+
   </div>
 
 </div>

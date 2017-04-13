@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/Diego81/omnicontacts.git
+  revision: 64a50f77ad677e19fb96c45aa19bd5bfb28b6f81
+  specs:
+    omnicontacts (0.3.9)
+      json
+      rack
+
+GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: 0ebc23b5c512b1ceb6de58a2616cacf25ec5c2f6
   specs:
@@ -244,9 +252,6 @@ GEM
     omniauth-yahoo-oauth2 (1.1.0)
       omniauth (~> 1.1)
       omniauth-oauth2 (~> 1.1)
-    omnicontacts (0.3.7)
-      json
-      rack
     orm_adapter (0.5.0)
     paperclip (4.3.2)
       activemodel (>= 3.2.0)
@@ -388,7 +393,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin
   omniauth-yahoo-oauth2
-  omnicontacts
+  omnicontacts!
   paperclip (~> 4.2)
   pdf-forms
   pdfkit

@@ -56,7 +56,7 @@ gem 'csv-importer'
 gem 'fund_america', :git => "git://github.com/yuri-zubov/fund_america"
 gem "oink"
 gem 'htmltoword'
-gem 'omnicontacts'
+gem "omnicontacts", github: 'Diego81/omnicontacts'
 
 
 gem 'will_paginate', '~> 3.0.5'
