@@ -40,8 +40,10 @@ class OmniauthCallbacksController < ApplicationController
     @contacts = request.env['omnicontacts.contacts']
     p @contacts
     @user = request.env['omnicontacts.user']
+
     puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
     @hash = {}
+
     @contacts.each do |contact|
 
         @hash[contact[:name]] = contact[:email]
