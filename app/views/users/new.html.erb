@@ -19,7 +19,7 @@
       <div class= "signup-content">
         <h4>Basic Information</h4>
 
-        <%= form_for @user do |f| %>
+        <%= form_for User.new do |f| %>
            <%= invisible_captcha %>
            <%= f.text_field(:first_name, :placeholder => "First Name", :class => "input-box half") %>
            <div class= "filler"></div>
