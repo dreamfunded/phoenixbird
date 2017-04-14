@@ -52,6 +52,7 @@ class CampaignsController < ApplicationController
       FinancialDetail.create(company_id: @company.id)
       @campaign.update( tagline: params[:tagline], category: params[:category])
       @company.delay(run_at: 1.day.from_now).submit_application(current_user)
+      @company.delay(run_at: 3.days.from_now).submit_application(current_user)
       redirect_to description_path(@campaign.id)
     else
       p @company.errors
