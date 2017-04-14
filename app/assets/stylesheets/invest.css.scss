@@ -32,9 +32,21 @@
 .important_info{
   text-transform: uppercase;
   font-weight: bold;
+  color: #424242;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Gotham;
 }
 .congrats_title{
-  font-size: 19px;
+  font-family: 'Gotham',sans-serif;
+  font-size: 1.5em;
+  color: #424242;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
+}
+.help_reach_goal{
+  font-size: 3rem;
 }
 .congrats-content{
   margin: 0 auto;
@@ -44,6 +56,10 @@
   padding-bottom: 100px;
   margin-bottom: 100px;
   min-height: 400px;
+}
+
+.social-links-congrats{
+  margin: 50px 0;
 }
 .subcription-agreement{
   width: 100%;
