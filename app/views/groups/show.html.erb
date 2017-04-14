@@ -20,7 +20,7 @@
             <section class='company-basic-info'>
                 <div>   <%= @group.name %>  </div>
                 <div class='company-slogan'>    <%= @group.description %>  </div>
-                <div class='number-of-members'> <%= @group.member %> members</div>
+                <div class='number-of-members'> <%= number_with_delimiter @group.member %> members</div>
             </section>
         </div>
 

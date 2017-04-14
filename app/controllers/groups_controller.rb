@@ -64,6 +64,7 @@ class GroupsController < ApplicationController
 
   def join_group
     current_user.groups << @group
+    @group.increment!(:member)
     ContactMailer.join_group_request(current_user, @group).deliver
     redirect_to @group, notice: "Request to join #{@group.name} was sent."
   end
@@ -91,6 +92,7 @@ class GroupsController < ApplicationController
     user = User.find_by(email: @invite.email)
     if user
       user.groups << @group
+      @group.increment!(:member)
       redirect_to @group
     else
        redirect_to new_user_registration_path
