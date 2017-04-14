@@ -1,49 +1,49 @@
+<% title "DreamFunded | Congratulations" %>
 
-  <html>
-  <head>
-    <% title "DreamFunded | About" %>
-  </head>
-
-  <body><div class= "wrapper">
-  <div class="header">
-    <h1 class="centered">Congratulations!</h1>
-  </div>
-
-  <div class= " congrats-content "><div class="text-content">
-   <center><span class='congrats_title'>Congratulations! Your Investment of
-    <%= @investment.number_of_shares %> shares($<%= sprintf "%.2f", @investment.invested_amount%>) in <%= @company_name%> has been submitted.</span></center><br>
-
-    <!-- <div>Status: Pending</div><br> -->
-
-    <p>Thank you for your investment in <%= @company_name%>. Spread the word!</p>
-
-    <span class='important_info'>Important Information</span>
-
-    <p class='faq-answer'>
-      Your Investment may take up to 10 days to transfer from your account to the designated escrow account. If the transfer clears, you will receive an email confirmation that your investment has been received. If your transfer does not clear, you will be contacted by a DreamFunded team member with more information and instructions for next steps. You can view your investment in your Dashboard at any time.
-    </p>
-
-    <i>When can I cancel my investment?</i>
-    <p class='faq-answer'>You can cancel your investment at any time up until 48 hours before the target deadline. If the campaign reaches its target offering amount before the deadline and wishes to change the deadline, you will be notified five business days before the new deadline and you can cancel 48 hours before this date.</p>
-
-    <i>When will I become an investor in the offering?</i>
-    <p class='faq-answer'><strong>You will not become an investor in this offering unless your funds are cleared in escrow and the campaign reaches its target offering amount by the target deadline.</strong></p>
-
-    <span>For more information, visit our educational page.</span>
-    <p class='faq-answer'>Please contact a DreamFunded team member at info@dreamfunded.com with any questions. If you would prefer to discuss your investment over the phone, please call (415) 349-3832.
-
-    <p>Thank you!</p>
-
-    <p>The DreamFunded Team</p>
-
-    </p>
-
-  </div></div>
+<div class= "wrapper">
 
 
-  </div>
-  </body>
-  </html>
+    <div class= " congrats-content "><div class="text-content">
+        <div class='centered congrats_title'>Help <%= @company_name%> to reach fundraising goal. Spread the word! Share with your friends.</div>
 
+
+        <div class='centered social-links-congrats'>
+
+            <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
+            <script type="text/javascript">
+              $('#facebook').click(function(){
+                FB.ui({
+                  method: 'share',
+                  href: "https://dreamfunded.com/",
+                  redirect_uri: "https://dreamfunded.com/",
+                  quote: "I just invested in <%= @company_name%> on DreamFunded"
+                }, function(response){});
+
+              })
+            </script>
+
+            <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=I%20just%20invested%20in%20<%=@company_name%>%20on%20DreamFunded%20https://dreamfunded.com/" title="Share via Twitter">
+                <i class="fa fa-twitter"></i>
+            </a>
+
+            <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=I%20just%20invested%20in%20<%=@company_name%>%20on%20DreamFunded.&amp;url=https://dreamfunded.com/" target="_blank" title="Share via LinkedIn" >
+                <i class="fa fa-linkedin"></i>
+            </a>
+        </div>
+
+
+
+        <center>
+            <span class='congrats_title'>Congratulations! Your Investment of $<%= @investment.invested_amount %> in <%= @company_name%> has been submitted.</span>
+        </center>
+        <br><br>
+
+
+        <span class='important_info '>Important Information</span>
+
+        <p class='faq-answer'>
+            Your Investment may take up to 10 days to transfer from your account to the designated escrow account. If the transfer clears, you will receive an email confirmation that your investment has been received. If your transfer does not clear, you will be contacted by a DreamFunded team member with more information and instructions for next steps. You can view your investment in your Dashboard at any time.
+        </p>
+
+    </div>
 </div>
-
