@@ -67,7 +67,7 @@
                 <% if @company.status == 2 %>
                     <div class='company-detail'>
                         <div class='company-finance-info'>
-                            <%= number_to_currency @company.fund_america_invested_amount, precision: 0 %>
+                            <%= number_to_currency @company.invested_amount, precision: 0 %>
                         </div>
                         <div class='company-info-category'>RAISED</div>
                     </div>

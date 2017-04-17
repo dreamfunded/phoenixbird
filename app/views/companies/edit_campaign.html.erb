@@ -28,7 +28,7 @@
 
         <div class='company-info-right-panel'>
             <div class='company-info-cateogry no-margin-top'>RAISED</div>
-            <div class='company-finance-info company-detail'><%= number_to_currency @company.invested, precision: 0 %></div>
+            <div class='company-finance-info company-detail'><%= number_to_currency @company.invested_amount, precision: 0 %></div>
 
             <div class='company-info-cateogry'>TARGET</div>
             <div class='company-finance-info company-detail'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
