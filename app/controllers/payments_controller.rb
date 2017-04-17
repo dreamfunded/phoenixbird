@@ -1,6 +1,6 @@
 require 'usaepay.rb'
 class PaymentsController < ApplicationController
-  before_action :authorize
+  before_action :authorize, except: [:congrats]
 
   def index
     @user = current_user
