@@ -33,6 +33,7 @@
                             <th><span>Investment Date</span></th>
                             <th><span>Investment Status</span></th>
                             <th><span>Invested Amout</span></th>
+                            <th><span>Share</span></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -55,6 +56,7 @@
                             	<% end %>
                             </td>
                             <td><span><%= number_to_currency investment.fund_america_invested_amount %></span></td>
+                            <td><span><%= link_to "Share", congratulation_path(investment), class: 'company-button mail-to-button' %></span></td>
                           </tr>
                         <% end %>
                         </tbody>

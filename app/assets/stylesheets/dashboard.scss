@@ -275,7 +275,6 @@
 .dashboard-tbl-scroll tbody td {
   padding-top: 19px;
   padding-bottom: 20px;
-  padding-right: 35px;
   color: #7a7a7a;
   font-size: 16px;
   font-weight: 300;
@@ -285,8 +284,8 @@
   font-family: 'Roboto', sans-serif;
 }
 .portfolio-column{
-  width: 75%;
-  margin: auto 12.5%;
+  width: 90%;
+  margin: auto 5%;
 }
 .dashboard-tbl-prop a img{
   width: 100%;
@@ -299,16 +298,14 @@
   color: #03a547;
 }
 .dashboard-tbl-scroll tbody td a {
-  color: #7a7a7a;
+  /*color: #7a7a7a;*/
   text-decoration: none !important;
   -webkit-transition: color 0.3s ease;
   -o-transition: color 0.3s ease;
   -moz-transition: color 0.3s ease;
   transition: color 0.3s ease;
 }
-.dashboard-tbl-scroll tbody td a:hover {
-  color: #03a547;
-}
+
 .dashboard-tbl-inn {
   display: inline-block;
   vertical-align: top;
