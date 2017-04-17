@@ -18,9 +18,10 @@ class UsersController < ApplicationController
 
 	def verify
 		user = User.find_by(email: params[:email].delete(' '))
-		user.confirmed = true
-		user.save(:validate => false)
-		#ContactMailer.delay({run_at: Time.now+1.hour}).personal_hello(user)
+		if user
+			user.confirmed = true
+			user.save(:validate => false)
+		end
 		redirect_to root_path
 	end
 
