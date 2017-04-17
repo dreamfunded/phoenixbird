@@ -36,7 +36,7 @@
 
 
         <center>
-            <span class='congrats_title'>Congratulations! Your Investment of $<%= @investment.invested_amount %> in <%= @company.name %> has been submitted.</span>
+            <span class='congrats_title'>Congratulations! Your Investment in <%= @company.name %> has been submitted.</span>
         </center>
         <br><br>
 
@@ -46,6 +46,9 @@
         <p class='faq-answer'>
             Your Investment may take up to 10 days to transfer from your account to the designated escrow account. If the transfer clears, you will receive an email confirmation that your investment has been received. If your transfer does not clear, you will be contacted by a DreamFunded team member with more information and instructions for next steps. You can view your investment in your Dashboard at any time.
         </p>
+
+        <%= link_to "My Investments", portfolio_path, class: 'company-button join-group-button mail-to-button' %>
+
 
     </div>
 </div>
