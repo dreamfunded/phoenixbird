@@ -75,7 +75,7 @@ class PaymentsController < ApplicationController
 
   def congrats
     @investment = Investment.find(params[:id])
-    @company_name = @investment.company.name
+    @company = @investment.company
   end
 
   private
