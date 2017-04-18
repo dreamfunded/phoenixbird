@@ -20,7 +20,7 @@ protected
         group = Group.find(invite.group_id)
         return group
       else
-        return root_path
+        super
       end
    end
 
