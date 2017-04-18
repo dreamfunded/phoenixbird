@@ -6,20 +6,19 @@
 <div class= "wrapper"> <!-- wrapper Starts -->
 
   <div class="header">
-    <h1 class="centered">Invites </h1>
+    <h1 class="centered">Invest with Friends </h1>
   </div>
 
   <div class= "invite-content">
     <div class='linkedin-text centered'>
-      The fastest way to grow your network is to import your contacts.<br>
-      We will import your address book to suggest connections and help to manage your contacts.
+      Invite people you know
     </div>
     <%= flash[:email_sent] %>
 
       <!--   To Groups -->
       <div class="invite-via-email">
         <span class='invite-email-icon'><%=  fa_icon("users 2x")%> </span>
-        <span class='invite-text'>To Group</span>
+        <span class='invite-text'>Upload a CSV File</span>
         <span class='invite-form'>
           <%= form_tag('/invites_to_group', multipart: true) do  %>
             <%= text_field_tag(:name,current_user.name, placeholder: 'Name',class: 'invite-text-input', required: true) %>
