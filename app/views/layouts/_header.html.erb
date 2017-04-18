@@ -60,7 +60,7 @@
                   <li><button onclick= "campaign()"><%= current_user.my_campaign %></button></li>
 
                   <% if current_user.belongs_to_a_group? %>
-                      <li><button onclick= "group()">My Network</button></li>
+                      <li><button onclick= "group()">My Group</button></li>
                   <% end %>
 
                   <% if current_user.authority == authority[:Admin] %>
