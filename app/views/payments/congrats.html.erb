@@ -1,6 +1,7 @@
 <% title "DreamFunded | Congratulations" %>
 <% facebook_image @company.cover.url %>
 <% facebook_secure_image @company.cover.url %>
+<% twitter_image @company.cover.url %>
 
 <div class= "wrapper">
 
@@ -17,18 +18,18 @@
                 FB.ui({
                   method: 'share',
                   href: "https://dreamfunded.com/",
-                  redirect_uri: "https://dreamfunded.com/",
+                  redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
                   quote: "I just invested in <%= @company.name%> on DreamFunded"
                 }, function(response){});
 
               })
             </script>
 
-            <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded%20https://dreamfunded.com/" title="Share via Twitter">
+            <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded%20https://dreamfunded.com/companies/<%= @company.slug %>" title="Share via Twitter">
                 <i class="fa fa-twitter"></i>
             </a>
 
-            <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded.&amp;url=https://dreamfunded.com/" target="_blank" title="Share via LinkedIn" >
+            <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded.&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
                 <i class="fa fa-linkedin"></i>
             </a>
         </div>
