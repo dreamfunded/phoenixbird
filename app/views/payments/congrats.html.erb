@@ -19,7 +19,7 @@
               $('#facebook').click(function(){
                 FB.ui({
                   method: 'share',
-                  href: "https://dreamfunded.com/",
+                  href: "https://dreamfunded.com/companies/<%= @company.slug %>",
                   redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
                   quote: "I just invested in <%= @company.name%> on DreamFunded"
                 }, function(response){});
