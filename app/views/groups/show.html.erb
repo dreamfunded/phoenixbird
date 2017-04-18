@@ -80,7 +80,7 @@
             <% if @group.companies.any? %>
                 <h2 class='section-title group-tab company-tab'>Companies</h2>
             <% end %>
-
+            <div class='group-some-class'>
                 <section class= "group-box">
 
                     <div class= "news-container group-tab-content group-blog-content">
@@ -191,6 +191,7 @@
                             </div>
                         <% end %>
                     </div>
+
                 </section>
 
                 <section class="group-members-box">
@@ -215,7 +216,7 @@
                     </div>
                     <%= link_to "Invite Friend", "#", class: 'company-button join-group-button mail-to-button invt-fr-btn' %>
                 </section>
-
+            </div>
         </div>
     </div>
 
