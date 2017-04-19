@@ -18,7 +18,7 @@ protected
       invite = GroupInvite.find_by(email: email)
       if invite
         group = Group.find(invite.group_id)
-        return group
+        return "/groups/#{group.slug}#social-invite"
       else
         super
       end

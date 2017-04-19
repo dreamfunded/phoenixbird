@@ -18,7 +18,7 @@
    /* set the background to a suitably dark tone */
    background-color:#000000;
 }
-#invite-dialog, #sbsc_agr{
+#invite-dialog, #sbsc_agr, #invite-social-dialog{
   display: none;
 }
 .modalLink{
@@ -112,7 +112,7 @@ center .resend-button{
   float: right;
 }
 .close-icon a{
-  color: #FF9308;
+  color: #424242;
 }
 .verify-modal-text{
   margin-bottom: 30px;
