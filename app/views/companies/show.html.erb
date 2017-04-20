@@ -227,6 +227,9 @@
                         </div>
                     </div>
 
+                    <% if @company.id == 693 %>
+                        <%= render partial: "timeline" %>
+                    <% end %>
 
                     <hr class="div">
                     <div>
@@ -285,22 +288,6 @@
                                 <p class= "fifteen"><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
                             </div>
                         </div>
-
-                        <!-- <div>
-                            <h2 class='section-title'>Investment Perks</h2>
-                            <%# @investment_perks.each do |perk| %>
-                                <div class=section-content>
-                                    <div class='media investment-perk'>
-                                        <div class='perk-amount media-left'>
-                                            <strong><%#= perk.amount %>+</strong>
-                                        </div>
-                                        <div class='media-body perk-content'>
-                                            <%#= perk.content %>
-                                        </div>
-                                    </div>
-                                </div>
-                            <%# end %>
-                        </div> -->
 
                         <hr class="div">
                         <div>
@@ -408,11 +395,11 @@
 </div>
 
 
-        <style>
-        .foot-text.darkblue{
-            display: none;
-        }
-        </style>
+<style>
+    .foot-text.darkblue{
+        display: none;
+    }
+</style>
 
 <script>
     $(document).ready(function() {
@@ -453,9 +440,7 @@
 
       return false;
     });
-
 </script>
-
 
 <script type="text/javascript">
   $('#facebook').click(function(){
