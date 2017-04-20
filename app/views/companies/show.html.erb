@@ -226,12 +226,11 @@
                                 <p class='sign-in-blur'><%= @campaign.elevator_pitch.html_safe  if @campaign.elevator_pitch %></p>
                         </div>
                     </div>
-
-                    <% if @company.id == 693 %>
-                        <%= render partial: "timeline" %>
-                    <% end %>
-
                     <hr class="div">
+
+                    <%# if @company.id == 693 %>
+                        <%= render partial: "timeline" %>
+                    <%# end %>
                     <div>
                         <h2 class="section-title">Our Mission</h2>
                         <div class="section-content tab-content">
