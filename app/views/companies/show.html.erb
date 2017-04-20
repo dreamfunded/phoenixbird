@@ -219,6 +219,11 @@
                                 <p class= "fifteen "><%= @company.description.html_safe if @company.description %></p>
                         </div>
                     </div>
+
+                    <% if @company.id == 693 %>
+                        <%= render partial: "media" %>
+                    <% end %>
+
                     <hr class="div">
                     <div>
                         <h2 class='section-title'>Why <%= @company.name %>?</h2>
