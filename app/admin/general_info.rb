@@ -17,7 +17,7 @@ permit_params  :user_id, :file, :created_at, :updated_at
 
 
   index :title => 'Form C' do
-    column("FormC QA") { |general_info| link_to(general_info.company.name, formc_show_path(general_info)) }
+    column("FormC QA") { |general_info| link_to(general_info.company.name, formc_show_path(general_info)) if general_info.company}
     actions
   end
 
