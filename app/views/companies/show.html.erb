@@ -152,33 +152,33 @@
                 <% end %>
             </div>
         </div>
+        <!-- A D M I N   E D I T I N G -->
+        <div class='company-admin-editing'>
+            <% if current_user != nil && current_user.authority == authority[:Admin] %>
+                <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                    <span class='edit-my-company-button'> Edit as Admin</span>
+                <% end %>
+            <% end %>
+            <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+                <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    <span class='edit-my-company-button'>Edit My Company</span>
+                <% end %>
+            <%end%>
+            <% if current_user %>
+                <% if current_user.company == @company && current_user.role == 'founder' %>
+                    <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span class='edit-my-company-button'>Edit My Company</span>
+                    <%end%>
+                <% end %>
+            <% end %>
+        </div>
     </section>
 
     <div class="company-content">
         <div class="company-content-container">
-            <!-- A D M I N   E D I T I N G -->
-            <div class='company-admin-editing'>
-                <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                    <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
-                        <i class="fa fa-user-secret" aria-hidden="true"></i>
-                        <span class='edit-my-company-button'> Edit as Admin</span>
-                    <% end %>
-                <% end %>
-                <% if current_user != nil && current_user.authority >= authority[:Editor] %>
-                    <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <span class='edit-my-company-button'>Edit My Company</span>
-                    <% end %>
-                <%end%>
-                <% if current_user %>
-                    <% if current_user.company == @company && current_user.role == 'founder' %>
-                        <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                            <span class='edit-my-company-button'>Edit My Company</span>
-                        <%end%>
-                    <% end %>
-                <% end %>
-            </div>
 
             <section id="company-header" class="company-header company-section">
                 <div class="section-container">
@@ -248,7 +248,7 @@
                 </div>
             </section>
 
-            <hr class="div"/>
+            <hr class="div"/><br>
 
             <section id='team-section' class='company-section'>
                 <div class='section-container'>
@@ -274,7 +274,7 @@
                     </div>
                 </div>
             </section>
-            <hr class="div">
+            <hr class="div"><br>
             <section id="terms-or-offering-section" class='company-section'>
                 <div class='section-container '>
                     <h1 class="section-title">Terms of Offering</h1>

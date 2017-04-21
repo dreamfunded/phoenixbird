@@ -4,7 +4,6 @@
 
 @import 'colors';
 @import 'z_index';
-@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
 
 .wrap {
 	font-family: "Calibri";
@@ -18,6 +17,7 @@
 .edit-company-button{
   font-family: Arial, sans-serif;
   color: #424242;
+  background: #fff;
   display: block;
   text-align: left;
   -webkit-font-smoothing: antialiased;
@@ -113,7 +113,7 @@ hr.div {
 
 .company-header.company-section {
   h1.section-title {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 10px;
     text-align: left;
     padding-left: 15px;
@@ -125,13 +125,17 @@ hr.div {
   margin-bottom: 0;
 }
 
+#company-header{
+  padding-top: 0;
+}
+
 .company-section {
   font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
   color: rgb(66, 66, 66);
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  padding-top: 75px;
   margin-bottom: 75px;
+  padding-top: 75px;
 
   hr.div {
     margin-top: 30px;
@@ -178,8 +182,7 @@ hr.div {
   .company-section-tagline {
     font-weight: normal;
     font-style: italic;
-    font-size: 2rem;
-    letter-spacing: 2px;
+    font-size: 1.6rem;
     font-family: 'Droid Serif', serif;
     color: #717171;
   }
@@ -277,7 +280,8 @@ hr.div {
 
 .company-admin-editing{
   position: absolute;
-  right: 0;
+  right: 10px;
+  bottom: 0;
 
   & > a {
     display: block;
@@ -1386,17 +1390,17 @@ and (max-device-width : 568px) {
 
 .company-section-tagline:after, .company-section-tagline:before{
   content: '"';
-  font-size: 3rem;
-  font-family: monospace;
+  font-size: 1.6rem;
+  font-family: 'Droid Serif', serif;
   font-style: italic;
 }
 
 .company-section-tagline:before{
-  margin-right: -12px;
+  margin-right: -8px;
 }
 
 .company-section-tagline:after{
-  margin-left: -15px;
+  margin-left: -8px;
 }
 
 .quote-section{
