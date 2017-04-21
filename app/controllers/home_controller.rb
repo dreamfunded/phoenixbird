@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
 	def index
 		@companies = Company.where.not(invested_amount: nil).order("invested_amount DESC").first(3)
+		p cookies['mp_mixcel']
 	end
 
 	def staging

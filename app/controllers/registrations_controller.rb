@@ -1,3 +1,5 @@
+require 'mixpanel-ruby'
+
 class RegistrationsController < Devise::RegistrationsController
 
   def create
@@ -10,6 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
     check_if_was_invited(@user)
     invite_to_group(@user)
+    mixpanel_account(@user)
   end
 
 protected
@@ -53,6 +56,18 @@ protected
         group = Group.find(invite.group_id)
         user.groups << group
       end
+  end
+
+  def mixpanel_account(user)
+    mixpanel = Mixpanel::Tracker.new("2bce57b676bbaba5acae72984169bc49")
+    mixpanel_params = {
+       email: user.email,
+       name: user.name,
+       ip: user.current_sign_in_ip,
+       first_name: user.first_name,
+       last_name: user.last_name
+     }
+    mixpanel.people.set user.id, mixpanel_params
   end
 
 private
