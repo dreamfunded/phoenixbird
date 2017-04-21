@@ -184,7 +184,7 @@ hr.div {
     font-style: italic;
     font-size: 1.6rem;
     font-family: 'Droid Serif', serif;
-    color: #717171;
+    color: #424242;
   }
 
   .company-quote, .company-section-tagline {
@@ -193,6 +193,24 @@ hr.div {
 
   .company-quote {
     margin-bottom: 1rem;
+  }
+
+  .second-quote{
+    font-size: 18px;
+    font-family: Gotham;
+    font-weight: bold;
+  }
+  .second-quote-image{
+    width: 90px;
+    height: auto;
+    text-align: center;
+    border-radius: 50%;
+    float: none;
+  }
+  .second-quote-title{
+    font-size: 16px;
+    font-family: GothamBook;
+    color: #4b4b4b;
   }
 
   .said-by {
