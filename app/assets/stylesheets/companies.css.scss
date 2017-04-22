@@ -185,6 +185,11 @@ hr.div {
     font-size: 1.6rem;
     font-family: 'Droid Serif', serif;
     color: #424242;
+    margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 761px;
+      text-align: justify;
   }
 
   .company-quote, .company-section-tagline {
@@ -199,8 +204,7 @@ hr.div {
     font-size: 18px;
     font-family: Gotham;
     font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    line-height: 1.5;
   }
   .second-quote-image{
     width: 90px;

@@ -184,12 +184,11 @@
                 <div class="section-container">
                     <h1 class="section-title">Invest in <%= @company.name %></h1>
 
-                    <div class="fluid-container">
-                        <div class='row'>
+
                             <% if @quote %>
                                 <div class="col-9">
+                                    <div class="centered ">
 
-                                    <div class="centered">
                                         <h2 class='company-section-tagline'>
                                             <%= @quote.description %>
                                         </h2>
@@ -201,8 +200,6 @@
                                 </div>
                             <% end %>
 
-                        </div>
-                    </div>
 
 
                     <hr class="div">
