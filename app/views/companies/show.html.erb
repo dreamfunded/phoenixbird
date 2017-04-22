@@ -189,22 +189,15 @@
                             <% if @quote %>
                                 <div class="col-9">
 
-                                    <div class="company-quote">
-                                        <h2 class="company-section-tagline">
+                                    <div class="centered">
+                                        <h2 class='company-section-tagline'>
                                             <%= @quote.description %>
                                         </h2>
+                                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                                        <div class="second-quote"> <%= @quote.said_by %> </div>
+                                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                                    </div>
 
-                                        <!-- <div class='quote-symbol'>"</div>
-                                        <%#= @quote.main %>
-                                        <div class="sub-quote"><%#= @quote.description %></div> -->
-                                    </div>
-                                    <div class='said-by'>
-                                        <%= image_tag(@quote.photo.url) %>
-                                        <span>
-                                            <div><%= @quote.said_by %></div>
-                                            <div class="said-by-title"><%= @quote.position %></div>
-                                        </span>
-                                    </div>
                                 </div>
                             <% end %>
 
@@ -220,7 +213,7 @@
                         </div>
                     </div>
 
-                    <% if @company.id == 693 %>
+                    <%# if @company.id == 693 %>
                         <%= render partial: "media" %>
 
                         <div class="centered company-section">
@@ -229,10 +222,10 @@
                             </h2>
                             <img class="second-quote-image" src="https://dreamfunded.s3.amazonaws.com/team/glen.jpg?1492816962" />
                             <div><span class="second-quote">Glen Wakeman</span></div>
-                            <div class="said-by-title second-quote-title"><span>Advisor to the CEO</span></div>
+                            <div class="said-by-title second-quote-title"><span>Former CEO of GE Capital/Latin America</span></div>
                         </div>
 
-                    <% end %>
+                    <%# end %>
 
                     <hr class="div">
                     <div>
