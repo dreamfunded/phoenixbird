@@ -1413,7 +1413,7 @@ and (max-device-width : 568px) {
 }
 
 .company-section-tagline:after, .company-section-tagline:before{
-  content: '"';
+  /*content: '"';*/
   font-size: 1.6rem;
   font-family: 'Droid Serif', serif;
   font-style: italic;
