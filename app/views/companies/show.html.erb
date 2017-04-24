@@ -17,7 +17,7 @@
                 <li><a href="#company-header">COMPANY</a></li>
                 <li><a href="#team-section">TEAM</a></li>
                 <li><a href="#terms-or-offering-section">TERMS OF OFFERING</a></li>
-                <li><a href="#comments-section">COMMENTS</a></li>
+                <li><a href="#comments-section">ASK A QUESTION</a></li>
             </ul>
             <%if @company.accredited%>
                 <ul class='float-opposite social-invites'>
@@ -376,7 +376,7 @@
 
             <section id='comments-section' class='company-section' >
                 <div class='section-container'>
-                    <h1 class='section-title'>Comments</h1>
+                    <h1 class='section-title'>Ask a Question</h1>
                     <div class='section-content'>
                         <div class="comments">
                             <%= nested_messages(@comments.arrange(:order => :created_at))%>
