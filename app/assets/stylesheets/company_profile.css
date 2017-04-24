@@ -97,7 +97,9 @@ and (max-device-width : 568px) {
         display: inherit;
     }
     .fund-america-invest-button .currency_input{
-        flex: inherit;
+        width: 80%;
+        float: none;
+        margin-bottom: 10px;
     }
     .fund-america-invest-button .waitlist-b {
         font-size: x-large;
