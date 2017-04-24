@@ -187,20 +187,21 @@
                     <h1 class="section-title">Invest in <%= @company.name %></h1>
 
 
-                            <% if @quote %>
-                                <div class="col-9">
-                                    <div class="centered ">
+                    <% if @quote %>
+                        <div class="col-9">
+                            <div class="centered ">
 
-                                        <h2 class='company-section-tagline'>
-                                            <%= @quote.description %>
-                                        </h2>
-                                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
-                                        <div class="second-quote"> <%= @quote.said_by %> </div>
-                                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
-                                    </div>
+                                <h2 class='company-section-tagline'>
+                                    <%= @quote.description %>
+                                </h2>
+                                <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                                <div class="second-quote"> <%= @quote.said_by %> </div>
+                                <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                            </div>
 
-                                </div>
-                            <% end %>
+                        </div>
+                    <% end %>
+
 
 
 
@@ -236,8 +237,16 @@
                     <hr class="div">
 
                     <% if @company.id == 693 %>
+
+                        <section  class='company-section'>
+                            <h1 class="section-title centered">DreamFunded Latino Community</h1>
+                            <h1 class='centered animated-number'><span id="animate-numer">21,027</span>+</h1>
+                            <h1 class="section-title centered">Members</h1>
+                        </section>
+
                         <%= render partial: "timeline" %>
                     <% end %>
+
                     <div>
                         <h2 class="section-title">Our Mission</h2>
                         <div class="section-content tab-content">
@@ -276,7 +285,9 @@
                     </div>
                 </div>
             </section>
+
             <hr class="div"><br>
+
             <section id="terms-or-offering-section" class='company-section'>
                 <div class='section-container '>
                     <h1 class="section-title">Terms of Offering</h1>
@@ -421,6 +432,37 @@
           });
         });
     });
+
+    var animate_number = true;
+    $(document).on('scroll', function() {
+        if($(this).scrollTop()>=$('#animate-numer').position().top){
+
+            if(animate_number){
+
+                $({someValue: 21000}).animate({someValue: 21027}, {
+                  duration: 2500,
+                  easing:'swing', // can be anything
+                  step: function() { // called on every step
+                      // Update the element's text with rounded-up value:
+                      $('#animate-numer').text(commaSeparateNumber(Math.round(this.someValue)));
+                  },
+                  complete: number_animated()
+                });
+
+                function number_animated(){
+                    animate_number = false;
+                    console.log('animation runs 1');
+                }
+
+                function commaSeparateNumber(val){
+                    while (/(\d+)(\d{3})/.test(val.toString())){
+                      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    }
+                    return val;
+                }
+            }
+        }
+    })
 
 
   $(".comments .reply_comment_button").click(function(e){

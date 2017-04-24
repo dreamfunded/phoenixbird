@@ -4,6 +4,6 @@ class GroupInvite < ActiveRecord::Base
 
 
     def set_token
-        self.token ||= SecureRandom.uuid.gsub(/\-/, '').first(5).upcase
+        self.token ||= SecureRandom.uuid.gsub(/\-/, '').first(8).upcase
     end
 end
