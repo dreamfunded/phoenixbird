@@ -47,7 +47,7 @@
     background: transparent;
     border: none;
     outline: none;
-    width: 75%;
+    float: right;
     font-size: 1.5em;
     font-family: Gotham;
     text-align: right;
@@ -58,7 +58,8 @@
     font-size: 1.5em;
     color: #424242;
     font-family: Gotham;
-    margin-right: 10px;
+    padding: 8px;
+    float: left;
 }
 
 .birth-date-width{
