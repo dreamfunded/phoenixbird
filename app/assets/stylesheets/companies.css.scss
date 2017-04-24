@@ -305,7 +305,7 @@ hr.div {
 .company-admin-editing{
   position: absolute;
   right: 10px;
-  bottom: 0;
+  top: 10px;
 
   & > a {
     display: block;
@@ -1203,6 +1203,7 @@ and (max-device-width : 568px) {
 .company-content {
   background-color: white;
   padding: 3rem 0;
+  position: relative;
 
   box-sizing: border-box;
   *, *:before, *:after {
