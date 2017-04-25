@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	invisible_captcha only: [:create]
-	before_action :authenticate_user!, only: [:portfolio, :campaign]
+	before_action :authenticate_user!, only: [:portfolio, :campaign, :profile, :my_group]
 
 	def edit
 		@user = User.find(params[:id])

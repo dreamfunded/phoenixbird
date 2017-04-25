@@ -88,8 +88,8 @@ class GroupsController < ApplicationController
 
   def add_to_group
     @invite = GroupInvite.find_by(token: params[:token])
-    @group = Group.find(@invite.group_id )
-    user = User.find_by(email: @invite.email)
+    @group = Group.find(@invite.group_id ) if @invite
+    user = User.find_by(email: @invite.email) if @invite
     if user
       user.groups << @group
       @group.increment!(:member)
