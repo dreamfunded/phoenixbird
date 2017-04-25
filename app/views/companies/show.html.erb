@@ -446,13 +446,11 @@
                       // Update the element's text with rounded-up value:
                       $('#animate-numer').text(commaSeparateNumber(Math.round(this.someValue)));
                   },
-                  complete: number_animated()
+                  complete: function(){
+                    animate_number = false;
+                  }
                 });
 
-                function number_animated(){
-                    animate_number = false;
-                    console.log('animation runs 1');
-                }
 
                 function commaSeparateNumber(val){
                     while (/(\d+)(\d{3})/.test(val.toString())){
