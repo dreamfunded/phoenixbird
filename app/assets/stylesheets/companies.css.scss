@@ -27,6 +27,43 @@
   vertical-align: super;
   border-radius: 5px;
 }
+
+.questions-container .questions-content {
+    display: none;
+    padding : 5px;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: .1px;
+    font-family: GothamBook;
+    color: #4b4b4b;
+}
+.questions-header{
+  cursor: pointer;
+  font-size: 18px;
+  font-family: Gotham;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-top: 30px;
+}
+.angle-up, .angle-down{
+  font-size: 18px;
+}
+.angle-up .fa, .angle-down .fa{
+  font-weight: bold;
+}
+.questions-section{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 650px;
+    width: 100%;
+}
+
+.angle-up{
+  display: none;
+}
+
+
 .company-update-btn {
   display: block;
   width: 80%;
