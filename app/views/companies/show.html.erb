@@ -439,6 +439,13 @@
 
             if(animate_number){
 
+                function commaSeparateNumber(val){
+                    while (/(\d+)(\d{3})/.test(val.toString())){
+                      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    }
+                    return val;
+                }
+
                 $({someValue: 21000}).animate({someValue: 21027}, {
                   duration: 2500,
                   easing:'swing', // can be anything
@@ -451,13 +458,6 @@
                   }
                 });
 
-
-                function commaSeparateNumber(val){
-                    while (/(\d+)(\d{3})/.test(val.toString())){
-                      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                    }
-                    return val;
-                }
             }
         }
     })
