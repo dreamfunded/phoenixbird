@@ -26,7 +26,6 @@ class CompaniesController < ApplicationController
 		@campaign = @company.campaign
 		@quote = @company.quote
 		@formc = @company.general_info
-		#@investment_perks = @formc.investment_perks
 	end
 
 	def show_unathorized
@@ -75,10 +74,8 @@ class CompaniesController < ApplicationController
 	end
 
 	def edit_campaign
-		@testimonials_limit = Campaign::TESTIMONIALS_LIMIT
 		@campaign = Campaign.find(params[:id])
 		@company = @campaign.company
-		unless @campaign.testimonials.size >= @testimonials_limit
 		@campaign.testimonials.build
 		@comments = @company.comments
 		@members = @company.founders
@@ -88,11 +85,6 @@ class CompaniesController < ApplicationController
 		else
 			@quote = @company.quote
 		end
-    end
-
-	  # @investment_perks = @formc.build_or_get_investment_perks
-	  # @campaign_quote = @campaign.quote || @campaign.build_quote
-	  # render template: 'campaigns/edit_campaign'
 	end
 
 	def update_campaign
