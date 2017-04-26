@@ -26,6 +26,7 @@ class CompaniesController < ApplicationController
 		@campaign = @company.campaign
 		@quote = @company.quote
 		@formc = @company.general_info
+		@questions = @company.questions
 	end
 
 	def show_unathorized
@@ -80,6 +81,7 @@ class CompaniesController < ApplicationController
 		@comments = @company.comments
 		@members = @company.founders
 		@formc = @company.general_info
+		@questions = @company.questions
 		if @company.quote == nil
 			@quote = CampaignQuote.new
 		else
@@ -119,8 +121,6 @@ class CompaniesController < ApplicationController
 			@entity, @ach_authorization = {}, {}
 		end
 	end
-
-
 
 	def submit_payment
 		options = entity_options(params)
@@ -283,19 +283,17 @@ private
 	end
 
 	def company_params
-	  params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
-	   :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number,
-	 :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
-	  campaign_attributes: [*Campaign::ACCESSIBLE_ATTRIBUTES,
-	  						testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
-      						quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES
-      						],
-      quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
-     general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
+		params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url, :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number, :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
+		campaign_attributes: Campaign::ACCESSIBLE_ATTRIBUTES,
+	  	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
+      	quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
+    	quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
+    	questions_attributes: [:id, :question, :answer, :_destroy],
+    	general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
+		founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
+	    documents_attributes: [:id, :file, :name, :company_id ],
 
-	   founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
-	   documents_attributes: [:id, :file, :name, :company_id ],
-	  financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",
+	    financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",
 				       "total_taxes_paid", "total_assets_this_year", "total_assets_last_year", "cash_this_year", "cash_last_year",
 				       "acount_receivable_this_year", "acount_receivable_last_year", "short_term_debt_this_year", "short_term_debt_last_year",
 				       "long_term_debt_this_year", "long_term_debt_last_year", "sales_this_year", "sales_last_year", "costs_of_goods_this_year",
