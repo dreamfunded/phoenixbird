@@ -101,22 +101,6 @@
                     </div>
 
                     <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
-                <% else %>
-                    <!-- <div class="company-detail">
-                        <div class='company-finance-info'>TBA</div>
-                        <div class='company-info-category'>RAISED</div>
-                    </div>
-
-                    <div class="company-detail">
-                        <div class='company-finance-info'>TBA</div>
-                        <div class='company-info-category'>TARGET</div>
-                    </div>
-
-
-                    <div class="company-detail">
-                        <div class='company-finance-info'>TBA</div>
-                        <div class='company-info-category'>MINIMUM INVESTMENT</div>
-                    </div> -->
 
                 <% end %>
 
@@ -172,10 +156,17 @@
                 <%end%>
                 <% if current_user %>
                     <% if current_user.company == @company && current_user.role == 'founder' %>
-                        <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                            <span class='edit-my-company-button'>Edit My Company</span>
-                        <%end%>
+                        <%if @company.accredited %>
+                            <%= link_to( { :action => 'edit_accredited_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <span class='edit-my-company-button'>Edit My Company</span>
+                            <%end%>
+                        <% else %>
+                            <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <span class='edit-my-company-button'>Edit My Company</span>
+                            <%end%>
+                        <% end%>
                     <% end %>
                 <% end %>
             </div>
@@ -417,11 +408,6 @@
 </div>
 
 
-<style>
-    .foot-text.darkblue{
-        display: none;
-    }
-</style>
 
 <script>
     $(document).ready(function() {
