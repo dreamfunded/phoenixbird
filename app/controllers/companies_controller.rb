@@ -174,6 +174,7 @@ class CompaniesController < ApplicationController
 			    invstmnt = Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
 			    ContactMailer.investment_made( current_user).deliver
 			    ContactMailer.new_investment_made(current_user, params[:id]).deliver
+			    ContactMailer.new_investment_to_founder(params[:id]).deliver
 			rescue FundAmerica::Error => e
 			    p 'ERROR'
 			    puts e.parsed_response

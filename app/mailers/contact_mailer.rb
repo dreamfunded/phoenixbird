@@ -156,6 +156,12 @@ class ContactMailer < ActionMailer::Base
     mail(to: "info@dreamfunded.com", subject: "New Investment made in #{@company.name}")
   end
 
+  def new_investment_to_founder ( company_id)
+    @company = Company.find(company_id)
+    @user = @company.users.first
+    mail(to: @user.email, subject: "New Investment made in #{@company.name}")
+  end
+
   def investment_made(user)
     mail(to: "user.email", subject: "DreamFunded Investment Confirmation")
   end
