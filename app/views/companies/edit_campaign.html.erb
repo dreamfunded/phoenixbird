@@ -303,10 +303,25 @@
                 <%= link_to_add_association 'Add', f, :documents %>
             </div>
 
-
-
-
           </div>
+
+          <section  class='company-section questions-section' >
+            <h2 class='centered'>Questions</h2>
+            <%= f.fields_for :questions, @questions do |question| %>
+
+              <%= question.text_field :question, class: 'form-field' %><br>
+              <%= question.text_area :answer, class: 'form-field' %><br>
+
+              <% if question.object.persisted? %>
+                   <%= question.check_box :_destroy %>
+                   <%= question.label :_destroy, "Delete", class: 'font-red' %>
+              <% end %>
+              <hr><br>
+            <% end %>
+            <div class="links">
+                  <%= link_to_add_association 'Add a Question', f, :questions %>
+            </div>
+          </section>
 
           <div class='comments_tab_content tab-content' >
               <div class='comments'>
