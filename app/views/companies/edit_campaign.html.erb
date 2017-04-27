@@ -319,9 +319,46 @@
               <hr><br>
             <% end %>
             <div class="links">
-                  <%= link_to_add_association 'Add a Question', f, :questions %>
+                  <%= link_to_add_association f, :questions do %>
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                  <span>Add Question</span>
+                  <% end %>
             </div>
           </section>
+
+
+            <section  class='company-section centered' >
+                <h2 class='centered'>Timeline</h2>
+                <section class='timeline'>
+                    <%= f.fields_for :timeline_items, @timeline_items do |time_item| %>
+                        <div class='timeline-card'>
+                            <div class='timeline-card-img centered'><%= image_tag(time_item.object.image.url, class: 'stanford-logo') %></div>
+                            <%= time_item.file_field :image %>
+                            <div class='tmln-card-title centered'><%= time_item.text_area :content %></div>
+                            <div class='timeline-date'><%= time_item.date_field :created_date %></div>
+                            <% if time_item.object.persisted? %>
+                                 <%= time_item.check_box :_destroy %>
+                                 <%= time_item.label :_destroy, "Delete", class: 'font-red' %>
+                            <% end %>
+                        </div>
+                    <% end %>
+                    <div class='timeline-line'></div>
+                </section>
+
+
+
+            </section>
+
+            <section  class=' questions-section' >
+                <div class="links">
+                      <%= link_to_add_association f, :timeline_items  do %>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span>Add Timeline Item</span>
+                      <% end %>
+                </div>
+            </section>
+
+
 
           <div class='comments_tab_content tab-content' >
               <div class='comments'>

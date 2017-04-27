@@ -1,0 +1,28 @@
+<div class="nested-fields member-box document-box">
+
+    <div>
+        <label>Content:</label>
+        <%= f.text_area :content, class: 'form-field ' %>
+    </div>
+
+    <div>
+        <label>Date:</label>
+        <%= f.date_field :created_date, class: 'form-field ' %>
+    </div>
+
+    <div>
+        <label>Image:</label>
+        <%= f.file_field :image %>
+    </div>
+
+    <div>
+        <label>Position:</label>
+        <%= f.select :position, options_for_select((1..6).to_a),{:include_blank => 'Position on a page'},  {class: "form-select form-field required-field"} %>
+    </div>
+
+    <%= link_to_remove_association( f, class: "add-remove-member" ) do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <span>Remove</span>
+    <% end %>
+
+</div>
