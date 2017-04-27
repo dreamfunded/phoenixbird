@@ -27,6 +27,7 @@ class CompaniesController < ApplicationController
 		@quote = @company.quote
 		@formc = @company.general_info
 		@questions = @company.questions
+		@timeline_items = @company.timeline_items.order(:position)
 	end
 
 	def show_unathorized
@@ -82,6 +83,7 @@ class CompaniesController < ApplicationController
 		@members = @company.founders
 		@formc = @company.general_info
 		@questions = @company.questions
+		@timeline_items = @company.timeline_items.order(:position)
 		if @company.quote == nil
 			@quote = CampaignQuote.new
 		else
@@ -293,6 +295,7 @@ private
     	general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
 		founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
 	    documents_attributes: [:id, :file, :name, :company_id ],
+	    timeline_items_attributes: [:id , :content, :created_date, :image, :position, :company_id ],
 
 	    financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",
 				       "total_taxes_paid", "total_assets_this_year", "total_assets_last_year", "cash_this_year", "cash_last_year",

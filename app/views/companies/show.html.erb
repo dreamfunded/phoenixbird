@@ -235,15 +235,15 @@
                             <h1 class="animated-numbers-titles centered">Members</h1>
                         </section>
 
-                        <%= render partial: "timeline" %>
+                    <% end %>
+                    <% if @timeline_items.size > 0 %>
+                        <%= render partial: "timeline",  timeline_items: @timeline_items %>
                     <% end %>
 
                     <div>
                         <h2 class="section-title">Our Mission</h2>
                         <div class="section-content tab-content">
-
                                 <p><%= @campaign.about_campaign.html_safe if @campaign.about_campaign %></p>
-
                         </div>
                     </div>
 

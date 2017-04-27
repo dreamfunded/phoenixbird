@@ -21,6 +21,9 @@ class Company < ActiveRecord::Base
   has_many :comments
   has_many :bids
 
+  has_many :timeline_items
+  accepts_nested_attributes_for :timeline_items, reject_if: :all_blank, allow_destroy: true
+
   has_many :questions
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
 
