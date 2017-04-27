@@ -236,7 +236,9 @@
                         </section>
 
                     <% end %>
-                    <%= render partial: "timeline",  timeline_items: @timeline_items %>
+                    <% if @timeline_items.size > 0 %>
+                        <%= render partial: "timeline",  timeline_items: @timeline_items %>
+                    <% end %>
 
                     <div>
                         <h2 class="section-title">Our Mission</h2>
