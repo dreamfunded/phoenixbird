@@ -1,0 +1,28 @@
+<div class="nested-fields member-box document-box">
+
+    <div>
+        <label>Quote:</label>
+        <%= f.text_area :description, class: 'form-field ' %>
+    </div>
+
+    <div>
+        <label>Photo:</label>
+        <%= f.file_field :photo %>
+    </div>
+
+    <div>
+        <label>Said By:</label>
+        <%= f.text_field :said_by, class: 'form-field ' %>
+    </div>
+
+    <div>
+        <label>Title:</label>
+        <%= f.text_field :position, class: 'form-field ' %>
+    </div>
+
+    <%= link_to_remove_association( f, class: "add-remove-member" ) do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <span>Remove Question</span>
+    <% end %>
+
+</div>

@@ -6,14 +6,15 @@ class Company < ActiveRecord::Base
     order(:position).where(hidden: false, accredited: true).where.not(status: 3)
   }
 
-	has_many :users
+  def self.all_funded
+    all.order(:position).where(hidden: false, accredited: true, status: 3)
+  end
+
+  has_many :users
   has_and_belongs_to_many :groups
   has_many :followers, inverse_of: :company
   has_many :user_followers, through: :followers, source: :user, inverse_of: :company
 
-  def self.all_funded
-    all.order(:position).where(hidden: false, accredited: true, status: 3)
-  end
 
 
   has_many :investments
@@ -35,8 +36,8 @@ class Company < ActiveRecord::Base
 
   has_many :liquidate_shares
 
-  has_one :quote, class_name: 'CampaignQuote'
-  accepts_nested_attributes_for :quote, reject_if: :all_blank, allow_destroy: true
+  has_many :quotes, class_name: 'CampaignQuote'
+  accepts_nested_attributes_for :quotes, reject_if: :all_blank, allow_destroy: true
 
   has_many :docusigns
   has_one :campaign

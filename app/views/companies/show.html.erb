@@ -218,6 +218,21 @@
 
                     <% end %>
 
+                    <% if @quote2 %>
+                        <div class="col-9">
+                            <div class="centered ">
+
+                                <h2 class='company-section-tagline'>
+                                    <%= @quote2.description %>
+                                </h2>
+                                <%= image_tag(@quote2.photo.url, class: "second-quote-image") %>
+                                <div class="second-quote"> <%= @quote2.said_by %> </div>
+                                <div class="said-by-title second-quote-title"><span><%= @quote2.position %></span></div>
+                            </div>
+
+                        </div>
+                    <% end %>
+
                     <hr class="div">
                     <div>
                         <h2 class='section-title'>Why <%= @company.name %>?</h2>
@@ -226,6 +241,21 @@
                         </div>
                     </div>
                     <hr class="div">
+
+                    <% if @quote3 %>
+                        <div class="col-9">
+                            <div class="centered ">
+
+                                <h2 class='company-section-tagline'>
+                                    <%= @quote3.description %>
+                                </h2>
+                                <%= image_tag(@quote3.photo.url, class: "second-quote-image") %>
+                                <div class="second-quote"> <%= @quote3.said_by %> </div>
+                                <div class="said-by-title second-quote-title"><span><%= @quote3.position %></span></div>
+                            </div>
+
+                        </div>
+                    <% end %>
 
                     <% if @company.id == 693 %>
 
@@ -239,6 +269,7 @@
                     <% if @timeline_items.size > 0 %>
                         <%= render partial: "timeline",  timeline_items: @timeline_items %>
                     <% end %>
+
 
                     <div>
                         <h2 class="section-title">Our Mission</h2>
