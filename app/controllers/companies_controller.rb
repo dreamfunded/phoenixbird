@@ -24,7 +24,9 @@ class CompaniesController < ApplicationController
 		@section = @company.sections.first
 		@members = @company.founders.order(:position)
 		@campaign = @company.campaign
-		@quote = @company.quote
+		@quote = @company.quotes.first
+		@quote2 = @company.quotes.second
+		@quote3 = @company.quotes.third
 		@formc = @company.general_info
 		@questions = @company.questions
 		@timeline_items = @company.timeline_items.order(:position)
@@ -84,11 +86,7 @@ class CompaniesController < ApplicationController
 		@formc = @company.general_info
 		@questions = @company.questions
 		@timeline_items = @company.timeline_items.order(:position)
-		if @company.quote == nil
-			@quote = CampaignQuote.new
-		else
-			@quote = @company.quote
-		end
+		@quotes = @company.quotes
 	end
 
 	def update_campaign
@@ -290,7 +288,7 @@ private
 		campaign_attributes: Campaign::ACCESSIBLE_ATTRIBUTES,
 	  	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
       	quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
-    	quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
+    	quotes_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
     	questions_attributes: [:id, :question, :answer, :_destroy],
     	general_info_attributes: [:id, investment_perks_attributes: InvestmentPerk::ACCESSIBLE_ATTRIBUTES],
 		founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],

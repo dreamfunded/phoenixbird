@@ -64,9 +64,9 @@
 
             <section class= "video-box ">
                 <div class='centered'>
+                <h2 class='centered'>Quotes</h2>
                     <section class='centered quote-section'>
-                        <%= f.fields_for :quote, @quote do |quote| %>
-                            <%= link_to "Delete", { action: 'remove_quote',controller: "companies", id: quote.object.id} , {:class => 'remove-quote'} %>
+                        <%= f.fields_for :quotes, @quotes do |quote| %>
                             <h2 class= "category-name indent">Quote</h2>
                             <div class='left'>
                                 <label class='quote-label'>Quote</label><br>
@@ -82,9 +82,16 @@
                                 <label class='quote-label'>Quote Photo</label><br>
                                 <%= quote.file_field :photo %>
                             </div>
+                            <%= link_to "Delete Quote", { action: 'remove_quote',controller: "companies", id: quote.object.id} , {:class => 'remove-quote'} %>
                         <% end %>
+                        <br>
+                        <div class="links">
+                          <%= link_to_add_association 'Add Quote', f, :quotes %>
+                        </div>
                     </section>
                 </div>
+
+
 
                 <h2 class='section-title'>Who Are We?</h2>
                 <% if @company.video_link.empty? %>
