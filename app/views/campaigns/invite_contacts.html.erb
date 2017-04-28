@@ -1,0 +1,52 @@
+<% title "DreamFunded | Invite" %>
+<div class= "wrapper">
+
+  <div class="header education-center">
+    <div class='education-title'>Edit My Campaign</div>
+    <section class='campaign-links'>
+      <a href="#" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
+      <a href="/company_description/<%= @campaign.id %>" class='education-links '>Description</a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links active-link'> Legal Info </a>
+    </section>
+
+
+    <section class='progress-bar'>
+      <div class="progress animate">
+        <span style="width: 75%"><span></span></span>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div class= "campaign-box get-funded ">
+
+  <div class="row centered">
+    <div class=" active">
+      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Invite</a></h2>
+      <br>
+      <h3 class= "second-quote grey no-margin centered">Adding your connections from LinkedIn and Google is the fastest way to build your influence and raise funds.</h3>
+    </div>
+
+    <div class="invite-via-email">
+      <span class='inline-block'>
+        <%= button_to  '/authenticate', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+          Invite Contacts from Gmail  &nbsp;&nbsp;&nbsp;
+          <%= image_tag "static/gmail-icon.png", class: 'gmail-icon' %>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="invite-via-email">
+      <span class='inline-block'>
+        <%= button_to  '#', class: 'invite-google-contacts' do %>
+          Invite Contacts from LinkedIn  &nbsp;
+          <span class='linkedin-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+        <% end %>
+      </span>
+    </div>
+
+
+  </div>
+</div>
+
