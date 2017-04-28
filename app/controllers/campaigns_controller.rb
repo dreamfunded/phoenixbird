@@ -90,7 +90,13 @@ class CampaignsController < ApplicationController
     @campaign.complete
     ContactMailer.campaign_submitted(current_user).deliver
     ContactMailer.check_campaign(@campaign).deliver
-    redirect_to company_path(@campaign.company)
+    redirect_to invite_contacts_path(@campaign.id)
+  end
+
+  def invite_contacts
+    @campaign = Campaign.find(params[:id])
+    @company = @campaign.company
+    #redirect_to company_path(@campaign.company)
   end
 
   def financial_info

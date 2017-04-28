@@ -73,6 +73,8 @@ Rails.application.routes.draw do
   get '/financial_info/:id', to: 'campaigns#financial_info', as: 'financial_info'
   post '/financial_info_submit', to: 'campaigns#financial_info_submit'
 
+  get '/invite_contacts/:id', to: 'campaigns#invite_contacts', as: 'invite_contacts'
+
   get '/campaign_review/:id', to: 'campaigns#campaign_review', as: 'campaign_review'
 
   get '/edit_campaign/:id', to: 'companies#edit_campaign', as: 'edit_campaign'
