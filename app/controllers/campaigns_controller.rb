@@ -95,8 +95,15 @@ class CampaignsController < ApplicationController
 
   def invite_contacts
     @campaign = Campaign.find(params[:id])
+    session[:campaign_id] = params[:id]
     @company = @campaign.company
+    @hash = {}
     #redirect_to company_path(@campaign.company)
+  end
+
+  def linked_invites
+    @campaign = Campaign.find(params[:id])
+    @company = @campaign.company
   end
 
   def financial_info

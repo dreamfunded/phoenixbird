@@ -1,0 +1,165 @@
+<% title "DreamFunded | Invite" %>
+<div class= "wrapper">
+
+  <div class="header education-center">
+    <div class='education-title'>Edit My Campaign</div>
+    <section class='campaign-links'>
+      <a href="#" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
+      <a href="/company_description/<%= @campaign.id %>" class='education-links '>Description</a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links active-link'> Legal Info </a>
+    </section>
+
+
+    <section class='progress-bar'>
+      <div class="progress animate">
+        <span style="width: 75%"><span></span></span>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div class= "campaign-box get-funded ">
+
+  <div class="row centered">
+    <div class=" active">
+      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Invite</a></h2>
+      <br>
+      <h3 class= "second-quote grey no-margin centered">Adding your connections from LinkedIn and Google is the fastest way to build your influence and raise funds.</h3>
+    </div>
+
+    <div class="invite-via-email">
+      <span class='inline-block'>
+        <%= button_to  '/import_google', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+          Invite Contacts from Gmail  &nbsp;&nbsp;&nbsp;
+          <%= image_tag "static/gmail-icon.png", class: 'gmail-icon' %>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="invite-via-email">
+      <span class='inline-block'>
+        <%= button_to  'linkedin_import', class: 'invite-google-contacts' do %>
+          Invite Contacts from LinkedIn  &nbsp;
+          <span class='linkedin-icon'><i class="fa fa-linkedin" aria-hidden="true"></i></span>
+        <% end %>
+      </span>
+    </div>
+
+    <div class= "centered">
+      <br>
+      <%= submit_tag("Submit", :id => "submit-button") %>
+      <%= link_to "Skip for now", company_path(@company.id)%>
+    </div>
+
+  </div>
+</div>
+
+
+
+<% if @hash.size > 0 %>
+<a href="#dialog" class="modalLink"></a>
+    <div id="modal">
+      <!-- First modal window -->
+       <div id="dialog" class="google-clients">
+        <div class="contents">
+            <div class='close-icon'>
+              <a href="#" class="close"><span><i class="fa fa-times"></i></span></a>
+            </div>
+            <h3>Invite friends and colleagues</h3>
+            <!-- <hr class='line-verify-modal'> -->
+            <p class='invite-modal-text'>Please select the individuals that you would like to invite to join your group. We will send them a personalized invitation on your behalf.</p>
+
+            <div class="search">
+              <input type="text" id="fiter-input" placeholder="Search" class='input-search'>
+            </div>
+            <%= form_tag('/google_contacts') do%>
+              <%= hidden_field_tag :hash, @hash%>
+              <ul class='instafilta-section imported-contacts'>
+                <div class=''>
+                  <input type="checkbox" onchange="checkAll(this)" name="chk[]" id='check_all' checked/>
+                  <label for='check_all'>Check All</label>
+                  <br>
+                </div>
+                <% @hash.each do |name, email| %>
+
+                  <div class="contact-item">
+                    <label>
+                      <li class='imported-name'>
+                        <% name_email = name + ',' + email %>
+                        <%= check_box_tag "emails[]", name_email, true %>
+                        <%= name %></li>
+                      <li class='imported-email'><%= email %></li>
+                    </label>
+                    <hr>
+                  </div>
+                <% end %>
+              </ul>
+              <center class='invite-buttons'>
+                <a href="#" class="close-button">Cancel</a>
+                <!-- <a href="#" class="invite-google-button">Send Invitations</a> -->
+                <%= submit_tag "Send Invitations", class: 'invite-google-users'%>
+              </center>
+
+            <% end %>
+        </div>
+     </div>
+    </div>
+<% end %>
+
+<script>
+  $(document).ready(function(){
+      var activeWindow;
+          var id = '#dialog'
+          console.log(id);
+          activeWindow = $('.google-clients' + id)
+              .css('opacity', '0') // set to an initial 0 opacity
+              .css('top', '50%') // position vertically at 50%
+              .css('left', '44%') // position horizontally at 50%
+              .fadeTo(500, 1); // fade to an opacity of 1 (100%) over 500 milliseconds
+
+          $('#modal')
+              .append('<div id="blind" />') // create a <div> with an id of 'blind'
+              .find('#blind') // select the div we've just created
+              .css('opacity', '0') // set the initial opacity to 0
+              .fadeTo(500, 0.5) // fade in to an opacity of 0.8 (80%) over 500 milliseconds
+              .click(function(e){
+                  closeModal(); // close modal if someone clicks anywhere on the blind (outside of the window)
+              });
+
+      $('a.close-button').click(function(e){
+              e.preventDefault();
+              closeModal();
+      });
+      $('a.close').click(function(e){
+              e.preventDefault();
+              closeModal();
+      });
+      function closeModal() {
+          activeWindow.fadeOut(250, function(){ $(this).css('top', '-1000px').css('left', '-1000px'); });
+          $('#blind').fadeOut(250,    function(){ $(this).remove(); });
+      }
+  });
+
+  $('#fiter-input').instaFilta({
+    targets: '.contact-item'
+  });
+
+  function checkAll(ele) {
+      var checkboxes = document.getElementsByTagName('input');
+      if (ele.checked) {
+          for (var i = 0; i < checkboxes.length; i++) {
+              if (checkboxes[i].type == 'checkbox') {
+                  checkboxes[i].checked = true;
+              }
+          }
+      } else {
+          for (var i = 0; i < checkboxes.length; i++) {
+              console.log(i)
+              if (checkboxes[i].type == 'checkbox') {
+                  checkboxes[i].checked = false;
+              }
+          }
+      }
+  }
+</script>

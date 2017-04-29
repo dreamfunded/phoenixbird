@@ -1,0 +1,67 @@
+<% title "DreamFunded | Invite" %>
+<div class= "wrapper">
+
+  <div class="header education-center">
+    <div class='education-title'>Edit My Campaign</div>
+    <section class='campaign-links'>
+      <a href="#" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links '>Description</a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links '> Legal Info </a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links active-link'> Invite </a>
+    </section>
+
+
+    <section class='progress-bar'>
+      <div class="progress animate">
+        <span style="width: 75%"><span></span></span>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div class= "campaign-box get-funded ">
+
+  <div class="row centered">
+    <div class=" active">
+      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Invite</a></h2>
+      <br>
+      <h3 class= "second-quote grey no-margin centered">Follow these steps to import contacts from LinkedIn.</h3>
+    </div>
+
+    <div class="invite-via-email">
+      <span class='inline-block'>
+
+        <span class=''>1. Download your contacts from LinkedIn</span>
+        <%= button_to 'https://www.linkedin.com/people/export-settings', class: 'invite-button' do %>
+          Download
+        <% end %>
+      </span>
+    </div>
+
+
+    <!-- Upload CSV File -->
+    <div class="invite-via-email">
+
+      <span class='invite-form'>
+        <%= form_for(CsvFile.new, url: { action: "upload_csv"}, method: "post", html: { multipart: true } ) do |f| %>
+          <span class=''>2. Upload CSV File</span>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.file_field :file %>
+          <%= f.submit "Browse Files", class: 'invite-button' %>
+        <% end %>
+      </span>
+      <div>
+      </div>
+    </div>
+
+
+    <div class= "centered">
+      <br>
+      <%= link_to("Submit", company_path(@company.id), class: "submit-link-button") %>
+      <%= link_to "Skip for now", company_path(@company.id) %>
+    </div>
+
+  </div>
+</div>
+

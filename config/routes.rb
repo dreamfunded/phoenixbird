@@ -102,8 +102,12 @@ Rails.application.routes.draw do
   get 'news/manage'
   get 'welcome/index'
 
+  # IMPORT GOOGLE CONTACTS
   get '/authenticate', to: 'import#authenticate'
   get '/authorise', to: 'import#authorise'
+  get '/import_google', to: 'import#import_google'
+  get '/contacts_from_google', to: 'import#contacts_from_google'
+
   get '/import', to: 'import#import'
 
   get '/contacts_callback', to: "omniauth_callbacks#contacts_callback"
@@ -212,6 +216,7 @@ Rails.application.routes.draw do
   # I N V I T E S
   get '/invite', to: "invites#invite", as: :invite_users
   post '/google_contacts', to: "invites#google_contacts"
+  post '/google_contacts_on_campaign', to: "invites#google_contacts_on_campaign"
   post "/upload_csv", to: "invites#upload_csv"
   post "/invites_from_manny", to: "invites#invites_from_manny"
   post "/send_start_up_emails", to: "invites#send_start_up_emails"
