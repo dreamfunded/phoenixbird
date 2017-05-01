@@ -13,7 +13,7 @@
 
     <section class='progress-bar'>
       <div class="progress animate">
-        <span style="width: 75%"><span></span></span>
+        <span style="width: 100%;border-radius: 8px;"><span></span></span>
       </div>
     </section>
 
@@ -49,8 +49,8 @@
 
     <div class= "centered">
       <br>
-      <%= link_to("Submit", company_path(@company.id), class: "submit-link-button") %>
-      <%= link_to "Skip for now", company_path(@company.id) %>
+      <%= link_to("Submit", company_path(@company.slug), class: "submit-link-button") %>
+      <%= link_to "Skip for now", company_path(@company.slug) %>
     </div>
 
   </div>
