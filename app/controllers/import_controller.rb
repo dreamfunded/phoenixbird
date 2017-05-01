@@ -52,10 +52,10 @@ class ImportController < ApplicationController
                site: 'https://accounts.google.com',
                token_url: '/o/oauth2/token',
                authorize_url: '/o/oauth2/auth')
-    #url = client.auth_code.authorize_url(scope: "https://www.google.com/m8/feeds",
-               #redirect_uri: 'https://dreamfunded.com/authorise')
     url = client.auth_code.authorize_url(scope: "https://www.google.com/m8/feeds",
-               redirect_uri: 'http://localhost:3000/contacts_from_google')
+               redirect_uri: 'https://dreamfunded.com/authorise')
+    #url = client.auth_code.authorize_url(scope: "https://www.google.com/m8/feeds",
+    #          redirect_uri: 'http://localhost:3000/contacts_from_google')
     redirect_to url
   end
 
@@ -66,8 +66,8 @@ class ImportController < ApplicationController
                site: 'https://accounts.google.com',
                token_url: '/o/oauth2/token',
                authorize_url: '/o/oauth2/auth')
-    token = client.auth_code.get_token(params[:code], :redirect_uri => 'http://localhost:3000/contacts_from_google')
-    #token = client.auth_code.get_token(params[:code], :redirect_uri => 'https://dreamfunded.com/authorise')
+    #token = client.auth_code.get_token(params[:code], :redirect_uri => 'http://localhost:3000/contacts_from_google')
+    token = client.auth_code.get_token(params[:code], :redirect_uri => 'https://dreamfunded.com/authorise')
     user = GoogleContactsApi::User.new(token)
     @contacts = user.contacts
     @hash = {}
