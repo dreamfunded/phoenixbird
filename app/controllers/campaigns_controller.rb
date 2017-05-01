@@ -106,6 +106,22 @@ class CampaignsController < ApplicationController
     @company = @campaign.company
   end
 
+  def upload_csv
+    @company = Company.find(params[:company_id])
+    begin
+        @csv_file = CsvFile.new(csv_file_params)
+        if @csv_file.save
+          ContactMailer.delay.file_uploaded(current_user)
+          redirect_to  company_path(@company)
+        else
+          flash[:upload_error] = "Invalid CSV file format."
+          render :linked_invites
+        end
+     rescue
+        redirect_to  company_path(@company)
+    end
+  end
+
   def financial_info
     @campaign = Campaign.find(params[:id])
     @financial_details = @campaign.company.financial_detail
@@ -152,6 +168,7 @@ class CampaignsController < ApplicationController
     @team = @company.users.order(:created_at)
   end
 
+
   private
   def verify
     if current_user.confirmed == false
@@ -184,6 +201,10 @@ class CampaignsController < ApplicationController
 
   def founder_params
     params.require(:founder).permit(:image, :name, :position, :content, :company_id, :created_at, :updated_at)
+  end
+
+  def csv_file_params
+    params.require(:csv_file).permit(:user_id, :file)
   end
 
   def financial_details_params

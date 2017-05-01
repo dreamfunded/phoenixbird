@@ -29,11 +29,15 @@
       <h3 class= "second-quote grey no-margin centered">Follow these steps to import contacts from LinkedIn.</h3>
     </div>
 
-    <div class="invite-via-email">
+    <div class = "notice centered">
+      <%= flash[:upload_error]  %>
+    </div>
+
+    <div class="invite-contacts-email">
       <span class='inline-block'>
 
         <span class=''>1. Download your contacts from LinkedIn</span>
-        <%= button_to 'https://www.linkedin.com/people/export-settings', class: 'invite-button' do %>
+        <%= link_to 'https://www.linkedin.com/people/export-settings', target: "_blank", class: 'company-button' do %>
           Download
         <% end %>
       </span>
@@ -41,14 +45,15 @@
 
 
     <!-- Upload CSV File -->
-    <div class="invite-via-email">
+    <div class="invite-contacts-email">
 
-      <span class='invite-form'>
+      <span class='centered'>2. Upload CSV File</span>
+      <span class=''>
         <%= form_for(CsvFile.new, url: { action: "upload_csv"}, method: "post", html: { multipart: true } ) do |f| %>
-          <span class=''>2. Upload CSV File</span>
+          <%= hidden_field_tag :company_id, @company.id %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.file_field :file %>
-          <%= f.submit "Browse Files", class: 'invite-button' %>
+          <%= f.submit "Upload", class: 'company-button upload-csv-button' %>
         <% end %>
       </span>
       <div>
@@ -56,9 +61,9 @@
     </div>
 
 
-    <div class= "centered">
-      <br>
-      <%= link_to("Submit", company_path(@company.id), class: "submit-link-button") %>
+    <div class= "right">
+      <br>  <br>  <br>  <br>
+      <%#= link_to("Submit", company_path(@company.id), class: "submit-link-button") %>
       <%= link_to "Skip for now", company_path(@company.id) %>
     </div>
 

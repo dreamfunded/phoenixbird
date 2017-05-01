@@ -15,6 +15,7 @@ class CsvFile < ActiveRecord::Base
         :secret_access_key => "MIKaOefz+v4pruAnB/rVwI/iXw/w6iyRXm7fhyA/"
       }
 
+    validates :file, presence:true
     validates_attachment_size :file, :less_than => 5.megabytes
     #validates_attachment_content_type :file, :content_type =>["text/csv", "text/comma-separated-values", "application/vnd.ms-excel"]
     validates_attachment_content_type :file, content_type: ['text/csv', "text/plain", 'text/comma-separated-values', 'application/csv', 'application/excel', 'application/vnd.ms-excel', 'application/vnd.msexcel']

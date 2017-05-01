@@ -29,7 +29,7 @@
       <h3 class= "second-quote grey no-margin centered">Adding your connections from LinkedIn and Google is the fastest way to build your influence and raise funds.</h3>
     </div>
 
-    <div class="invite-via-email">
+    <div class="invite-contacts-email">
       <span class='inline-block'>
         <%= button_to  '/import_google', method: 'get',class: 'invite-google-contacts', form: {target: '_blank'} do %>
           Invite Contacts from Gmail  &nbsp;&nbsp;&nbsp;
@@ -38,7 +38,7 @@
       </span>
     </div>
 
-    <div class="invite-via-email">
+    <div class="invite-contacts-email">
       <span class='inline-block'>
         <%= button_to  "/campaigns/linked_invites/#{@campaign.id}",method: :get,  class: 'invite-google-contacts' do %>
           Invite Contacts from LinkedIn  &nbsp;
