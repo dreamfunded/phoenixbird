@@ -166,3 +166,39 @@
     max-width: 160px;
   }
 }
+
+.grey{
+  color: #424242;
+}
+
+.linkedin-icon{
+  position: absolute;
+      left: 17px;
+      top: 11px;
+}
+.linkedin-icon i{
+  font-size: 21px;
+}
+
+.submit-link-button{
+  display: inline-block;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 3px;
+  width: 200px;
+  color: #fff;
+  background: #ffa600;
+  margin: 20px auto;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+}
+
+.invite-contacts-email{
+  border-top: 2px solid #eee;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.upload-csv-button{
+  font-size: 16px;
+}

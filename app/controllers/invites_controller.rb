@@ -178,6 +178,20 @@ class InvitesController < ApplicationController
     redirect_to "/group_invites/#{id}"
   end
 
+  def google_contacts_on_campaign
+    id =  session[:campaign_id]
+    emails = params[:emails]
+
+    emails.each do |name_email|
+      email = name_email.split(',').second
+      name = name_email.split(',').first
+
+      @invite = Invite.create(email: email,name: name, user_id: current_user.id)
+      InviteMailer.invite_from_user(email, name, current_user).deliver
+    end
+    redirect_to invite_contacts_path(id)
+  end
+
 
   def accept
     @token = params[:token]
