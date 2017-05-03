@@ -1,4 +1,5 @@
 class GuestsController < ApplicationController
+  before_action :authenticate_user!, only: [:index ]
   before_action :admin_check, only: [:index]
 
   def index
