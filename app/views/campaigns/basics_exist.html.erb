@@ -1,0 +1,191 @@
+<% title "DreamFunded | Invest" %>
+<div class= "wrapper">
+  <div class="header education-center">
+    <div class='education-title'>Edit My Campaign</div>
+    <section class='campaign-links'>
+      <!-- <a href="/funding_campaing_goal/<%#=@campaign_id%>" class='education-links '>Funding Goal</a> <%#= fa_icon "chevron-right"%> -->
+      <a href="#" class='education-links active-link'>Basics</a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links disabled-link'>Description</a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links disabled-link'> Legal Info </a> <%= fa_icon "chevron-right"%>
+      <a href="#" class='education-links disabled-link'> Invite </a>
+    </section>
+
+    <section class='progress-bar'>
+      <div class="progress animate">
+        <span style="width: 25%"><span></span></span>
+      </div>
+    </section>
+
+  </div>
+
+  <div class= "campaign-box  get-funded ">
+
+  <div class="row">
+    <div class=" active">
+      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Basic Company Information</a></h2>
+      <br>
+      <h3 class= "darkblue no-margin centered">This is the first step in creating your campaign.</h3>
+    </div>
+  </div>
+
+  <div class= "login-container">
+    <%= form_for @company, :url => {:action => "basics_submit"},method: "post", html: { multipart: true } do |f| %>
+      <%#= hidden_field_tag :campaign_id, @campaign_id %>
+      <%= hidden_field_tag :company_id, @company.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :goal_amount, value: 1000000 %>
+
+      <div class='disclaimer-box'>
+        <div class='disclaimer-container'>
+          <i class="fa fa-times close-disclaimer"  ></i>
+          <span class='disclaimer-text'>ALL information in this step will be made publicly available</span>
+        </div>
+      </div>
+      <br>
+      <div class='disclaimer-box'>
+        <div class='disclaimer-container'>
+          <i class="fa fa-times close-disclaimer"  ></i>
+          <span class='disclaimer-text'>Use your campaign page to show investors what makes your company unique. Remember to be factual and balanced. Claims cannot be exaggerated or false. Your company must be a US company in order to raise capital under Title III - Regulation Crowdfunding. You may not be a fund.</span>
+        </div>
+      </div>
+
+      <div class='text_field'>
+        <%= f.text_field :name, placeholder: 'Company Name',:class => "form-field required-field" %>
+      </div>
+
+      <div class='text_field'>
+        <%= text_field_tag :tagline, @campaign.tagline ,placeholder: 'Describe your company in one sentence',:class => "form-field required-field" %>
+      </div>
+
+      <label>Category</label>
+
+        <%= f.select(:category, options_for_select(company_categories, @company.category), {}, {class: "form-select form-field required-field"} ) %>
+
+        <br>
+
+      <div class='text_field'>
+        <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', :class => "form-field required-field" %>
+      </div>
+
+      <br><br>
+      <label>Short Description about your company</label>
+      <%= f.text_area :description, placeholder: 'Short Description about your company', class: 'ckeditor userbox campaign_text_area_width', rows: 6 %>
+      <br>
+
+      <div class='text_field'>
+        <%= f.text_field :website_link, placeholder: 'Website', :class => "form-field required-field" %><br>
+
+      </div>
+
+      <label>Company Logo</label>
+
+      <% if @company.image? %>
+          <br>
+          <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
+          <br>
+         Update Logo<%= f.file_field :image %>
+      <% else %>
+          <%= f.file_field :image, class: "required-field" %>
+      <% end %>
+
+      <br><br>
+
+      <label>Cover Photo (Recommended)</label>
+      <%= f.file_field :cover %>
+
+      <br><br>
+      <label>Pitch Deck (Recommended)</label>
+      <%= f.fields_for :documents, Document.new do |doc| %>
+        <%= doc.file_field :file %>
+      <% end %>
+      <h3>Management Team</h3>
+      <%= f.fields_for :founders, @founders do |founder| %>
+        <%= render 'founder_fields', f: founder %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association( f, :founders, class: "add-remove-member") do %>
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          <span class='edit-my-company-button'>Add Team Member</span>
+        <% end %>
+      </div>
+
+
+      <div class = "notice centered">
+        <%= flash[:errors] if flash[:errors] %>
+      </div>
+
+      <div class= "centered">
+        <%= submit_tag("Continue", :id => "submit-button") %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+    $('.close-disclaimer').click(function(){
+        $(this).parent().hide()
+    })
+
+    // F O R M   V A L I D A T I O N
+    $(document).ready(function() {
+
+        var scroll_to_error_element = function(error_element){
+            $('html, body').animate({
+               scrollTop: (error_element.offset().top - 100)
+            }, 1000)
+        }
+
+        $(".required-field").each(function(){
+            if( $(this).val() ){
+                $(this).removeClass("invalid").addClass("valid");
+            }
+            else{$(this).removeClass("valid").addClass("invalid");}
+            console.log("check")
+        })
+
+        $(".required-field").on("change keyup blur input", function(){
+            console.log("typing");
+            var input= $( this );
+            var is_name=input.val();
+            if(is_name){input.removeClass("invalid").addClass("valid");}
+            else{input.removeClass("valid").addClass("invalid");}
+        });
+
+
+        $(".edit_company").submit(function(e){
+            var form_data= $(".required-field");
+            var error_free=true;
+
+            form_data.each(function(){
+                valid = $(this).hasClass("valid");
+                var error_element= $(this);
+
+                if (!valid) {
+                   console.log(error_element);
+                   error_element.addClass("error_show");
+                   error_free=false;
+                   scroll_to_error_element(error_element);
+                }
+                else{error_element.removeClass("error_show");}
+            })
+
+            if (!error_free){
+
+                e.preventDefault();
+            }
+       })
+
+        $(".progress > span").each(function() {
+          $(this)
+            .data("origWidth", $(this).width())
+            .width(0)
+            .animate({
+              width: $(this).data("origWidth") // or + "%" if fluid
+            }, 1200);
+        });
+
+
+
+    });
+</script>
