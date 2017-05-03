@@ -58,9 +58,22 @@ class CampaignsController < ApplicationController
       p @company.errors
       render :basics
     end
-
-
   end
+
+  def basics_exist
+    @campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find(params[:id])
+    @company = @campaign.company
+  end
+
+  def basics_submit
+    @company = Company.find(params[:company_id])
+    @campaign = @company.campaign
+    @company.update(company_params)
+    redirect_to description_path(@campaign.id)
+  end
+
+
 
   def description
     @campaign_id = params[:id]
@@ -177,7 +190,7 @@ class CampaignsController < ApplicationController
   end
 
   def company_params
-     params.require(:company).permit(:image, :id, :cover, :name, :description, :video_link, :user_id, :goal_amount, :website_link,
+     params.require(:company).permit(:image, :id, :cover, :name, :description, :video_link, :user_id, :goal_amount, :website_link, :category,
                      campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state, :business_plan,
                       testimonials_attributes: [:id, :name, :position, :photo, :message],
                       quote_attributes: [:id, :main, :description, :said_by, :position, :photo]],

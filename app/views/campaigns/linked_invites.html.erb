@@ -4,9 +4,9 @@
   <div class="header education-center">
     <div class='education-title'>Edit My Campaign</div>
     <section class='campaign-links'>
-      <a href="#" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links '>Description</a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links '> Legal Info </a> <%= fa_icon "chevron-right"%>
+      <a href="/basics/<%= @campaign.id %>" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
+      <a href="/company_description/<%= @campaign.id %>" class='education-links '>Description</a> <%= fa_icon "chevron-right"%>
+      <a href="/legal_info/<%= @campaign.id%>" class='education-links '> Legal Info </a> <%= fa_icon "chevron-right"%>
       <a href="#" class='education-links active-link'> Invite </a>
     </section>
 
