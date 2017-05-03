@@ -1,4 +1,5 @@
 class GuestsController < ApplicationController
+  before_action :admin_check, only: [:index]
 
   def index
     @guests = Guest.all
@@ -48,6 +49,12 @@ class GuestsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def guest_params
     params.require(:guest).permit(:email)
+  end
+
+  def admin_check
+    if current_user.authority < User.Authority[:Editor]
+      redirect_to url_for(:controller => 'home', :action => 'unauthorized')
+    end
   end
 
 end
