@@ -29,7 +29,7 @@
   </div>
 
   <div class= "login-container">
-    <%= form_for @company, :url => {:action => "basics_submit"},method: "post", html: { multipart: true } do |f| %>
+    <%= form_for @company, :url => {:action => "basics_exist_submit"},method: "post", html: { multipart: true } do |f| %>
       <%#= hidden_field_tag :campaign_id, @campaign_id %>
       <%= hidden_field_tag :company_id, @company.id %>
       <%= f.hidden_field :user_id, value: current_user.id %>
