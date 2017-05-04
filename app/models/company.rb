@@ -88,8 +88,12 @@ class Company < ActiveRecord::Base
 
   validates_attachment_size :cover, :less_than => 5.megabytes
   validates_attachment_size :image, :less_than => 5.megabytes
-   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/
+
+  validates_attachment_content_type :cover, content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"], message: "Format Should be either JPG or PNG "
+
+
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
   validates :goal_amount, numericality: { less_than_or_equal_to: 1000000 }
   validates_attachment_content_type :document, :content_type =>['application/pdf']
 

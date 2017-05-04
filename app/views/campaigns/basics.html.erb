@@ -28,6 +28,19 @@
     </div>
   </div>
 
+  <div class = "notice centered">
+    <% if @company.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+        <ul>
+          <% @company.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
   <div class= "login-container">
     <%= form_for @company, :url => {:action => "basics_submit"},method: "post", html: { multipart: true } do |f| %>
       <%#= hidden_field_tag :campaign_id, @campaign_id %>
@@ -109,9 +122,6 @@
       </div>
 
 
-      <div class = "notice centered">
-        <%= flash[:errors] if flash[:errors] %>
-      </div>
 
       <div class= "centered">
         <%= submit_tag("Continue", :id => "submit-button") %>
