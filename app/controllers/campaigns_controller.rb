@@ -66,7 +66,7 @@ class CampaignsController < ApplicationController
     @company = @campaign.company
   end
 
-  def basics_submit
+  def basics_exist_submit
     @company = Company.find(params[:company_id])
     @campaign = @company.campaign
     @company.update(company_params)

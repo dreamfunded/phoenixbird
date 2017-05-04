@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   post '/basics_submit', to: 'campaigns#basics_submit'
 
   get '/basics/:id', to: 'campaigns#basics_exist', as: 'basics_exist'
-  post '/basics_update', to: 'campaigns#basics_update'
+  post '/basics_update', to: 'campaigns#basics_exist_submit'
 
   get '/company_description/:id', to: 'campaigns#description', as: 'description'
   patch '/company_description_submit', to: 'campaigns#company_description_submit'
