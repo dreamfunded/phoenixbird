@@ -152,7 +152,7 @@
         });
 
 
-        $(".edit_company").submit(function(e){
+        $('.login-container form').submit(function(e){
             var form_data= $(".required-field");
             var error_free=true;
 
@@ -175,23 +175,13 @@
             }
        })
 
-        // if ($('textarea').length > 0) {
-        //   var data = $('.ckeditor');
-        //   $.each(data, function(i) {
-        //       CKEDITOR.replace(data[i].id);
-        //   });
-        // }
-
-        // var data = $('.ckeditor');
-        // CKEDITOR.replace(data[0].id);
-
 
         $(".progress > span").each(function() {
           $(this)
             .data("origWidth", $(this).width())
             .width(0)
             .animate({
-              width: $(this).data("origWidth") // or + "%" if fluid
+              width: $(this).data("origWidth")
             }, 1200);
         });
 
