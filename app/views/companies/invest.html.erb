@@ -76,7 +76,7 @@
         <div class='section-title invest-title'>I want to invest:</div>
         <div class="currency_input">
           <span>$</span>
-          <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount", required: true %>
+          <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount",class:'payment-invest-field', required: true %>
         </div>
       </div>
 
@@ -163,7 +163,7 @@
         </section>
         <br><br>
       <div class='centered'>
-        <%= submit_tag "Complete Investment", class: 'company-button payment-button profile-button' %>
+        <%= submit_tag "Complete Investment", name: 'submitButton', class: 'company-button payment-button profile-button' %>
       </div>
 
     <% end %>
@@ -210,8 +210,11 @@
                 if (!event.target.checkValidity()) {
                     event.preventDefault(); // dismiss the default functionality
                     alert('Please, fill the form'); // error message
+                }else{
+                    form.submitButton.disabled = true;
                 }
-            }, false);
+
+        }, false);
 
     })
 </script>
