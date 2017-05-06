@@ -4,7 +4,7 @@ class Founder < ActiveRecord::Base
 	validates :name, presence:true
 	# validates :image_address, presence:true
 	validates :content, presence:true
-	validates :company_id, presence:true
+	# validates :company_id, presence:true
 
   has_attached_file :image,
     :styles => { :thumb => "180x180#", :big => "500x500#"  },
