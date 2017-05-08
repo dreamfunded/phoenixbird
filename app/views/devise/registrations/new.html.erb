@@ -58,15 +58,19 @@
     <div class="container">
       <div class="auth__cnt">
         <div class="auth__top">
-          <div class="auth__top__inn clearfix"><a href="#" class="auth__top__link"><span>Login</span></a><a href="#" class="auth__top__link active"><span>Sign Up</span></a></div>
+          <div class="auth__top__inn clearfix">
+            <%= link_to "Login", new_user_session_path, class: "auth__top__link " %><span></span>
+            <%= link_to "Sign Up", new_user_registration_path, class: "auth__top__link active" %><span></span>
+          </div>
         </div>
         <div class="auth__form">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <div class="singup__top">
               <div class="singup__top__block">
                 <div class = "notice centered">
-                  <%= flash[:signup_errors] if flash[:signup_errors] %>
-                  <%= @error_message %>
+                  <%= devise_error_messages! %>
+                  <%= flash[:notice]  %>
+                  <%= flash[:alert] %>
                 </div>
                 <div class="singup__top__title"><span>Basic Information</span></div>
                 <div class="input-row row">

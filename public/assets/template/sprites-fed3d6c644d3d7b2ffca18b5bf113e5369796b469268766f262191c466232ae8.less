@@ -1,0 +1,154 @@
+/*
+LESS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: @icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+@icon-home: x y offset_x offset_y width height total_width total_height image_path name;
+
+At the bottom of this section, we provide information about the spritesheet itself
+@spritesheet: width height image @spritesheet-sprites;
+*/
+@howi1-name: 'howi1';
+@howi1-x: 106px;
+@howi1-y: 0px;
+@howi1-offset-x: -106px;
+@howi1-offset-y: 0px;
+@howi1-width: 47px;
+@howi1-height: 50px;
+@howi1-total-width: 153px;
+@howi1-total-height: 102px;
+@howi1-image: '../img/template/sprites.png';
+@howi1: 106px 0px -106px 0px 47px 50px 153px 102px '../img/template/sprites.png' 'howi1';
+@howi2-name: 'howi2';
+@howi2-x: 54px;
+@howi2-y: 0px;
+@howi2-offset-x: -54px;
+@howi2-offset-y: 0px;
+@howi2-width: 50px;
+@howi2-height: 50px;
+@howi2-total-width: 153px;
+@howi2-total-height: 102px;
+@howi2-image: '../img/template/sprites.png';
+@howi2: 54px 0px -54px 0px 50px 50px 153px 102px '../img/template/sprites.png' 'howi2';
+@howi3-name: 'howi3';
+@howi3-x: 0px;
+@howi3-y: 0px;
+@howi3-offset-x: 0px;
+@howi3-offset-y: 0px;
+@howi3-width: 52px;
+@howi3-height: 50px;
+@howi3-total-width: 153px;
+@howi3-total-height: 102px;
+@howi3-image: '../img/template/sprites.png';
+@howi3: 0px 0px 0px 0px 52px 50px 153px 102px '../img/template/sprites.png' 'howi3';
+@howi4-name: 'howi4';
+@howi4-x: 0px;
+@howi4-y: 52px;
+@howi4-offset-x: 0px;
+@howi4-offset-y: -52px;
+@howi4-width: 50px;
+@howi4-height: 50px;
+@howi4-total-width: 153px;
+@howi4-total-height: 102px;
+@howi4-image: '../img/template/sprites.png';
+@howi4: 0px 52px 0px -52px 50px 50px 153px 102px '../img/template/sprites.png' 'howi4';
+@howi5-name: 'howi5';
+@howi5-x: 106px;
+@howi5-y: 52px;
+@howi5-offset-x: -106px;
+@howi5-offset-y: -52px;
+@howi5-width: 36px;
+@howi5-height: 50px;
+@howi5-total-width: 153px;
+@howi5-total-height: 102px;
+@howi5-image: '../img/template/sprites.png';
+@howi5: 106px 52px -106px -52px 36px 50px 153px 102px '../img/template/sprites.png' 'howi5';
+@howi6-name: 'howi6';
+@howi6-x: 52px;
+@howi6-y: 52px;
+@howi6-offset-x: -52px;
+@howi6-offset-y: -52px;
+@howi6-width: 50px;
+@howi6-height: 50px;
+@howi6-total-width: 153px;
+@howi6-total-height: 102px;
+@howi6-image: '../img/template/sprites.png';
+@howi6: 52px 52px -52px -52px 50px 50px 153px 102px '../img/template/sprites.png' 'howi6';
+@spritesheet-width: 153px;
+@spritesheet-height: 102px;
+@spritesheet-image: '../img/template/sprites.png';
+@spritesheet-sprites: @howi1 @howi2 @howi3 @howi4 @howi5 @howi6;
+@spritesheet: 153px 102px '../img/template/sprites.png' @spritesheet-sprites;
+
+/*
+The provided classes are intended to be used with the array-like variables
+
+.icon-home {
+  .sprite-width(@icon-home);
+}
+.icon-email {
+  .sprite(@icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.sprite-width(@sprite) {
+  width: extract(@sprite, 5);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 6);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 3);
+  @sprite-offset-y: extract(@sprite, 4);
+  background-position: @sprite-offset-x @sprite-offset-y;
+}
+
+.sprite-image(@sprite) {
+  @sprite-image: extract(@sprite, 9);
+  @sprite-image-bare: ~`"@{sprite-image}".slice(1, -1)`;
+  background-image: url(@sprite-image-bare);
+}
+
+.sprite(@sprite) {
+  .sprite-image(@sprite);
+  .sprite-position(@sprite);
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+/*
+The `.sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of LESS
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+.sprites(@spritesheet-sprites);
+*/
+.sprites(@sprites, @i: 1) when (@i <= length(@sprites)) {
+  @sprite: extract(@sprites, @i);
+  @sprite-name: e(extract(@sprite, 10));
+  .@{sprite-name} {
+    .sprite(@sprite);
+  }
+  .sprites(@sprites, @i + 1);
+}
