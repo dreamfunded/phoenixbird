@@ -1,30 +1,28 @@
-  <div class= "menu-wrap fullWidth">
+<!-- <div class= "menu-wrap fullWidth">
         <nav class= "menu fullWidth">
           <ul class= "main-menu white">
 
 
-            <% if current_user == nil %>
+            <%# if current_user == nil %>
               <li id='mobile-menu'><button onclick= "signIn()">Login</button></li>
-            <% else %>
+            <%# else %>
               <li id='mobile-menu'><button onclick= "signOut()" >Sign Out</button></li>
-            <% end %>
+            <%# end %>
 
             <li id='mobile-menu'><button onclick= "faq()">How It Works</button></li>
             <li id='mobile-menu'><button onclick= "invest()">Companies </button></li>
-            <!-- M O B I L E   E N D -->
 
-            <!-- iPAD MENU -->
 
             <li class='ipad-menu'><button >Menu<span class="arrow">&#9660;</span></button>
               <ul class='sub-menu white'>
 
-                <% if current_user == nil %>
+                <%# if current_user == nil %>
                   <li><button onclick= "login()">Login</button></li>
                   <li><button onclick= "signUp()">Sign Up</button></li>
-                <% else %>
-                  <li><button >Welcome <%= current_user.first_name.capitalize%> <span class="arrow"></span></button></li>
+                <%# else %>
+                  <li><button >Welcome <%#= current_user.first_name.capitalize%> <span class="arrow"></span></button></li>
                   <li><button onclick= "signOut()" >Sign Out</button></li>
-                <% end %>
+                <%# end %>
               </ul>
             </li>
             <li class='ipad-menu'><button >About<span class="arrow">&#9660;</span></button>
@@ -40,65 +38,65 @@
             </li>
             <li class='ipad-menu'><button onclick="location.href='/education';" >Education</button></li>
             <li class='ipad-menu'><button onclick= "get_funded()">Get Funded</button></li>
-            <% if current_user != nil && current_user.authority >= authority[:Accredited] %>
+            <%# if current_user != nil && current_user.authority >= authority[:Accredited] %>
               <li class='ipad-menu'><button onclick= "invest()">Investments</button></li>
-            <% elsif current_user == nil %>
+            <%# elsif current_user == nil %>
               <li class='ipad-menu'><button onclick= "signUp()">Investments</button></li>
-            <% end %>
+            <%# end %>
             <li class='ipad-menu'><button onclick= "how_it_works()">How It Works</button></li>
-            <!-- iPAD MENU END -->
+
 
 
             <li id="last-menu-button"></li>
-            <% if !current_user %>
+            <%# if !current_user %>
               <li><button onclick= 'window.location = "/users/sign_up";' id="sign-in-button">Sign Up</button></li>
               <li><button onclick='window.location = "/users/sign_in";'>Login</button></li>
-            <% else %>
-              <li><button  >Welcome <%= current_user.first_name.capitalize%> <span class="arrow">&#9660;</span></button>
+            <%# else %>
+              <li><button  >Welcome <%#= current_user.first_name.capitalize%> <span class="arrow">&#9660;</span></button>
                 <ul class= "sub-menu">
                   <li><button onclick= "portfolio()">My Investments</button></li>
-                  <li><button onclick= "campaign()"><%= current_user.my_campaign %></button></li>
+                  <li><button onclick= "campaign()"><%#= current_user.my_campaign %></button></li>
 
-                  <% if current_user.belongs_to_a_group? %>
+                  <%# if current_user.belongs_to_a_group? %>
                       <li><button onclick= "group()">My Group</button></li>
-                  <% end %>
+                  <%# end %>
 
-                  <% if current_user.authority == authority[:Admin] %>
-                  <!-- ADMIN BUTTONS -->
+                  <%# if current_user.authority == authority[:Admin] %>
+
                     <li><button onclick= "invite()">Invite</button></li>
                     <li><button onclick= "admin()">Admin Panel</button></li>
                     <li><button onclick="location.href='/admin/users';" >New Admin Panel</button></li>
                     <li><button onclick="signOut()">Sign Out</button></li>
-                  <% else %>
-                    <%# if current_user.startup? %><li><button onclick= "invite()">Invite</button></li> <%# end %>
+                  <%# else %>
+                    <%## if current_user.startup? %><li><button onclick= "invite()">Invite</button></li> <%## end %>
                     <li><button onclick= "signOut()" >Sign Out</button></li>
-                    <% if current_user.authority == authority[:Editor] %>
+                    <%# if current_user.authority == authority[:Editor] %>
                       <li><button onclick="location.href='/admin/companies';" >Admin Panel</button></li>
-                    <% end %>
-                  <% end %>
+                    <%# end %>
+                  <%# end %>
 
-                  <% if current_user.role == "government"%>
+                  <%# if current_user.role == "government"%>
                     <li><button onclick= "government_admin()">Admin Panel</button></li>
-                  <% end %>
+                  <%# end %>
                 </ul>
               </li>
-            <% end %>
+            <%# end %>
 
 
             <li id="hidden-menu"><button disabled= "true">More <span class="arrow">&#9660;</span></button>
               <ul class= "sub-menu">
 
-                <!-- <li><button onclick="location.href='/education';" >Education</button></li> -->
 
-                <% if current_user %>
-                  <% if current_user.company %>
+
+                <%# if current_user %>
+                  <%# if current_user.company %>
                     <li><button onclick= "campaign()">My Company</button></li>
-                  <%else%>
+                  <%#else%>
                     <li><button onclick= "get_funded()">Get Funded</button></li>
-                   <% end %>
-                <% else %>
+                   <%# end %>
+                <%# else %>
                   <li><button onclick= "get_funded()">Get Funded</button></li>
-                <% end %>
+                <%# end %>
 
                 <li><button onclick= "invest()">Companies</button></li>
                 <li><button onclick= "faq()">How It Works</button></li>
@@ -110,22 +108,38 @@
 
             <li class='items-to-hide margin-menu-middle  margin-for-how-it-works'><button onclick= "invest()">Companies </button></li>
 
-            <% if current_user %>
-              <% if current_user.company %>
+            <%# if current_user %>
+              <%# if current_user.company %>
                 <li class='items-to-hide margin-menu-middle'><button onclick= "campaign()">My Company</button></li>
-              <%else%>
+              <%#else%>
                 <li class='items-to-hide margin-menu-middle'><button onclick= "get_funded()">Get Funded</button></li>
-               <% end %>
-            <% else %>
+               <%# end %>
+            <%# else %>
               <li class='items-to-hide margin-menu-middle'><button onclick= "get_funded()">Get Funded</button></li>
-            <% end %>
+            <%# end %>
 
             <li class='items-to-hide margin-menu-middle '><button onclick= "faq()">How It Works</button></li>
             <li class='items-to-hide margin-menu-middle latino-button'><button onclick= 'window.location = "http://www.dreamfundedfund.com/"' >Private Offerings</button></li>
             <li class='items-to-hide  margin-menu-middle '><button onclick= 'window.location = "/latino"' >Latino</button></li>
 
-            <!-- <li class='items-to-hide'><button onclick= "advisors()">Mentors</button></li> -->
+
             <li id= "left"><button onclick= "home()" id= "nopadding"><div class= "logo"></div></button></li>
           </ul>
         </nav>
+</div> -->
+
+<header class="header">
+  <div class="container clearfix">
+    <div class="header__logo"><a href="#"><%= image_tag("template/header-logo.png") %></a></div>
+    <div class="header__left clearfix"><a href="#" class="header__mob-close visible-xs"></a>
+      <div class="header__nav">
+        <ul class="reset-list clearfix">
+          <li><a href="#">Investments</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Get Funded</a></li>
+        </ul>
       </div>
+      <div class="header__auth clearfix"><a href="#">Login</a><a href="#">Sign Up</a></div>
+    </div><a href="#" class="header__mob-trig visible-xs"><span></span><span></span></a>
+  </div>
+</header>

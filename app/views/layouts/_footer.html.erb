@@ -9,74 +9,87 @@
 </script>
 
 
-<!-- <footer class= "footer fullWidth">
-  <div class= "footer-content">
-    <a class= "indent foot-text hide-on-mobile"> COPYRIGHT © <%= Time.now.year %> DREAMFUNDED MARKETPLACE, LLC</a>
 
-      <div class= "footer_links ">
-        <%= link_to "Contact", "/contact", :class => "first-footer-link footer-link-border footer-link" %>
-        <%= link_to "Privacy Policy", "/privacy_policy", :class => " footer-link footer-link-border" %>
-        <%= link_to "Frequently Asked Questions", "/faq", :class => " footer-link footer-link-border" %>
-        <%= link_to "Legal Information", "/legal", :class => " footer-link" %>
-
-        <%= link_to "https://twitter.com/dreamfunded", :target => "_blank", :class => 'image4 hide-on-mobile' do %>
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-        <% end %>
-        <%= link_to  "https://www.linkedin.com/company/dreamfunded-com", :target => "_blank", :class => 'image4 hide-on-mobile'  do %>
-          <i class="fa fa-linkedin" aria-hidden="true"></i>
-        <% end %>
-
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top clearfix">
+      <div class="footer__top__left hidden-xs">
+        <div class="footer__logo"><a href="#"><%= image_tag("template/footer-logo.png" )%></a></div>
+        <div class="footer__soc clearfix"><a href="#">
+            <svg class="svg-icon fb-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fb-icon"></use>
+            </svg></a><a href="#">
+            <svg class="svg-icon tw-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#tw-icon"></use>
+            </svg></a><a href="#">
+            <svg class="svg-icon lin-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lin-icon"></use>
+            </svg></a></div>
+        <div class="footer__copy">
+          <p>Copyright © 2017 DreamFunded </p>
+          <p>Marketplace, LLC</p>
+        </div>
+        <div class="footer__perkinscoie"><%= image_tag("template/footer-perkinscoie.png" )%></div>
       </div>
-      <div class= "image4-box gap">
+      <div class="footer__top__right">
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="footer__list">
+              <div class="footer__list__title"><span>Company</span></div>
+              <ul class="reset-list">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Mentors</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="footer__list">
+              <div class="footer__list__title"><span>Education</span></div>
+              <ul class="reset-list">
+                <li><a href="#">Legal</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Education</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <div class="footer__list">
+              <div class="footer__list__title"><span>News & Media</span></div>
+              <ul class="reset-list">
+                <li><a href="#">News</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Linkedin</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
-</footer> -->
-
-
-<div class='footer-row'>
-  <section class='footer-container'>
-      <div class='footer-column first-footer-column'>
-        <%= image_tag("DreamFundedLogo.png", class: 'logo-image-footer')%><br>
-        <span class="fb-like footer-margin-top hide-on-mobile" data-href="https://www.facebook.com/dreamfundedcom" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></span>
-        <br>
-        <a class= "footer-margin-top foot-text hide-on-mobile"> COPYRIGHT © <%= Time.now.year %> DREAMFUNDED MARKETPLACE, LLC</a>
+      <div class="footer__top__left visible-xs">
+        <div class="footer__logo"><a href="#"><%= image_tag("template/footer-logo.png" )%></a></div>
+        <div class="footer__soc clearfix"><a href="#">
+            <svg class="svg-icon fb-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fb-icon"></use>
+            </svg></a><a href="#">
+            <svg class="svg-icon tw-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#tw-icon"></use>
+            </svg></a><a href="#">
+            <svg class="svg-icon lin-icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lin-icon"></use>
+            </svg></a></div>
+        <div class="footer__copy">
+          <p>Copyright © 2017 DreamFunded Marketplace, LLC</p>
+        </div>
+        <div class="footer__perkinscoie"><%= image_tag("template/footer-perkinscoie.png" )%></div>
       </div>
-      <div class='footer-column'>
-        <div class='footer-column-title'>Company</div>
-        <a href="/about" class='footer-links-white'>About Us</a>
-        <a href="/team" class='footer-links-white'>Team</a>
-        <a href="/events" class='footer-links-white'>Events</a>
-        <a href="/mentors" class='footer-links-white'>Mentors</a>
-        <a href="/contact" class='footer-links-white'>Contact Us</a>
-      </div>
-
-      <div class='footer-column'>
-        <div class='footer-column-title'>Education</div>
-        <a href="/legal" class='footer-links-white'>Legal</a>
-        <a href="/privacy_policy" class='footer-links-white'>Privacy Policy</a>
-        <a href="/education" class='footer-links-white'>Education</a>
-      </div>
-
-    <div class='footer-column'>
-      <div class='footer-column-title'>News & Media</div>
-      <a href="/news" class='footer-links-white'>News</a>
-      <a href="/press" class='footer-links-white'>Press</a>
-      <a href="https://twitter.com/dreamfunded" target='_blank' class='footer-links-white'>Twitter</a>
-      <a href="https://www.linkedin.com/company/dreamfunded-com" target='_blank' class='footer-links-white'>LinkedIn</a>
     </div>
-  </section>
-</div>
-
-<footer class='footer-disclaimer'>
-  <div class='' style="width:80%; margin-left: 10%; ">
-    Investments in crowdfunding offerings are speculative and involve a high degree of risk and those investors who cannot afford to lose their entire investment should not invest. Additionally, investors may receive illiquid and/or restricted securities that are illiquid for a minimum of one year with no assurance that investments will be able to be sold after that time.   Those investors who cannot hold an investment for the long term (at least 5-7 years) should not invest.  Crowdfunding investments should only be part of your overall investment portfolio.
-  </div><br>
-  <div class='' style="width:80%; margin-left: 10%; ">
-  DreamFunded Marketplace is a funding portal owned and operated by DreamFunded Marketplace, LLC, which is registered with the US Securities and Exchange Commission (SEC) as a funding portal (Portal) and is a member of the Financial Industry Regulatory Authority (FINRA). It is not a broker dealer or an investment adviser. Nothing on this site constitutes advice to buy or sell securities. SEC registration does not constitute an endorsement by the SEC or FINRA, and does not imply a level of skill or training.
-  </div><br>
-  <div style="width:80%; margin-left: 10%;">
-    *TaskRabbit was funded in 2015 by Dream Funded, Inc
-  </div><br>
-  <div class='' style="width:80%; margin-left: 10%; ">By using DreamFunded.com, you accept our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %>.
+    <div class="footer__text">
+      <p>Investments in crowdfunding offerings are speculative and involve a high degree of risk and those investors who cannot afford to lose their entire investment should not invest. Additionally, investors may receive illiquid and/or restricted securities that are illiquid for a minimum of one year with no assurance that investments will be able to be sold after that time. Those investors who cannot hold an investment for the long term (at least 5-7 years) should not invest. Crowdfunding investments should only be part of your overall investment portfolio.</p>
+      <p>DreamFunded Marketplace is a funding portal owned and operated by Dream Funded, Inc., which is registered with the US Securities and Exchange Commission (SEC) as a funding portal (Portal) and is a member of the Financial Industry Regulatory Authority (FINRA). It is not a broker dealer or an investment adviser. Nothing on this site constitutes advice to buy or sell securities. SEC registration does not constitute an endorsement by the SEC or FINRA, and does not imply a level of skill or training.</p>
+      <p>By using DreamFunded.com, you accept our Terms and Conditions.</p>
+    </div>
   </div>
 </footer>
