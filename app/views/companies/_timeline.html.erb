@@ -5,7 +5,7 @@
         <div class='timeline-card'>
             <div class='timeline-card-img centered'><%= image_tag(item.image.url, class: 'stanford-logo') %></div>
             <div class='tmln-card-title centered'><%= item.content%></div>
-            <div class='timeline-date'><%= item.created_date %></div>
+            <div class='timeline-date'><%= date_format( item.created_date ) %></div>
         </div>
 
     <% end %>
