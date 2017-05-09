@@ -1,52 +1,32 @@
-<html>
-<head>
-  <title>DreamFunded | Our Team</title>
-</head>
+<% title "DreamFunded | Our Team" %>
 
-<body>
-  <div class= "wrapper">
-  <div class="header-container shadow">
-    <div class= "header centered"><h1>Our Team</h1></div>
-  </div>
 
-  <div class= "team">
-    <% if @members != nil %>
-      <% @members.each do |team| %>
-        <div class= "team-wrap">
-          <div class= "team-pic-wrap">
-            <%= link_to image_tag( team.image.url, :class => "team-picture"), team_path(team) %>
-
-          </div>
-          <div class= "white-box">
-            <span class="company-position">
-              <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                <%= team.rank%>
-              <% end %>
-            </span>
-            <% if current_user != nil && current_user.authority == authority[:Admin] %>
-              <%= link_to 'X', team, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'remove-button' %>
-            <% end %>
-            <div class="name indentt"><p class= "darkblue twentyf no-margin"> <%= team.name_title %> </p></div>
-            <div class= "summary">
-              <p class= "no-margin"> <%= team.summary %> </p>
-            </div>
-            <div>
-              <% if team.id == 1 %>
-                <%#= link_to "Full Biography", manny_path, {:class => "team-button twenty"} %>
-                <a class="team-button twenty" onclick= "manny()">Full Biography</a>
-              <% elsif team.id == 2 %>
-                <%#= link_to "Full Biography", rexford_path, {:class => "team-button twenty"} %>
-                <a class="team-button twenty" onclick= "rexford()">Full Biography</a>
-              <% else %>
-                <%= link_to "Full Biography", member_path(team), {:class => "team-button twenty"} %>
-              <% end %>
+<div class="team">
+  <div class="container">
+    <div class="team__title">
+      <h2>Our Team</h2>
+    </div>
+    <div class="team__cnt">
+      <div class="row">
+        <% @members.each do |team| %>
+          <div class="col-md-4 col-sm-6">
+            <div class="mentor">
+              <!-- <a href="#" class="mentor__avatar ofit-block"><img src="img/content/mentor.jpg" alt=""></a> -->
+              <%= link_to image_tag( team.image.url ), team_path(team), class: 'mentor__avatar ofit-block' %>
+              <div class="mentor__cnt">
+                <div class="mentor__cnt__inn">
+                  <div class="mentor__name"><span><%= team.name %></span></div>
+                  <div class="mentor__pos"><span><%= team.title %></span></div>
+                  <div class="mentor__desc">
+                    <p><%= team.summary %></p>
+                  </div>
+                </div>
+                <div class="mentor__more"><%= link_to "Full Biography", team_path(team) %></div>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-</body>
-
-</html>
+</div>
