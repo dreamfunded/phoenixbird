@@ -1,23 +1,37 @@
 <% title "DreamFunded | Mentors" %>
 
-<div class= "wrapper">
-  <div class="header">
-    <h1 class="centered">DreamFunded's Mentor Network</h1>
-  </div>
-  <div class= "mentors-content">
+<div style='background-image: url("assets/template/mentors/top-bg.jpg")' class="pageTopBlock">
+              <div class="container">
+                <div class="pageTopBlock__inn">
+                  <div class="pageTopBlock__title">
+                    <h1>DreamFunded’s Mentor Network</h1>
+                  </div>
+                </div>
+              </div>
+</div>
 
-
-    <% @advisors.each do |advisor| %>
-
-      <div class= "mentor-box">
-          <%= image_tag( advisor.image.url, :class => "company-members") %>
-          <h2 class= "team-member-name"><%= advisor.name %></h2>
-          <h2 class='team-member-title'><%= advisor.title %></h2>
-          <p class= "team-member-bio"><%= nl2br(h(advisor.bio)).html_safe %></p>
-      </div>
-
-    <% end %>
-
-
+<div class="mentors">
+  <div class="container">
+    <div class="row">
+      <% @advisors.each do |advisor| %>
+        <div class="col-md-4 col-sm-6">
+          <div class="mentor">
+            <a href="#" class="mentor__avatar ofit-block">
+              <%= image_tag( advisor.image.url ) %>
+            </a>
+            <div class="mentor__cnt">
+              <div class="mentor__cnt__inn">
+                <div class="mentor__name"><span><%= advisor.name %></span></div>
+                <div class="mentor__pos"><span><%= advisor.title %></span></div>
+                <div class="mentor__desc">
+                  <p><%= nl2br(h(advisor.bio)).html_safe %></p>
+                </div>
+              </div>
+              <!-- <div class="mentor__more"><a href="#">Read More</a></div> -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
