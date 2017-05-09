@@ -33,16 +33,11 @@
                   <li><a onclick= "group()">My Group</a></li>
               <% end %>
 
-
-              <li><a href="#">My Profile</a></li>
-
-
+              <li><%= link_to "My Profile", portfolio_path %></li>
 
               <% if current_user.authority == authority[:Admin] %>
-
                 <li><a onclick= "invite()">Invite</a></li>
                 <li><a onclick="location.href='/admin/users';" >New Admin Panel</a></li>
-
               <% else %>
                 <% if current_user.startup? %>
                   <li><a onclick= "invite()">Invite</a></li>
