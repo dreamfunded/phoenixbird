@@ -10,6 +10,10 @@ class Company < ActiveRecord::Base
     all.order(:position).where(hidden: false, accredited: true, status: 3)
   end
 
+  def self.homepage
+    all.order(:display).limit(3)
+  end
+
   has_many :users
   has_and_belongs_to_many :groups
   has_many :followers, inverse_of: :company
