@@ -175,12 +175,4 @@ if ($('.project__team__slider').length > 0) {
 	})
 }
 
-// header user drop
-$('.header__user > a').on('click', function(e) {
-	$(this).closest('.header__user').toggleClass('active');
-	e.preventDefault();
-});
-$(document).click(function(event) {
-	if ($(event.target).closest(".header__user").length) return;
-	$('.header__user').removeClass('active');
-});
+
