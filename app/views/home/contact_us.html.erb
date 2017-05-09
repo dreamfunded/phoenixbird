@@ -1,51 +1,69 @@
 <% title "DreamFunded | Contact Us" %>
-<div class= "wrapper"><div class= "box signin-box centered">
 
-  <div class="row">
-    <div class=" active">
-      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Contact DreamFunded</a></h2>
-      <br>
-      <div class='contact-us-info company-name'>
-        DreamFunded Marketplace, LLC
-      </div>
-      <div class='address1'>
-          <div class='contact-us-info'>San Francisco HQ</div>
-          <div class='contact-us-info'>425 Market Street</div>
-          <div class='contact-us-info'>22nd Floor, Suite 30</div>
-          <div class='contact-us-info'>San Francisco, CA 94105</div>
-          <div class='contact-us-info'>(415) 349-3832</div>
-      </div>
-      <div class='address1'>
-          <div class='contact-us-info'>New York City Office</div>
-          <div class='contact-us-info'>40 Wall Street</div>
-          <div class='contact-us-info'>28th Floor</div>
-          <div class='contact-us-info'>New York, NY 10005</div>
-          <div class='contact-us-info'> .</div>
-      </div>
-    <div class='wechat_whatsapp_icons'>
-      <div class='wechat-line'> <%= image_tag("static/wechat.png", class: 'contact_us_icons') %> <span class='wechat-text'>WeChat DreamFunded</span></div>
-      <div class='wechat-line'>  <%= image_tag("static/whatsapp.png", class: 'contact_us_icons') %> <span class='wechat-text'>WhatsApp (415) 349-3832</span></div>
+
+<div class="contacts">
+  <div class="container">
+    <div class="contacts__title">
+      <h2>Contact DreamFunded</h2>
     </div>
-    </div>
-  </div>
-
-  <div class= "login-container">
-    <%= form_tag('contact_us', :method => :post, :id => "contact_us") do %>
-      <%= invisible_captcha %>
-      <%= text_field_tag(:name, nil, :class =>"userbox", :placeholder => "Name", :required => true) %>
-      <%= text_field_tag(:email, nil, :class =>"userbox", :placeholder => "Email", :required => true) %>
-      <%= text_field_tag(:phone, nil, :class =>"userbox", :placeholder => "Phone") %>
-      <%= text_area(:message, nil, rows: 4, :class =>"userbox expand", :placeholder => "Type Your Message", :required => true) %>
-      <br>
-
-        <div class = "notice centered">
-          <h2 class='darkblue' ><%= flash[:notice] if flash[:notice] %></h2>
-          <%= @error_message %>
+    <div class="contacts__cnt clearfix">
+      <div class="contacts__left">
+        <div class="contacts__adresses">
+          <div class="contacts__adresses__title"><span>DreamFunded Marketplace, LLC</span></div>
+          <div class="contacts__adresses__blocks clearfix">
+            <div class="contacts__adresses__block">
+              <p>San Francisco HQ</p>
+              <p>425 Market Street</p>
+              <p>22nd Floor, Suite 30</p>
+              <p>San Francisco, CA 94105</p>
+            </div>
+            <div class="contacts__adresses__block">
+              <p>New York City Office</p>
+              <p>40 Wall Street</p>
+              <p>28th Floor</p>
+              <p>New York, NY 10005</p>
+            </div>
+          </div>
+          <div class="contacts__phone"><a href="tel:(415)3493832">(415) 349-3832</a></div>
+          <div class="contacts__mess">
+            <div class="contacts__mess__it">
+              <svg class="svg-icon wechat-icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wechat-icon"></use>
+              </svg><span>WeChat DreamFunded</span>
+            </div>
+            <div class="contacts__mess__it">
+              <svg class="svg-icon whatsapp-icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#whatsapp-icon"></use>
+              </svg><span>WhatsApp (415) 349-3832</span>
+            </div>
+          </div>
         </div>
-      <div class= "centered">
-        <%= submit_tag("Send", :class => "login-button") %>
       </div>
-    <% end %>
+      <div class="contacts__form">
+        <%= form_tag('contact_us', :method => :post, :id => "contact_us") do %>
+          <div class="input-wrap">
+            <%= text_field_tag(:name, nil, :placeholder => "Name", :required => true) %>
+          </div>
+          <div class="input-wrap">
+            <%= text_field_tag(:email, nil, :placeholder => "Email", :required => true) %>
+          </div>
+          <div class="input-wrap">
+            <%= text_field_tag(:phone, nil, :placeholder => "Phone") %>
+          </div>
+          <div class="input-wrap">
+            <%= text_area(:message, nil, rows: 4, :class =>"userbox expand", :placeholder => "Type Your Message", :required => true) %>
+          </div>
+          <div class = "notice centered">
+            <h2 class='darkblue' ><%= flash[:notice] if flash[:notice] %></h2>
+            <%= @error_message %>
+          </div>
+          <div class="contacts__form__btn">
+            <div class="contacts__form__btn__inn">
+              <button type="submit" class="btn btn-blue">Send</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
 </div>
