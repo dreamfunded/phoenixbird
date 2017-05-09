@@ -1,17 +1,5 @@
-<html>
+<% title "DreamFunded | News " %>
 
-<head>
-	<% title "DreamFunded | News " %>
-</head>
-
-<body>
-
-	<div class= "wrapper">
-		<div class= "header"><h1 class= "centered">DreamFunded News<h1></div>
-
-		<div class= "wrap">
-			<% if @news != nil %>
-				<div class= "news-container">
 					<% @news.each do |article| %>
 						<div class= "news-single-container">
 							<% if current_user != nil && current_user.authority == authority[:Admin] %>
@@ -37,10 +25,55 @@
 					<div id="infinite-scrolling" class= "centered yes-margin">
 					  <%= will_paginate %>
 					</div>
-				</div>
-			<% end %>
-		</div>
 
-	</div>
-
-</body>
+<div class="news">
+              <div class="container">
+                <div class="news__title">
+                  <h2>DreamFunded News</h2>
+                </div>
+                <div class="news__list">
+                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
+                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
+                    <div class="news__it__txt">
+                        <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
+                    </div>
+                    <div class="news__it__more"><a href="#">Read More</a></div>
+                  </div>
+                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
+                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
+                    <div class="news__it__txt">
+                      <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
+                    </div>
+                    <div class="news__it__more"><a href="#">Read More</a></div>
+                  </div>
+                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
+                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
+                    <div class="news__it__txt">
+                      <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
+                    </div>
+                    <div class="news__it__more"><a href="#">Read More</a></div>
+                  </div>
+                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
+                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
+                    <div class="news__it__txt">
+                      <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
+                    </div>
+                    <div class="news__it__more"><a href="#">Read More</a></div>
+                  </div>
+                </div>
+                <!-- <div class="pagination __mob-center">
+                  <ul class="reset-list clearfix">
+                    <li><a href="#" class="__arr __prev"></a></li>
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#" class="__arr __next"></a></li>
+                  </ul>
+                </div> -->
+                <div id="infinite-scrolling" class= "centered yes-margin">
+					  <%= will_paginate %>
+					</div>
+              </div>
+            </div>
