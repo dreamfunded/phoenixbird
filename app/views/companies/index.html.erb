@@ -1,105 +1,103 @@
 <% title "DreamFunded " %>
-<div class= "wrapper properties">
 
-	<div class= "header"><h1 class= "centered">Invest in the People You Believe in</h1></div>
-
-	<section class='properties-wrapper'>
-		<div class='fluid-container flex-grid'>
-			<% @companies.each do |company| %>
-				<div class="col-">
-					<div class='property-box'>
-						<div class="card-content">
-							<%= link_to company, "data-no-turbolink" => true do %>
-							<div class="card-topbar primary-color">
-								<%= company.name %>
-							</div>
-
-							<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-								<%#= image_tag( company.cover.url, :class => "property-image") %>
-								<div class='logo-image-wrapper'>
-									<span class="helper"></span>
-									<%= image_tag( company.image.url, :class => "property-logo-image") %>
-								</div>
-							</div>
-
-
-							<article class='card-body'>
-								<div class='company-tagline'>
-									<span class='company-tagline-text'><%= company.campaign.tagline %></span>
-								</div>
-
-								<div class='property-detail'>
-									<span class='propety-detail-left'>Category</span>
-									<span class='property-detail-right'><%= company.category %></span>
-								</div>
-							</article>
-							<article>
-								<section class='campaigb-basic-numbers'>
-									<div class='company-details-small-box'>
-										<div class='companies-box-name'>Target</div>
-										<div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
-									</div>
-									<div class='company-details-small-box'>
-										<div class='companies-box-name'>Days Left</div>
-										<div class='companies-box-value'><%= company.left_days %></div>
-									</div>
-									<div class='company-details-small-box'>
-										<div class='companies-box-name'>Raised</div>
-										<% if company.status == 2 %>
-											<div class='companies-box-value'><%= number_to_currency company.invested_amount, precision: 0 %></div>
-										<% else %>
-											<div class='companies-box-value'><%= raised_amount(company) %></div>
-										<% end %>
-									</div>
-
-								</section>
-							</article>
-							<% end %>
-							<%= link_to "Learn More", company, "data-no-turbolink" => true, class:'invest-link' %>
-						</div>
-					</div>
-				</div>
-			<% end %>
-		</div>
-
-		<h1 class='centered accredited-investor-title'>Funded by Accredited Investors</h1>
-		<div class='fluid-container flex-grid'>
-			<% @funded_companies.each do |company| %>
-				<div class='property-box'>
-
-					<div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-						<div class='logo-image-wrapper'>
-							<span class="helper"></span>
-							<%= image_tag( company.image.url, :class => "property-logo-image") %>
-						</div>
-					</div>
-
-
-					<article class='card-body no-height'>
-						<div class='company-tagline'>
-							<span class='company-tagline-text'><%= company.campaign.tagline %></span>
-						</div>
-
-						<div class='property-detail company-funded-status property-detail-no-height'>
-							<span class='propety-detail-left'>Category</span>
-							<span class='property-detail-right'><%= company.campaign.category %></span>
-						</div>
-
-						<div class='property-detail company-funded-status property-detail-no-height'>
-							<span class='propety-detail-left'>Status</span>
-							<span class='property-detail-right'>Funded </span>
-						</div>
-
-					<div class='company-tagline funded-by-accredited'>
-						<span class='company-tagline-text'>Funded by Accredited Investors using 506 (D)</span>
-					</div>
-					<% if company.id == 684 %>
-						<div class='connected-data-accquired'>Connected Data was acquired</div>
-					<% end %>
-					</article>
-				</div>
-			<% end %>
-		</div>
-	</section>
+<div style='background-image: url("/assets/template/main/mainTop-bg.jpg")' class="pageTopBlock">
+  <div class="container">
+    <div class="pageTopBlock__inn">
+      <div class="pageTopBlock__title">
+        <h1>Investment Opportunities</h1>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="investments">
+  <div class="container">
+    <div class="row">
+    	<% @companies.each do |company| %>
+    		<%= link_to company_path(company) do %>
+    	      <div class="col-md-4 col-sm-6">
+    		        <div class="compthumb">
+    		        	<div class="compthumb__img ofit-block">
+    		        		<%= image_tag(company.cover.url) %>
+    		        	</div>
 
+    		        	<span class="compthumb__logo">
+    		        		<%= image_tag( company.image.url )%>
+    		        	</span>
+    		          <div class="compthumb__cnt">
+    		            <div class="compthumb__name"> <%= link_to company.name, company_path(company) %> </div>
+    		            <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
+    		            <div class="compthumb__tags">
+    		              <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
+    		            </div>
+    		          </div>
+    		          <div class="compthumb__footer clearfix">
+    		            <div class="compthumb__footer__block">
+    		              <div class="compthumb__footer__title"><span>Target</span></div>
+    		              <div class="compthumb__footer__num"><span><%= number_to_currency company.goal_amount, precision: 0 %></span></div>
+    		            </div>
+    		            <div class="compthumb__footer__block">
+    		            	<div class="compthumb__footer__title"><span>Raised</span></div>
+    		            		<% if company.status == 2 %>
+    		             			<div class="compthumb__footer__num"><span><%= number_to_currency company.invested_amount, precision: 0 %></span></div>
+    							<% else %>
+    								<div class="compthumb__footer__num"><span><%= raised_amount(company) %></span></div>
+    							<% end %>
+    		            </div>
+    		            <div class="compthumb__footer__block">
+    		              <div class="compthumb__footer__title"><span>Days Left</span></div>
+    		              <div class="compthumb__footer__num"><span><%= company.left_days %></span></div>
+    		            </div>
+    		          </div>
+    		        </div>
+    	      </div>
+    		<% end %>
+    	<% end %>
+    </div>
+
+    <h1 class='center'>Funded by Accredited Investors</h1><br>
+    <div class='row'>
+        <% @funded_companies.each do |company| %>
+            <%= link_to company_path(company) do %>
+              <div class="col-md-4 col-sm-6">
+                    <div class="compthumb">
+                        <div class="compthumb__img ofit-block">
+                            <%= image_tag(company.cover.url) %>
+                        </div>
+
+                        <span class="compthumb__logo">
+                            <%= image_tag( company.image.url )%>
+                        </span>
+                      <div class="compthumb__cnt">
+                        <div class="compthumb__name"> <%= link_to company.name, company_path(company) %> </div>
+                        <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
+                        <div class="compthumb__tags">
+                          <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
+                        </div>
+                      </div>
+                      <div class="compthumb__footer clearfix">
+                        <div class="compthumb__footer__block">
+                          <div class="compthumb__footer__title"><span>Target</span></div>
+                          <div class="compthumb__footer__num"><span><%= number_to_currency company.goal_amount, precision: 0 %></span></div>
+                        </div>
+                        <div class="compthumb__footer__block">
+                            <div class="compthumb__footer__title"><span>Raised</span></div>
+                                <% if company.status == 2 %>
+                                    <div class="compthumb__footer__num"><span><%= number_to_currency company.invested_amount, precision: 0 %></span></div>
+                                <% else %>
+                                    <div class="compthumb__footer__num"><span><%= raised_amount(company) %></span></div>
+                                <% end %>
+                        </div>
+                        <div class="compthumb__footer__block">
+                          <div class="compthumb__footer__title"><span>Days Left</span></div>
+                          <div class="compthumb__footer__num"><span><%= company.left_days %></span></div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            <% end %>
+        <% end %>
+    </div>
+
+
+  </div>
+</div>
