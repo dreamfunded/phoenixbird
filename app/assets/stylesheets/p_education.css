@@ -1,0 +1,79 @@
+/*=================================
+=            education            =
+=================================*/
+.education {
+  padding-top: 59px;
+  padding-bottom: 64px;
+}
+.education__block {
+  float: left;
+  max-width: 300px;
+}
+@media (max-width: 767px) {
+  .education__block {
+    float: none;
+    max-width: none;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+.education__block + .education__block {
+  margin-left: 128px;
+}
+@media (max-width: 991px) {
+  .education__block + .education__block {
+    margin-left: 100px;
+  }
+}
+@media (max-width: 767px) {
+  .education__block + .education__block {
+    margin-left: 20px;
+    margin-top: 53px;
+  }
+}
+.education__block ul {
+  margin-top: 44px !important;
+}
+.education__block ul li {
+  position: relative;
+  padding-left: 28px;
+}
+.education__block ul li:before {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #d4d4d7;
+  border-left: 2px solid #d4d4d7;
+  top: 9px;
+  left: -3px;
+  -webkit-transform: rotate(135deg);
+     -moz-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+       -o-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.education__block ul li + li {
+  margin-top: 22px;
+}
+.education__block ul li a {
+  color: #62c6d5 !important;
+  font-size: 20px;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(98, 198, 213, 0.2);
+  -webkit-transition: color 0.3s ease, border 0.3s ease;
+  -o-transition: color 0.3s ease, border 0.3s ease;
+  -moz-transition: color 0.3s ease, border 0.3s ease;
+  transition: color 0.3s ease, border 0.3s ease;
+}
+.education__block ul li a:hover {
+  color: #51b5c4 !important;
+  border-bottom: 1px solid #51b5c4;
+}
+.education__block__title h3 {
+  color: #0d0f22;
+  font-size: 32px;
+  font-weight: 300;
+}
+/*=====  End of education  ======*/

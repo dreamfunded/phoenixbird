@@ -1,0 +1,570 @@
+/*===============================
+=            profile            =
+===============================*/
+.profile {
+  padding-top: 100px;
+  padding-bottom: 96px;
+}
+.profile.__profile {
+  padding-top: 159px;
+  padding-bottom: 80px;
+}
+@media (max-width: 767px) {
+  .profile.__profile {
+    padding-top: 100px;
+    padding-bottom: 70px;
+  }
+}
+.profile.__profile .profile__sidebar {
+  padding-top: 15px;
+}
+@media (max-width: 767px) {
+  .profile.__profile .profile__sidebar {
+    padding-top: 0;
+  }
+}
+@media (max-width: 767px) {
+  .profile.__profile .profile__content {
+    margin-top: 59px;
+  }
+}
+@media (max-width: 767px) {
+  .profile {
+    padding-top: 100px;
+    padding-bottom: 66px;
+  }
+}
+.profile__sidebar {
+  width: 300px;
+  float: left;
+  padding-right: 30px;
+}
+@media (max-width: 1239px) {
+  .profile__sidebar {
+    width: 280px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 991px) {
+  .profile__sidebar {
+    width: 250px;
+  }
+}
+@media (max-width: 767px) {
+  .profile__sidebar {
+    float: none;
+    width: auto;
+    padding-right: 0;
+    margin-left: -20px;
+    margin-right: -20px;
+    position: relative;
+    z-index: 20;
+  }
+  .profile__sidebar.active .profile__sidebar__inn {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+  }
+}
+@media (max-width: 767px) {
+  .profile__sidebar__inn {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding-top: 32px;
+    padding-bottom: 26px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+       -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+    margin-top: -10px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.5s ease, margin-top 0.5s ease, visibility 0.5s ease;
+    -o-transition: opacity 0.5s ease, margin-top 0.5s ease, visibility 0.5s ease;
+    -moz-transition: opacity 0.5s ease, margin-top 0.5s ease, visibility 0.5s ease;
+    transition: opacity 0.5s ease, margin-top 0.5s ease, visibility 0.5s ease;
+  }
+  .profile__sidebar__inn:before {
+    position: absolute;
+    display: block;
+    content: '';
+    bottom: 100%;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 7px 7px;
+    border-color: transparent transparent #fff transparent;
+  }
+}
+.profile__sidebar__block + .profile__sidebar__block {
+  margin-top: 38px;
+}
+.profile__sidebar__block ul li {
+  position: relative;
+  padding-left: 20px;
+}
+.profile__sidebar__block ul li + li {
+  margin-top: 20px;
+}
+.profile__sidebar__block ul li.active {
+  pointer-events: none;
+}
+.profile__sidebar__block ul li.active:before {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 2px;
+  left: 0;
+  top: -5px;
+  bottom: -5px;
+  background: #d4d4d7;
+}
+.profile__sidebar__block ul li.active a {
+  color: #0d0f22 !important;
+}
+.profile__sidebar__block ul li a {
+  font-size: 14px;
+  font-weight: 300;
+  color: #62c6d5 !important;
+}
+.profile__sidebar__block ul li a:hover {
+  color: #0d0f22 !important;
+}
+.profile__sidebar__title {
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 22px;
+}
+.profile__content {
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .profile__content {
+    overflow: visible;
+    margin-top: 54px;
+  }
+}
+.profile__sidebar__mob {
+  display: block;
+  background: #62c6d5;
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 50px;
+  color: white !important;
+  font-weight: 300;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  position: relative;
+}
+.profile__sidebar__mob:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 17px;
+  right: 22px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  -webkit-transform: rotate(-135deg);
+     -moz-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+       -o-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+.profile__sidebar__mob i {
+  font-style: normal;
+  font-size: 14px;
+  margin-left: 17px;
+}
+.myprofile__breads {
+  margin-top: 2px;
+  margin-bottom: 45px;
+}
+.myprofile__breads ul li {
+  display: inline;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #0d0f22;
+}
+.myprofile__breads ul li:not(:last-child):after {
+  display: inline-block;
+  vertical-align: top;
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid #d3d3d7;
+  border-left: 1px solid #d3d3d7;
+  -webkit-transform: rotate(135deg);
+     -moz-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+       -o-transform: rotate(135deg);
+          transform: rotate(135deg);
+  margin-left: 15px;
+  margin-right: 18px;
+  position: relative;
+  top: 6px;
+}
+.myprofile__breads ul li a {
+  color: #77798a !important;
+  border-bottom: 1px solid rgba(119, 121, 138, 0.2);
+  -webkit-transition: color 0.3s ease, border 0.3s ease;
+  -o-transition: color 0.3s ease, border 0.3s ease;
+  -moz-transition: color 0.3s ease, border 0.3s ease;
+  transition: color 0.3s ease, border 0.3s ease;
+}
+.myprofile__breads ul li a:hover {
+  color: #62c6d5 !important;
+  border-bottom: 1px solid #62c6d5;
+}
+/*=====  End of profile  ======*/
+/*==================================
+=            my profile            =
+==================================*/
+.myprofile__title h2 {
+  color: #0d0f22;
+  font-size: 32px;
+  font-weight: 300;
+}
+.myprofile__lines {
+  margin-top: 44px;
+}
+.myprofile__line {
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  border-bottom: 1px solid #f3f3f3;
+  padding-bottom: 8px;
+}
+.myprofile__line + .myprofile__line {
+  margin-top: 13px;
+}
+.myprofile__edit {
+  margin-top: 45px;
+}
+.myprofile__edform {
+  margin-top: 46px;
+  max-width: 580px;
+}
+.myprofile__edform .input-wrap + .input-wrap {
+  margin-top: 10px;
+}
+.myprofile__edform__btn {
+  margin-top: 40px;
+}
+.myprofile__edform__btn.__pass .btn-blue.__sm {
+  min-width: 190px;
+}
+/*=====  End of my profile  ======*/
+/*================================
+=            myinvest            =
+================================*/
+.myinvest {
+  margin-top: 50px;
+}
+@media (max-width: 991px) {
+  .myinvest {
+    border-top: 1px solid #f3f3f3;
+    margin-top: 40px;
+    padding-top: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .myinvest {
+    margin-top: 55px;
+  }
+}
+.myinvest table {
+  width: 100%;
+}
+.myinvest table thead th {
+  border-bottom: 1px solid #f3f3f3;
+  vertical-align: middle;
+  padding-bottom: 15px;
+  text-align: left;
+  color: #7b7c85;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  padding-right: 15px;
+}
+.myinvest table thead th:last-child {
+  padding-right: 0;
+}
+.myinvest table thead th.__company {
+  width: 34%;
+}
+.myinvest table thead th.__date {
+  width: 23%;
+}
+.myinvest table thead th.__status {
+  width: 23%;
+}
+.myinvest table thead th.__amout {
+  width: 20%;
+}
+.myinvest table tbody td {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #0d0f22;
+  padding-right: 15px;
+  padding-top: 23px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #f3f3f3;
+}
+.myinvest table tbody td:last-child {
+  padding-right: 0;
+}
+.myinvest table tbody td.__amout {
+  color: #62c6d5;
+  font-weight: 600;
+}
+.myinvest__mob-item {
+  border-bottom: 1px solid #f3f3f3;
+  padding-bottom: 25px;
+}
+.myinvest__mob-item + .myinvest__mob-item {
+  margin-top: 24px;
+}
+.myinvest__mob-item__title {
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.myinvest__mob-item__line {
+  margin-top: 19px;
+}
+.myinvest__mob-item__line + .myinvest__mob-item__line {
+  margin-top: 9px;
+}
+.myinvest__mob-item__left {
+  float: left;
+  width: 52.5%;
+  padding-right: 20px;
+  color: #7b7c85;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  padding-top: 1px;
+}
+.myinvest__mob-item__right {
+  overflow: hidden;
+  color: #0d0f22;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.myinvest__mob-item__right.__amout {
+  color: #62c6d5;
+  font-weight: 600;
+}
+/*=====  End of myinvest  ======*/
+/*==============================
+=            invite            =
+==============================*/
+.invite {
+  margin-top: 55px;
+  max-width: 740px;
+}
+.invite__block {
+  border-bottom: 1px solid #f3f3f3;
+  padding-bottom: 39px;
+}
+.invite__block + .invite__block {
+  margin-top: 39px;
+}
+.invite__block:last-child {
+  border-bottom: 0;
+  padding-bottom: 20px;
+}
+@media (max-width: 767px) {
+  .invite__block:last-child {
+    padding-bottom: 0;
+  }
+}
+.invite__block__title {
+  position: relative;
+  padding-left: 30px;
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 25px;
+}
+.invite__block__title .svg-icon {
+  position: absolute;
+  left: 0;
+  color: #67bce9;
+  top: 50%;
+  margin-top: -0.5em;
+}
+.invite__block__title .invmail-icon {
+  font-size: 20px;
+}
+.invite__block__title .share-icon {
+  font-size: 20px;
+}
+.invite__block__title .upload-icon {
+  font-size: 20px;
+}
+.invite__mail {
+  margin-top: 26px;
+}
+.invite__mail .row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.invite__mail .col-md-9,
+.invite__mail .col-md-3 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.invite__mail .col-md-9 {
+  width: 78.7%;
+}
+@media (max-width: 991px) {
+  .invite__mail .col-md-9 {
+    width: auto;
+  }
+}
+.invite__mail .col-md-3 {
+  width: 21.3%;
+}
+@media (max-width: 991px) {
+  .invite__mail .col-md-3 {
+    width: 160px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .invite__mail .col-sm-6 + .col-sm-6 {
+    margin-top: 10px;
+  }
+}
+.invite__soc {
+  margin-top: 26px;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.invite__soc a {
+  width: 40px;
+  height: 40px;
+  display: block;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px solid currentColor;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+  color: #000;
+  -webkit-transition: background 0.5s ease;
+  -o-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  transition: background 0.5s ease;
+  position: relative;
+}
+.invite__soc a .svg-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  color: inherit;
+}
+.invite__soc a .svg-icon.tw-icon {
+  font-size: 22px;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+.invite__soc a .svg-icon.lin-icon {
+  font-size: 20px;
+  margin-top: -11px;
+  margin-left: -9px;
+}
+.invite__soc a .svg-icon.fb-icon {
+  font-size: 24px;
+  margin-top: -12px;
+  margin-left: -13px;
+}
+.invite__soc a:hover {
+  background: currentColor;
+}
+.invite__soc a:hover .svg-icon {
+  color: #fff;
+}
+.invite__soc a.__fb {
+  color: #2b54a3;
+}
+.invite__soc a.__tw {
+  color: #29c3ff;
+}
+.invite__soc a.__in {
+  color: #0077bb;
+}
+.invite__csv {
+  margin-top: 26px;
+}
+.invite__csv .row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.invite__csv .col-md-9,
+.invite__csv .col-md-3 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.invite__csv .col-md-9 {
+  width: 78.7%;
+}
+@media (max-width: 991px) {
+  .invite__csv .col-md-9 {
+    width: auto;
+  }
+}
+.invite__csv .col-md-3 {
+  width: 21.3%;
+}
+@media (max-width: 991px) {
+  .invite__csv .col-md-3 {
+    width: 160px;
+    margin-top: 20px;
+  }
+}
+/*=====  End of invite  ======*/
+/*====================================
+=            educationInn            =
+====================================*/
+.educationInn {
+  margin-top: 48px;
+  color: #7b7c85;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.educationInn > *:first-child {
+  margin-top: 0 !important;
+}
+.educationInn h3 {
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 22px;
+  margin-top: 38px;
+}
+.educationInn p + p {
+  margin-top: 20px;
+}
+/*=====  End of educationInn  ======*/
