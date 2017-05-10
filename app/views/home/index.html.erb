@@ -51,7 +51,11 @@
                             </article>
                             <article>
                                 <section class='campaigb-basic-numbers'>
-                                    <% if !company.id == 693 %>
+                                    <% if company.id == 693 %>
+                                        <div class='company-details-small-box'>
+                                            <div class='companies-box-name'>Testing the Waters</div>
+                                        </div>
+                                    <% else %>
                                         <div class='company-details-small-box'>
                                             <div class='companies-box-name'>Target</div>
                                             <div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
@@ -69,10 +73,6 @@
                                             <% else %>
                                                 <div class='companies-box-value'><%= raised_amount(company) %></div>
                                             <% end %>
-                                        </div>
-                                    <% else %>
-                                        <div class='company-details-small-box'>
-                                            <div class='companies-box-name'>Testing the Waters</div>
                                         </div>
                                     <% end %>
                                 </section>
