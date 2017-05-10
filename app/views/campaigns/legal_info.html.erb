@@ -1,134 +1,91 @@
 <% title "DreamFunded | Invest" %>
-<div class= "wrapper">
-
-  <div class="header education-center">
-    <div class='education-title'>Edit My Campaign</div>
-    <section class='campaign-links'>
-      <a href="/basics/<%= @campaign.id %>" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
-      <a href="/company_description/<%= @campaign.id %>" class='education-links '>Description</a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links active-link'> Legal Info </a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links disabled-link'> Invite </a>
-    </section>
 
 
-    <section class='progress-bar'>
-      <div class="progress animate">
-        <span style="width: 75%"><span></span></span>
-      </div>
-    </section>
-
-  </div>
-
-
-  <div class= "campaign-box get-funded ">
-
-  <div class="row">
-    <div class=" active">
-      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Register Correctly</a></h2>
-      <br>
-      <h3 class= "darkblue no-margin centered">Please review this information with legal counsel.</h3>
-    </div>
-  </div>
-
-  <div class='disclaimer-box'>
-    <div class='disclaimer-container'>
-      <i class="fa fa-times close-disclaimer" id='close-subcribtion' ></i>
-      <span class='disclaimer-text'>This information must be accurate in order to launch your campaign. Make sure you get it right and keep it updated!</span>
-    </div>
-  </div>
-  <br>
-
-  <div class='disclaimer-box'>
-    <div class='disclaimer-container'>
-      <i class="fa fa-times close-disclaimer" id='close-subcribtion' ></i>
-      <span class='disclaimer-text'>This information is for admin use only, but your Company Location will appear on your profile.</span>
-    </div>
-  </div>
-  <br>
-
-  <div class= "login-container">
-    <%= form_for @campaign, :url => {:action => "legal_info_submit"},method: "post" do |f| %>
-      <%= hidden_field_tag :campaign_id, @campaign.id %>
-      <%= f.text_field :legal_company_name, placeholder: 'Legal Company Name',:class => "form-field form-field-half required-field " %>
-      <%#= f.text_field :employer_id_number, placeholder: 'Employer ID Number',:class => "form-field form-field-half required-field" %>
-      <%= f.text_field :state_where_incorporated, placeholder: 'State Where Incorporated',:class => "form-field form-field-half required-field " %>
-      <%#= f.text_field :office_location, placeholder: 'Main Office Location',:class => "form-field form-field-half required-field " %>
-      <!-- <div class='get-funded-section-name'>
-        Date Company was Formed
-      </div> -->
-      <%#= f.date_field :date_formed, placeholder: 'mm/dd/yyyy',:class => "form-field form-field-half required-field" %>
-
-      <div class='get-funded-section-name'>
-        Company Location
-      </div>
-      <%= f.text_field :company_location_address, placeholder: 'Address',:class => "form-field form-field-half required-field" %>
-      <%= f.text_field :company_location_city, placeholder: 'City',:class => "form-field form-field-half required-field" %>
-      <%= f.text_field :company_location_state, placeholder: 'State',:class => "form-field form-field-half required-field" %>
-      <%= f.text_field :company_location_zipcode, placeholder: 'Zipcode',:class => "form-field form-field-half required-field" %>
-
-
-      <!-- <div class='get-funded-section-name'>
-        State Filing Number
-      </div> -->
-      <%#= f.text_field :state_filing_number, placeholder: "State Filing Number",:class => "form-field form-field-half required-field" %>
-
-      <div class = "notice centered">
-        <%= flash[:errors] if flash[:errors] %>
-      </div>
-
-      <div class= "centered">
-        <%= submit_tag("Continue", :id => "submit-button") %>
-      </div>
-    <% end %>
-  </div>
-
+<div class="stepTop">
+          <div class="container">
+            <div class="stepTop__title">
+              <h2>Legal Info</h2>
+            </div>
+            <div class="stepTop__steps">
+              <div class="stepTop__steps__inn clearfix">
+                <div class="stepTop__steps__it completed">
+                  <div class="stepTop__steps__it__txt"><span>Step 1</span></div>
+                </div>
+                <div class="stepTop__steps__it completed">
+                  <div class="stepTop__steps__it__txt"><span>Step 2</span></div>
+                </div>
+                <div class="stepTop__steps__it completed">
+                  <div class="stepTop__steps__it__txt"><span>Step 3</span></div>
+                </div>
+                <div class="stepTop__steps__it active">
+                  <div class="stepTop__steps__it__txt"><span>Step 4</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
 </div>
-
-<script type="text/javascript">
-// F O R M   V A L I D A T I O N
-$(document).ready(function() {
-
-    $(".required-field").on("input", function(){
-        var input= $( this );
-        var is_name=input.val();
-        if(is_name){input.removeClass("invalid").addClass("valid");}
-        else{input.removeClass("valid").addClass("invalid");}
-    });
-
-    $(".required-field").each(function(){
-        if( $(this).val() ){
-            $(this).removeClass("invalid").addClass("valid");
-        }
-        else{$(this).removeClass("valid").addClass("invalid");}
-        console.log("check")
-    })
-
-
-    $(".edit_campaign").submit(function(e){
-        var form_data= $(".required-field");
-        var error_free=true;
-
-        form_data.each(function(){
-            valid = $(this).hasClass("valid");
-            var error_element= $(this);
-            console.log(error_element);
-            if (!valid){error_element.addClass("error_show"); error_free=false;}
-            else{error_element.removeClass("error_show");}
-        });
-
-        if (!error_free){
-            e.preventDefault();
-        }
-   });
-
-    $(".progress > span").each(function() {
-      $(this)
-        .data("origWidth", $(this).width())
-        .width(0)
-        .animate({
-          width: $(this).data("origWidth") // or + "%" if fluid
-        }, 1200);
-    });
-
-});
-</script>
+<div class="step">
+  <div class="container">
+    <div class="step__inn">
+      <!-- <div class="step__title">
+        <h3>Register Correctly</h3>
+      </div>
+      <div class="step__subtitle"><span>Please review this information with legal counsel</span></div> -->
+      <div class="step2">
+        <%= form_for @campaign, :url => {:action => "legal_info_submit"},method: "post" do |f| %>
+          <%= hidden_field_tag :campaign_id, @campaign.id %>
+          <!-- <div class="step2__top">
+            <div class="step1__list">
+              <ul class="reset-list">
+                <li>This information must be accurate in order to launch your campaign. Make sure you get it right and keep it updated!</li>
+                <li>This information is for admin use only, but your Company Location will appear on your profile.</li>
+              </ul>
+            </div>
+          </div> -->
+          <div class="step2__blocks">
+            <div class="step2__block">
+              <div class="input-wrap">
+                <%= f.text_field :legal_company_name, placeholder: 'Legal Company Name' %>
+              </div>
+              <div class="input-wrap">
+                <%= f.text_field :state_where_incorporated, placeholder: 'State Where Incorporated' %>
+              </div>
+            </div>
+            <div class="step2__block">
+              <div class="step2__block__title"><span>Company Location</span></div>
+              <div class="input-row row">
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= f.text_field :company_location_address, placeholder: 'Address' %>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= f.text_field :company_location_city, placeholder: 'City' %>
+                  </div>
+                </div>
+              </div>
+              <div class="input-row row">
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= f.text_field :company_location_state, placeholder: 'State' %>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= f.text_field :company_location_zipcode, placeholder: 'Zipcode' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="step__btn">
+            <div class="step__btn__inn">
+              <button type="submit" class="btn btn-blue">Complete</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
