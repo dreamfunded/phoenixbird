@@ -17,6 +17,8 @@
 //= require bootstrap.min
 //= require instafilta.min
 //= require turbolinks
+//= require dropdown
+//= require bootstrap-select
 //= require links
 //= require cocoon
 //= require slick.min

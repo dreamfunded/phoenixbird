@@ -131,71 +131,148 @@
 
 </div>
 
+===================================================================================================================
+
+<div class="stepTop">
+  <div class="container">
+    <div class="stepTop__title">
+      <h2>Edit My Campaign</h2>
+    </div>
+    <div class="stepTop__steps">
+      <div class="stepTop__steps__inn clearfix">
+        <div class="stepTop__steps__it active">
+          <div class="stepTop__steps__it__txt"><span>Step 1</span></div>
+        </div>
+        <div class="stepTop__steps__it ">
+          <div class="stepTop__steps__it__txt"><span>Step 2</span></div>
+        </div>
+        <div class="stepTop__steps__it">
+          <div class="stepTop__steps__it__txt"><span>Step 3</span></div>
+        </div>
+        <div class="stepTop__steps__it">
+          <div class="stepTop__steps__it__txt"><span>Step 4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="step">
+      <div class="container">
+        <div class="step__inn">
+          <div class="step__title">
+            <h3>Basic Company Information</h3>
+          </div>
+          <div class="step2">
+            <form action="#">
+              <div class="step2__top">
+                <div class="step1__list">
+                  <ul class="reset-list">
+                    <li>ALL information in this step will be made publicly available</li>
+                    <li>Use your campaign page to show investors what makes your company unique. Remember to be factual and balanced. Claims cannot be exaggerated or false. Your company must be a US company in order to raise capital under Title III - Regulation Crowdfunding. You may not be a fund.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="step2__blocks">
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Company Name</span></div>
+                  <div class="input-wrap">
+                    <input type="text" name="company">
+                  </div>
+                  <div class="input-wrap">
+                    <input type="text" name="desc" placeholder="Describe your company in one sentence">
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Category</span></div>
+                  <div class="input-wrap">
+                    <select class="selectpicker">
+                      <option>Art</option>
+                      <option>Buildings</option>
+                      <option>Music</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Contact Information</span></div>
+                  <div class="input-row row">
+                    <div class="col-xs-6">
+                      <div class="input-wrap">
+                        <input type="tel" name="phone" placeholder="Phone Number">
+                      </div>
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="input-wrap">
+                        <input type="url" name="website" placeholder="Website">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Short Description about your company</span></div>
+                  <div class="input-wrap">
+                    <textarea name="shortdesc"></textarea>
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Images</span></div>
+                  <div class="step2__image clearfix">
+                    <div class="step2__image__left"><span>Company Logo</span></div>
+                    <div class="step2__image__right">
+                      <div class="input-wrap">
+                        <div data-title="Choose" class="file-input __simple">
+                          <label>
+                            <input type="file" class="hidden-input"><span class="file-input__txt">Choose</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="step2__image clearfix">
+                    <div class="step2__image__left"><span>Cover Photo (Recommended)</span></div>
+                    <div class="step2__image__right">
+                      <div class="input-wrap">
+                        <div data-title="Choose" class="file-input __simple">
+                          <label>
+                            <input type="file" class="hidden-input"><span class="file-input__txt">Choose</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="step2__image clearfix">
+                    <div class="step2__image__left"><span>Pitch Deck (Recommended)</span></div>
+                    <div class="step2__image__right">
+                      <div class="input-wrap">
+                        <div data-title="Choose" class="file-input __simple">
+                          <label>
+                            <input type="file" class="hidden-input"><span class="file-input__txt">Choose</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="step2__block __members">
+                  <div class="step2__block__title"><span>Management Team</span></div>
+                  <div class="step2__member">
+                    <svg class="svg-icon userplus-icon">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#userplus-icon"></use>
+                    </svg><a href="#">Add Team Member</a>
+                  </div>
+                </div>
+                <div class="step__btn">
+                  <div class="step__btn__inn">
+                    <button type="submit" class="btn btn-blue">Continue</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <script type="text/javascript">
-    $('.close-disclaimer').click(function(){
-        $(this).parent().hide()
-    })
-
-    // F O R M   V A L I D A T I O N
-    $(document).ready(function() {
-
-        var scroll_to_error_element = function(error_element){
-            $('html, body').animate({
-               scrollTop: (error_element.offset().top - 100)
-            }, 1000)
-        }
-
-        $(".required-field").each(function(){
-            if( $(this).val() ){
-                $(this).removeClass("invalid").addClass("valid");
-            }
-            else{$(this).removeClass("valid").addClass("invalid");}
-            console.log("check")
-        })
-
-        $(".required-field").on("change keyup blur input", function(){
-            console.log("typing");
-            var input= $( this );
-            var is_name=input.val();
-            if(is_name){input.removeClass("invalid").addClass("valid");}
-            else{input.removeClass("valid").addClass("invalid");}
-        });
-
-
-        $('.login-container form').submit(function(e){
-            var form_data= $(".required-field");
-            var error_free=true;
-
-            form_data.each(function(){
-                valid = $(this).hasClass("valid");
-                var error_element= $(this);
-
-                if (!valid) {
-                   console.log(error_element);
-                   error_element.addClass("error_show");
-                   error_free=false;
-                   scroll_to_error_element(error_element);
-                }
-                else{error_element.removeClass("error_show");}
-            })
-
-            if (!error_free){
-
-                e.preventDefault();
-            }
-       })
-
-
-        $(".progress > span").each(function() {
-          $(this)
-            .data("origWidth", $(this).width())
-            .width(0)
-            .animate({
-              width: $(this).data("origWidth")
-            }, 1200);
-        });
-
-
-
-    });
+  $('select.selectpicker').selectpicker();
 </script>
