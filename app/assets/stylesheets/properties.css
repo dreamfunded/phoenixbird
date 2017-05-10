@@ -68,7 +68,7 @@
   display: inline-block;
   word-wrap: break-word;
   overflow: hidden;
-  text-align:justify;
+  text-align:center;
 }
 
 .company-funded-status{
