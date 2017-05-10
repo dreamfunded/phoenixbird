@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def company_profile
+		@campaign = @company.campaign
 		@financial_details = @company.financial_detail
 		@comments = @company.comments
 		@members = @company.founders.order(:position)

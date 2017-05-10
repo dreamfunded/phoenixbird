@@ -2270,7 +2270,7 @@ input[type="checkbox"]:checked + .checkbox__icon:before {
        background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(../img/template/invest/top-bg.jpg);
+  position: relative;
 }
 @media (max-width: 767px) {
   .investTop {
