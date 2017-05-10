@@ -2,7 +2,7 @@
 =            step top            =
 ================================*/
 .stepTop {
-  padding-top: 90px;
+  padding-top: 150px;
   padding-bottom: 70px;
   background-position: center center;
   -moz-background-size: cover;
@@ -22,7 +22,7 @@
 }
 .stepTop__title h2 {
   color: white;
-  font-size: 66px;
+  font-size: 3em;
   font-weight: 700;
 }
 @media (max-width: 767px) {
@@ -94,7 +94,7 @@
 =            step            =
 ============================*/
 .step {
-  padding-top: 59px;
+  padding-top: 0px;
   padding-bottom: 70px;
 }
 .step__inn {
