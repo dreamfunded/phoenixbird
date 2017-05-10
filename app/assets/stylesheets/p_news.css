@@ -2,7 +2,7 @@
 =            news            =
 ============================*/
 .news {
-  padding-top: 159px;
+  padding-top: 80px;
   padding-bottom: 80px;
 }
 @media (max-width: 767px) {
@@ -48,7 +48,7 @@
   }
 }
 .news__it__img {
-  position: absolute;
+  position: absolute !important;
   top: 2px;
   left: 0;
   height: 130px;

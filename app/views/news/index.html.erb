@@ -1,30 +1,6 @@
 <% title "DreamFunded | News " %>
 
-					<% @news.each do |article| %>
-						<div class= "news-single-container">
-							<% if current_user != nil && current_user.authority == authority[:Admin] %>
-								<%= button_to "X", {action: 'remove_new', id: article.id} , {:class => 'remove-button'} %>
 
-								<span class='company-position'><%= article.position %></span>
-							<% end %>
-							<div class= "news-image">
-								<%= link_to image_tag(article.image.url, :class => "article-image"), news_path(article) %>
-							</div>
-
-							<div class= "news-col">
-								<div class= "title-container"> <%= article.title %> </div>
-								<div class= "content-container"> <%= article.content.html_safe %></div>
-								<div class='news-read-more-buton'>
-									<%= link_to "Read More", news_path(article), :class =>'article-button' %>
-								</div>
-
-							</div>
-						</div>
-					<% end %>
-
-					<div id="infinite-scrolling" class= "centered yes-margin">
-					  <%= will_paginate %>
-					</div>
 
 <div class="news">
               <div class="container">
@@ -32,34 +8,16 @@
                   <h2>DreamFunded News</h2>
                 </div>
                 <div class="news__list">
-                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
-                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
+                  <% @news.each do |article| %>
+                  <div class="news__it clearfix">
+                    <%= link_to image_tag(article.image.url ), news_path(article), class: "news__it__img ofit-block" %>
+                    <div class="news__it__title"><%= link_to article.title, news_path(article) %></div>
                     <div class="news__it__txt">
                         <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
                     </div>
-                    <div class="news__it__more"><a href="#">Read More</a></div>
+                    <div class="news__it__more"><%= link_to "Read More", news_path(article) %></div>
                   </div>
-                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
-                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
-                    <div class="news__it__txt">
-                      <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
-                    </div>
-                    <div class="news__it__more"><a href="#">Read More</a></div>
-                  </div>
-                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
-                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
-                    <div class="news__it__txt">
-                      <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
-                    </div>
-                    <div class="news__it__more"><a href="#">Read More</a></div>
-                  </div>
-                  <div class="news__it clearfix"><a href="#" class="news__it__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></a>
-                    <div class="news__it__title"><a href="#">State of California Senate Recognizes Manny Fernandez</a></div>
-                    <div class="news__it__txt">
-                      <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
-                    </div>
-                    <div class="news__it__more"><a href="#">Read More</a></div>
-                  </div>
+                  <% end %>
                 </div>
                 <!-- <div class="pagination __mob-center">
                   <ul class="reset-list clearfix">
