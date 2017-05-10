@@ -35,22 +35,28 @@
 							</article>
 							<article>
 								<section class='campaigb-basic-numbers'>
-									<div class='company-details-small-box'>
-										<div class='companies-box-name'>Target</div>
-										<div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
-									</div>
-									<div class='company-details-small-box'>
-										<div class='companies-box-name'>Days Left</div>
-										<div class='companies-box-value'><%= company.left_days %></div>
-									</div>
-									<div class='company-details-small-box'>
-										<div class='companies-box-name'>Raised</div>
-										<% if company.status == 2 %>
-											<div class='companies-box-value'><%= number_to_currency company.invested_amount, precision: 0 %></div>
-										<% else %>
-											<div class='companies-box-value'><%= raised_amount(company) %></div>
-										<% end %>
-									</div>
+									<% if company.id == 693 %>
+										<div class='company-details-small-box' style='width:80%;'>
+										    <div class='companies-box-name' >Testing the Waters</div><br>
+										</div>
+									<% else %>
+										<div class='company-details-small-box'>
+											<div class='companies-box-name'>Target</div>
+											<div class='companies-box-value'><%= number_to_currency company.goal_amount, precision: 0 %></div>
+										</div>
+										<div class='company-details-small-box'>
+											<div class='companies-box-name'>Days Left</div>
+											<div class='companies-box-value'><%= company.left_days %></div>
+										</div>
+										<div class='company-details-small-box'>
+											<div class='companies-box-name'>Raised</div>
+											<% if company.status == 2 %>
+												<div class='companies-box-value'><%= number_to_currency company.invested_amount, precision: 0 %></div>
+											<% else %>
+												<div class='companies-box-value'><%= raised_amount(company) %></div>
+											<% end %>
+										</div>
+									<% end %>
 
 								</section>
 							</article>
