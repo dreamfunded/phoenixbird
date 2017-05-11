@@ -5,6 +5,10 @@
   padding-top: 100px;
   padding-bottom: 96px;
 }
+
+.invite-text-field{
+  padding-left: 0px;
+}
 .profile.__profile {
   padding-top: 159px;
   padding-bottom: 80px;
@@ -420,8 +424,8 @@
   margin-top: 26px;
 }
 .invite__mail .row {
-  margin-left: -5px;
-  margin-right: -5px;
+  margin-left: 0;
+  margin-right: 0;
 }
 .invite__mail .col-md-9,
 .invite__mail .col-md-3 {

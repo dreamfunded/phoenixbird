@@ -3,208 +3,445 @@
 <% facebook_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
 <% facebook_secure_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
 
-<div class= "wrapper"> <!-- wrapper Starts -->
 
-  <div class="header">
-    <h1 class="centered">Invites </h1>
-  </div>
 
-  <div class= "invite-content">
-    <%= flash[:email_sent] %>
-
-    <% if flash[:upload_error] %>
-      <p>
-          Failed to upload Emails. Invalid CSV file format. Please download our
-          <%= link_to "CSV file Template", '/download_template', targe: "_blank" %>
-          and paste your data in the template.
-     </p>
-    <% end %>
-    <% if current_user.has_company? %>
-      <!-- Invite from my Company -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("envelope 2x")%> </span>
-        <span class='invite-text'>Invite from <%= current_user.company.name %><br>
-
-          <%= form_for(Invite.new, :url => invite_from_startup_path, html: {class: 'invite-from-startup'}) do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.text_field(:name, placeholder: 'Name',class: 'invite-text-input', required: true) %>
-            <%= f.text_field(:email, placeholder: 'Email Address',class: 'invite-text-input', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required: true)%>
-            <%= f.submit "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
+<div class="profile __profile">
+  <div class="container clearfix">
+    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">Invite</a>
+      <div class="profile__sidebar__inn">
+        <div class="profile__sidebar__block">
+          <ul class="reset-list">
+            <li><%= link_to "My Investments", portfolio_path %></li>
+            <li><%= link_to "My Profile", profile_path %></li>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li class='active'><%= link_to "Invite", invite_users_path %></li>
+            <li><%= link_to "Change Password", change_pass_path %></li>
+          </ul>
+        </div>
       </div>
-    <% else %>
-      <!-- Invite via Email -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("envelope 2x")%> </span>
-        <span class='invite-text'>Invite via Email</span>
-        <span class='invite-form'>
-          <%= form_for(Invite.new) do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.text_field(:name, placeholder: 'Name',class: 'invite-text-input', required: true) %>
-            <%= f.text_field(:email, placeholder: 'Email Address',class: 'invite-text-input', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required: true)%>
-            <%= f.submit "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-      </div>
-    <% end%>
-
-    <div class="invite-via-email">
-      <span class='invite-email-icon'><%=  fa_icon("share-alt 2x")%> </span>
-      <span class='invite-text'>Share on Social Media</span>
-      <span class='invite-form-google'>
-
-            <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
-            <script type="text/javascript">
-              $('#facebook').click(function(){
-                FB.ui({
-                  method: 'share',
-                  href: "https://dreamfunded.com/",
-                  redirect_uri: "https://dreamfunded.com/",
-                  quote: "Join DreamFunded, an equity crowdfunding platform where anyone can invest in startups or raise capital."
-                }, function(response){});
-
-              })
-            </script>
-
-            <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=Join%20DreamFunded,%20an%20equity%20crowdfunding%20platform%20where%20anyone%20can%20invest%20in%20startups%20or%20raise%20capital.%20https://dreamfunded.com/" title="Share via Twitter">
-                <i class="fa fa-twitter"></i>
-            </a>
-
-            <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Join%20DreamFunded,%20an%20equity%20crowdfunding%20platform%20where%20anyone%20can%20invest%20in%20startups%20or%20raise%20capital.&amp;url=https://dreamfunded.com/" target="_blank" title="Share via LinkedIn" >
-                <i class="fa fa-linkedin"></i>
-            </a>
-
-      </span>
     </div>
 
-    <!-- Upload CSV File -->
-    <div class="invite-via-email">
-      <span class='invite-email-icon'><%=  fa_icon("upload 2x")%> </span>
-      <span class='invite-text'>Upload CSV File</span>
-      <span class='invite-form'>
-        <%= form_for(CsvFile.new, url: { action: "upload_csv"}, method: "post", html: { multipart: true } ) do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.file_field :file %>
-          <%= f.submit "Upload", class: 'invite-button' %>
+    <div class="profile__content">
+      <div class="myprofile">
+        <div class="myprofile__title">
+          <h2>Invites</h2>
+        </div>
+
+        <%= flash[:email_sent] %>
+        <% if flash[:upload_error] %>
+          <p>
+              Failed to upload Emails. Invalid CSV file format. Please download our
+              <%= link_to "CSV file Template", '/download_template', targe: "_blank" %>
+              and paste your data in the template.
+         </p>
         <% end %>
-      </span>
-      <div>
+
+        <div class="invite">
+          <% if current_user.has_company? %>
+            <!--1.1  Invite from my Company -->
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>Invite via Email</span>
+              </div>
+              <div class="invite__mail">
+                <%= form_for(Invite.new, :url => invite_from_startup_path, html: {class: 'invite-from-startup'}) do |f| %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="input-row row">
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= f.text_field(:name, placeholder: 'Name', required: true) %>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= f.text_field(:email, placeholder: 'Email Address', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required: true)%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <%= f.submit "Send", class: 'btn btn-blue fw-btn' %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <!-- 1.2 Invite via Email -->
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>Invite via Email</span>
+              </div>
+              <div class="invite__mail">
+                 <%= form_for(Invite.new) do |f| %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="input-row row">
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= f.text_field(:name, placeholder: 'Name', required: true) %>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= f.text_field(:email, placeholder: 'Email Address', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required: true)%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <%= f.submit "Send", class: 'btn btn-blue fw-btn' %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end%>
+
+            <!-- 2. Social Media  -->
+          <div class="invite__block">
+            <div class="invite__block__title">
+              <svg class="svg-icon share-icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#share-icon"></use>
+              </svg><span>Share on Social Media</span>
+            </div>
+            <div class="invite__soc clearfix">
+              <a href="#" class="__fb" id='facebook'>
+                <svg class="svg-icon fb-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fb-icon"></use>
+                </svg>
+              </a>
+              <script type="text/javascript">
+                $('#facebook').click(function(){
+                  FB.ui({
+                    method: 'share',
+                    href: "https://dreamfunded.com/",
+                    redirect_uri: "https://dreamfunded.com/",
+                    quote: "Join DreamFunded, an equity crowdfunding platform where anyone can invest in startups or raise capital."
+                  }, function(response){});
+
+                })
+              </script>
+
+              <a id="twitter" class="__tw" target="_blank" href="http://twitter.com/intent/tweet?text=Join%20DreamFunded,%20an%20equity%20crowdfunding%20platform%20where%20anyone%20can%20invest%20in%20startups%20or%20raise%20capital.%20https://dreamfunded.com/" title="Share via Twitter">
+                  <svg class="svg-icon tw-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#tw-icon"></use>
+                </svg>
+              </a>
+
+              <a id ='linkedin' class="__in" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Join%20DreamFunded,%20an%20equity%20crowdfunding%20platform%20where%20anyone%20can%20invest%20in%20startups%20or%20raise%20capital.&amp;url=https://dreamfunded.com/" target="_blank" title="Share via LinkedIn" >
+                <svg class="svg-icon lin-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lin-icon"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+            <!-- 3. CSV file -->
+          <div class="invite__block">
+            <div class="invite__block__title">
+              <svg class="svg-icon upload-icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#upload-icon"></use>
+              </svg><span>Upload CSV File</span>
+            </div>
+            <div class="invite__csv">
+              <%= form_for(CsvFile.new, url: { action: "upload_csv"}, method: "post", html: { multipart: true } ) do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="input-wrap">
+                      <div data-title="Choose" class="file-input">
+                        <label>
+                          <%= f.file_field :file, class: 'hidden-input' %>
+                          <span class="file-input__txt">Choose File</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <%= f.submit "Upload", class: 'btn btn-blue fw-btn' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <% if current_user.authority == authority[:Admin] %>
+
+            <!--   4. Upload from Manny -->
+             <div class="invite__block">
+               <div class="invite__block__title">
+                 <svg class="svg-icon upload-icon">
+                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#upload-icon"></use>
+                 </svg><span>Invites from Manny</span>
+               </div>
+               <div class="invite__csv">
+                 <%= form_tag('/invites_from_manny', multipart: true) do %>
+                   <div class="row">
+                     <div class="col-md-9">
+                       <div class="input-wrap">
+                         <div data-title="Choose" class="file-input">
+                           <label>
+                             <%= file_field_tag :file, class: 'hidden-input' %>
+                             <span class="file-input__txt">Choose File</span>
+                           </label>
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-md-3">
+                       <button type="submit" class="btn btn-blue fw-btn">Upload</button>
+                     </div>
+                   </div>
+                 <% end %>
+               </div>
+             </div>
+
+            <!--   5. Send From Company -->
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>Send on Behalf Of</span>
+              </div>
+              <div class="invite__mail">
+                 <%= form_tag('/send_start_up_emails', multipart: true) do  %>
+
+                  <div class="row">
+                    <div class="col-md-12 invite-text-field">
+                      <div class="input-row row">
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= text_field_tag(:name,nil, placeholder: 'Name', required: true) %>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= select_tag(:company, options_from_collection_for_select(@companies, "name", "name"), required: true, class: 'selectpicker' ) %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class='row'>
+                      <div class="col-md-9">
+                        <div class="input-wrap">
+                          <div data-title="Choose" class="file-input">
+                            <label>
+                              <%= file_field_tag :file, class: 'hidden-input'  %>
+                              <span class="file-input__txt">Choose File</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="submit" class="btn btn-blue fw-btn">Upload</button>
+                      </div>
+                  </div>
+                  <br>
+                <% end %>
+              </div>
+            </div>
+
+            <!--   6. Send From Team -->
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>From Team Member</span>
+              </div>
+              <div class="invite__mail">
+                 <%= form_tag('/send_from_team_member', multipart: true) do  %>
+
+                  <div class="row">
+
+                    <div class="col-md-9">
+                      <div class="input-row row">
+
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                           <%= select_tag(:member, options_from_collection_for_select(@members, "id", "name"), class: 'selectpicker' ) %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <div data-title="Choose" class="file-input">
+                            <label>
+                              <%= file_field_tag :file, class: 'hidden-input'  %>
+                              <span class="file-input__txt">Choose File</span>
+                            </label>
+                          </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <button type="submit" class="btn btn-blue fw-btn">Upload</button>
+                    </div>
+
+                  </div>
+
+                <% end %>
+              </div>
+            </div>
+
+            <!--   7. Send From Advisor -->
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>From Advisor</span>
+              </div>
+              <div class="invite__mail">
+                 <%= form_tag('/send_advisors_csv_invites', multipart: true) do  %>
+
+                  <div class="row">
+
+                    <div class="col-md-9">
+                      <div class="input-row row">
+
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= select_tag(:advisor, options_from_collection_for_select(@advisors, "id", "name"), class: 'selectpicker' ) %>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <div data-title="Choose" class="file-input">
+                            <label>
+                              <%= file_field_tag :file, class: 'hidden-input'  %>
+                              <span class="file-input__txt">Choose File</span>
+                            </label>
+                          </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <button type="submit" class="btn btn-blue fw-btn">Upload</button>
+                    </div>
+
+                  </div>
+
+                <% end %>
+              </div>
+            </div>
+
+            <!--   8. To Group -->
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>To Group</span>
+              </div>
+              <div class="invite__mail">
+                <%= form_tag('/invites_to_group', multipart: true) do  %>
+                  <div class="row">
+                    <div class="col-md-12 invite-text-field">
+                      <div class="input-row row">
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= text_field_tag(:name,nil, placeholder: 'Name', required: true) %>
+
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= select_tag(:group, options_from_collection_for_select(@groups, "id", "name"), class: 'selectpicker' ) %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class='row'>
+                      <div class="col-md-9">
+                        <div class="input-wrap">
+                          <div data-title="Choose" class="file-input">
+                            <label>
+                              <%= file_field_tag :file, class: 'hidden-input'  %>
+                              <span class="file-input__txt">Choose File</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="submit" class="btn btn-blue fw-btn">Upload</button>
+                      </div>
+                  </div>
+                  <br>
+                <% end %>
+              </div>
+            </div>
+
+          <% end %>
+
+          <!-- 9. Invite from Advisor -->
+          <% if current_user.advisor %>
+            <div class="invite__block">
+              <div class="invite__block__title">
+                <svg class="svg-icon invmail-icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#invmail-icon"></use>
+                </svg><span>Invite from Advisor</span>
+              </div>
+              <div class="invite__mail">
+                 <%= form_tag('/send_from_advisor', multipart: true) do  %>
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="input-row row">
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= text_field_tag(:name, nil, placeholder: 'Name', required: true) %>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="input-wrap">
+                            <%= text_field_tag(:email,nil, placeholder: 'Email Address', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required: true)%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <%= submit_tag "Send", class: 'btn btn-blue fw-btn' %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-
-    <% if current_user.authority == authority[:Admin] %>
-     <!--   Upload from Manny -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("upload 2x")%> </span>
-        <span class='invite-text'>Invites from Manny</span>
-
-        <span class='invite-form-google'>
-          <%= form_tag('/invites_from_manny', multipart: true) do %>
-            <%= file_field_tag :file %>
-            <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-        <div>
-          <!-- <span class='password-six-chars'>Please see proper <%#= link_to "CSV file", asset_path("test_users.csv"), target: '_blank' %> format. It should containt 2 table headers: "Name" and "Email". Both <span class='capitalized-word'>Capitalized</span> </span> -->
-        </div>
-      </div>
-
-      <!--   Send StartUp Emails -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("envelope 2x")%> </span>
-        <span class='invite-text'>Send on Behalf Of</span>
-        <span class='invite-form'>
-          <%= form_tag('/send_start_up_emails', multipart: true) do  %>
-          <%= text_field_tag(:name,nil, placeholder: 'Name',class: 'invite-text-input', required: true) %>
-          <%= select_tag(:company, options_from_collection_for_select(@companies, "name", "name"), required: true ) %>
-          <%= file_field_tag :file, required: true %>
-
-
-            <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-      </div>
-
-
-      <!--   Send From Team Member -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("user 2x")%> </span>
-        <span class='invite-text'>From Team Member</span>
-        <span class='invite-form'>
-          <%= form_tag('/send_from_team_member', multipart: true) do  %>
-
-          <%= select_tag(:member, options_from_collection_for_select(@members, "id", "name"), required: true ) %>
-          <%= file_field_tag :file, required: true %>
-
-          <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-      </div>
-
-
-      <!--   From Advisors -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("line-chart 2x")%> </span>
-        <span class='invite-text'>From Advisor</span>
-        <span class='invite-form'>
-          <%= form_tag('/send_advisors_csv_invites', multipart: true) do  %>
-            <%= select_tag(:advisor, options_from_collection_for_select(@advisors, "id", "name"), required: true ) %>
-
-            <%= file_field_tag :file, required: true %>
-            <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-        <div>
-          <!-- <span class='password-six-chars'>Please see proper <%#= link_to "CSV file", asset_path("test_users.csv"), target: '_blank' %> format. It should containt 2 table headers: "Name" and "Email". Both <span class='capitalized-word'>Capitalized</span> </span> -->
-        </div>
-      </div>
-
-      <!--   To Groups -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("users 2x")%> </span>
-        <span class='invite-text'>To Group</span>
-        <span class='invite-form'>
-          <%= form_tag('/invites_to_group', multipart: true) do  %>
-            <%= text_field_tag(:name,nil, placeholder: 'Name',class: 'invite-text-input', required: true) %>
-            <%= select_tag(:group, options_from_collection_for_select(@groups, "id", "name"), required: true ) %>
-            <%= file_field_tag :file, required: true %>
-            <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-        <div>
-          <!-- <span class='password-six-chars'>Please see proper <%#= link_to "CSV file", asset_path("test_users.csv"), target: '_blank' %> format. It should containt 2 table headers: "Name" and "Email". Both <span class='capitalized-word'>Capitalized</span> </span> -->
-        </div>
-      </div>
-    <% end %>
-
-
-    <% if current_user.advisor %>
-      <!-- Invite from Advisor -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("envelope 2x")%> </span>
-        <span class='invite-text'>Invite from Advisor</span>
-        <span class='invite-form'>
-          <%= form_tag('/send_from_advisor', multipart: true) do  %>
-          <%= text_field_tag(:name, nil, placeholder: 'Name',class: 'invite-text-input', required: true) %>
-            <%= text_field_tag(:email,nil, placeholder: 'Email Address',class: 'invite-text-input', pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$", required: true)%>
-            <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-      </div>
-
-
-    <% end %>
   </div>
+</div>
 
-  <!-- <div class= "invite-content">
-    <h3 class=' education-category darkblue'>You have invited:</h3>
-    <%# @invites.each do |invite| %>
-      <div class="current-invites">
-        <span class='imported-email' ><%#= invite.email %></span><br>
-        <span class='invite-status imported-email'><%#= invite.name %></span>
-      </div>
-    <%# end %>
-  </div> -->
 
-</div> <!-- End of wrapper -->
+
+<script type="text/javascript">
+  // file input
+  $('.file-input input[type="file"]').on('change', function () {
+    var th = $(this),
+      par = th.closest('.file-input'),
+      txt = par.find('.file-input__txt'),
+      title = par.attr('data-title'),
+      file =th.val().replace("C:\\fakepath\\", "");
+    if (file.length > 0) {
+      txt.text(file);
+    } else {
+      txt.text(title);
+    }
+  })
+</script>
