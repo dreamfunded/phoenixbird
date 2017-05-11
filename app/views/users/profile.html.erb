@@ -21,6 +21,7 @@
         <div class="myprofile__title">
           <h2>My Profile</h2>
         </div>
+        <%= flash[:notice] if flash[:notice] %>
         <div class="myprofile__lines">
           <div class="myprofile__line"><span><%= current_user.name%></span></div>
           <div class="myprofile__line"><span><%= current_user.email %></span></div>
