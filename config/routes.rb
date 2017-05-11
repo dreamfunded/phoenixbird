@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :bids
   resources :events
   resources :groups
+  resources :users, only: [:update, :edit, :create, :new]
   resources :press_posts, except: [:index]
   get '/press', to: "press_posts#index"
 
@@ -154,9 +155,14 @@ Rails.application.routes.draw do
   get '/manny-fernandez', to: 'members#manny', as: :manny
   get '/rexford-r-hibbs', to: 'members#rexford', as: :rexford
 
+  # U S E R S   P R O F I L E
   get 'users/portfolio', to: "users#portfolio", as: :portfolio
+  get 'users/profile', to: "users#profile", as: :profile
   get 'users/portfolio_admin/:id', to: "admin#portfolio_admin", as: :portfolio_admin
   post 'users/portfolio_admin/:id', to: "admin#remove_investment", as: :remove_investment
+
+  get 'users/change_pass', to: "users#edit_password", as: :change_pass
+  patch 'update_password', to: "users#update_password", as: :update_password
 
   get '/mentors', to: "users#advisors", as: :advisors
   get '/diversitynetwork', to: "home#diversitynetwork", as: :diversitynetwork
@@ -324,8 +330,6 @@ Rails.application.routes.draw do
   get "/information-selling-equity", to: 'home#exchange'
   match "/regulation-mini-ipos-way-rule-change-allows-regular-joes-invest-startups/" => redirect("news/regulation-a-mini-ipos-on-the-way-as-rule-change-allows-regular-joes-to-invest-in-startups"), via: 'get'
   get '/funding', to: 'home#index'
-
-  resources :users, only: [:update, :edit, :create, :new]
 
   namespace :api, format: :json do
     resources :companies, only: [] do

@@ -28,12 +28,13 @@
           <div class="header__user__drop">
             <ul class="reset-list">
               <li><%= link_to "My Investments", portfolio_path %></li>
+              <li><%= link_to "My Profile", profile_path %></li>
               <li><a href="#" onclick= "campaign()"><%= current_user.my_campaign %></a> </li>
+
               <% if current_user.belongs_to_a_group? %>
                   <li><a onclick= "group()">My Group</a></li>
               <% end %>
 
-              <li><%= link_to "My Profile", portfolio_path %></li>
 
               <% if current_user.authority == authority[:Admin] %>
                 <li><a onclick= "invite()">Invite</a></li>

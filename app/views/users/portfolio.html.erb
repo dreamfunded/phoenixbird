@@ -1,69 +1,69 @@
 <% title "DreamFunded | Portfolio" %>
 
+<div class="profile __profile">
+  <div class="container clearfix">
+    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">My Investments</a>
+      <div class="profile__sidebar__inn">
+        <div class="profile__sidebar__block">
+          <ul class="reset-list">
+            <li class="active" ><a href="#">My Investments</a></li>
+            <li><%= link_to "My Profile", profile_path %></li>
+            <li ><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li><a href="#">Invite</a></li>
+            <li><%= link_to "Change Password", change_pass_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="profile__content">
+      <div class="myprofile">
+        <div class="myprofile__title">
+          <h2>My Investments</h2>
+        </div>
+        <div class="myinvest">
+          <table class="hidden-xs hidden-sm">
+            <thead>
+              <tr>
+                <th class="__company">Company</th>
+                <th class="__date">Investment Date</th>
+                <th class="__status">Investment Status</th>
+                <th class="__amout">Invested Amout</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @investments.each do |investment| %>
+                <tr>
+                  <td class="__company"><%= investment.company.name %></td>
+                  <td class="__date"><%= date_format investment.created_at %></td>
+                  <td class="__status"><%= investment.status%></td>
+                  <td class="__amout"><%= number_to_currency investment.fund_america_invested_amount %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
 
-                        <div class="profile __profile">
-                          <div class="container clearfix">
-                            <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">My Investments</a>
-                              <div class="profile__sidebar__inn">
-                                <div class="profile__sidebar__block">
-                                  <ul class="reset-list">
-                                    <li class="active"><a href="#">My Investments</a></li>
-                                    <li><a href="#">My Profile</a></li>
-                                    <li><a href="#">Invite</a></li>
-                                    <li><a href="#">Change Password</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="profile__content">
-                              <div class="myprofile">
-                                <div class="myprofile__title">
-                                  <h2>My Investments</h2>
-                                </div>
-                                <div class="myinvest">
-                                  <table class="hidden-xs hidden-sm">
-                                    <thead>
-                                      <tr>
-                                        <th class="__company">Company</th>
-                                        <th class="__date">Investment Date</th>
-                                        <th class="__status">Investment Status</th>
-                                        <th class="__amout">Invested Amout</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <% @investments.each do |investment| %>
-                                        <tr>
-                                          <td class="__company"><%= investment.company.name %></td>
-                                          <td class="__date"><%= date_format investment.created_at %></td>
-                                          <td class="__status"><%= investment.status%></td>
-                                          <td class="__amout"><%= number_to_currency investment.fund_america_invested_amount %></td>
-                                        </tr>
-                                      <% end %>
-                                    </tbody>
-                                  </table>
-
-                                  <% @investments.each do |investment| %>
-                                    <div class="myinvest__mob-item visible-xs visible-sm">
-                                      <div class="myinvest__mob-item__title"><span><%= investment.company.name %></span></div>
-                                      <div class="myinvest__mob-item__line clearfix">
-                                        <div class="myinvest__mob-item__left"><span>Investment Date</span></div>
-                                        <div class="myinvest__mob-item__right"><span><%= date_format investment.created_at %></span></div>
-                                      </div>
-                                      <div class="myinvest__mob-item__line clearfix">
-                                        <div class="myinvest__mob-item__left"><span>Investment Status</span></div>
-                                        <div class="myinvest__mob-item__right"><span><%= investment.status%></span></div>
-                                      </div>
-                                      <div class="myinvest__mob-item__line clearfix">
-                                        <div class="myinvest__mob-item__left"><span>Invested Amout</span></div>
-                                        <div class="myinvest__mob-item__right __amout"><span><%= number_to_currency investment.fund_america_invested_amount %></span></div>
-                                      </div>
-                                    </div>
-                                  <% end %>
+          <% @investments.each do |investment| %>
+            <div class="myinvest__mob-item visible-xs visible-sm">
+              <div class="myinvest__mob-item__title"><span><%= investment.company.name %></span></div>
+              <div class="myinvest__mob-item__line clearfix">
+                <div class="myinvest__mob-item__left"><span>Investment Date</span></div>
+                <div class="myinvest__mob-item__right"><span><%= date_format investment.created_at %></span></div>
+              </div>
+              <div class="myinvest__mob-item__line clearfix">
+                <div class="myinvest__mob-item__left"><span>Investment Status</span></div>
+                <div class="myinvest__mob-item__right"><span><%= investment.status%></span></div>
+              </div>
+              <div class="myinvest__mob-item__line clearfix">
+                <div class="myinvest__mob-item__left"><span>Invested Amout</span></div>
+                <div class="myinvest__mob-item__right __amout"><span><%= number_to_currency investment.fund_america_invested_amount %></span></div>
+              </div>
+            </div>
+          <% end %>
 
 
 
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
