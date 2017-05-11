@@ -17,6 +17,11 @@ class CompaniesController < ApplicationController
 		@financial_details = @company.financial_detail
 		@comments = @company.comments
 		@members = @company.founders.order(:position)
+		@quote = @company.quotes.first
+		@quote2 = @company.quotes.second
+		@quote3 = @company.quotes.third
+		@questions = @company.questions
+		@timeline_items = @company.timeline_items.order(:position)
 	end
 
 	def show

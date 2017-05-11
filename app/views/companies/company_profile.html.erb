@@ -10,140 +10,229 @@
 
 <div class="investTop" style='background-image:url("<%= @company.cover.url%>");'>
     <div class='investTopOverlay'></div>
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-6 hidden-sm hidden-xs">
-                    <div data-video="<%= @company.video_link %>" class="investTop__video"><a href="#" class="investTop__video__play">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 hidden-sm hidden-xs">
+                <div data-video="<%= @company.video_link %>" class="investTop__video">
+                    <a href="#" class="investTop__video__play">
                         <svg class="svg-icon play-icon">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
-                        </svg></a><a href="#" class="investTop__video__close"></a>
-                      <div class="investTop__video__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></div>
-                      <div class="investTop__video__video">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="investTop__video__close"></a>
+                    <div class="investTop__video__img ofit-block"><img src="img/content/compthumb-img.jpg" alt=""></div>
+                    <div class="investTop__video__video">
                         <iframe src="javascript:void(0)"></iframe>
-                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="investTop__title">
-                      <h2><%= @company.name %></h2>
-                    </div>
-                    <div class="investTop__subtitle"><span> <%= @campaign.tagline %> </span></div>
-                    <div class="investTop__watchvideo visible-sm visible-xs">
-                      <svg class="svg-icon play-icon">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
-                      </svg><a href="#">Watch the video</a>
-                    </div>
-                    <div class="investTop__location">
-                      <svg class="svg-icon location-icon">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location-icon"></use>
-                      </svg><span><%= @campaign.place %></span>
-                    </div>
-                    <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                    <div class="investTop__progress">
-                      <div class="investTop__progress__txt"><span><b><%= number_to_currency @company.invested_amount, precision: 0 %></b> Raised</span></div>
-                      <div class="investTop__progress__line">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="investTop__title">
+                  <h2><%= @company.name %></h2>
+                </div>
+                <div class="investTop__subtitle"><span> <%= @campaign.tagline %> </span></div>
+                <div class="investTop__watchvideo visible-sm visible-xs">
+                  <svg class="svg-icon play-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
+                  </svg><a href="#">Watch the video</a>
+                </div>
+                <div class="investTop__location">
+                  <svg class="svg-icon location-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location-icon"></use>
+                  </svg><span><%= @campaign.place %></span>
+                </div>
+                <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                <div class="investTop__progress">
+                    <div class="investTop__progress__txt"><span><b><%= number_to_currency @company.invested_amount, precision: 0 %></b> Raised</span></div>
+                    <div class="investTop__progress__line">
                         <div style="width: <%= @progress%>%;" class="investTop__progress__line__inn"></div>
-                      </div>
-                      <div class="investTop__progress__percent"><span><%= number_with_precision(@progress, precision: 0) %>% of <%= number_to_currency @company.goal_amount, precision: 0 %> Goal</span></div>
                     </div>
-                    <div class="investTop__btn">
-                      <button class="btn btn-blue fw-btn">Invest in <%= @company.name %></button>
-                    </div>
-                  </div>
+                    <div class="investTop__progress__percent"><span><%= number_with_precision(@progress, precision: 0) %>% of <%= number_to_currency @company.goal_amount, precision: 0 %> Goal</span></div>
                 </div>
+                <div class="investTop__btn">
+                  <button class="btn btn-blue fw-btn">Invest in <%= @company.name %></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="project">
+    <!-- A D M I N   E D I T I N G -->
+    <div class='company-admin-editing hide-on-mobile'>
+        <% if current_user != nil && current_user.authority == authority[:Admin] %>
+            <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
+                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                <span class='edit-my-company-button'> Edit as Admin</span>
+            <% end %>
+        <% end %>
+        <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+            <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <span class='edit-my-company-button'>Edit My Company</span>
+            <% end %>
+        <%end%>
+        <% if current_user %>
+            <% if current_user.company == @company && current_user.role == 'founder' %>
+                <%if @company.accredited %>
+                    <%= link_to( { :action => 'edit_accredited_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span class='edit-my-company-button'>Edit My Company</span>
+                    <%end%>
+                <% else %>
+                    <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span class='edit-my-company-button'>Edit My Company</span>
+                    <%end%>
+                <% end%>
+            <% end %>
+        <% end %>
+    </div>
+
+    <div class="container">
+
+        <div class="project__quote">
+            <% if @quote %>
+
+                    <div class="text-center ">
+                        <p><%= @quote.description %></p>
+                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                        <div class="quote-person-name"> <%= @quote.said_by %> </div>
+                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                    </div>
+
+            <% end %>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Overview</h2>
+          </div>
+          <p> <%= @company.description.html_safe if @company.description %> </p>
+        </div>
+
+        <% if @company.id == 693 %>
+            <%= render partial: "media" %>
+        <% end %>
+
+        <div class="project__quote">
+            <% if @quote2 %>
+                    <div class="text-center ">
+                        <p><%= @quote.description %></p>
+                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                        <div class="quote-person-name"> <%= @quote.said_by %> </div>
+                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                    </div>
+            <% end %>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Join Our Mission</h2>
+          </div>
+          <p><%= @campaign.elevator_pitch.html_safe  if @campaign.elevator_pitch %></p>
+        </div>
+
+        <div class="    ">
+          <div class="project__block__title project__block">
+            <h2>Team</h2>
+          </div>
+          <div class="project__team">
+            <div class="row">
+              <div class="project__team__slider">
+                <% @members.each do |member| %>
+
+                    <div class="col-md-4">
+                      <div class="mentor"><a href="#" class="mentor__avatar ofit-block"><%= image_tag( member.image.url, :class => "company-members") %></a>
+                        <div class="mentor__cnt">
+                          <div class="mentor__cnt__inn">
+                            <div class="mentor__name"><span><%= member.name%></span></div>
+                            <div class="mentor__pos"><span><%= member.title%></span></div>
+                            <div class="mentor__desc">
+                              <p><%= member.content %></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
               </div>
             </div>
-            <div class="project">
-              <div class="container">
-                <div class="project__quote">
-                  <p>“ And sadly, 67% of our target audience, millennials and multicultural, are surfing the internet and social media as a coping mechanism to deal with their problems. This is why the time for Me Tyme is now. ”</p>
-                </div>
-                <div class="project__block">
-                  <div class="project__block__title">
-                    <h2>Overview</h2>
-                  </div>
-                  <p>America is stressed out now more than ever.  We ALL experience stress on a daily basis.  There are issues related family, financial, work, and relationship that we deal with every day and the list goes on and on. HOW people are coping with their stress is having a tremendous effect on our community family and workplace, particularly with women and the younger generation. Chronic stress and depression are a critical issue, and 25% of women medicate with antidepressants. The top two issues on college campuses among our future leaders are anxiety and depression. Per year in the workplace, stress, depression and emotionally related illnesses account for 55 million hours of missed workdays and $150 billion in lost productivity costs due to personal issues. 1 in 5 Americans claims to have no one to rely on for emotional support.  And sadly, 67% of our target audience, millennials and multicultural, are surfing the internet and social media as a coping mechanism to deal with their problems. This is why the time for Me Tyme is now.</p>
-                  <h3>The Solution</h3>
-                  <p>Me Tyme Network (MTN) is an on demand self-help marketplace that features industry experts in innovative snackable video content designed to improve emotional intelligence, health, and wellness. Original content is distributed through a multi-channel, interactive, mobile TV streaming platform.</p>
-                  <div class="project__block__img"><img src="img/content/progimg1.jpg" alt=""></div>
-                  <p>America is stressed out now more than ever.  We ALL experience stress on a daily basis.  There are issues related family, financial, work, and relationship that we deal with every day and the list goes on and on. HOW people are coping with their stress is having a tremendous effect on our community family and workplace, particularly with women and the younger generation. Chronic stress and depression are a critical issue, and 25% of women medicate with antidepressants. The top two issues on college campuses among our future leaders are anxiety and depression. Per year in the workplace, stress, depression and emotionally related illnesses account for 55 million hours of missed workdays and $150 billion in lost productivity costs due to personal issues. 1 in 5 Americans claims to have no one to rely on for emotional support.  And sadly, 67% of our target audience, millennials and multicultural, are surfing the internet and social media as a coping mechanism to deal with their problems. This is why the time for Me Tyme is now.</p>
-                </div>
-                <div class="project__block">
-                  <div class="project__block__title">
-                    <h2>Team</h2>
-                  </div>
-                  <div class="project__team">
-                    <div class="row">
-                      <div class="project__team__slider">
-                        <div class="col-md-4">
-                          <div class="mentor"><a href="#" class="mentor__avatar ofit-block"><img src="img/content/mentor.jpg" alt=""></a>
-                            <div class="mentor__cnt">
-                              <div class="mentor__cnt__inn">
-                                <div class="mentor__name"><span>John Sweet</span></div>
-                                <div class="mentor__pos"><span>Angel Investor / Startup Advisor</span></div>
-                                <div class="mentor__desc">
-                                  <p>I'm an angel investor with Pasadena Angels. I am a mentor and adviser to early-stage companies seeking growth capital through private equity. As a group, we have invested over $65 million in over 175 ventures since inception. I'm an angel investor with Pasadena Angels.</p>
-                                </div>
-                              </div>
-                              <div class="mentor__more"><a href="#">Read More</a></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="mentor"><a href="#" class="mentor__avatar ofit-block"><img src="img/content/mentor.jpg" alt=""></a>
-                            <div class="mentor__cnt">
-                              <div class="mentor__cnt__inn">
-                                <div class="mentor__name"><span>John Sweet</span></div>
-                                <div class="mentor__pos"><span>Angel Investor / Startup Advisor</span></div>
-                                <div class="mentor__desc">
-                                  <p>I'm an angel investor with Pasadena Angels. I am a mentor and adviser to early-stage companies seeking growth capital through private equity. As a group, we have invested over $65 million in over 175 ventures since inception. I'm an angel investor with Pasadena Angels.</p>
-                                </div>
-                              </div>
-                              <div class="mentor__more"><a href="#">Read More</a></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="mentor"><a href="#" class="mentor__avatar ofit-block"><img src="img/content/mentor.jpg" alt=""></a>
-                            <div class="mentor__cnt">
-                              <div class="mentor__cnt__inn">
-                                <div class="mentor__name"><span>John Sweet</span></div>
-                                <div class="mentor__pos"><span>Angel Investor / Startup Advisor</span></div>
-                                <div class="mentor__desc">
-                                  <p>I'm an angel investor with Pasadena Angels. I am a mentor and adviser to early-stage companies seeking growth capital through private equity. As a group, we have invested over $65 million in over 175 ventures since inception. I'm an angel investor with Pasadena Angels.</p>
-                                </div>
-                              </div>
-                              <div class="mentor__more"><a href="#">Read More</a></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+          </div>
+        </div>
+
+        <div class="project__quote">
+            <% if @quote3 %>
+                    <div class="text-center ">
+                        <p><%= @quote.description %></p>
+                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                        <div class="quote-person-name"> <%= @quote.said_by %> </div>
+                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
                     </div>
-                  </div>
-                </div>
-                <div class="project__block">
-                  <div class="project__block__title">
-                    <h2>Our Mission</h2>
-                  </div>
-                  <p>Me Tyme Network (MTN) is an on demand self-help marketplace that features industry experts in innovative snackable video content designed to improve emotional intelligence, health, and wellness. Original content is distributed through a multi-channel, interactive, mobile TV streaming platform.</p>
-                  <div class="project__block__img"><img src="img/content/progimg1.jpg" alt=""></div>
-                </div>
-                <div class="project__block">
-                  <div class="project__block__title">
-                    <h2>Terms</h2>
-                  </div>
-                  <p>America is stressed out now more than ever.  We ALL experience stress on a daily basis.  There are issues related family, financial, work, and relationship that we deal with every day and the list goes on and on. HOW people are coping with their stress is having a tremendous effect on our community family and workplace, particularly with women and the younger generation. Chronic stress and depression are a critical issue, and 25% of women medicate with antidepressants. The top two issues on college campuses among our future leaders are anxiety and depression. Per year in the workplace, stress, depression and emotionally related illnesses account for 55 million hours of missed workdays and $150 billion in lost productivity costs due to personal issues. 1 in 5 Americans claims to have no one to rely on for emotional support.  And sadly, 67% of our target audience, millennials and multicultural, are surfing the internet and social media as a coping mechanism to deal with their problems. This is why the time for Me Tyme is now.</p>
-                </div>
-                <div class="project__tags">
-                  <div class="compthumb__tag __blue"><span>Professional Services</span></div>
-                  <div class="compthumb__tag __yellow"><span>Transportation</span></div>
-                  <div class="compthumb__tag __pink"><span>Automotive</span></div>
-                  <div class="compthumb__tag __purple"><span>Technology</span></div>
-                  <div class="compthumb__tag __indigo"><span>Software & services</span></div>
-                  <div class="compthumb__tag __red"><span>engineering</span></div>
-                </div>
-              </div>
-            </div>
+            <% end %>
+        </div>
+
+        <% if @company.id == 693 %>
+            <section  class='company-section'>
+                <h1 class="animated-numbers-titles centered">DreamFunded Latino Community</h1>
+                <h1 class='centered animated-number'><span id="animate-numer">21,027</span>+</h1>
+                <h1 class="animated-numbers-titles centered">Members</h1>
+            </section>
+        <% end %>
+
+        <% if @timeline_items.size > 0 %>
+            <%= render partial: "timeline",  timeline_items: @timeline_items %>
+        <% end %>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Join Our Mission</h2>
+          </div>
+          <p><%= @campaign.about_campaign.html_safe if @campaign.about_campaign %></p>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Terms</h2>
+          </div>
+          <p><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Terms</h2>
+          </div>
+          <p><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Documents</h2>
+          </div>
+
+          <% @company.documents.each do |doc| %>
+              <p class= "fifteen "><%= doc.name %></p>
+              <p class= "no-margin doc_name_overflow">
+                  <%= image_tag "static/pdf_icon.png" %>
+                  <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
+              </p>
+          <% end %>
+        </div>
+
+        <!-- <div class="project__tags">
+          <div class="compthumb__tag __blue"><span>Professional Services</span></div>
+          <div class="compthumb__tag __yellow"><span>Transportation</span></div>
+          <div class="compthumb__tag __pink"><span>Automotive</span></div>
+          <div class="compthumb__tag __purple"><span>Technology</span></div>
+          <div class="compthumb__tag __indigo"><span>Software & services</span></div>
+          <div class="compthumb__tag __red"><span>engineering</span></div>
+        </div> -->
+
+        <%= render partial: 'questions', questions: @questions %>
+
+    </div>
+</div>
 
 <script type="text/javascript">
 // video
@@ -164,5 +253,23 @@ $('.investTop__video__close').on('click', function(e) {
     par.removeClass('active');
     framepar.empty();
     e.preventDefault();
+});
+
+$(".questions-header").click(function () {
+
+    $header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(500, function () {
+
+        if($content.is(":visible")){
+            $header.find('.angle-up').show();
+            $header.find('.angle-down').hide();
+        }else{
+            $header.find('.angle-up').hide();
+            $header.find('.angle-down').show();
+        }
+    });
 });
 </script>
