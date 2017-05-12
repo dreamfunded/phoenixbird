@@ -60,7 +60,7 @@
                                 Invest in <%#= @company.name %>
                             </button> -->
                             <div class="investTop__btn">
-                              <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'btn btn-blue fw-btn' %>
+                              <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), :"data-no-turbolink" => true, class: 'btn btn-blue fw-btn' %>
                             </div>
                         <%else%>
                             <br><br><br><br>

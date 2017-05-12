@@ -105,7 +105,7 @@ a {
 .page-wrapp {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .content-without-footer {
   min-height: -webkit-calc(100vh - 440px);
