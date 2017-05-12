@@ -1,5 +1,5 @@
 
-<header class="header __white">
+<header class="header ">
   <div class="container clearfix">
     <div class="header__logo"><a href="/"><%= image_tag("template/header-logo.png") %></a></div>
     <div class="header__left clearfix"><a href="#" class="header__mob-close visible-xs"></a>
@@ -74,5 +74,26 @@
   $(document).click(function(event) {
     if ($(event.target).closest(".header__user").length) return;
     $('.header__user').removeClass('active');
+  });
+
+
+  $('.header__mob-trig').on('click', function(e) {
+    $('body').addClass('mob-menu-open');
+    e.preventDefault();
+  });
+  //// mob menu close
+  $('.header__mob-close').on('click', function(e) {
+    $('body').removeClass('mob-menu-open');
+    e.preventDefault();
+  });
+
+  //profile mob menu
+  $('.profile__sidebar__mob').on('click', function(e) {
+    $('.profile__sidebar').toggleClass('active');
+    e.preventDefault();
+  });
+  $(document).click(function(event) {
+    if ($(event.target).closest(".profile__sidebar").length) return;
+    $('.profile__sidebar').removeClass('active');
   });
 </script>
