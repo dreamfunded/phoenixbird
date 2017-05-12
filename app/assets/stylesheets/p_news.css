@@ -62,7 +62,7 @@
 }
 @media (max-width: 767px) {
   .news__it__img {
-    position: relative;
+    position: relative !important;
     margin-right: 20px;
     margin-bottom: 10px;
     float: left;

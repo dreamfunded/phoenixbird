@@ -308,41 +308,127 @@
 </div>
 
 <script type="text/javascript">
-// video
-$('.investTop__video__play').on('click', function(e) {
-    var th = $(this),
-        par = th.closest('.investTop__video'),
-        video = par.attr('data-video'),
-        framepar = par.find('.investTop__video__video');
-    par.addClass('active');
-    framepar.html('<iframe src="' + video + '?autoplay=1&showinfo=0&modestbranding=1"></iframe>');
-    e.preventDefault();
-});
+  // video
+  $('.investTop__video__play').on('click', function(e) {
+      var th = $(this),
+          par = th.closest('.investTop__video'),
+          video = par.attr('data-video'),
+          framepar = par.find('.investTop__video__video');
+      par.addClass('active');
+      framepar.html('<iframe src="' + video + '?autoplay=1&showinfo=0&modestbranding=1"></iframe>');
+      e.preventDefault();
+  });
 
-$('.investTop__video__close').on('click', function(e) {
-    var th = $(this),
-        par = th.closest('.investTop__video'),
-        framepar = par.find('.investTop__video__video');
-    par.removeClass('active');
-    framepar.empty();
-    e.preventDefault();
-});
-
-$(".questions-header").click(function () {
-
-    $header = $(this);
-    //getting the next element
-    $content = $header.next();
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(500, function () {
-
-        if($content.is(":visible")){
-            $header.find('.angle-up').show();
-            $header.find('.angle-down').hide();
-        }else{
-            $header.find('.angle-up').hide();
-            $header.find('.angle-down').show();
-        }
-    });
-});
+  $('.investTop__video__close').on('click', function(e) {
+      var th = $(this),
+          par = th.closest('.investTop__video'),
+          framepar = par.find('.investTop__video__video');
+      par.removeClass('active');
+      framepar.empty();
+      e.preventDefault();
+  });
 </script>
+
+<script>
+    $(document).ready(function() {
+        document.addEventListener('fa.investnow.success', function(e){
+          var InvestorInvestmentID = e.investment_id;
+          console.log(e);
+           $.ajax({
+                type: 'POST',
+                url: "/investment_made/"+InvestorInvestmentID,
+                data: { company_id: <%= @company.id %>  },
+                dataType: "json",
+                success: function(resultData) { alert("Save Complete") }
+          });
+        });
+    });
+
+    var animate_number = true;
+    $(document).on('scroll', function() {
+        if($(this).scrollTop()>=$('#animate-numer').position().top){
+
+            if(animate_number){
+
+                function commaSeparateNumber(val){
+                    while (/(\d+)(\d{3})/.test(val.toString())){
+                      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    }
+                    return val;
+                }
+
+                $({someValue: 21000}).animate({someValue: 21027}, {
+                  duration: 2500,
+                  easing:'swing', // can be anything
+                  step: function() { // called on every step
+                      // Update the element's text with rounded-up value:
+                      $('#animate-numer').text(commaSeparateNumber(Math.round(this.someValue)));
+                  },
+                  complete: function(){
+                    animate_number = false;
+                  }
+                });
+
+            }
+        }
+    })
+
+    $(".questions-header").click(function () {
+
+        $header = $(this);
+        //getting the next element
+        $content = $header.next();
+        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+        $content.slideToggle(500, function () {
+
+            if($content.is(":visible")){
+                $header.find('.angle-up').show();
+                $header.find('.angle-down').hide();
+            }else{
+                $header.find('.angle-up').hide();
+                $header.find('.angle-down').show();
+            }
+        });
+    });
+
+
+    $(".comments .reply_comment_button").click(function(e){
+        e.preventDefault()
+        $(this).parent().parent().parent().next().show();
+    })
+
+
+    // Twitter small windows open when clicked
+    $('#twitter').click(function(event) {
+      var width  = 575,
+          height = 400,
+          left   = ($(window).width()  - width)  / 2,
+          top    = ($(window).height() - height) / 2,
+          url    = this.href,
+          opts   = 'status=1' +
+                   ',width='  + width  +
+                   ',height=' + height +
+                   ',top='    + top    +
+                   ',left='   + left;
+
+      window.open(url, 'twitter', opts);
+
+      return false;
+    });
+</script>
+
+<script type="text/javascript">
+  $('#facebook').click(function(){
+    FB.ui({
+      method: 'share',
+      href: "https://dreamfunded.com/companies/<%= @company.slug %>",
+      redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
+      // quote: "Invest in <%= @company.name %> on DreamFunded",
+      title: "<%= @company.name %>",
+      description: "<%= @campaign.tagline %>"
+    }, function(response){});
+  })
+</script>
+
+<!-- <script src="https://sandbox.fundamerica.com/cors/js/invest_now.min.js" id="fa-invest-now-launcher"></script> -->
+<script src="https://apps.fundamerica.com/cors/js/invest_now.min.js" id="fa-invest-now-launcher"></script>
