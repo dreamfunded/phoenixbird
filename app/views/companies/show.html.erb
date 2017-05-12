@@ -9,422 +9,305 @@
 
 <% twitter_image @company.cover.url %>
 
-<div class='v2'>
-    <div id='company-nav' class='fixed-nav'>
-        <div class='company-content-container'>
-            <%= link_to image_tag( @company.image.url, class: 'media-logo' ), @company, :"data-no-turbolink" => true %>
-            <ul class="company-nav-links">
-                <li><a href="#company-header">COMPANY</a></li>
-                <li><a href="#team-section">TEAM</a></li>
-                <li><a href="#terms-or-offering-section">TERMS OF OFFERING</a></li>
-                <li><a href="#comments-section">ASK A QUESTION</a></li>
-            </ul>
-            <%if @company.accredited%>
-                <ul class='float-opposite social-invites'>
-                    <li><a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a></li>
-                    <li>
-                        <a id="twitter" class="share-invites-social" target="_blank"
-                         href="http://twitter.com/intent/tweet?url=https://dreamfunded.com/companies/<%= @company.slug %>"
-                          title="Share via Twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=Invest%in%<%= @company.name%>&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                    </li>
-                </ul>
-            <% end %>
-        </div>
-    </div>
-    <section id="cover-photo" class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
-        <div class='company-info top'>
-            <div class='company-info-container'>
+<div class="investTop" style='background-image:url("<%= @company.cover.url%>");'>
+    <div class='investTopOverlay'></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 hidden-sm hidden-xs">
+                <div data-video="<%= @company.video_link %>" class="investTop__video">
+                    <a href="#" class="investTop__video__play">
+                        <svg class="svg-icon play-icon">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="investTop__video__close"></a>
+                    <div class="investTop__video__img ofit-block"><%= image_tag ("http://img.youtube.com/vi/#{@company.youtube_code}/0.jpg") %></div>
+                    <div class="investTop__video__video">
+                        <iframe src="javascript:void(0)"></iframe>
+                    </div>
+                </div>
 
             </div>
-        </div>
-        <% if !@company.video_link.empty? %>
-            <button id="video-play-button" data-video-src='<%= @company.video_link + "?enablejsapi=1&version=3" %>'>
-                <span class='icon icon-play'></span>
-            </button>
-        <% end %>
-        <div class='company-profile-bottom-line'>
-            <div class="company-info-container">
-                <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
-                <section class='company-basic-info'>
-                    <div>   <%= @company.name %>  </div>
-                    <div class='company-slogan'>    <%= @campaign.tagline %>  </div>
-                    <div class='company-location'><i class="fa fa-map-marker"></i> <%= @campaign.place %> </div>
-                    <ul class='tags'>
-                        <li><a href="#"><%= @company.category %></a></li>
-                    </ul>
-                </section>
-            </div>
-        </div>
 
-        <div class='company-info-right-panel'>
+            <div class="col-md-6">
+                <div class="investTop__title">
+                  <h2><%= @company.name %></h2>
+                </div>
+                <div class="investTop__subtitle"><span> <%= @campaign.tagline %> </span></div>
+                <div class="investTop__watchvideo visible-sm visible-xs">
+                  <svg class="svg-icon play-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
+                  </svg><a href="#">Watch the video</a>
+                </div>
+                <div class="investTop__location">
+                  <svg class="svg-icon location-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location-icon"></use>
+                  </svg><span><%= @campaign.place %></span>
+                </div>
                 <% if @company.status == 2 %>
-                    <div class='company-detail'>
-                        <div class='company-finance-info'>
-                            <%= number_to_currency @company.invested_amount, precision: 0 %>
-                        </div>
-                        <div class='company-info-category'>RAISED</div>
-                    </div>
-
-                    <div class='company-detail'>
-                        <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
-                        <div class='company-info-category'>TARGET</div>
-                    </div>
-
-                    <div class='company-detail'>
-                        <div class='company-finance-info'><%=  @company.left_days %></div>
-                        <div class='company-info-category'>DAYS LEFT</div>
-                    </div>
-
-
-                    <div class='company-detail'>
-                        <div class='company-finance-info'><%= number_to_currency @company.min_investment, precision: 0 %></div>
-                        <div class='company-info-category'>MINIMUM INVESTMENT</div>
-                    </div>
-
-
-                    <div class="meter orange">
-                        <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                        <% if @progress == 0 %>
-                            <span class= "front" style="width: 5px"></span>
-                        <% elsif @progress > 100 %>
-                            <span style= 'width: 100%'></span>
-                        <% else %>
-                            <span style='width: <%= @progress %>%'></span>
-                        <% end %>
-                    </div>
-
-                    <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
-
+                  <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                  <div class="investTop__progress">
+                      <div class="investTop__progress__txt"><span><b><%= number_to_currency @company.invested_amount, precision: 0 %></b> Raised</span></div>
+                      <div class="investTop__progress__line">
+                          <div style="width: <%= @progress%>%;" class="investTop__progress__line__inn"></div>
+                      </div>
+                      <div class="investTop__progress__percent"><span><%= number_with_precision(@progress, precision: 0) %>% of <%= number_to_currency @company.goal_amount, precision: 0 %> Goal</span></div>
+                  </div>
                 <% end %>
 
-            <div class='fund-america-invest-button'>
                 <% if user_signed_in? %>
                     <%if @company.accredited %>
                         <% if @company.status == 2 %>
                             <!-- <button type="button" data-fa-invest-now="<%#= @company.fund_america_code%>" class=" company-button profile-button mail-to-button" >
                                 Invest in <%#= @company.name %>
                             </button> -->
-                            <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'company-button profile-button mail-to-button' %>
+                            <div class="investTop__btn">
+                              <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), :"data-no-turbolink" => true, class: 'btn btn-blue fw-btn' %>
+                            </div>
                         <%else%>
-                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
-                                <span class="currency_input">
-                                    <span>$</span>
-                                    <%= text_field_tag "invest_amount", nil, placeholder: '100' %>
-                                </span>
-                                <%= submit_tag "Join The Waitlist", class: "company-button profile-button waitlist-b mail-to-button", target: "_blank" %>
+                            <br><br><br><br>
+                            <h2 class='waitlist_thankyou_text investTop__subtitle'></h2>
+                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", remote: true, target: "_blank", class: "form-inline")  do %>
+                              <div class="input-row row">
+                                <div class="col-sm-6">
+                                  <div class="input-wrap">
+                                    <%= text_field_tag "invest_amount", nil, placeholder: '$ 100', class: 'join-waitlist-new' %>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <%= submit_tag "Join The Waitlist",  class: 'btn btn-blue fw-btn', target: "_blank"%>
+                                </div>
+                              </div>
                             <% end %>
                         <%end%>
                     <%else%>
-                        <button class=" company-button profile-button mail-to-button" >
-                            Pending Approval
-                        </button>
+                        <div class="investTop__btn">
+                            <a class="btn btn-blue fw-btn" > Pending Approval </a>
+                        </div>
                     <%end%>
                 <% else %>
-                    <% if @company.status == 2 %>
-                        <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'company-button profile-button mail-to-button' %>
-                    <% else %>
-                        <%= link_to "Join The Waitlist", show_unathorized_path(@company.slug), class: 'company-button profile-button mail-to-button' %>
-                    <% end %>
-
+                    <div class="investTop__btn">
+                        <% if @company.status == 2 %>
+                            <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'btn btn-blue fw-btn' %>
+                        <% else %>
+                            <%= link_to "Join The Waitlist", show_unathorized_path(@company.slug), class: 'btn btn-blue fw-btn' %>
+                        <% end %>
+                    </div>
                 <% end %>
+
             </div>
         </div>
-    </section>
+    </div>
+</div>
 
-
-    <div class="company-content">
-            <!-- A D M I N   E D I T I N G -->
-            <div class='company-admin-editing hide-on-mobile'>
-                <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                    <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
-                        <i class="fa fa-user-secret" aria-hidden="true"></i>
-                        <span class='edit-my-company-button'> Edit as Admin</span>
-                    <% end %>
-                <% end %>
-                <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+<div class="project">
+    <!-- A D M I N   E D I T I N G -->
+    <div class='company-admin-editing hide-on-mobile'>
+        <% if current_user != nil && current_user.authority == authority[:Admin] %>
+            <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
+                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                <span class='edit-my-company-button'> Edit as Admin</span>
+            <% end %>
+        <% end %>
+        <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+            <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <span class='edit-my-company-button'>Edit My Company</span>
+            <% end %>
+        <%end%>
+        <% if current_user %>
+            <% if current_user.company == @company && current_user.role == 'founder' %>
+                <%if @company.accredited %>
+                    <%= link_to( { :action => 'edit_accredited_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span class='edit-my-company-button'>Edit My Company</span>
+                    <%end%>
+                <% else %>
                     <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         <span class='edit-my-company-button'>Edit My Company</span>
-                    <% end %>
-                <%end%>
-                <% if current_user %>
-                    <% if current_user.company == @company && current_user.role == 'founder' %>
-                        <%if @company.accredited %>
-                            <%= link_to( { :action => 'edit_accredited_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
-                                <i class="fa fa-cog" aria-hidden="true"></i>
-                                <span class='edit-my-company-button'>Edit My Company</span>
-                            <%end%>
-                        <% else %>
-                            <%= link_to( { :action => 'edit_campaign', :id => @company.campaign.id}, class: 'edit-company-button' )  do %>
-                                <i class="fa fa-cog" aria-hidden="true"></i>
-                                <span class='edit-my-company-button'>Edit My Company</span>
-                            <%end%>
-                        <% end%>
-                    <% end %>
-                <% end %>
-            </div>
-
-        <div class="company-content-container">
-
-            <section id="company-header" class="company-header company-section">
-                <div class="section-container">
-                    <h1 class="section-title">Invest in <%= @company.name %></h1>
-
-
-                    <% if @quote %>
-                        <div class="col-9">
-                            <div class="centered ">
-
-                                <h2 class='company-section-tagline'>
-                                    <%= @quote.description %>
-                                </h2>
-                                <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
-                                <div class="second-quote"> <%= @quote.said_by %> </div>
-                                <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
-                            </div>
-
-                        </div>
-                    <% end %>
-
-
-
-
-                    <hr class="div">
-                    <div>
-                        <h2 class='section-title'>Vision</h2>
-                        <div class='section-content tab-content'>
-                                <p class= "fifteen "><%= @company.description.html_safe if @company.description %></p>
-                        </div>
-                    </div>
-
-                    <% if @company.id == 693 %>
-                        <%= render partial: "media" %>
-                    <% end %>
-
-                    <% if @quote2 %>
-                        <div class="col-9">
-                            <div class="centered ">
-
-                                <h2 class='company-section-tagline'>
-                                    <%= @quote2.description %>
-                                </h2>
-                                <%= image_tag(@quote2.photo.url, class: "second-quote-image") %>
-                                <div class="second-quote"> <%= @quote2.said_by %> </div>
-                                <div class="said-by-title second-quote-title"><span><%= @quote2.position %></span></div>
-                            </div>
-
-                        </div>
-                    <% end %>
-
-                    <hr class="div">
-                    <div>
-                        <h2 class='section-title'>Why <%= @company.name %>?</h2>
-                        <div class='section-content tab-content'>
-                                <p class='sign-in-blur'><%= @campaign.elevator_pitch.html_safe  if @campaign.elevator_pitch %></p>
-                        </div>
-                    </div>
-                    <hr class="div">
-
-                    <% if @quote3 %>
-                        <div class="col-9">
-                            <div class="centered ">
-
-                                <h2 class='company-section-tagline'>
-                                    <%= @quote3.description %>
-                                </h2>
-                                <%= image_tag(@quote3.photo.url, class: "second-quote-image") %>
-                                <div class="second-quote"> <%= @quote3.said_by %> </div>
-                                <div class="said-by-title second-quote-title"><span><%= @quote3.position %></span></div>
-                            </div>
-
-                        </div>
-                    <% end %>
-
-                    <% if @company.id == 693 %>
-
-                        <section  class='company-section'>
-                            <h1 class="animated-numbers-titles centered">DreamFunded Latino Community</h1>
-                            <h1 class='centered animated-number'><span id="animate-numer">21,027</span>+</h1>
-                            <h1 class="animated-numbers-titles centered">Members</h1>
-                        </section>
-
-                    <% end %>
-                    <% if @timeline_items.size > 0 %>
-                        <%= render partial: "timeline",  timeline_items: @timeline_items %>
-                    <% end %>
-
-
-                    <div>
-                        <h2 class="section-title">Join Our Mission</h2>
-                        <div class="section-content tab-content">
-                                <p><%= @campaign.about_campaign.html_safe if @campaign.about_campaign %></p>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <hr class="div"/><br>
-
-            <section id='team-section' class='company-section'>
-                <div class='section-container'>
-                    <h1 class='section-title'>Team</h1>
-                    <div class='section-content'>
-                        <% if @company.status == 2 || @company.status == 1 %>
-                            <% if @members != nil && !@members.empty? %>
-                                    <div class= "team-band fluid-container flex-grid">
-                                        <% @members.each do |member| %>
-                                            <div class= "team-member-box col-4">
-                                                <%# if current_user != nil && current_user.authority == authority[:Admin] %>
-                                                    <%#= button_to "X", { action: 'remove_founder', id: member.id} , {:class => 'remove-button'} %>
-                                                <%# end %>
-                                                <%= image_tag( member.image.url, :class => "company-members") %>
-                                                <h2 class= "team-member-name"><%= member.name %></h2>
-                                                <h2 class='team-member-title'><%= member.title %></h2>
-                                                <p class= "team-member-bio"><%= nl2br(h(member.content)).html_safe %></p>
-                                            </div>
-                                        <% end %>
-                                    </div>
-                            <% end %>
-                        <% end %>
-                    </div>
-                </div>
-            </section>
-
-            <hr class="div"><br>
-
-            <section id="terms-or-offering-section" class='company-section'>
-                <div class='section-container '>
-                    <h1 class="section-title">Terms of Offering</h1>
-
-                        <div>
-                            <h2 class="section-title">Offering Terms</h2>
-                            <div class='section-content tab-content'>
-                                <p class= "fifteen"><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
-                            </div>
-                        </div>
-                        <hr class="div">
-                        <div>
-                            <h2 class="section-title">Financial Risks</h2>
-                            <div class='section-content tab-content'>
-                                <p class= "fifteen"><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
-                            </div>
-                        </div>
-
-                        <hr class="div">
-                        <div>
-                            <h2 class="section-title">Documents</h2>
-                            <div class='section-content'>
-
-                                    <% if @financial_details.balance_sheet_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Balance Sheet", @financial_details.balance_sheet.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.income_statements_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Income Statements", @financial_details.income_statements.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.statement_of_cash_flow_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Statement of Cash Flow", @financial_details.statement_of_cash_flow.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.statement_changes_of_equity_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Statement of Changes in Equity For Past 2 Years", @financial_details.statement_changes_of_equity.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.business_plan_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Anticipated Business Plan", @financial_details.business_plan.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.party_transaction_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Any Related Party Transaction", @financial_details.party_transaction.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.intended_use_of_proceeds_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Description of Intended Use of Proceeds", @financial_details.intended_use_of_proceeds.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.capital_structure_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Ownership and Capital Structure", @financial_details.capital_structure.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.material_terms_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Material Terms of Any Indebtedness", @financial_details.material_terms.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.directors_background_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Background of Directors and Officers", @financial_details.directors_background.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.accountant_review_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Independent Accountant's Review", @financial_details.accountant_review.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% if @financial_details.financial_conditions_file_name %>
-                                        <p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to "Financial Condition", @financial_details.financial_conditions.url, target: "_blank", class: 'document-url' %></p>
-                                    <% end %>
-
-                                    <% @company.documents.each do |doc| %>
-                                        <p class= "fifteen "><%= doc.name %></p>
-                                        <p class= "no-margin doc_name_overflow">
-                                            <%= image_tag "static/pdf_icon.png" %>
-                                            <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
-                                        </p>
-                                    <% end %>
-
-                            </div>
-                        </div>
-
-                </div>
-            </section>
-            <hr class="div">
-
-            <% if @company.id == 693 %>
-                <%= render partial: 'questions', questions: @questions %>
+                    <%end%>
+                <% end%>
             <% end %>
+        <% end %>
+    </div>
+
+    <div class="container">
+
+        <div class="project__quote">
+            <% if @quote %>
+
+                    <div class="text-center ">
+                        <p><%= @quote.description %></p>
+                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                        <div class="quote-person-name"> <%= @quote.said_by %> </div>
+                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                    </div>
+
+            <% end %>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Overview</h2>
+          </div>
+          <p> <%= @company.description.html_safe if @company.description %> </p>
+        </div>
+
+        <% if @company.id == 693 %>
+            <%= render partial: "media" %>
+        <% end %>
+
+        <div class="project__quote">
+            <% if @quote2 %>
+                    <div class="text-center ">
+                        <p><%= @quote.description %></p>
+                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                        <div class="quote-person-name"> <%= @quote.said_by %> </div>
+                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                    </div>
+            <% end %>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Join Our Mission</h2>
+          </div>
+          <p><%= @campaign.elevator_pitch.html_safe  if @campaign.elevator_pitch %></p>
+        </div>
+
+        <div class="    ">
+          <div class="project__block__title project__block">
+            <h2>Team</h2>
+          </div>
+          <div class="project__team">
+            <div class="row">
+              <div class="project__team__slider">
+                <% @members.each do |member| %>
+
+                    <div class="col-md-4">
+                      <div class="mentor"><a href="#" class="mentor__avatar ofit-block"><%= image_tag( member.image.url, :class => "company-members") %></a>
+                        <div class="mentor__cnt">
+                          <div class="mentor__cnt__inn">
+                            <div class="mentor__name"><span><%= member.name%></span></div>
+                            <div class="mentor__pos"><span><%= member.title%></span></div>
+                            <div class="mentor__desc">
+                              <p><%= member.content %></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project__quote">
+            <% if @quote3 %>
+                    <div class="text-center ">
+                        <p><%= @quote.description %></p>
+                        <%= image_tag(@quote.photo.url, class: "second-quote-image") %>
+                        <div class="quote-person-name"> <%= @quote.said_by %> </div>
+                        <div class="said-by-title second-quote-title"><span><%= @quote.position %></span></div>
+                    </div>
+            <% end %>
+        </div>
+
+        <% if @company.id == 693 %>
+            <section  class='company-section'>
+                <h1 class="animated-numbers-titles centered">DreamFunded Latino Community</h1>
+                <h1 class='centered animated-number'><span id="animate-numer">21,027</span>+</h1>
+                <h1 class="animated-numbers-titles centered">Members</h1>
+            </section>
+        <% end %>
+
+        <% if @timeline_items.size > 0 %>
+            <%= render partial: "timeline",  timeline_items: @timeline_items %>
+        <% end %>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Join Our Mission</h2>
+          </div>
+          <p><%= @campaign.about_campaign.html_safe if @campaign.about_campaign %></p>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Terms</h2>
+          </div>
+          <p><%= @financial_details.offering_terms.html_safe if @financial_details.offering_terms %></p>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Terms</h2>
+          </div>
+          <p><%= @financial_details.fin_risks.html_safe if @financial_details.fin_risks %></p>
+        </div>
+
+        <div class="project__block">
+          <div class="project__block__title">
+            <h2>Documents</h2>
+          </div>
+
+          <% @company.documents.each do |doc| %>
+              <p class= "fifteen "><%= doc.name %></p>
+              <p class= "no-margin doc_name_overflow">
+                  <%= image_tag "static/pdf_icon.png" %>
+                  <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %>
+              </p>
+          <% end %>
+        </div>
+
+        <!-- <div class="project__tags">
+          <div class="compthumb__tag __blue"><span>Professional Services</span></div>
+          <div class="compthumb__tag __yellow"><span>Transportation</span></div>
+          <div class="compthumb__tag __pink"><span>Automotive</span></div>
+          <div class="compthumb__tag __purple"><span>Technology</span></div>
+          <div class="compthumb__tag __indigo"><span>Software & services</span></div>
+          <div class="compthumb__tag __red"><span>engineering</span></div>
+        </div> -->
+
+        <%= render partial: 'questions', questions: @questions %>
 
 
-            <section id='comments-section' class='company-section' >
-                <div class='section-container'>
-                    <h1 class='section-title'>Ask a Question</h1>
-                    <div class='section-content'>
-                        <div class="comments">
-                            <%= nested_messages(@comments.arrange(:order => :created_at))%>
-                        </div>
-                            <% if current_user %>
-                                <div class="comment">
-                                  <div class="headline">
-                                    <span class="name">
-                                      <span class='comment_as'>New comment as</span>
-                                      <a><%= current_user.comments_name%></a>
-                                    </span>
-                                  </div>
-                                  <div class="comment_content">
-                                        <%= form_for Comment.new, remote: true  do |f|%>
-                                             <%= f.hidden_field "user_id", value: current_user.id %>
-                                             <%= f.hidden_field "company_id", value: @company.id %>
-                                             <%= f.hidden_field :parent_id %>
-                                            <div>
-                                                <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
-                                            </div>
-                                            <%= f.submit "Post Comment", class: 'comment_submit_button' %>
-                                        <% end %>
-                                </div>
-                            <%else%>
-                                  <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
-                            <%end%>
-                        </div>
+        <section id='comments-section' class='company-section' >
+            <div class='section-container'>
+                <h1 class='section-title'>Ask a Question</h1>
+                <div class='section-content'>
+                    <div class="comments">
+                        <%= nested_messages(@comments.arrange(:order => :created_at))%>
+                    </div>
+                        <% if current_user %>
+                            <div class="comment">
+                              <div class="headline">
+                                <span class="name">
+                                  <span class='comment_as'>New comment as</span>
+                                  <a><%= current_user.comments_name%></a>
+                                </span>
+                              </div>
+                              <div class="comment_content">
+                                    <%= form_for Comment.new, remote: true  do |f|%>
+                                         <%= f.hidden_field "user_id", value: current_user.id %>
+                                         <%= f.hidden_field "company_id", value: @company.id %>
+                                         <%= f.hidden_field :parent_id %>
+                                        <div>
+                                            <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
+                                        </div>
+                                        <%= f.submit "Post Comment", class: 'comment_submit_button' %>
+                                    <% end %>
+                            </div>
+                        <%else%>
+                              <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
+                        <%end%>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
     </div>
 </div>
 
@@ -490,7 +373,6 @@
                 $header.find('.angle-down').show();
             }
         });
-
     });
 
 
@@ -530,6 +412,28 @@
       description: "<%= @campaign.tagline %>"
     }, function(response){});
   })
+</script>
+
+<script type="text/javascript">
+  // video
+  $('.investTop__video__play').on('click', function(e) {
+      var th = $(this),
+          par = th.closest('.investTop__video'),
+          video = par.attr('data-video'),
+          framepar = par.find('.investTop__video__video');
+      par.addClass('active');
+      framepar.html('<iframe src="' + video + '?autoplay=1&showinfo=0&modestbranding=1"></iframe>');
+      e.preventDefault();
+  });
+
+  $('.investTop__video__close').on('click', function(e) {
+      var th = $(this),
+          par = th.closest('.investTop__video'),
+          framepar = par.find('.investTop__video__video');
+      par.removeClass('active');
+      framepar.empty();
+      e.preventDefault();
+  });
 </script>
 
 <!-- <script src="https://sandbox.fundamerica.com/cors/js/invest_now.min.js" id="fa-invest-now-launcher"></script> -->

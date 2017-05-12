@@ -195,4 +195,8 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def youtube_code
+    self.video_link.split('/').last
+  end
+
 end

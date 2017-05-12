@@ -1,14 +1,5 @@
-<html>
-
-
-<head>
-	<title>DreamFunded | News Creation</title>
-</head>
-
-<body><div class= "wrapper">
-	<div class= "box creation-wrap">
-		<h2 class= "centered"> Create a new article </h2>
-
+<div class='news'>
+    <div class='container'>
 		<%= form_for @news, multipart: true do |f|%>
 
 			<%= f.text_field(:title, :placeholder => "Name of Your Article", :class => "input-box") %><br>
@@ -42,9 +33,6 @@
 				<%= f.submit("Publish", :id => "submit-button") %>
 			</div>
 		<% end %>
+
 	</div>
 </div>
-
-</body>
-
-</html>

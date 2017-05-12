@@ -1,190 +1,230 @@
 <% title "DreamFunded | Invest in #{@company.name}" %>
 <% meta_tag @company.campaign.tagline %>
-
 <% facebook_og_title ("Invest in #{@company.name} on DreamFunded.com") %>
 <% facebook_url("https://dreamfunded.com/companies/#{@company.slug}")%>
-
 <% facebook_image @company.cover.url %>
 <% facebook_secure_image @company.cover.url %>
-
 <% twitter_image @company.cover.url %>
 
 
-  <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url(:large) %>)" >
 
-      <div class='company-profile-bottom-line paymennt-page-logo'>
-          <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
-          <section class='company-basic-info'>
-              <div>   <%= @company.name %>  </div>
-              <div class='company-slogan'>    <%= @company.campaign.tagline %>  </div>
-              <div class='company-location'><i class="fa fa-map-marker"></i> <%= @company.campaign.place %> </div>
-          </section>
-      </div>
-
-      <div class='company-info-right-panel'>
-            <div class='company-detail'>
-
-                <div class='company-finance-info'>
-                    <%= number_to_currency @company.invested_amount, precision: 0 %>
+<div class="investTop" style='background-image:url("<%= @company.cover.url%>");'>
+    <div class='investTopOverlay'></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 hidden-sm hidden-xs">
+                <div data-video="<%= @company.video_link %>" class="investTop__video">
+                    <a href="#" class="investTop__video__play">
+                        <svg class="svg-icon play-icon">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="investTop__video__close"></a>
+                    <div class="investTop__video__img ofit-block"><%= image_tag ("video_bg.png") %></div>
+                    <div class="investTop__video__video">
+                        <iframe src="javascript:void(0)"></iframe>
+                    </div>
                 </div>
-                <div class='company-info-category'>RAISED</div>
             </div>
 
-            <div class='company-detail'>
-                <div class='company-finance-info'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
-                <div class='company-info-category'>TARGET</div>
-            </div>
+            <div class="col-md-6">
+                <div class="investTop__title">
+                  <h2><%= @company.name %></h2>
+                </div>
+                <div class="investTop__subtitle"><span> <%= @company.campaign.tagline %> </span></div>
+                <div class="investTop__watchvideo visible-sm visible-xs">
+                  <svg class="svg-icon play-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#play-icon"></use>
+                  </svg><a href="#">Watch the video</a>
+                </div>
+                <div class="investTop__location">
+                  <svg class="svg-icon location-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location-icon"></use>
+                  </svg><span><%= @company.campaign.place %></span>
+                </div>
 
-            <div class='company-detail'>
-                <div class='company-finance-info'> $<%= @company.min_investment%> </div>
-                <div class='company-info-category'>MINIMUM INVESTMENT</div>
-            </div>
-
-            <div class="meter orange">
-                <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                <% if @progress == 0 %>
-                    <span class= "front" style="width: 5px"></span>
-                <% elsif @progress > 100 %>
-                    <span style= 'width: 100%'></span>
-                <% else %>
-                    <span style='width: <%= @progress %>%'></span>
+                <% if @company.status == 2 %>
+                    <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                    <div class="investTop__progress">
+                        <div class="investTop__progress__txt"><span><b><%= number_to_currency @company.invested_amount, precision: 0 %></b> Raised</span></div>
+                        <div class="investTop__progress__line">
+                            <div style="width: <%= @progress%>%;" class="investTop__progress__line__inn"></div>
+                        </div>
+                        <div class="investTop__progress__percent">
+                            <span><%= number_with_precision(@progress, precision: 0) %>% of <%= number_to_currency @company.goal_amount, precision: 0 %> Goal</span>
+                        </div>
+                    </div>
                 <% end %>
+
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
-      </div>
-  </section>
-
-
-  <div class= " payment-box">
-    <p class='centered'>
-      <% if @error %>
-        <% @error.keys.sort.each do |key| %>
-          <% @error[key].each do |val| %>
-            <b> <%=  val.flatten.join(' ') %> </b>
-            <br>
+<div class="invest">
+  <div class="container">
+    <div class="invest__inn">
+        <% if @error %>
+          <% @error.keys.sort.each do |key| %>
+            <% @error[key].each do |val| %>
+              <b> <%=  val.flatten.join(' ') %> </b>
+              <br>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </p>
-
-    <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form', id: 'pay-form') do %>
-      <%= hidden_field_tag(:id, @company.id) %>
-      <%= hidden_field_tag(:email, current_user.email ) %>
-
-      <div class='invest-line'>
-        <div class='section-title invest-title'>I want to invest:</div>
-        <div class="currency_input">
-          <span>$</span>
-          <%= text_field_tag :amount, nil, placeholder: '100', id:"invest_amount",class:'payment-invest-field', required: true %>
+        <div class="invest__title">
+            <h3> I want to invest:</h3>
         </div>
-      </div>
 
-      <div class='get-funded-section-name'>Name</div>
-      <span class='password-six-chars' >Sign your name in the field below by typing your full legal name.</span>
-      <%= text_field_tag :name, current_user.name, placeholder: 'First and Last name', class: 'form-field ', required: true %>
-      <br>
-
-      <div class='get-funded-section-name'>Date of Birth</div>
-      <%#= date_field_tag :date_of_birth, nil, class: 'form-field form-field-half' %>
-
-      <div class="styled-select form-field-dropdown birth-date-width" >
-        <%= select_tag( :birth_month, options_for_select(all_month),  prompt: "Month" ) %>
-      </div>
-      <div class="styled-select form-field-dropdown birth-date-width" >
-        <%= select_tag( :birth_date, options_for_select(all_dates),  prompt: "Date" ) %>
-      </div>
-      <%= text_field_tag :birth_year, nil, placeholder: 'Year', class: 'form-field form-field-half birth-date-width', required: true %>
-      <%#= text_field_tag :country, nil, placeholder: 'Country', class: 'form-field form-field-half' %>
-      <br><br>
-
-        <div class='get-funded-section-name'>Address</div>
-        <%= text_field_tag :address, @entity["street_address_1"], placeholder: 'Street', class: 'form-field form-field-half', required: true %>
-        <%= text_field_tag :city, @entity["city"], placeholder: 'City', class: 'form-field form-field-half', required: true %>
-
-        <%#= text_field_tag :state, nil, placeholder: 'State', class: 'form-field form-field-half' %>
-        <div class="styled-select form-field-dropdown" >
-            <%= select_tag( :state, options_for_select(all_states, @entity["region"]),  prompt: "State" ) %>
-        </div>
-        <%= text_field_tag :zipcode, @entity["postal_code"], placeholder: 'Zipcode', class: 'form-field form-field-half', required: true %>
-        <br>
-
-        <div class='get-funded-section-name form-field-half'>Phone</div><br>
-            <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', class: 'form-field form-field-half', required: true %>
-        <br><br>
-
-        <div class='get-funded-section-name'>Government-issued identification number (SSN, SIN, or tax ID)</div>
-        <%= text_field_tag :ssn, nil, placeholder: 'SSN', class: 'form-field form-field-half', required: true %>
-        <div class='disclaimer-box'>
-            <div class='disclaimer-container'>
-              <span class='disclaimer-text'> We understand your concern regarding the security of your SSN. This is used for identity verification, investor screening, and tax forms associated with this investment. We ask it due to anti-money laundering regulations and fraud checks.</span>
+        <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form', id: 'pay-form') do %>
+            <%= hidden_field_tag(:id, @company.id) %>
+            <%= hidden_field_tag(:email, current_user.email ) %>
+            <div class="invest__topinput">
+              <%= text_field_tag :amount, nil, placeholder: '100', required: true %>
             </div>
-        </div>
 
-        <input type="checkbox" name="us_person" id="us_citizen" required >
-        <label class="checkbox-label" for="us_citizen">I am a US citizen or other US person</label>
-        <br>
-        <!-- <input type="checkbox" name="agreement" id="agreement" required >
-        <label class="checkbox-label" for="agreement">I have read and accept <a href="#sbsc_agr" class="model_open">Subscription Agreement</a></label> -->
+            <div class="invest__block">
+              <div class="invest__block__title"><span>Name</span></div>
+              <div class="invest__block__subtitle"><span>Sign your name in the field below by typing your full legal name.</span></div>
+              <div class="input-wrap">
+                <%= text_field_tag :name, current_user.name, placeholder: 'First and Last name', required: true %>
+              </div>
+            </div>
 
-        <br><br>
-
-        <% if @ach_authorization["name"] %>
-          <div class='get-funded-section-name ach-exist'>Payment Method</div>
-          <div class="styled-select form-field-dropdown" >
-            <select id='payment-method' name='ach'>
-                <option value='exist' ><%= @ach_authorization["name"] %></option>
-                <option value='ach'>ACH</option>
-            </select>
-          </div>
-        <% end%>
-
-        <section class='payment-section'>
-            <div class='get-funded-section-name'>Payment</div>
-            <div class='payment-accoutt-col'>
-                <div class='check-type'>Account Type</div>
-                <div class="styled-select form-field-dropdown" >
-                    <%= select_tag( :account_type, options_for_select([['checking'],['savings']]) ) %>
+            <div class="invest__block">
+              <div class="invest__block__title"><span>Date of Birth</span></div>
+              <div class="input-row row">
+                <div class="col-xs-4">
+                  <div class="input-wrap">
+                    <%= select_tag( :birth_month, options_for_select(all_month),  prompt: "Month", class: 'selectpicker' ) %>
+                  </div>
                 </div>
-            </div>
-
-            <div class='payment-accoutt-col'>
-                <div class='check-type'>Check Type</div>
-                <div class="styled-select form-field-dropdown" >
-                    <%= select_tag( :check_type, options_for_select([['personal'],['business']]) ) %>
+                <div class="col-xs-4">
+                  <div class="input-wrap">
+                    <%= select_tag( :birth_date, options_for_select(all_dates),  prompt: "Date", class: 'selectpicker' ) %>
+                  </div>
                 </div>
+                <div class="col-xs-4">
+                  <div class="input-wrap">
+                    <%= text_field_tag :birth_year, nil, placeholder: 'Year', required: true %>
+                  </div>
+                </div>
+              </div>
             </div>
 
-          <br><br>
+            <div class="invest__block">
+              <div class="invest__block__title"><span>Address</span></div>
+              <div class="input-row row">
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= text_field_tag :address, @entity["street_address_1"], placeholder: 'Street', required: true %>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= text_field_tag :city, @entity["city"], placeholder: 'City', required: true %>
+                  </div>
+                </div>
+              </div>
+              <div class="input-row row">
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= select_tag( :state, options_for_select(all_states, @entity["region"]),  prompt: "State", class: 'selectpicker' ) %>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="input-wrap">
+                    <%= text_field_tag :zipcode, @entity["postal_code"], placeholder: 'Zipcode', required: true %>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          <%= text_field_tag :routing_number, nil, placeholder: 'Routing Number', class: 'form-field form-field-half' %>
-          <%= text_field_tag :account_number, nil,placeholder: 'Account Number', class: 'form-field form-field-half' %>
-          <br>
-        </section>
-        <br><br>
-      <div class='centered'>
-        <%= submit_tag "Complete Investment", name: 'submitButton', class: 'company-button payment-button profile-button' %>
-      </div>
+            <div class="invest__block">
+              <div class="invest__block__title"><span>Phone</span></div>
+              <div class="input-row row">
+                <div class="col-sm-6">
+                  <div class="input-wrap">
+                    <%= text_field_tag :phone, current_user.phone, placeholder: 'Phone Number', required: true %>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-    <% end %>
+            <div class="invest__block">
+              <div class="invest__block__title"><span>Government-issued identification number (SSN, SIN, or tax ID)</span></div>
+              <div class="input-wrap">
+                <%= text_field_tag :ssn, nil, placeholder: 'SSN', required: true %>
+              </div>
+              <div class="invest__block__txt"><span>We understand your concern regarding the security of your SSN. This is used for identity verification, investor screening, and tax forms associated with this investment. We ask it due to anti-money laundering regulations and fraud checks.</span></div>
+            </div>
 
+            <div class="invest__checkblock">
+              <div class="checkbox">
+                <input type="checkbox" class="hidden-input" name="us_person" id="us_citizen" required>
+                <span class="checkbox__icon"></span>
+                <label for="us_citizen">
+                    <div class="checkbox__txt">
+                      <p>I am a US citizen or other US person</p>
+                    </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="invest__block">
+              <div class="invest__block__title"><span>Payment</span></div>
+
+              <% if @ach_authorization["name"] %>
+                <div class='get-funded-section-name ach-exist'>Payment Method</div>
+                    <div class="input-wrap">
+                        <select id='payment-method' name='ach' class='selectpicker'>
+                            <option value='exist' ><%= @ach_authorization["name"] %></option>
+                            <option value='ach'>ACH</option>
+                        </select>
+                    </div><br>
+
+              <% end%>
+                <section class='payment-section'>
+                    <div class="input-row row">
+                        <div class="col-xs-6">
+                          <div class="input-wrap">
+                            <%= select_tag( :account_type, options_for_select([['checking'],['savings']]), class: 'selectpicker' ) %>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <div class="input-wrap">
+                            <%= select_tag( :check_type, options_for_select([['personal'],['business']]), class: 'selectpicker' ) %>
+                          </div>
+                        </div>
+                    </div>
+                        <div class="input-row row">
+                        <div class="col-xs-6">
+                          <div class="input-wrap">
+                            <%= text_field_tag :routing_number, nil, placeholder: 'Routing Number' %>
+                          </div>
+                        </div>
+                        <div class="col-xs-6">
+                          <div class="input-wrap">
+                            <%= text_field_tag :account_number, nil,placeholder: 'Account Number' %>
+                          </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="invest__btn">
+              <div class="invest__btn__inn">
+                <button type="submit" class="btn btn-blue" name="submitButton">Complete Investment </button>
+              </div>
+            </div>
+
+        <% end %>
+
+    </div>
   </div>
-  </div>
+</div>
 
-
-  <div id="modal">
-    <!-- First modal window -->
-     <div id="sbsc_agr" class="window subscriptin-agreement">
-      <div class="contents">
-          <div class='close-icon'>
-              <a href="#" class="close"><i class="fa fa-times"></i></a>
-          </div>
-          <textarea style="overflow:scroll"  class='subcription-agreement' readonly>
-            <%#= render 'subscription_agreement'%>
-          </textarea>
-      </div>
-   </div>
-  </div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -216,50 +256,6 @@
 
         }, false);
 
+
     })
-</script>
-<script>
-// run when page is ready
-$('.model_open').click(function(){
-
-    // create variable to hold the current modal window
-    var activeWindow;
-
-        // cancel the default link behaviour
-
-        // find the href of the link that was clicked to use as an id
-        var id = '#sbsc_agr'
-        console.log(id);
-        // assign the window with matching id to the activeWindow variable, move it to the center of the screen and fade in
-        activeWindow = $('.window' + id)
-            .css('opacity', '0') // set to an initial 0 opacity
-            .css('top', '130%') // position vertically at 50%
-            .css('left', '25%') // position horizontally at 50%
-            .fadeTo(500, 1); // fade to an opacity of 1 (100%) over 500 milliseconds
-
-        // create blind and fade in
-        $('#modal')
-            .append('<div id="blind" />') // create a <div> with an id of 'blind'
-            .find('#blind') // select the div we've just created
-            .css('opacity', '0') // set the initial opacity to 0
-            .fadeTo(500, 0.8) // fade in to an opacity of 0.8 (80%) over 500 milliseconds
-            .click(function(e){
-                closeModal(); // close modal if someone clicks anywhere on the blind (outside of the window)
-            });
-
-    $('a.close').click(function(e){
-            // cancel default behaviour
-            e.preventDefault();
-            // call the closeModal function passing this close button's window
-            closeModal();
-    });
-    function closeModal()
-    {
-        // fade out window and then move back to off screen when fade completes
-        activeWindow.fadeOut(250, function(){ $(this).css('top', '-1000px').css('left', '-1000px'); });
-        // fade out blind and then remove it
-        $('#blind').fadeOut(250,    function(){ $(this).remove(); });
-    }
-  // close NewsLetter Subscription Box
-});
 </script>

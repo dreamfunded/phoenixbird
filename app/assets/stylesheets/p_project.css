@@ -1,0 +1,230 @@
+/*===============================
+=            project            =
+===============================*/
+.project {
+  padding-top: 67px;
+  padding-bottom: 66px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 20px;
+  position: relative;
+}
+@media (max-width: 767px) {
+  .project {
+    padding-top: 57px;
+    padding-bottom: 60px;
+  }
+}
+.investTopOverlay{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background-color: rgba(63, 64, 92, 0.8);
+}
+
+.join-waitlist-new{
+  width: 95% !important;
+  background: #fff !important;
+}
+.project h3 {
+  color: #0d0f22;
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 37px;
+  margin-bottom: 21px;
+}
+.project h3:first-child {
+  margin-top: 0;
+}
+.project h3:last-child {
+  margin-bottom: 0;
+}
+.project p + p {
+  margin-top: 20px;
+}
+.project__quote {
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 30px;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 800px;
+}
+.project__quote p{
+  font-weight: 500;
+}
+.quote-person-name{
+  color: #0d0f22;
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 500;
+  font-style: initial;
+}
+.project__block {
+  margin-top: 52px;
+  max-width: 800px;
+  margin-left: auto;
+  text-align: justify;
+  margin-right: auto;
+}
+.project__block + .project__block {
+  margin-top: 55px;
+}
+.project__block__title {
+  margin-bottom: 50px;
+}
+.project__block__title h2 {
+  color: #0d0f22;
+  font-family: "Open Sans";
+  font-size: 32px;
+  font-weight: 300;
+}
+.project__block__img {
+  margin-top: 36px;
+  margin-bottom: 34px;
+}
+.project__block__img img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+.project__block__img:first-child {
+  margin-top: 0;
+}
+.project__block__img:last-child {
+  margin-bottom: 0;
+}
+.project__tags {
+  margin-top: 65px;
+  padding-top: 20px;
+  border-top: 1px solid #f3f3f3;
+  line-height: normal;
+}
+.project__tags .compthumb__tag {
+  margin-bottom: 4px;
+}
+.project__team {
+  margin-top: -29px;
+  margin-bottom: -16px;
+  overflow: hidden;
+  padding-top: 20px;
+}
+@media (max-width: 991px) {
+  .project__team {
+    padding-bottom: 50px;
+  }
+}
+.project__team .slick-list {
+  overflow: visible !important;
+}
+.project__team .row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.project__team .col-md-4 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.project__team .mentor__cnt {
+  padding-top: 101px;
+}
+@media (max-width: 767px) {
+  .project__team .mentor__cnt {
+    height: 340px;
+  }
+}
+.project__team .mentor__pos {
+  margin-top: 21px;
+}
+.project__team .mentor__more {
+  margin-top: 6px;
+}
+@media (max-width: 767px) {
+  .project__team .mentor__cnt__inn {
+    height: 186px;
+  }
+}
+.project__team .mentor {
+  margin-bottom: 20px;
+}
+@media (max-width: 991px) {
+  .project__team .mentor {
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.project__team .slick-dots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -43px;
+  z-index: 20;
+  display: none !important;
+}
+@media (max-width: 991px) {
+  .project__team .slick-dots {
+    display: block !important;
+  }
+}
+.project__team .slick-dots button {
+  display: none;
+}
+.project__team .slick-dots li {
+  display: inline-block;
+  vertical-align: top;
+  width: 6px;
+  height: 6px;
+  background: #9b9ca4;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+.project__team .slick-dots li:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  background: #0d0f22;
+  opacity: 0;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+  -webkit-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+.project__team .slick-dots li.slick-active:before {
+  opacity: 1;
+}
+.project__team .slick-dots li + li {
+  margin-left: 25px;
+}
+.second-quote-image{
+  width: 90px;
+  height: auto;
+  text-align: center;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+/*=====  End of project  ======*/

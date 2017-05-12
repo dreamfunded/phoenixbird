@@ -1,69 +1,27 @@
-<html>
-<head>
-	<% title "DreamFunded | About" %>
-</head>
+<% title "DreamFunded | About" %>
 
-<body><div class= "wrapper">
-	<div class="header">
-		<h1 class="centered">About Us</h1>
-	</div>
-	<div class= "word-content"><div class= "text-content">
-		<!--<% @posts.each do |post|%>
-			<% if current_user != nil && current_user.authority == authority[:Admin] %>
-				<%= button_to "Delete", {:controller => :posts,  :action => 'destroy', :id => post.id }, :method => :delete, class: 'float-rigth' %>
-				<%= link_to 'Edit', "/posts/#{post.id}/edit/about_us", {:class => 'right'} %>
-
-			<% end %>
-			<h2 class= "darkblue centered"><%= post.title%></h2>
-			<br>
-
-			<p class= "faq-answer"><%#= post.content%>
-				<%=nl2br(h(post.content)).html_safe %>
-			</p>
-			<br>
-		<% end %>
-		<% if current_user != nil && current_user.authority == authority[:Admin] %>
-			<h3><%= link_to 'Create New', "/posts/new/about_us", {:class => 'right', :data => { :page => 'faq' }} %></h3>
-		<% end %> -->
-
-		<h2 class= "darkblue centered">Our Story</h2>
-		<p class= "faq-answer">
-		In Late 2013, after founding SF Angels Group in San Francisco, a 32-member angel group in the heart of San Francisco, DreamFunded.com co-founder Manny Fernandez noticed that many investors wanted to co-invest with him and SF Angel Group to gain insider access to the some of the most promising investment opportunities in Silicon Valley. In the restricted world of Venture Capital, relationships are the key to accessing the most sought after companies to invest in. Fernandez believed that everyday Americans should have access to the same investment opportunities as those with insider access.  DreamFunded.com was launched to provide insider access to over 260 million Americans using Equity CrowdFunding.</p>
-
-		<p class= "faq-answer">
-		In May of this year, the SEC implemented Regulation CrowdFunding under Title III of the J.O.B.S Act which allows <a href='/posts/non-accredited-investor'>non-accredited</a> investors to access investment opportunities in private companies alongside <a href='/posts/accredited-investor'>accredited investors</a>.
-		</p><br>
-
-		<h2 class= "darkblue centered">DreamFunded In Short...</h2>
-		<p class= "faq-answer">DreamFunded is a world-class equity crowdfunding platform providing exclusive insider access to some of the most sought after seed- and later-stage private companies in America.
-		</p>
-		<br>
-
-		<h2 class= "darkblue centered">Why Us, Why Now?</h2>
-		<p class= "faq-answer">Implementation of Title III of the JOBS Act, also known as Regulation CrowdFunding has already had a significant impact on the equity crowdfunding landscape. Regulation CrowdFunding has opened up 97% of the U.S. market to investment by ordinary Americans. </p><br>
-
-
-		<h2 class= "darkblue centered">Who We Are:</h2>
-		<p class= "faq-answer">We have a very strong founding team growing DreamFunded into one the premier equity crowdfunding platforms in the new crowdfunding landscape. Our co-founders have extensive backgrounds in angel investing, venture capital and startup curation and our tech team comes from the best companies and universities in the world. We are backed financially by a very helpful group of experienced investors who offer invaluable advisor support and advice. Their experience, combined with DreamFunded's extensive network in Silicon Valley with top VC firms, Angel Groups and Incubators enable DreamFunded to be a leader in this huge, new equity crowdfunding market. </p>
-		<br>
-		<p class= "faq-answer">DreamFunded Co-Founders:</p>
-
-		<p class= "faq-answer"><u>Manny Fernandez</u>, the co-founder and CEO of DreamFunded, is a Silicon Valley angel investor, angel group founder, serial entrepreneur and keynote speaker. He has been successful leading his own ventures as well as advising other startups on their paths to success. Fernandez won the Equity Crowdfunding Leadership Award in 2014 for co-founding DreamFunded. He had previously founded SF Angels Group in San Francisco, and he has been an investor with TiE Angels since 2012. Fernandez was named in Inc. Magazine’s list of the top 33 entrepreneurs to watch in 2016 and was named 2014 SF Angel Investor of the Year. He is the 14th most followed Angel Investor on Twitter, with over 100,000 followers.</p>
-
-
-		<p class= "faq-answer">An international keynote speaker, frequent judge and panelist for startup demo days, Bay Area corporations, colleges and universities, Fernandez has been a featured guest speaker at: NBC, CNBC Squawk Box (twice), South by Southwest (Texas), SLUSH (Finland), Epicenter Festival (Mexico), Stanford University, UC Berkeley, Harvard University, University of San Francisco (USF), PayPal, Yahoo!, Plug and Play, USAWeek in Europe, Intel Global Challenge, California Hispanic Chamber of Commerce’s (CHCC) SharkTank, Startup Grind, AngelHack Global Demo, Startup Weekend and many more.</p><br>
-
-
-
-		<p class= "faq-answer">Please read about the rest of our team in the <a href='/team'>Our Team</a> page.</p><br>
-
-
-		<h2 class= "darkblue centered">How We Are Different:</h2>
-		<p class= "faq-answer">DreamFunded utilizes our extensive network in Silicon Valley to provide insider access to DreamFunded members using Equity CrowdFunding. This allows DreamFunded to choose from a large pool of investment opportunities to ensure that only the most promising opportunities make it to our platform for investment.  Furthermore, we do not charge companies looking to raise money on our platform as many other platforms do.  We believe charging startups turn many brilliant companies off from crowdfunding and reduce the amount of qualified investments on the platform.</p>
-
-		<p class= "faq-answer">While Angel investing is rapidly increasing as a funding alternative for early stage companies, most investors, public and private, do not have the proper network or relationships to access proper investment opportunities. </p>
-
-	</div></div>
+<div class="about">
+  <div class="container">
+    <h1>About Us</h1>
+    <h3>Our Story</h3>
+    <p>In Late 2013, after founding SF Angels Group in San Francisco, a 32-member angel group in the heart of San Francisco, DreamFunded.com co-founder Manny Fernandez noticed that many investors wanted to co-invest with him and SF Angel Group to gain insider access to the some of the most promising investment opportunities in Silicon Valley. In the restricted world of Venture Capital, relationships are the key to accessing the most sought after companies to invest in. Fernandez believed that everyday Americans should have access to the same investment opportunities as those with insider access. DreamFunded.com was launched to provide insider access to over 260 million Americans using Equity CrowdFunding.</p>
+    <p>In May of this year, the SEC implemented Regulation CrowdFunding under Title III of the J.O.B.S Act which allows <a href="/posts/non-accredited-investor">non-accredited</a> investors to access investment opportunities in private companies alongside <a href="/posts/accredited-investor">accredited investors</a>.</p>
+    <h3>DreamFunded In Short...</h3>
+    <p>DreamFunded is a world-class equity crowdfunding platform providing exclusive insider access to some of the most sought after seed- and later-stage private companies in America.</p>
+    <h3>Why Us, Why Now?</h3>
+    <p>Implementation of Title III of the JOBS Act, also known as Regulation CrowdFunding has already had a significant impact on the equity crowdfunding landscape. Regulation CrowdFunding has opened up 97% of the U.S. market to investment by ordinary Americans.</p>
+    <h3>Who We Are:</h3>
+    <p>We have a very strong founding team growing DreamFunded into one the premier equity crowdfunding platforms in the new crowdfunding landscape. Our co-founders have extensive backgrounds in angel investing, venture capital and startup curation and our tech team comes from the best companies and universities in the world. We are backed financially by a very helpful group of experienced investors who offer invaluable advisor support and advice. Their experience, combined with DreamFunded's extensive network in Silicon Valley with top VC firms, Angel Groups and Incubators enable DreamFunded to be a leader in this huge, new equity crowdfunding market.</p>
+    <h3>DreamFunded Co-Founders:</h3>
+    <p>Manny Fernandez, the co-founder and CEO of DreamFunded, is a Silicon Valley angel investor, angel group founder, serial entrepreneur and keynote speaker. He has been successful leading his own ventures as well as advising other startups on their paths to success. Fernandez won the Equity Crowdfunding Leadership Award in 2014 for co-founding DreamFunded. He had previously founded SF Angels Group in San Francisco, and he has been an investor with TiE Angels since 2012. Fernandez was named in Inc. Magazine’s list of the top 33 entrepreneurs to watch in 2016 and was named 2014 SF Angel Investor of the Year. He is the 14th most followed Angel Investor on Twitter, with over 100,000 followers.</p>
+    <p>An international keynote speaker, frequent judge and panelist for startup demo days, Bay Area corporations, colleges and universities, Fernandez has been a featured guest speaker at: NBC, CNBC Squawk Box (twice), South by Southwest (Texas), SLUSH (Finland), Epicenter Festival (Mexico), Stanford University, UC Berkeley, Harvard University, University of San Francisco (USF), PayPal, Yahoo!, Plug and Play, USAWeek in Europe, Intel Global Challenge, California Hispanic Chamber of Commerce’s (CHCC) SharkTank, Startup Grind, AngelHack Global Demo, Startup Weekend and many more.</p>
+    <p>Please read about the rest of our team in the <a href="/team">Our Team</a> page.</p>
+    <h3>How We Are Different:</h3>
+    <p>DreamFunded utilizes our extensive network in Silicon Valley to provide insider access to DreamFunded members using Equity CrowdFunding. This allows DreamFunded to choose from a large pool of investment opportunities to ensure that only the most promising opportunities make it to our platform for investment. Furthermore, we do not charge companies looking to raise money on our platform as many other platforms do. We believe charging startups turn many brilliant companies off from crowdfunding and reduce the amount of qualified investments on the platform.</p>
+    <p>While Angel investing is rapidly increasing as a funding alternative for early stage companies, most investors, public and private, do not have the proper network or relationships to access proper investment opportunities.</p>
+  </div>
 </div>
-</body>
-</html>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

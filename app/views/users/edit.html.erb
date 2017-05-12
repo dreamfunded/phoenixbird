@@ -1,23 +1,51 @@
-<html>
-<head>
-  <title>DreamFunded | Adding a new team member</title>
-</head>
+<%= title "DreamFunded | Profile Edit" %>
 
-<body>
-        <div class= "wrapper"><div class= "box signin-box">
-            <h2 class= "centered"> Add Investment to <%= @user.first_name%> Profile </h2>
-            <%= form_for @user do |f| %>
+<div class="profile __profile">
+  <div class="container clearfix">
+    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">My Profile</a>
+      <div class="profile__sidebar__inn">
+        <div class="profile__sidebar__block">
+          <ul class="reset-list">
+            <li><%= link_to "My Investments", portfolio_path %></li>
+            <li><%= link_to "My Profile", profile_path %></li>
+            <li class="active"><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li><%= link_to "Invite", invite_users_path %></li>
+            <li><%= link_to "Change Password", change_pass_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="profile__content">
+      <div class="myprofile">
+        <div class="myprofile__title">
+          <h2>Edit Profile</h2>
+        </div>
+        <div class="myprofile__edform">
 
-                <label >Select Company </label><br>
-                <%= select_tag 'company_id', options_for_select(Company.all.collect{ |u| [u.name, u.id] }) %><br><br>
+            <%= form_for(@user) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="input-wrap">
+              <%= f.text_field :first_name, placeholder: 'First Name' %>
+            </div>
+            <div class="input-wrap">
+              <%= f.text_field :last_name, placeholder: 'Last Name' %>
+            </div>
+            <div class="input-wrap">
+              <%= f.text_field :email, placeholder: 'Email' %>
+            </div>
+            <div class="input-wrap">
+              <%= f.text_field :phone, placeholder: 'Phone' %>
+            </div>
+            <div class="myprofile__edform__btn">
+              <button type="submit" class="btn btn-blue __sm">Update Profile</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-                <label >Input Investment Amount </label><br>
-                <%= f.text_field(:invested_amount, :placeholder => "Title", :class => "input-box") %><br>
-
-                <div class= "centered">
-                    <%= f.submit("Add", :id => "submit-button") %>
-                </div>
-            <% end %>
-    </div></div>
-</body>
-</html>
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

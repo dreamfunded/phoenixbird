@@ -1,0 +1,148 @@
+/*====================================
+=            how it works            =
+====================================*/
+.howitworks__block {
+  padding-top: 59px;
+  padding-bottom: 95px;
+}
+@media (max-width: 767px) {
+  .howitworks__block {
+    padding-bottom: 65px;
+  }
+}
+.howitworks__block.__white {
+  background: #fff;
+  border-top: 1px solid #f3f3f3;
+  padding-bottom: 96px;
+}
+@media (max-width: 767px) {
+  .howitworks__block.__white {
+    padding-bottom: 66px;
+  }
+}
+.howitworks__cnt .col-sm-4 {
+  position: relative;
+}
+.howitworks__cnt .col-sm-4:last-child .howitworks__it__arr {
+  display: none;
+}
+@media (max-width: 767px) {
+  .howitworks__cnt .col-sm-4 + .col-sm-4 {
+    margin-top: 46px;
+  }
+}
+.howitworks__it__arr {
+  width: 100px;
+  position: absolute;
+  height: 10px;
+  left: 100%;
+  margin-left: -50px;
+  top: 30px;
+}
+@media (max-width: 767px) {
+  .howitworks__it__arr {
+    -webkit-transform: rotate(90deg);
+       -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+         -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+    left: 50%;
+    width: 30px;
+    margin-left: -15px;
+    top: 100%;
+    margin-top: 20px;
+  }
+}
+.howitworks__it__arr:before {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-top: -1px;
+  height: 2px;
+  background: #ededed;
+}
+.howitworks__it__arr:after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #ededed;
+  border-left: 2px solid #ededed;
+  top: 1px;
+  right: 1px;
+  -webkit-transform: rotate(135deg);
+     -moz-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+       -o-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.howitworks__title {
+  text-align: center;
+}
+.howitworks__title h3 {
+  color: #0d0f22;
+  font-size: 32px;
+  font-weight: 300;
+}
+.howitworks__cnt {
+  margin-top: 46px;
+}
+.howitworks__it {
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 767px) {
+  .howitworks__it {
+    max-width: 440px;
+  }
+}
+.howitworks__it__icon {
+  width: 120px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.howitworks__it__title {
+  margin-top: 8px;
+  text-align: center;
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+}
+.howitworks__it__txt {
+  margin-top: 18px;
+  text-align: center;
+  color: #7b7c85;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+}
+/*=====  End of how it works  ======*/

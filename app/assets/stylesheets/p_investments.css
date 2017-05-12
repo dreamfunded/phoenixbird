@@ -1,0 +1,26 @@
+/*===================================
+=            investments            =
+===================================*/
+.investments {
+  padding-top: 70px;
+  padding-bottom: 50px;
+}
+.investments .row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.investments .col-md-4 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.investments .compthumb {
+  margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+  .investments .compthumb {
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/*=====  End of investments  ======*/

@@ -1,98 +1,179 @@
 <%= javascript_include_tag    'signup' %>
 <% title "DreamFunded | Sign Up" %>
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <symbol viewBox="0 0 96.124 96.123" id="fb-icon">
+          <path d="M72.089,0.02L59.624,0C45.62,0,36.57,9.285,36.57,23.656v10.907H24.037c-1.083,0-1.96,0.878-1.96,1.961v15.803   c0,1.083,0.878,1.96,1.96,1.96h12.533v39.876c0,1.083,0.877,1.96,1.96,1.96h16.352c1.083,0,1.96-0.878,1.96-1.96V54.287h14.654   c1.083,0,1.96-0.877,1.96-1.96l0.006-15.803c0-0.52-0.207-1.018-0.574-1.386c-0.367-0.368-0.867-0.575-1.387-0.575H56.842v-9.246   c0-4.444,1.059-6.7,6.848-6.7l8.397-0.003c1.082,0,1.959-0.878,1.959-1.96V1.98C74.046,0.899,73.17,0.022,72.089,0.02z"></path>
+        </symbol>
+        <symbol viewBox="0 0 612 612" id="tw-icon">
+          <path d="M612,116.258c-22.525,9.981-46.694,16.75-72.088,19.772c25.929-15.527,45.777-40.155,55.184-69.411    c-24.322,14.379-51.169,24.82-79.775,30.48c-22.907-24.437-55.49-39.658-91.63-39.658c-69.334,0-125.551,56.217-125.551,125.513    c0,9.828,1.109,19.427,3.251,28.606C197.065,206.32,104.556,156.337,42.641,80.386c-10.823,18.51-16.98,40.078-16.98,63.101    c0,43.559,22.181,81.993,55.835,104.479c-20.575-0.688-39.926-6.348-56.867-15.756v1.568c0,60.806,43.291,111.554,100.693,123.104    c-10.517,2.83-21.607,4.398-33.08,4.398c-8.107,0-15.947-0.803-23.634-2.333c15.985,49.907,62.336,86.199,117.253,87.194    c-42.947,33.654-97.099,53.655-155.916,53.655c-10.134,0-20.116-0.612-29.944-1.721c55.567,35.681,121.536,56.485,192.438,56.485    c230.948,0,357.188-191.291,357.188-357.188l-0.421-16.253C573.872,163.526,595.211,141.422,612,116.258z"></path>
+        </symbol>
+        <symbol viewBox="0 0 430.117 430.117" id="lin-icon">
+          <path d="M430.117,261.543V420.56h-92.188V272.193c0-37.271-13.334-62.707-46.703-62.707   c-25.473,0-40.632,17.142-47.301,33.724c-2.432,5.928-3.058,14.179-3.058,22.477V420.56h-92.219c0,0,1.242-251.285,0-277.32h92.21   v39.309c-0.187,0.294-0.43,0.611-0.606,0.896h0.606v-0.896c12.251-18.869,34.13-45.824,83.102-45.824   C384.633,136.724,430.117,176.361,430.117,261.543z M52.183,9.558C20.635,9.558,0,30.251,0,57.463   c0,26.619,20.038,47.94,50.959,47.94h0.616c32.159,0,52.159-21.317,52.159-47.94C103.128,30.251,83.734,9.558,52.183,9.558z    M5.477,420.56h92.184v-277.32H5.477V420.56z"></path>
+        </symbol>
+        <symbol viewBox="0 0 604.35 604.35" id="gp-icon">
+          <path d="M516.375,255v-76.5h-51V255h-76.5v51h76.5v76.5h51V306h76.5v-51H516.375z M320.025,341.7l-28.051-20.4    c-10.2-7.649-20.399-17.85-20.399-35.7s12.75-33.15,25.5-40.8c33.15-25.5,66.3-53.55,66.3-109.65c0-53.55-33.15-84.15-51-99.45    h43.35l30.6-35.7h-158.1c-112.2,0-168.3,71.4-168.3,147.9c0,58.65,45.9,122.4,127.5,122.4h20.4c-2.55,7.65-10.2,20.4-10.2,33.15    c0,25.5,10.2,35.7,22.95,51c-35.7,2.55-102,10.2-150.45,40.8c-45.9,28.05-58.65,66.3-58.65,94.35    c0,58.65,53.55,114.75,168.3,114.75c137.7,0,204.001-76.5,204.001-150.449C383.775,400.35,355.725,372.3,320.025,341.7z     M126.225,109.65c0-56.1,33.15-81.6,68.85-81.6c66.3,0,102,89.25,102,140.25c0,66.3-53.55,79.05-73.95,79.05    C159.375,247.35,126.225,168.3,126.225,109.65z M218.024,568.65c-84.15,0-137.7-38.25-137.7-94.351c0-56.1,51-73.95,66.3-81.6    c33.15-10.2,76.5-12.75,84.15-12.75s12.75,0,17.85,0c61.2,43.35,86.7,61.2,86.7,102C335.324,530.4,286.875,568.65,218.024,568.65z"></path>
+        </symbol>
+        <symbol viewBox="0 0 31.403 31.404" id="wechat-icon">
+          <path d="M31.403,21.306c0-4.597-4.388-8.32-9.8-8.32c-5.414,0-9.802,3.725-9.802,8.32c0,4.597,4.388,8.322,9.802,8.322    c1.701,0,3.302-0.369,4.697-1.019l3.863,1.671l-0.447-4.309C30.782,24.642,31.403,23.034,31.403,21.306z M18.301,19.052    c-0.771,0-1.395-0.625-1.395-1.395s0.623-1.395,1.395-1.395c0.77,0,1.393,0.625,1.393,1.395S19.069,19.052,18.301,19.052z     M24.905,19.052c-0.769,0-1.394-0.625-1.394-1.395s0.625-1.395,1.394-1.395c0.771,0,1.396,0.625,1.396,1.395    S25.676,19.052,24.905,19.052z"></path>
+          <path d="M21.604,11.885c1.515,0,2.957,0.27,4.271,0.755c0.009-0.175,0.03-0.345,0.03-0.521c0-6.074-5.801-10.996-12.953-10.996    C5.799,1.123,0,6.044,0,12.119c0,2.284,0.822,4.408,2.229,6.167L1.638,23.98l5.104-2.213c1.264,0.59,2.661,0.986,4.136,1.189    c-0.111-0.538-0.179-1.087-0.179-1.65C10.7,16.111,15.591,11.885,21.604,11.885z M17.317,5.457c1.017,0,1.84,0.824,1.84,1.84    c0,1.018-0.823,1.842-1.84,1.842c-1.019,0-1.841-0.824-1.841-1.842C15.476,6.281,16.301,5.457,17.317,5.457z M8.586,9.139    c-1.017,0-1.84-0.824-1.84-1.842c0-1.016,0.823-1.84,1.84-1.84c1.018,0,1.841,0.824,1.841,1.84    C10.427,8.313,9.603,9.139,8.586,9.139z"></path>
+        </symbol>
+        <symbol viewBox="0 0 90 90" id="whatsapp-icon">
+          <path d="M90,43.841c0,24.213-19.779,43.841-44.182,43.841c-7.747,0-15.025-1.98-21.357-5.455L0,90l7.975-23.522   c-4.023-6.606-6.34-14.354-6.34-22.637C1.635,19.628,21.416,0,45.818,0C70.223,0,90,19.628,90,43.841z M45.818,6.982   c-20.484,0-37.146,16.535-37.146,36.859c0,8.065,2.629,15.534,7.076,21.61L11.107,79.14l14.275-4.537   c5.865,3.851,12.891,6.097,20.437,6.097c20.481,0,37.146-16.533,37.146-36.857S66.301,6.982,45.818,6.982z M68.129,53.938   c-0.273-0.447-0.994-0.717-2.076-1.254c-1.084-0.537-6.41-3.138-7.4-3.495c-0.993-0.358-1.717-0.538-2.438,0.537   c-0.721,1.076-2.797,3.495-3.43,4.212c-0.632,0.719-1.263,0.809-2.347,0.271c-1.082-0.537-4.571-1.673-8.708-5.333   c-3.219-2.848-5.393-6.364-6.025-7.441c-0.631-1.075-0.066-1.656,0.475-2.191c0.488-0.482,1.084-1.255,1.625-1.882   c0.543-0.628,0.723-1.075,1.082-1.793c0.363-0.717,0.182-1.344-0.09-1.883c-0.27-0.537-2.438-5.825-3.34-7.977   c-0.902-2.15-1.803-1.792-2.436-1.792c-0.631,0-1.354-0.09-2.076-0.09c-0.722,0-1.896,0.269-2.889,1.344   c-0.992,1.076-3.789,3.676-3.789,8.963c0,5.288,3.879,10.397,4.422,11.113c0.541,0.716,7.49,11.92,18.5,16.223   C58.2,65.771,58.2,64.336,60.186,64.156c1.984-0.179,6.406-2.599,7.312-5.107C68.398,56.537,68.398,54.386,68.129,53.938z"></path>
+        </symbol>
+        <symbol viewBox="0 0 477 477" id="location-icon">
+          <path d="M238.4,0C133,0,47.2,85.8,47.2,191.2c0,12,1.1,24.1,3.4,35.9c0.1,0.7,0.5,2.8,1.3,6.4c2.9,12.9,7.2,25.6,12.8,37.7    c20.6,48.5,65.9,123,165.3,202.8c2.5,2,5.5,3,8.5,3s6-1,8.5-3c99.3-79.8,144.7-154.3,165.3-202.8c5.6-12.1,9.9-24.7,12.8-37.7    c0.8-3.6,1.2-5.7,1.3-6.4c2.2-11.8,3.4-23.9,3.4-35.9C429.6,85.8,343.8,0,238.4,0z M399.6,222.4c0,0.2-0.1,0.4-0.1,0.6    c-0.1,0.5-0.4,2-0.9,4.3c0,0.1,0,0.1,0,0.2c-2.5,11.2-6.2,22.1-11.1,32.6c-0.1,0.1-0.1,0.3-0.2,0.4    c-18.7,44.3-59.7,111.9-148.9,185.6c-89.2-73.7-130.2-141.3-148.9-185.6c-0.1-0.1-0.1-0.3-0.2-0.4c-4.8-10.4-8.5-21.4-11.1-32.6    c0-0.1,0-0.1,0-0.2c-0.6-2.3-0.8-3.8-0.9-4.3c0-0.2-0.1-0.4-0.1-0.7c-2-10.3-3-20.7-3-31.2c0-90.5,73.7-164.2,164.2-164.2    s164.2,73.7,164.2,164.2C402.6,201.7,401.6,212.2,399.6,222.4z"></path>
+        </symbol>
+        <symbol viewBox="0 0 512 512" id="invmail-icon">
+          <path d="M511.609,197.601c-0.001-0.77-0.173-1.933-0.472-2.603c-0.787-2.854-2.536-5.461-5.154-7.281l-73.292-50.948V82.153    c0-7.24-5.872-13.112-13.112-13.112H335.26l-71.743-49.878c-4.484-3.121-10.437-3.134-14.935-0.026l-72.206,49.904H92.426    c-7.242,0-13.112,5.872-13.112,13.112v53.973L5.666,187.027c-3.623,2.504-5.583,6.507-5.645,10.6    C0.017,197.704,0,197.777,0,197.857l0.391,284.235c0.005,3.477,1.391,6.81,3.852,9.266c2.458,2.451,5.788,3.827,9.26,3.827    c0.007,0,0.012,0,0.018,0l485.385-0.667c7.24-0.01,13.104-5.889,13.094-13.13L511.609,197.601z M432.69,168.708l41.898,29.118    l-41.898,29.128V168.708z M256.015,45.884l33.31,23.156h-66.812L256.015,45.884z M105.538,95.265h300.928v149.921L305.43,315.428    l-41.194-31.954c-0.064-0.05-0.119-0.081-0.181-0.126c-4.604-3.454-11.116-3.581-15.894,0.126l-41.493,32.185l-101.13-69.893    V95.265z M79.314,168.003v59.64l-43.146-29.819L79.314,168.003z M26.258,222.867l158.669,109.655L26.578,455.346L26.258,222.867z     M51.875,468.909l204.324-158.484l203.591,157.923L51.875,468.909z M327.144,332.271l158.276-110.036l0.32,233.059    L327.144,332.271z"></path>
+          <path d="M344.77,147.713H167.234c-7.24,0-13.112,5.872-13.112,13.112s5.872,13.112,13.112,13.112H344.77    c7.242,0,13.112-5.872,13.112-13.112S352.012,147.713,344.77,147.713z"></path>
+          <path d="M344.77,215.895H167.234c-7.24,0-13.112,5.872-13.112,13.112c0,7.24,5.872,13.112,13.112,13.112H344.77    c7.242,0,13.112-5.872,13.112-13.112C357.882,221.767,352.012,215.895,344.77,215.895z"></path>
+        </symbol>
+        <symbol viewBox="0 0 481.6 481.6" id="share-icon">
+          <path d="M381.6,309.4c-27.7,0-52.4,13.2-68.2,33.6l-132.3-73.9c3.1-8.9,4.8-18.5,4.8-28.4c0-10-1.7-19.5-4.9-28.5l132.2-73.8   c15.7,20.5,40.5,33.8,68.3,33.8c47.4,0,86.1-38.6,86.1-86.1S429,0,381.5,0s-86.1,38.6-86.1,86.1c0,10,1.7,19.6,4.9,28.5   l-132.1,73.8c-15.7-20.6-40.5-33.8-68.3-33.8c-47.4,0-86.1,38.6-86.1,86.1s38.7,86.1,86.2,86.1c27.8,0,52.6-13.3,68.4-33.9   l132.2,73.9c-3.2,9-5,18.7-5,28.7c0,47.4,38.6,86.1,86.1,86.1s86.1-38.6,86.1-86.1S429.1,309.4,381.6,309.4z M381.6,27.1   c32.6,0,59.1,26.5,59.1,59.1s-26.5,59.1-59.1,59.1s-59.1-26.5-59.1-59.1S349.1,27.1,381.6,27.1z M100,299.8   c-32.6,0-59.1-26.5-59.1-59.1s26.5-59.1,59.1-59.1s59.1,26.5,59.1,59.1S132.5,299.8,100,299.8z M381.6,454.5   c-32.6,0-59.1-26.5-59.1-59.1c0-32.6,26.5-59.1,59.1-59.1s59.1,26.5,59.1,59.1C440.7,428,414.2,454.5,381.6,454.5z"></path>
+        </symbol>
+        <symbol viewBox="0 0 491.213 491.213" id="upload-icon">
+          <polygon points="315.607,146.213 315.607,176.213 458.107,176.213 458.107,461.213 33.107,461.213 33.107,176.213 175.607,176.213    175.607,146.213 3.107,146.213 3.107,491.213 488.107,491.213 488.107,146.213  "></polygon>
+          <polygon points="230.607,57.427 230.607,318.713 260.607,318.713 260.607,57.427 295,91.82 316.213,70.607 245.607,0 175,70.607    196.213,91.82  "></polygon>
+        </symbol>
+        <symbol viewBox="0 0 128 128" id="userplus-icon">
+          <path d="M8.785,119.203c-0.496-0.504-0.775-1.199-0.766-1.906c0.021-1.344,0.391-13.309,6.703-19.625    c2.912-2.914,9.012-6.07,17.983-10.561c9.574-4.785,14.883-7.639,17.33-9.953l5.395-5.102l-4.688-5.76    c-7.383-9.072-11.619-19.09-11.619-27.482c0-6.473,0-13.809,3.063-19.877C45.852,11.68,53.192,8,64.008,8    c10.814,0,18.158,3.68,21.82,10.936c3.063,6.07,3.063,13.406,3.063,19.879c0,8.391-4.234,18.408-11.621,27.482l-4.688,5.762    l5.398,5.104c1.223,1.154,3.164,2.447,5.998,4.049V72h0.324c-0.318-0.232-0.627-0.461-0.828-0.652    c8.489-10.434,13.413-22.217,13.413-32.533c0-7,0-15.713-3.918-23.482C89.438,8.338,81.549,0,64.008,0    C46.467,0,38.577,8.338,35.047,15.332c-3.922,7.77-3.922,16.48-3.922,23.482c0,10.318,4.924,22.1,13.414,32.533    c-2.027,1.918-10.387,6.098-15.41,8.607c-9.963,4.984-16.284,8.279-20.063,12.061c-8.369,8.371-9.002,22.422-9.043,25.156    c-0.045,2.852,1.057,5.609,3.063,7.648c2.004,2.031,4.742,3.18,7.598,3.18h73.295v-8H10.684    C9.975,120,9.281,119.711,8.785,119.203z M115.978,88h-4v-4c0-6.617-5.383-12-12-12s-11.999,5.383-11.999,12v4h-4    c-6.617,0-12,5.383-12,12s5.383,12,12,12h4v4c0,6.617,5.382,12,11.999,12s12-5.383,12-12v-4h4c6.617,0,12-5.383,12-12    S122.595,88,115.978,88z M115.978,104h-12v12c0,2.211-1.789,4-4,4s-4-1.789-4-4v-12H83.979c-2.211,0-4-1.789-4-4s1.789-4,4-4    h11.999V84c0-2.211,1.789-4,4-4s4,1.789,4,4v12h12c2.211,0,4,1.789,4,4S118.188,104,115.978,104z"></path>
+        </symbol>
+        <symbol viewBox="0 0 41.999 41.999" id="play-icon">
+          <path d="M36.068,20.176l-29-20C6.761-0.035,6.363-0.057,6.035,0.114C5.706,0.287,5.5,0.627,5.5,0.999v40  c0,0.372,0.206,0.713,0.535,0.886c0.146,0.076,0.306,0.114,0.465,0.114c0.199,0,0.397-0.06,0.568-0.177l29-20  c0.271-0.187,0.432-0.494,0.432-0.823S36.338,20.363,36.068,20.176z M7.5,39.095V2.904l26.239,18.096L7.5,39.095z"></path>
+        </symbol>
+        <symbol viewBox="0 0 471.2 471.2" id="logout-icon">
+          <path d="M227.619,444.2h-122.9c-33.4,0-60.5-27.2-60.5-60.5V87.5c0-33.4,27.2-60.5,60.5-60.5h124.9c7.5,0,13.5-6,13.5-13.5    s-6-13.5-13.5-13.5h-124.9c-48.3,0-87.5,39.3-87.5,87.5v296.2c0,48.3,39.3,87.5,87.5,87.5h122.9c7.5,0,13.5-6,13.5-13.5    S235.019,444.2,227.619,444.2z"></path>
+          <path d="M450.019,226.1l-85.8-85.8c-5.3-5.3-13.8-5.3-19.1,0c-5.3,5.3-5.3,13.8,0,19.1l62.8,62.8h-273.9c-7.5,0-13.5,6-13.5,13.5    s6,13.5,13.5,13.5h273.9l-62.8,62.8c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8    C455.319,239.9,455.319,231.3,450.019,226.1z"></path>
+        </symbol>
+      </defs>
+    </svg>
 
-   <div class= "wrapper"><div class= "signup-size box">
-      <div class="row">
-        <div class="tab right-line darkblue nodec">
-          <h2 class= "no-margin centered"><a href="/users/sign_in" id="login-form-link">Login</a></h2>
-        </div>
-        <div class="tab darkblue active">
-          <h2 class= "no-margin centered"><a href="/users/sign_up" id="register-form-link">Sign Up</a></h2>
-        </div>
-      </div>
 
-      <div class= "signup-content">
-        <div class = "notice centered">
-          <%= flash[:signup_errors] if flash[:signup_errors] %>
-          <%= @error_message %>
-        </div>
-        <h4>Basic Information</h4>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <div class = "notice centered">
-            <%= devise_error_messages! %>
-            <%= flash[:notice]  %>
-            <%= flash[:alert] %>
+
+
+
+  <div class="auth">
+    <div class="container">
+      <div class="auth__cnt">
+        <div class="auth__top">
+          <div class="auth__top__inn clearfix">
+            <%= link_to "Login", new_user_session_path, class: "auth__top__link " %><span></span>
+            <%= link_to "Sign Up", new_user_registration_path, class: "auth__top__link active" %><span></span>
           </div>
-
-           <%= invisible_captcha %>
-           <%= f.text_field(:first_name, :placeholder => "First Name", :class => "form-field form-field-half") %>
-
-           <%= f.text_field(:last_name, :placeholder => "Last Name", :class => "form-field form-field-half") %><br>
-           <%= f.text_field(:phone, :placeholder => "Phone", :class => "form-field form-field-half") %><br>
-
-          <h4>Login Information</h4>
-           <%= f.text_field(:email, :placeholder => "Email", :class => "form-field  email-signup") %>
-           <%= f.password_field(:password, :placeholder => "Password ", :class => "form-field form-field-half little-margin", required: true, pattern: ".{6,}") %>
-           <%= f.password_field(:password_confirmation, :placeholder => "Confirm Password", required: true, pattern: ".{6,}", :class => "form-field form-field-half  little-margin") %>
-           <span class='password-six-chars'>Password must be at least 6 characters</span>
-           <br><br>
-
-           <div class = "check_box hide-on-mobile">
-             <div class="checbox-block">
-              <input type="checkbox" name="net_worth" id="box1" required>
-              <label class="checkbox-label" for='box1'> I have read the important notice and consent to the Site’s use of <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %>.</label>
-            </div><br>
-
-             <div>
-                <input type="checkbox" name="income" id="box3" required>
-                <label for='box3' class="checkbox-label"> I acknowledge that I have reviewed and understand the <%= link_to 'Educational Materials', asset_path("investor-guide.pdf"), target: '_blank' %> and understand the risks involved in the offerings on the Site.</label>
-              </div><br>
-
-             <div>
-              <input type="checkbox" name="investor" id="box4" required>
-              <label for='box4' class="checkbox-label"> I have read and signed the
-                <%= link_to 'Compensation Disclosure', asset_path("compensation.pdf"), target: '_blank' %>.</label>
+        </div>
+        <div class="auth__form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="singup__top">
+              <div class="singup__top__block">
+                <div class = "notice centered">
+                  <%= devise_error_messages! %>
+                  <%= flash[:notice]  %>
+                  <%= flash[:alert] %>
+                </div>
+                <div class="singup__top__title"><span>Basic Information</span></div>
+                <div class="input-row row">
+                  <div class="col-xs-6">
+                    <div class="input-wrap">
+                      <%= f.text_field(:first_name, :placeholder => "First Name") %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="input-wrap">
+                      <%= f.text_field(:last_name, :placeholder => "Last Name") %>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-row row">
+                  <div class="col-sm-6">
+                    <div class="input-wrap">
+                      <%= f.text_field(:phone, :placeholder => "Phone") %>
+                    </div>
+                  </div>
+                </div>
               </div>
-          </div><br>
-
-
-
-           <div class= "centered">
-           <p class='check_box hide-on-mobile'>By signing up you agree with our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %> & <%= link_to 'Privacy Policy', asset_path("DreamFunded_PrivacyPolicy.pdf"), target: '_blank' %></p>
-
-              <%= f.submit("Sign Up", :id => "submit-button" ) %>
-
-              <div class='social-media-line'>
-                <span></span>
-                <h4>OR</h4>
-                <span></span>
+              <div class="singup__top__block">
+                <div class="singup__top__title"><span>Login Information</span></div>
+                <div class="input-wrap">
+                  <%= f.text_field(:email, :placeholder => "Email") %>
+                </div>
+                <div class="input-row row">
+                  <div class="col-xs-6">
+                    <div class="input-wrap">
+                      <%= f.password_field(:password, :placeholder => "Password ", required: true, pattern: ".{6,}") %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="input-wrap">
+                      <%= f.password_field(:password_confirmation, :placeholder => "Confirm Password", required: true, pattern: ".{6,}") %>
+                    </div>
+                  </div>
+                </div>
+                <div class="singup__passdesc"><span>Password must be at least 6 characters</span></div>
               </div>
-              <div class='social-login-ions'>
-                <%= link_to '/auth/google_oauth2', class: 'google-link' do %>
-                  <span>Google</span>
-                <%end%>
-                <%= link_to '/auth/linkedin', class: 'linkedin-link' do %>
-                  <span>LinkedIn</span>
-                <%end%>
-                <%= link_to  '/auth/facebook', class: 'facebook-link'  do %>
-                  <span>Facebook</span>
-                <%end%>
+            </div>
+            <div class="singup__checks">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="hidden-input" id="box1" required><span class="checkbox__icon"></span>
+                </label>
+                <div class="checkbox__txt">
+                  <p>I have read the important notice and consent to the Site’s use of <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %>.</p>
+                </div>
               </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="hidden-input" id="box3" required><span class="checkbox__icon"></span>
+                </label>
+                <div class="checkbox__txt">
+                  <p>I acknowledge that I have reviewed and understand the <%= link_to 'Educational Materials', asset_path("investor-guide.pdf"), target: '_blank' %> and understand the risks involved in the offerings on the Site.</p>
+                </div>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="hidden-input" id="box4" required><span class="checkbox__icon"></span>
+                </label>
+                <div class="checkbox__txt">
+                  <p>I have read and signed the <%= link_to 'Compensation Disclosure', asset_path("compensation.pdf"), target: '_blank' %>.</p>
+                </div>
+              </div>
+            </div>
+            <div class="singup__terms"><span>By signing up you agree with our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %> & <%= link_to 'Privacy Policy', asset_path("DreamFunded_PrivacyPolicy.pdf"), target: '_blank' %></span></div>
+            <div class="auth__form__btn">
+              <div class="auth__form__btn__inn">
+                <%= f.submit("Sign Up", :class => "btn btn-blue" ) %>
+              </div>
+            </div>
+            <div class="login__or"><span>or</span></div>
+            <div class="login__soc">
+              <div class="login__soc__inn clearfix">
 
-           </div>
-           <p class='check_box hide-on-desktop'>By signing up you agree with our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %>,  <%= link_to 'Privacy Policy', asset_path("DreamFunded_PrivacyPolicy.pdf"), target: '_blank' %>,  <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %> & <%= link_to 'Educational Materials', asset_path("investor-guide.pdf"), target: '_blank' %> </p>
-        <% end %>
+                <%= link_to '/auth/google_oauth2', class: '__gp' do %>
+                  <svg class="svg-icon gp-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#gp-icon"></use>
+                  </svg>
+                <% end %>
+
+                <%= link_to '/auth/linkedin', class: '__in' do %>
+                  <svg class="svg-icon lin-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lin-icon"></use>
+                  </svg>
+                <% end %>
+
+                  <%= link_to  '/auth/facebook', class: '__fb'  do %>
+                  <svg class="svg-icon fb-icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fb-icon"></use>
+                  </svg>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-      </div>
+    </div>
   </div>
-<script type="text/javascript">
-  $(document).ready(function(){
-      if (window.matchMedia('(max-width: 981px)').matches) {
-        $("#box1").removeAttr('required');
-        $("#box3").removeAttr('required');
-        $("#box4").removeAttr('required');
-      }
-  })
-</script>
 
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

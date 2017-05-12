@@ -70,3 +70,97 @@
   </div>
 </div>
 
+++++++++++++++++++++++
+
+<div class="stepTop">
+  <div class="container">
+    <div class="stepTop__title">
+      <h2>Invite Friends</h2>
+    </div>
+    <div class="stepTop__steps">
+      <div class="stepTop__steps__inn clearfix">
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Step 1</span></div>
+        </div>
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Step 2</span></div>
+        </div>
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Step 3</span></div>
+        </div>
+        <div class="stepTop__steps__it active">
+          <div class="stepTop__steps__it__txt"><span>Step 4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="step">
+  <div class="container">
+    <div class="step__inn">
+
+      <div class="step__subtitle"><span>Follow these steps to import contacts from LinkedIn.</span></div>
+      <div class="step2 ">
+
+          <div class="step__btn">
+            <div class="step__btn__inn">
+              <span class='linked-steps-size'>1. Download your contacts from LinkedIn</span>
+              <%= button_to 'https://www.linkedin.com/people/export-settings', method: 'get',class: 'btn btn-blue invite-btn', form: {target: '_blank'} do %>
+                Download
+              <% end %>
+            </div>
+          </div>
+
+          <div class="step__btn">
+            <div class="step__btn__inn">
+              <span class='centered linked-steps-size'>2. Upload CSV File</span><br><br>
+              <%= form_for(CsvFile.new, url: { action: "upload_csv"}, method: "post", html: { multipart: true } ) do |f| %>
+                <%= hidden_field_tag :company_id, @company.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+
+                <div class="step2__image clearfix">
+                  <div class="step2__image__left"><span>CSV File</span></div>
+
+                  <div class="step2__image__right">
+                    <div class="input-wrap">
+                      <div data-title="Choose" class="file-input __simple">
+                        <label>
+                          <%= f.file_field :file, class: 'hidden-input' %><span class="file-input__txt">Choose</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step__btn">
+                  <div class="step__btn__inn">
+                    <button type="submit" class="btn btn-blue">Upload</button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+
+          <%= link_to "Skip for now", company_path(@company.slug), class: 'skip_link right' %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $('.file-input input[type="file"]').on('change', function () {
+    var th = $(this),
+      par = th.closest('.file-input'),
+      txt = par.find('.file-input__txt'),
+      title = par.attr('data-title'),
+      file =th.val().replace("C:\\fakepath\\", "");
+    if (file.length > 0) {
+      txt.text(file);
+    } else {
+      txt.text(title);
+    }
+  })
+</script>

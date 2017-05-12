@@ -1,0 +1,48 @@
+/*=============================
+=            about            =
+=============================*/
+.about {
+  padding-top: 159px;
+  padding-bottom: 87px;
+  color: #7b7c85;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 20px;
+}
+@media (max-width: 767px) {
+  .about {
+    padding-bottom: 66px;
+  }
+}
+.about a {
+  color: #62c6d5 !important;
+  border-bottom: 1px solid rgba(98, 198, 213, 0.2);
+  -webkit-transition: color 0.3s ease, border 0.3s ease;
+  -o-transition: color 0.3s ease, border 0.3s ease;
+  -moz-transition: color 0.3s ease, border 0.3s ease;
+  transition: color 0.3s ease, border 0.3s ease;
+}
+.about a:hover {
+  color: #51b5c4 !important;
+  border-bottom: 1px solid #51b5c4;
+}
+.about h1 {
+  color: #0d0f22;
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 47px;
+}
+.about h3 {
+  color: #0d0f22;
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 37px;
+  margin-bottom: 21px;
+}
+.about h3:first-child {
+  margin-top: 0;
+}
+.about p + p {
+  margin-top: 20px;
+}
+/*=====  End of about  ======*/

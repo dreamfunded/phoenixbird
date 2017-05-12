@@ -1,151 +1,82 @@
-<% title "DreamFunded | Invest" %>
-<div class= "wrapper">
+<% title "DreamFunded | Campaign Details" %>
 
-  <div class="header education-center">
-    <div class='education-title'>Edit My Campaign</div>
-    <section class='campaign-links'>
-      <a href="/basics/<%= @campaign.id %>" class='education-links '>Basics</a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links active-link'>Description</a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links disabled-link'> Legal Info </a> <%= fa_icon "chevron-right"%>
-      <a href="#" class='education-links disabled-link'> Invite </a>
-    </section>
-
-    <section class='progress-bar'>
-      <div class="progress animate">
-        <span style="width: 50%"><span></span></span>
-      </div>
-    </section>
-
-  </div>
-
-  <div class= "campaign-box  get-funded ">
-
-  <div class="row">
-    <div class=" active">
-      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Campaign Details</a></h2>
-      <br>
-      <h3 class= "darkblue no-margin centered">Share your story, build a community.</h3>
+<div class="stepTop">
+  <div class="container">
+    <div class="stepTop__title">
+      <h2>Campaign Details</h2>
     </div>
-  </div>
-
-  <div class='disclaimer-box'>
-    <div class='disclaimer-container'>
-      <i class="fa fa-times close-disclaimer" id='close-subcribtion' ></i>
-      <span class='disclaimer-text'>ALL information in this step will be made publicly available</span>
-    </div>
-  </div>
-
-  <div class='disclaimer-box'>
-    <div class='disclaimer-container'>
-      <i class="fa fa-times close-disclaimer" id='close-subcribtion' ></i>
-      <span class='disclaimer-text'>Use full Youtube URL</span><br>
-      <%= image_tag("static/youtube_url.png")%>
-    </div>
-  </div>
-
-  <div class= "login-container">
-    <%= form_for @campaign, :url => {:action => "company_description_submit"} do |f| %>
-      <%= hidden_field_tag :company_id, @company.id %>
-      <%= hidden_field_tag :campaign_id, @campaign.id %>
-      <label>Video Link</label>
-      <%= text_field_tag :video_link,@company.video_link,  placeholder: 'Select Youtube Video (optional)',:class => "form-field" %>
-      <br>
-
-      <label>Elevator Pitch</label>
-      <div class='disclaimer-box'>
-        <div class='disclaimer-container'>
-          <i class="fa fa-times close-disclaimer" id='close-subcribtion' ></i>
-          <span class='disclaimer-text'>An elevator pitch can be said in 30 seconds What makes your company exceptional? Why should the crowd invest in your company? All information and claims presented must be accurate and backed by fact.</span>
+    <div class="stepTop__steps">
+      <div class="stepTop__steps__inn clearfix">
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Step 1</span></div>
+        </div>
+        <div class="stepTop__steps__it active">
+          <div class="stepTop__steps__it__txt"><span>Step 2</span></div>
+        </div>
+        <div class="stepTop__steps__it ">
+          <div class="stepTop__steps__it__txt"><span>Step 3</span></div>
+        </div>
+        <div class="stepTop__steps__it">
+          <div class="stepTop__steps__it__txt"><span>Step 4</span></div>
         </div>
       </div>
-
-      <%= f.text_area :elevator_pitch, placeholder: 'Write Elevator Pitch. What makes your company exceptional? Why should the crowd invest in your company?  ', class: 'ckeditor userbox campaign_text_area_width', rows: 6, required:true %>
-
-      <br>
-      <%#= f.text_field :tags,  placeholder: 'Tags (optional)',:class => "form-field" %>
-      <br>
-
-      <label>About Your Company</label>
-      <div class='disclaimer-box'>
-        <div class='disclaimer-container'>
-          <i class="fa fa-times close-disclaimer" id='close-subcribtion' ></i>
-          <span class='disclaimer-text'>Be creative with this section. You have the ability to add videos and images to make your message stand out. A well designed description of your company will set you apart. Your presentation must be factual and accurate.</span>
-        </div>
-      </div>
-      <%= f.text_area :about_campaign, placeholder: 'About Your Campaign', class: 'ckeditor userbox campaign_text_area_width', rows: 6, required:true %>
-      <br>
-
-      <%= f.text_field :employees_numer, placeholder: 'Number of Current Employees', :class => "form-field required-field" %>
-
-
-      <div class = "notice centered">
-        <%= flash[:errors] if flash[:errors] %>
-      </div>
-
-      <div class= "centered">
-        <%= submit_tag("Continue", :id => "submit-button") %>
-      </div>
-    <% end %>
+    </div>
   </div>
-
 </div>
-
-<script type="text/javascript">
-  $('.close-disclaimer').click(function(){
-      $(this).parent().hide()
-  })
-  // F O R M   V A L I D A T I O N
-  $(document).ready(function() {
-
-      $(".required-field").each(function(){
-          if( $(this).val() ){
-              $(this).removeClass("invalid").addClass("valid");
-          }
-          else{$(this).removeClass("valid").addClass("invalid");}
-          console.log("check")
-      })
-
-      $(".required-field").on("input", function(){
-          var input= $( this );
-          var is_name=input.val();
-          if(is_name){input.removeClass("invalid").addClass("valid");}
-          else{input.removeClass("valid").addClass("invalid");}
-      });
-
-
-      $(".edit_campaign").submit(function(e){
-          var form_data= $(".required-field");
-          var error_free=true;
-
-          form_data.each(function(){
-              valid = $(this).hasClass("valid");
-              var error_element= $(this);
-              console.log(error_element);
-              if (!valid){error_element.addClass("error_show"); error_free=false;}
-              else{error_element.removeClass("error_show");}
-          })
-
-
-          if (!error_free){
-              e.preventDefault();
-          }
-
-     })
-      // if ($('textarea').length > 0) {
-      //   var data = $('.ckeditor');
-      //   $.each(data, function(i) {
-      //       CKEDITOR.replace(data[i].id);
-      //   });
-      // }
-
-      $(".progress > span").each(function() {
-        $(this)
-          .data("origWidth", $(this).width())
-          .width(0)
-          .animate({
-            width: $(this).data("origWidth") // or + "%" if fluid
-          }, 1200);
-      });
-
-  });
-</script>
+    <div class="step">
+      <div class="container">
+        <div class="step__inn">
+          <!-- <div class="step__title">
+            <h3>Campaign Details</h3>
+          </div> -->
+          <!-- <div class="step__subtitle"><span>Share your story, build a community</span></div> -->
+          <div class="step2">
+            <%= form_for @campaign, :url => {:action => "company_description_submit"} do |f| %>
+              <%= hidden_field_tag :company_id, @company.id %>
+              <%= hidden_field_tag :campaign_id, @campaign.id %>
+              <!-- <div class="step2__top">
+                <div class="step1__list">
+                  <ul class="reset-list">
+                    <li>ALL information in this step will be made publicly available</li>
+                  </ul>
+                </div>
+              </div> -->
+              <div class="step2__blocks">
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Video Link</span></div>
+                  <div class="step2__block__subtitle"><span>Use full Youtube URL</span></div>
+                  <div class="input-wrap">
+                    <%= text_field_tag :video_link, @company.video_link, placeholder: 'Select Youtube Video (optional)' %>
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Elevator Pitch</span></div>
+                  <div class="step2__block__subtitle"><span>An elevator pitch can be said in 30 seconds What makes your company exceptional? Why should the crowd invest in your company? All information and claims presented must be accurate and backed by fact.</span></div>
+                  <div class="">
+                     <%= f.text_area :elevator_pitch, class: 'ckeditor' %>
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>About Your Company</span></div>
+                  <div class="step2__block__subtitle"><span>Be creative with this section. You have the ability to add videos and images to make your message stand out. A well designed description of your company will set you apart. Your presentation must be factual and accurate.</span></div>
+                  <div class="input-wrap">
+                    <%= f.text_area :about_campaign, class: 'ckeditor' %>
+                  </div>
+                </div>
+                <div class="step2__block">
+                  <div class="step2__block__title"><span>Number of Current Employees</span></div>
+                  <div class="input-wrap">
+                    <%= f.text_field :employees_numer%>
+                  </div>
+                </div>
+              </div>
+              <div class="step__btn">
+                <div class="step__btn__inn">
+                  <button type="submit" class="btn btn-blue">Continue</button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -7,9 +7,9 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		user = User.find_by(id: params[:id])
-		Investment.create(user_id: user.id, company_id: params[:company_id], invested_amount: params[:user][:invested_amount])
-		redirect_to(:action => :write)
+		user = User.find(current_user.id)
+		user.update(user_params)
+		redirect_to profile_path
 	end
 
 	def portfolio
@@ -83,6 +83,21 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def edit_password
+		@user = current_user
+	end
+
+	def update_password
+	   @user = User.find(current_user.id)
+	   if @user.update_with_password(user_params)
+	     # Sign in the user by passing validation in case their password changed
+	     sign_in :user, @user, bypass: true
+	     redirect_to root_path
+	   else
+	     render "edit_password"
+	   end
+	 end
+
 private
 	def find_campaign_step(page,id)
 		if page == 'goal'
@@ -99,4 +114,8 @@ private
         	return funding_goal_path
         end
 	end
+
+	def user_params
+      params.require(:user).permit( :first_name, :last_name, :email, :phone, :password, :password_confirmation, :current_password)
+    end
 end

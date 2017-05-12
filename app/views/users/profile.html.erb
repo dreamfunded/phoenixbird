@@ -1,15 +1,40 @@
-<html>
-	<head>
-	    <%= javascript_include_tag    'signup' %>
-	   <title>DreamFunded | Sign Up</title>
-	</head>
+<%= title    'DreamFunded | Profile' %>
 
-	<body>
-		<div class= "wrapper">
-			<div class= "header"><h1 class= "centered"> Profile </h1></div>
-			<div class= "word-content"><div class= "text-content">
-				<h3> Hello <%= current_user.name %> </h3>
-			</div></div>
-		</div>
-	</body>
-</html>
+
+<div class="profile __profile">
+  <div class="container clearfix">
+    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">My Profile</a>
+      <div class="profile__sidebar__inn">
+        <div class="profile__sidebar__block">
+          <ul class="reset-list">
+            <li><%= link_to "My Investments", portfolio_path %></li>
+            <li class="active"><%= link_to "My Profile", profile_path %></li>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li><%= link_to "Invite", invite_users_path %></li>
+            <li><%= link_to "Change Password", change_pass_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="profile__content">
+      <div class="myprofile">
+        <div class="myprofile__title">
+          <h2>My Profile</h2>
+        </div>
+        <%= flash[:notice] if flash[:notice] %>
+        <div class="myprofile__lines">
+          <div class="myprofile__line"><span><%= current_user.name%></span></div>
+          <div class="myprofile__line"><span><%= current_user.email %></span></div>
+          <div class="myprofile__line"><span><%= current_user.phone %></span></div>
+        </div>
+        <div class="myprofile__edit">
+        	<%= link_to "Edit Profile", edit_user_path(current_user), class: 'btn btn-blue __sm' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

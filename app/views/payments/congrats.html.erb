@@ -5,53 +5,59 @@
 
 <% twitter_image @company.cover.url %>
 
-<div class= "wrapper">
+<div class= "news">
+    <div class='container'>
+        <div class= " congrats-content ">
+
+            <div class='centered congrats_title'>
+                Help <%= @company.name %> to reach fundraising goal. Spread the word! Share with your friends.
+            </div>
 
 
-    <div class= " congrats-content "><div class="text-content">
-        <div class='centered congrats_title'>Help <%= @company.name %> to reach fundraising goal. Spread the word! Share with your friends.</div>
+            <div class='text-center social-links-congrats'>
+
+                <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
+                <script type="text/javascript">
+                  $('#facebook').click(function(){
+                    FB.ui({
+                      method: 'share',
+                      href: "https://dreamfunded.com/companies/<%= @company.slug %>",
+                      redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
+                      quote: "I just invested in <%= @company.name%> on DreamFunded"
+                    }, function(response){});
+
+                  })
+                </script>
+
+                <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded%20https://dreamfunded.com/companies/<%= @company.slug %>" title="Share via Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+
+                <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded.&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
 
 
-        <div class='centered social-links-congrats'>
 
-            <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
-            <script type="text/javascript">
-              $('#facebook').click(function(){
-                FB.ui({
-                  method: 'share',
-                  href: "https://dreamfunded.com/companies/<%= @company.slug %>",
-                  redirect_uri: "https://dreamfunded.com/companies/<%= @company.slug %>",
-                  quote: "I just invested in <%= @company.name%> on DreamFunded"
-                }, function(response){});
+            <center>
+                <span class='congrats_title'>Congratulations! Your Investment in <%= @company.name %> has been submitted.</span>
+            </center>
+            <br><br>
 
-              })
-            </script>
 
-            <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded%20https://dreamfunded.com/companies/<%= @company.slug %>" title="Share via Twitter">
-                <i class="fa fa-twitter"></i>
-            </a>
+            <span class='important_info '>Important Information</span>
 
-            <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=I%20just%20invested%20in%20<%=@company.name %>%20on%20DreamFunded.&amp;url=https://dreamfunded.com/companies/<%= @company.slug %>" target="_blank" title="Share via LinkedIn" >
-                <i class="fa fa-linkedin"></i>
-            </a>
+            <p class='faq-answer'>
+                Your Investment may take up to 10 days to transfer from your account to the designated escrow account. If the transfer clears, you will receive an email confirmation that your investment has been received. If your transfer does not clear, you will be contacted by a DreamFunded team member with more information and instructions for next steps. You can view your investment in your Dashboard at any time.
+            </p>
+            <div class='text-center'>
+                    <div class="investTop__btn">
+                        <%= link_to "My Investments", portfolio_path, class: 'btn btn-blue fw-btn' %>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-
-
-        <center>
-            <span class='congrats_title'>Congratulations! Your Investment in <%= @company.name %> has been submitted.</span>
-        </center>
-        <br><br>
-
-
-        <span class='important_info '>Important Information</span>
-
-        <p class='faq-answer'>
-            Your Investment may take up to 10 days to transfer from your account to the designated escrow account. If the transfer clears, you will receive an email confirmation that your investment has been received. If your transfer does not clear, you will be contacted by a DreamFunded team member with more information and instructions for next steps. You can view your investment in your Dashboard at any time.
-        </p>
-
-        <%= link_to "My Investments", portfolio_path, class: 'company-button join-group-button mail-to-button' %>
-
-
     </div>
 </div>
