@@ -66,7 +66,8 @@
                             </div>
                         <%else%>
                             <br><br><br><br>
-                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
+                            <h2 class='waitlist_thankyou_text investTop__subtitle'></h2>
+                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", remote: true, target: "_blank", class: "form-inline")  do %>
                               <div class="input-row row">
                                 <div class="col-sm-6">
                                   <div class="input-wrap">

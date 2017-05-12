@@ -22,7 +22,6 @@ class WaitlistController < ApplicationController
         company_name = @company.name
         Guest.create(email: current_user.email, company: company_name, user_id: current_user.id)
         ContactMailer.join_waitlist_with_invest(@company, current_user, params[:invest_amount]).deliver
-        redirect_to "/join_waitlist_thank_you"
     end
 
     #extract in a waitlist controller
