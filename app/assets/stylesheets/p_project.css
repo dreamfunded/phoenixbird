@@ -23,6 +23,11 @@
   top: 0;
   background-color: rgba(63, 64, 92, 0.8);
 }
+
+.join-waitlist-new{
+  width: 95% !important;
+  background: #fff !important;
+}
 .project h3 {
   color: #0d0f22;
   font-family: "Open Sans";

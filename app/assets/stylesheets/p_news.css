@@ -12,6 +12,7 @@
 }
 .news .pagination {
   margin-top: 20px;
+  list-style: none;
 }
 .news__title h2 {
   color: #0d0f22;

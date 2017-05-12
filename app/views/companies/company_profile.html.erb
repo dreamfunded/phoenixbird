@@ -42,17 +42,55 @@
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location-icon"></use>
                   </svg><span><%= @campaign.place %></span>
                 </div>
-                <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                <div class="investTop__progress">
-                    <div class="investTop__progress__txt"><span><b><%= number_to_currency @company.invested_amount, precision: 0 %></b> Raised</span></div>
-                    <div class="investTop__progress__line">
-                        <div style="width: <%= @progress%>%;" class="investTop__progress__line__inn"></div>
-                    </div>
-                    <div class="investTop__progress__percent"><span><%= number_with_precision(@progress, precision: 0) %>% of <%= number_to_currency @company.goal_amount, precision: 0 %> Goal</span></div>
-                </div>
-                <div class="investTop__btn">
-                  <button class="btn btn-blue fw-btn">Invest in <%= @company.name %></button>
-                </div>
+                <% if @company.status == 2 %>
+                  <% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+                  <div class="investTop__progress">
+                      <div class="investTop__progress__txt"><span><b><%= number_to_currency @company.invested_amount, precision: 0 %></b> Raised</span></div>
+                      <div class="investTop__progress__line">
+                          <div style="width: <%= @progress%>%;" class="investTop__progress__line__inn"></div>
+                      </div>
+                      <div class="investTop__progress__percent"><span><%= number_with_precision(@progress, precision: 0) %>% of <%= number_to_currency @company.goal_amount, precision: 0 %> Goal</span></div>
+                  </div>
+                <% end %>
+
+                <% if user_signed_in? %>
+                    <%if @company.accredited %>
+                        <% if @company.status == 2 %>
+                            <!-- <button type="button" data-fa-invest-now="<%#= @company.fund_america_code%>" class=" company-button profile-button mail-to-button" >
+                                Invest in <%#= @company.name %>
+                            </button> -->
+                            <div class="investTop__btn">
+                              <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'btn btn-blue fw-btn' %>
+                            </div>
+                        <%else%>
+                            <br><br><br><br>
+                            <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", target: "_blank", class: "form-inline")  do %>
+                              <div class="input-row row">
+                                <div class="col-sm-6">
+                                  <div class="input-wrap">
+                                    <%= text_field_tag "invest_amount", nil, placeholder: '$ 100', class: 'join-waitlist-new' %>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <%= submit_tag "Join The Waitlist",  class: 'btn btn-blue fw-btn', target: "_blank"%>
+                                </div>
+                              </div>
+                            <% end %>
+                        <%end%>
+                    <%else%>
+                        <button class=" company-button profile-button mail-to-button" >
+                            Pending Approval
+                        </button>
+                    <%end%>
+                <% else %>
+                    <% if @company.status == 2 %>
+                        <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), class: 'company-button profile-button mail-to-button' %>
+                    <% else %>
+                        <%= link_to "Join The Waitlist", show_unathorized_path(@company.slug), class: 'company-button profile-button mail-to-button' %>
+                    <% end %>
+
+                <% end %>
+
             </div>
         </div>
     </div>
@@ -230,6 +268,41 @@
         </div> -->
 
         <%= render partial: 'questions', questions: @questions %>
+
+
+        <section id='comments-section' class='company-section' >
+            <div class='section-container'>
+                <h1 class='section-title'>Ask a Question</h1>
+                <div class='section-content'>
+                    <div class="comments">
+                        <%= nested_messages(@comments.arrange(:order => :created_at))%>
+                    </div>
+                        <% if current_user %>
+                            <div class="comment">
+                              <div class="headline">
+                                <span class="name">
+                                  <span class='comment_as'>New comment as</span>
+                                  <a><%= current_user.comments_name%></a>
+                                </span>
+                              </div>
+                              <div class="comment_content">
+                                    <%= form_for Comment.new, remote: true  do |f|%>
+                                         <%= f.hidden_field "user_id", value: current_user.id %>
+                                         <%= f.hidden_field "company_id", value: @company.id %>
+                                         <%= f.hidden_field :parent_id %>
+                                        <div>
+                                            <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
+                                        </div>
+                                        <%= f.submit "Post Comment", class: 'comment_submit_button' %>
+                                    <% end %>
+                            </div>
+                        <%else%>
+                              <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
+                        <%end%>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </div>
 </div>
