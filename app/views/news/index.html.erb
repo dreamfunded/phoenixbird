@@ -1,37 +1,35 @@
 <% title "DreamFunded | News " %>
 
-
-
 <div class="news">
-              <div class="container">
-                <div class="news__title">
-                  <h2>DreamFunded News</h2>
+    <div class="container">
+        <div class="news__title">
+            <h2>DreamFunded News</h2>
+        </div>
+        <div class="news__list">
+            <% @news.each do |article| %>
+            <div class="news__it clearfix">
+                <%= link_to image_tag(article.image.url ), news_path(article), class: "news__it__img ofit-block" %>
+                <div class="news__it__title"><%= link_to article.title, news_path(article) %></div>
+                <div class="news__it__txt">
+                    <%= article.content.html_safe %>
                 </div>
-                <div class="news__list">
-                  <% @news.each do |article| %>
-                  <div class="news__it clearfix">
-                    <%= link_to image_tag(article.image.url ), news_path(article), class: "news__it__img ofit-block" %>
-                    <div class="news__it__title"><%= link_to article.title, news_path(article) %></div>
-                    <div class="news__it__txt">
-                        <p>On March 18th, 2017, Manny Fernandez, a best-selling author and the first Latino investor to be featured as an investor "Shark" on nationwide TV show, was the keynote speaker on March 18th The Solano Hispanic Chamber of Commerce Awards and Recognition Gala. Fernandez received a State of California Senate’s Certificate of Recognition, honoring Fernandez’s commitment to Solano community and its members, sign by Senator Bill Dodd </p>
-                    </div>
-                    <div class="news__it__more"><%= link_to "Read More", news_path(article) %></div>
-                  </div>
-                  <% end %>
-                </div>
-                <!-- <div class="pagination __mob-center">
-                  <ul class="reset-list clearfix">
-                    <li><a href="#" class="__arr __prev"></a></li>
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" class="__arr __next"></a></li>
-                  </ul>
-                </div> -->
-                <div id="infinite-scrolling" class= "centered yes-margin">
-					  <%= will_paginate %>
-					</div>
-              </div>
+                <div class="news__it__more"><%= link_to "Read More", news_path(article) %></div>
             </div>
+            <% end %>
+        </div>
+      <!-- <div class="pagination __mob-center">
+        <ul class="reset-list clearfix">
+          <li><a href="#" class="__arr __prev"></a></li>
+          <li><a href="#">1</a></li>
+          <li class="active"><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#" class="__arr __next"></a></li>
+        </ul>
+      </div> -->
+        <div id="infinite-scrolling" class= "centered yes-margin">
+            <%= will_paginate %>
+        </div>
+    </div>
+</div>

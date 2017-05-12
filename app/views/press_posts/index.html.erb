@@ -1,39 +1,36 @@
-<head>
-  <% title "DreamFunded | Press" %>
-</head>
+<% title "DreamFunded | Press" %>
 
-<div class= "wrapper">
-  <div class="header">
-    <h1 class="centered press-post-h1">Press</h1>
-    <p class="centered press-post-name">DreamFunded in the news</p>
-  </div>
-  <div class= "events-content press-posts-content">
-    <% @press_posts.each do |post| %>
-      <div class='press-post'>
-        <%= link_to post.url do %>
-        <%= image_tag(post.image, class: 'press-image')%>
-        <% end %>
-        <span class='press-post-inline'>
-          <div class="press-post-item press-quote">"<%= post.quote%>"</div>
-          <div class="press-post-item"><%= link_to(post.name, post.url, target: '_blank', class: 'darkblue')%></div>
-          <div class="press-post-item press-date"><%= post.date.strftime("%b %e %Y") %></div>
-        </span>
 
-        <div class='admin-links-press-post'>
-          <% if current_user != nil && current_user.authority == authority[:Admin] %>
-            <%= link_to 'Edit', edit_press_post_path(post) %>
-            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
+<div class="news">
+    <div class="container">
+        <div class="news__title">
+            <h2>DreamFunded in Press</h2>
         </div>
-      </div>
-      <hr>
-    <% end %>
+        <div class="news__list">
+            <% @press_posts.each do |post| %>
+              <div class="news__it clearfix">
+                  <%= link_to image_tag(post.image.url, class: 'press-image' ), post.url, class: "news__it__img ofit-block" %>
+                  <div class="news__it__title"><%= link_to post.name, post.url %></div>
+                  <div class="news__it__txt">
+                      <%= post.quote %>
+                  </div>
+                  <br>
+                  <div class="press-post-item press-date"><%= post.date.strftime("%b %e %Y") %></div>
 
+                  <div class='admin-links-press-post'>
+                    <% if current_user != nil && current_user.authority == authority[:Admin] %>
+                      <%= link_to 'Edit', edit_press_post_path(post) %>
+                      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
+                  </div>
+              </div>
+            <% end %>
+        </div>
 
-    <% if current_user != nil && current_user.authority == authority[:Admin] %>
-      <div class='event'>
-        <%= link_to 'New Press Post', new_press_post_path, class: 'centered add-new-event' %>
-      </div>
-    <% end %>
-  </div>
+        <% if current_user != nil && current_user.authority == authority[:Admin] %>
+          <div class='event'>
+            <%= link_to 'New Press Post', new_press_post_path, class: 'centered add-new-event' %>
+          </div>
+        <% end %>
+    </div>
 </div>
