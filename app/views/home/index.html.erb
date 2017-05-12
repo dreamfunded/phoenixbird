@@ -91,6 +91,7 @@
     <div class="block-title">
       <h3>Companies raising right now</h3>
     </div>
+
     <div class="mainCompanies__cnt">
       <div class="row">
         <div class="mainCompanies__slider">
@@ -110,6 +111,7 @@
                       <div class="compthumb__tag __blue"><span><%= company.category%></span></div>
                     </div>
                   </div>
+
                   <div class="compthumb__footer clearfix">
                     <% if company.id == 693 %>
                       <div class='testing_the_waters'>Testing the Waters</div>
@@ -118,6 +120,7 @@
                           <div class="compthumb__footer__title"><span>Target</span></div>
                           <div class="compthumb__footer__num"><span><%= number_to_currency company.goal_amount, precision: 0 %></span></div>
                         </div>
+
                         <div class="compthumb__footer__block">
                           <div class="compthumb__footer__title"><span>Raised</span></div>
                           <% if company.status == 2 %>
@@ -125,14 +128,15 @@
                           <% else %>
                             <div class="compthumb__footer__num"><span><%= raised_amount(company) %></span></div>
                           <% end %>
-
                         </div>
+
                         <div class="compthumb__footer__block">
                           <div class="compthumb__footer__title"><span>Days Left</span></div>
                           <div class="compthumb__footer__num"><span><%= company.left_days %></span></div>
                         </div>
                     <% end %>
                   </div>
+
                 </div>
               </div>
             <% end %>
@@ -145,6 +149,7 @@
         </div>
       </div>
     </div>
+
     <div class="mainCompanies__btn">
       <div class="mainCompanies__btn__inn"><a href="/companies" class="btn btn-blue">View More</a></div>
     </div>

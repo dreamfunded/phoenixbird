@@ -330,30 +330,34 @@
 
     var animate_number = true;
     $(document).on('scroll', function() {
-        if($(this).scrollTop()>=$('#animate-numer').position().top){
+        var anmate_number_elem = document.getElementById("animate-numer");
+        if( document.contains( anmate_number_elem  ) ) {
 
-            if(animate_number){
+          if($(this).scrollTop()>=$('#animate-numer').position().top){
 
-                function commaSeparateNumber(val){
-                    while (/(\d+)(\d{3})/.test(val.toString())){
-                      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                    }
-                    return val;
-                }
+              if(animate_number){
 
-                $({someValue: 21000}).animate({someValue: 21027}, {
-                  duration: 2500,
-                  easing:'swing', // can be anything
-                  step: function() { // called on every step
-                      // Update the element's text with rounded-up value:
-                      $('#animate-numer').text(commaSeparateNumber(Math.round(this.someValue)));
-                  },
-                  complete: function(){
-                    animate_number = false;
+                  function commaSeparateNumber(val){
+                      while (/(\d+)(\d{3})/.test(val.toString())){
+                        val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                      }
+                      return val;
                   }
-                });
 
-            }
+                  $({someValue: 21000}).animate({someValue: 21027}, {
+                    duration: 2500,
+                    easing:'swing', // can be anything
+                    step: function() { // called on every step
+                        // Update the element's text with rounded-up value:
+                        $('#animate-numer').text(commaSeparateNumber(Math.round(this.someValue)));
+                    },
+                    complete: function(){
+                      animate_number = false;
+                    }
+                  });
+
+              }
+          }
         }
     })
 
