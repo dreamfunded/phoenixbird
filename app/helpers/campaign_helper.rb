@@ -22,6 +22,7 @@ module CampaignHelper
     "Events",
     "Fashion & Apparel",
     "Film & Video",
+    "FinTech",
     "Financial Services",
     "Food & Beverage",
     "Gaming",
