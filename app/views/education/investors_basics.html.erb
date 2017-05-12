@@ -2,26 +2,26 @@
 
 <div class="profile">
   <div class="container clearfix">
-    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">For Investors:<i>Important Terms</i></a>
+    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">For Investors:<i>The Basics</i></a>
       <div class="profile__sidebar__inn">
         <div class="profile__sidebar__block">
           <div class="profile__sidebar__title"><span>For Investors</span></div>
           <ul class="reset-list">
-            <li><a href="#">The Basics</a></li>
-            <li class="active"><a href="#">Important Terms</a></li>
-            <li><a href="#">Investing Tips & Strategies</a></li>
-            <li><a href="#">Taxes & Gains</a></li>
-            <li><a href="#">Q&A</a></li>
+            <li class="active"><a href="/education/investors-basics">The Basics</a></li>
+            <li><a href="/education/investors-important-terms">Important Terms</a></li>
+            <li><a href="/education/investing-tips">Investing Tips & Strategies</a></li>
+            <li><a href="/education/taxes-gains">Taxes & Gains</a></li>
+            <li><a href="/education/investor-qa">Q&A</a></li>
           </ul>
         </div>
         <div class="profile__sidebar__block">
           <div class="profile__sidebar__title"><span>For Startups</span></div>
           <ul class="reset-list">
-            <li><a href="#">The Basics</a></li>
-            <li><a href="#">Important Terms</a></li>
-            <li><a href="#">Fund Raising Guide</a></li>
-            <li><a href="#">J.O.B.S. Act</a></li>
-            <li><a href="#">Q&A</a></li>
+            <li><a href="/education/startup-basics">The Basics</a></li>
+            <li><a href="/education/startups-important-terms">Important Terms</a></li>
+            <li><a href="/education/fund_raising_guide">Fund Raising Guide</a></li>
+            <li><a href="/education/jobs_act">J.O.B.S. Act</a></li>
+            <li><a href="/education/employee-qa">Q&A</a></li>
           </ul>
         </div>
       </div>
@@ -31,25 +31,27 @@
         <div class="myprofile__breads">
           <ul class="reset-list">
             <li><a href="#">Investing 101</a></li>
-            <li>Important Terms</li>
+            <li>Investors</li>
+            <li>Basics</li>
           </ul>
         </div>
         <div class="myprofile__title">
-          <h2>Important Terms</h2>
+          <h2>The Basics</h2>
         </div>
         <div class="educationInn">
-          <h3>Angel Group</h3>
-          <p>An Angel Group is an organized group of angel investors who find, research and invest in startup companies.<br>+ Annual membership fees for a typical angel group is around $3,000 -$5,000.<br>+ The average check an investor in an angel group writes is $25K-$50K per investment.<br>+ Many groups require members volunteer their time on a regular basis to help with group activities, deal flow screening and performing Due Diligence.</p>
-          <h3>Cap (On A Convertible Note)</h3>
-          <p>The cap on a convertible note sets a maximum valuation amount at which an investment made can convert into equity. Typically investors get the lesser of the next qualified pricing round.</p>
-          <p>As an example: If the cap on a convertible note is $7 million and the next round is priced at a pre-money valuation of $10 million, the convertible note will convert into equity at $7 million.  If the cap on the convertible note is $7 million and the next round is priced at $5 million, the convertible note will convert at $5 million.</p>
-          <h3>Cap Table</h3>
-          <p>A cap, or capitalization table is an analysis of the founder's and investor's percentage of ownership, equity dilution and equity value in each round of investment.</p>
-          <h3>Common Stock</h3>
-          <p>Common stock is a type of security that represents an ownership stake in a company. In certain circumstances, common stockholders have the ability to vote on company policies and elect members for the board of directors.</p>
-          <h3>Convertible Note</h3>
-          <p>Convertible notes are often offered to investors by startups who wish to raise funding without establishing a specific valuation for their company. </p>
-          <p>Convertible notes are structured as loans at the time an investor makes an investment. The outstanding balance on the loan is converted into equity shares once the company is valuated during a Series A Valuation round.</p>
+          <% @posts.each do |post|%>
+            <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+              <%= button_to "Delete", {:controller => :posts,  :action => 'destroy', :id => post.id }, :method => :delete, class: 'float-rigth' %>
+              <%= link_to 'Edit', "/posts/#{post.id}/edit/basics", {:class => 'right'} %>
+            <% end %>
+            <h3><%= post.title %></h3>
+            <p> <%= post.content.html_safe %> </p>
+          <% end %>
+
+          <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+              <h3><%= link_to 'Create New', "/posts/new/basics" %></h3>
+            <% end %>
+
         </div>
       </div>
     </div>

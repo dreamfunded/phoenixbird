@@ -1,61 +1,60 @@
-<html>
-  <head>
-    <% title "DreamFunded | Education " %>
-  </head>
+<% title "DreamFunded | Education " %>
 
-  <body>
-    <div class= "wrapper">
-      <!-- <div class="header">
-        <h1 class="centered">Education Center</h1>
-      </div> -->
-      <div class="header education-center">
-        <div class='education-title'><%=link_to "Education Center", education_path%></div>
-        <%= link_to "All Education", education_path, class: 'education-links'%> <%= fa_icon "chevron-right"%> <a href="#" class='education-links'> Investors </a>
-        <%= fa_icon "chevron-right"%>  <a href="#" class='education-links'>Taxes & Gains</a>
+<div class="profile">
+  <div class="container clearfix">
+    <div class="profile__sidebar"><a href="#" class="profile__sidebar__mob visible-xs">For Investors:<i>The Basics</i></a>
+      <div class="profile__sidebar__inn">
+        <div class="profile__sidebar__block">
+          <div class="profile__sidebar__title"><span>For Investors</span></div>
+          <ul class="reset-list">
+            <li ><a href="/education/investors-basics">The Basics</a></li>
+            <li><a href="/education/investors-important-terms">Important Terms</a></li>
+            <li><a href="/education/investing-tips">Investing Tips & Strategies</a></li>
+            <li class="active"><a href="/education/taxes-gains">Taxes & Gains</a></li>
+            <li><a href="/education/investor-qa">Q&A</a></li>
+          </ul>
+        </div>
+        <div class="profile__sidebar__block">
+          <div class="profile__sidebar__title"><span>For Startups</span></div>
+          <ul class="reset-list">
+            <li><a href="/education/startup-basics">The Basics</a></li>
+            <li><a href="/education/startups-important-terms">Important Terms</a></li>
+            <li><a href="/education/fund_raising_guide">Fund Raising Guide</a></li>
+            <li><a href="/education/jobs_act">J.O.B.S. Act</a></li>
+            <li><a href="/education/employee-qa">Q&A</a></li>
+          </ul>
+        </div>
       </div>
-      <div class= "left-panel">
-        <ul class='education-menu'>
-          <a href='/education/investors-basics'><li class='education-item '>The Basics</li></a>
-          <a href='/education/investors-important-terms'><li class='education-item '>Important Terms</li></a>
-          <a href='/education/investing-tips'><li class='education-item '>Investing Tips & Strategies</li></a>
-          <a href='/education/taxes-gains'><li class='education-item active'>Taxes & Gains</li></a>
-          <a href='/education/investor-qa'><li class='education-item'>Investor Q&A</li></a>
-        </ul>
-      </div>
-      <div class= "right-panel ">
-        <div class= "text-content">
-
-            <h3 class= "question darkblue flip">Taxes & Gains</h3>
-            <ul class='education-center-list'>
-
-            <% @posts.each do |post|%>
-                <% if current_user != nil && current_user.authority >= authority[:Editor] %>
-                    <%= button_to "Delete", {:controller => :posts,  :action => 'destroy', :id => post.id }, :method => :delete, class: 'float-rigth' %>
-                    <%= link_to 'Edit', "/posts/#{post.id}/edit/taxes", {:class => 'right'} %>
-
-                <% end %>
-                <li><%= link_to post.title, post %></li>
-
-                <div class='panel ckeditor'><%#= post.content%>
-                    <%= post.content.html_safe %>
-                </div>
-
-            <% end %>
+    </div>
+    <div class="profile__content">
+      <div class="myprofile">
+        <div class="myprofile__breads">
+          <ul class="reset-list">
+            <li><a href="#">Investing 101</a></li>
+            <li>Investors</li>
+            <li>Taxes & Gains</li>
+          </ul>
+        </div>
+        <div class="myprofile__title">
+          <h2>The Basics</h2>
+        </div>
+        <div class="educationInn">
+          <% @posts.each do |post|%>
             <% if current_user != nil && current_user.authority >= authority[:Editor] %>
-                <h3><%= link_to 'Create New', "/posts/new/taxes", {:class => 'right'} %></h3>
+              <%= button_to "Delete", {:controller => :posts,  :action => 'destroy', :id => post.id }, :method => :delete, class: 'float-rigth' %>
+              <%= link_to 'Edit', "/posts/#{post.id}/edit/basics", {:class => 'right'} %>
             <% end %>
-            </ul>
+            <h3><%= post.title %></h3>
+            <p> <%= post.content.html_safe %> </p>
+          <% end %>
 
-            <br><br><br>
-
-            <div class= "centered twenty">
-              <%= button_to "Get Started", {:action => 'get_started', controller: 'home'}, {:id => 'push'} %>
-            </div>
+          <% if current_user != nil && current_user.authority >= authority[:Editor] %>
+              <h3><%= link_to 'Create New', "/posts/new/basics" %></h3>
+            <% end %>
 
         </div>
       </div>
     </div>
-  </body>
-
-</html>
+  </div>
+</div>
 

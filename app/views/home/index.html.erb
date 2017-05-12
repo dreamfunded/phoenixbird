@@ -51,282 +51,163 @@
           <path d="M450.019,226.1l-85.8-85.8c-5.3-5.3-13.8-5.3-19.1,0c-5.3,5.3-5.3,13.8,0,19.1l62.8,62.8h-273.9c-7.5,0-13.5,6-13.5,13.5    s6,13.5,13.5,13.5h273.9l-62.8,62.8c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l85.8-85.8    C455.319,239.9,455.319,231.3,450.019,226.1z"></path>
         </symbol>
       </defs>
-    </svg>
+</svg>
 
 
-            <div class="mainTop">
-              <div class="container"><a href="#" class="mainTop__slider__arr __prev"></a><a href="#" class="mainTop__slider__arr __next"></a>
-                <div class="mainTop__inn">
-                  <div class="mainTop__slider">
-                    <div class="item">
-                      <div class="mainTop__slider__title">
-                        <h2>Invest in Startups</h2>
-                      </div>
-                      <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
-                      <div class="mainTop__slider__btn"><a href="#" class="btn btn-blue">Get Started</a></div>
-                    </div>
-                    <div class="item">
-                      <div class="mainTop__slider__title">
-                        <h2>Invest in Startups</h2>
-                      </div>
-                      <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
-                      <div class="mainTop__slider__btn"><a href="#" class="btn btn-blue">Get Started</a></div>
-                    </div>
-                    <div class="item">
-                      <div class="mainTop__slider__title">
-                        <h2>Invest in Startups</h2>
-                      </div>
-                      <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
-                      <div class="mainTop__slider__btn"><a href="#" class="btn btn-blue">Get Started</a></div>
-                    </div>
+<div class="mainTop">
+  <div class="container"><a href="#" class="mainTop__slider__arr __prev"></a><a href="#" class="mainTop__slider__arr __next"></a>
+    <div class="mainTop__inn">
+      <div class="mainTop__slider">
+        <div class="item">
+          <div class="mainTop__slider__title">
+            <h2>Invest in Startups</h2>
+          </div>
+          <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
+          <div class="mainTop__slider__btn">
+           <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="mainTop__slider__title">
+            <h2>Invest in Startups</h2>
+          </div>
+          <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
+          <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
+        </div>
+        <div class="item">
+          <div class="mainTop__slider__title">
+            <h2>Invest in Startups</h2>
+          </div>
+          <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
+          <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mainCompanies">
+  <div class="container">
+    <div class="block-title">
+      <h3>Companies raising right now</h3>
+    </div>
+    <div class="mainCompanies__cnt">
+      <div class="row">
+        <div class="mainCompanies__slider">
+          <% @companies.each do |company| %>
+
+            <div class="col-md-4 col-sm-6">
+              <div class="compthumb">
+                <div class="compthumb__img ofit-block">
+                  <%= image_tag( company.cover.url(:small) ) %>
+                </div>
+                <a href="#" class="compthumb__logo"> <%= image_tag( company.image.url ) %></a>
+
+                <div class="compthumb__cnt">
+                  <div class="compthumb__name"><a href="#"><%= company.name %></a></div>
+                  <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
+                  <div class="compthumb__tags">
+                    <div class="compthumb__tag __blue"><span><%= company.category%></span></div>
+                  </div>
+                </div>
+                <div class="compthumb__footer clearfix">
+                  <div class="compthumb__footer__block">
+                    <div class="compthumb__footer__title"><span>Target</span></div>
+                    <div class="compthumb__footer__num"><span><%= number_to_currency company.goal_amount, precision: 0 %></span></div>
+                  </div>
+                  <div class="compthumb__footer__block">
+                    <div class="compthumb__footer__title"><span>Raised</span></div>
+                    <% if company.status == 2 %>
+                      <div class="compthumb__footer__num"><span><%= number_to_currency company.invested_amount, precision: 0 %></span></div>
+                    <% else %>
+                      <div class="compthumb__footer__num"><span><%= raised_amount(company) %></span></div>
+                    <% end %>
+
+                  </div>
+                  <div class="compthumb__footer__block">
+                    <div class="compthumb__footer__title"><span>Days Left</span></div>
+                    <div class="compthumb__footer__num"><span><%= company.left_days %></span></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="mainCompanies">
-              <div class="container">
-                <div class="block-title">
-                  <h3>Companies raising right now</h3>
-                </div>
-                <div class="mainCompanies__cnt">
-                  <div class="row">
-                    <div class="mainCompanies__slider">
-                      <div class="col-md-4 col-sm-6">
-                        <div class="compthumb">
-                          <div class="compthumb__img ofit-block"><%= image_tag("content/compthumb-img.jpg") %></div><a href="#" class="compthumb__logo"><%= image_tag("content/compthumb-logo.png") %></a>
-                          <div class="compthumb__cnt">
-                            <div class="compthumb__name"><a href="#">Me Tyme Network</a></div>
-                            <div class="compthumb__desc"><span>The Netflix of Emotional Well-Being</span></div>
-                            <div class="compthumb__tags">
-                              <div class="compthumb__tag __blue"><span>Professional Services</span></div>
-                            </div>
-                          </div>
-                          <div class="compthumb__footer clearfix">
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Target</span></div>
-                              <div class="compthumb__footer__num"><span>$100,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Raised</span></div>
-                              <div class="compthumb__footer__num"><span>$5,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Days Left</span></div>
-                              <div class="compthumb__footer__num"><span>61</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                        <div class="compthumb">
-                          <div class="compthumb__img ofit-block"><%= image_tag("content/compthumb-img.jpg") %></div><a href="#" class="compthumb__logo"><%= image_tag("content/compthumb-logo.png") %></a>
-                          <div class="compthumb__cnt">
-                            <div class="compthumb__name"><a href="#">Me Tyme Network</a></div>
-                            <div class="compthumb__desc"><span>The Netflix of Emotional Well-Being</span></div>
-                            <div class="compthumb__tags">
-                              <div class="compthumb__tag __yellow"><span>Transportation</span></div>
-                              <div class="compthumb__tag __pink"><span>Automotive</span></div>
-                            </div>
-                          </div>
-                          <div class="compthumb__footer clearfix">
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Target</span></div>
-                              <div class="compthumb__footer__num"><span>$100,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Raised</span></div>
-                              <div class="compthumb__footer__num"><span>$5,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Days Left</span></div>
-                              <div class="compthumb__footer__num"><span>61</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                        <div class="compthumb">
-                          <div class="compthumb__img ofit-block"><%= image_tag("content/compthumb-img.jpg") %></div><a href="#" class="compthumb__logo"><%= image_tag("content/compthumb-logo.png") %></a>
-                          <div class="compthumb__cnt">
-                            <div class="compthumb__name"><a href="#">Me Tyme Network</a></div>
-                            <div class="compthumb__desc"><span>The Netflix of Emotional Well-Being</span></div>
-                            <div class="compthumb__tags">
-                              <div class="compthumb__tag __purple"><span>Technology</span></div>
-                            </div>
-                          </div>
-                          <div class="compthumb__footer clearfix">
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Target</span></div>
-                              <div class="compthumb__footer__num"><span>$100,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Raised</span></div>
-                              <div class="compthumb__footer__num"><span>$5,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Days Left</span></div>
-                              <div class="compthumb__footer__num"><span>61</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                        <div class="compthumb">
-                          <div class="compthumb__img ofit-block"><%= image_tag("content/compthumb-img.jpg") %></div><a href="#" class="compthumb__logo"><%= image_tag("content/compthumb-logo.png") %></a>
-                          <div class="compthumb__cnt">
-                            <div class="compthumb__name"><a href="#">Me Tyme Network</a></div>
-                            <div class="compthumb__desc"><span>The Netflix of Emotional Well-Being</span></div>
-                            <div class="compthumb__tags">
-                              <div class="compthumb__tag __blue"><span>Professional Services</span></div>
-                            </div>
-                          </div>
-                          <div class="compthumb__footer clearfix">
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Target</span></div>
-                              <div class="compthumb__footer__num"><span>$100,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Raised</span></div>
-                              <div class="compthumb__footer__num"><span>$5,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Days Left</span></div>
-                              <div class="compthumb__footer__num"><span>61</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                        <div class="compthumb">
-                          <div class="compthumb__img ofit-block"><%= image_tag("content/compthumb-img.jpg") %></div><a href="#" class="compthumb__logo"><%= image_tag("content/compthumb-logo.png") %></a>
-                          <div class="compthumb__cnt">
-                            <div class="compthumb__name"><a href="#">Me Tyme Network</a></div>
-                            <div class="compthumb__desc"><span>The Netflix of Emotional Well-Being</span></div>
-                            <div class="compthumb__tags">
-                              <div class="compthumb__tag __indigo"><span>Software & services</span></div>
-                            </div>
-                          </div>
-                          <div class="compthumb__footer clearfix">
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Target</span></div>
-                              <div class="compthumb__footer__num"><span>$100,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Raised</span></div>
-                              <div class="compthumb__footer__num"><span>$5,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Days Left</span></div>
-                              <div class="compthumb__footer__num"><span>61</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4 col-sm-6">
-                        <div class="compthumb">
-                          <div class="compthumb__img ofit-block"><%= image_tag("content/compthumb-img.jpg") %></div><a href="#" class="compthumb__logo"><%= image_tag("content/compthumb-logo.png") %></a>
-                          <div class="compthumb__cnt">
-                            <div class="compthumb__name"><a href="#">Me Tyme Network</a></div>
-                            <div class="compthumb__desc"><span>The Netflix of Emotional Well-Being</span></div>
-                            <div class="compthumb__tags">
-                              <div class="compthumb__tag __red"><span>engineering</span></div>
-                            </div>
-                          </div>
-                          <div class="compthumb__footer clearfix">
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Target</span></div>
-                              <div class="compthumb__footer__num"><span>$100,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Raised</span></div>
-                              <div class="compthumb__footer__num"><span>$5,000</span></div>
-                            </div>
-                            <div class="compthumb__footer__block">
-                              <div class="compthumb__footer__title"><span>Days Left</span></div>
-                              <div class="compthumb__footer__num"><span>61</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mainCompanies__btn">
-                  <div class="mainCompanies__btn__inn"><a href="#" class="btn btn-blue">View More</a></div>
-                </div>
-              </div>
+
+          <% end %>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="mainCompanies__btn">
+      <div class="mainCompanies__btn__inn"><a href="#" class="btn btn-blue">View More</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="mainFaq">
+  <div class="container">
+    <div class="block-title">
+      <h3>Faq</h3>
+    </div>
+    <div class="mainFaq__cnt">
+      <div class="row">
+        <div class="mainFaq__slider">
+          <div class="col-sm-4">
+            <div class="mainFaq__it__title"><a href="#">How does DreamFunded make money?</a></div>
+            <div class="mainFaq__it__txt">
+              <p>Equity crowdfunding is when an investor invests in a company through an online crowdfunding platform to get an ownership stake in the company with the hope of earning a financial return.</p>
             </div>
-            <div class="mainFaq">
-              <div class="container">
-                <div class="block-title">
-                  <h3>Faq</h3>
-                </div>
-                <div class="mainFaq__cnt">
-                  <div class="row">
-                    <div class="mainFaq__slider">
-                      <div class="col-sm-4">
-                        <div class="mainFaq__it__title"><a href="#">How does DreamFunded make money?</a></div>
-                        <div class="mainFaq__it__txt">
-                          <p>Equity crowdfunding is when an investor invests in a company through an online crowdfunding platform to get an ownership stake in the company with the hope of earning a financial return.</p>
-                        </div>
-                        <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="mainFaq__it__title"><a href="#">Why would existing angel groups partner with DreamFunded?</a></div>
-                        <div class="mainFaq__it__txt">
-                          <p>Crowdfunding has become very popular over the past few years, but the process is nothing new. </p>
-                          <p>Crowdfunding has been around for hundreds of years.  In fact, it is one of the oldest forms of raising money. </p>
-                        </div>
-                        <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="mainFaq__it__title"><a href="#">If I am non-accredited, can I invest on DreamFunded?</a></div>
-                        <div class="mainFaq__it__txt">
-                          <p>These and other similar crowdfunding platforms raise money in the form of donations for all types of different things; from new products and services to social causes and public initiatives.</p>
-                        </div>
-                        <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
+          </div>
+          <div class="col-sm-4">
+            <div class="mainFaq__it__title"><a href="#">Why would existing angel groups partner with DreamFunded?</a></div>
+            <div class="mainFaq__it__txt">
+              <p>Crowdfunding has become very popular over the past few years, but the process is nothing new. </p>
+              <p>Crowdfunding has been around for hundreds of years.  In fact, it is one of the oldest forms of raising money. </p>
             </div>
-            <div class="mainPartners">
-              <div class="container">
-                <div class="block-title">
-                  <h3>DreamFunded Mentioned In</h3>
-                </div>
-                <!-- <div class="mainPartners__cnt"><a href="#" class="mainPartners__slider__arr __prev"></a><a href="#" class="mainPartners__slider__arr __next"></a>
-                  <div class="mainPartners__slider">
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                    <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
-                  </div>
-                </div> -->
-                <%= render partial: "companies/media" %>
-              </div>
+            <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
+          </div>
+          <div class="col-sm-4">
+            <div class="mainFaq__it__title"><a href="#">If I am non-accredited, can I invest on DreamFunded?</a></div>
+            <div class="mainFaq__it__txt">
+              <p>These and other similar crowdfunding platforms raise money in the form of donations for all types of different things; from new products and services to social causes and public initiatives.</p>
             </div>
-            <div class="mainStart">
-              <div class="container"><a href="#" class="btn btn-blue __lg">Get Started</a></div>
-            </div>
+            <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="mainPartners">
+  <div class="container">
+    <div class="block-title">
+      <h3>DreamFunded Mentioned In</h3>
+    </div>
+    <!-- <div class="mainPartners__cnt"><a href="#" class="mainPartners__slider__arr __prev"></a><a href="#" class="mainPartners__slider__arr __next"></a>
+      <div class="mainPartners__slider">
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+        <div class="item"><a href="#" class="mainPartners__it"><%= image_tag("content/partner.png") %></a></div>
+      </div>
+    </div> -->
+    <%= render partial: "companies/media" %>
+  </div>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="mainStart">
+  <div class="container">
+    <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue __lg'} %>
+  </div>
+</div>
 
 
 
