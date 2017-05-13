@@ -102,7 +102,7 @@
 
 <div class="project">
     <!-- A D M I N   E D I T I N G -->
-    <div class='company-admin-editing hide-on-mobile'>
+    <div class='company-admin-editing hide-on-mobile hidden-xs'>
         <% if current_user != nil && current_user.authority == authority[:Admin] %>
             <%= link_to( {:controller => 'companies', :action => 'edit_profile', :id => @company.id }, class: 'edit-company-button' ) do %>
                 <i class="fa fa-user-secret" aria-hidden="true"></i>
