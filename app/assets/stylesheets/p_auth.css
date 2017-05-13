@@ -18,7 +18,7 @@
   vertical-align: top;
 }
 .auth__top__link {
-  display: block;
+  display: inline;
   padding-left: 15px;
   padding-right: 15px;
   /*min-width: 180px;*/
