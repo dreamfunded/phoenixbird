@@ -93,17 +93,20 @@ and (max-device-width : 568px) {
         width: 66px;
         margin-left: 2px;
         margin-right: 2px;
+        margin-bottom: 40px;
     }
     .tmln-card-title{
         line-height: 1;
-        font-size: 10px;
+        font-size: 8px;
     }
     .timeline-date{
-        font-size: 9px;
+        font-size: 7px;
         line-height: 1;
+        bottom: -28px;
     }
     .timeline-card:before{
         right: 21px;
+        bottom: -51px;
     }
 }
 
