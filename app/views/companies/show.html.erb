@@ -29,7 +29,7 @@
 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 col-xs-12">
                 <div class="investTop__title">
                   <h2><%= @company.name %></h2>
                 </div>
@@ -69,12 +69,13 @@
                             <h2 class='waitlist_thankyou_text investTop__subtitle'></h2>
                             <%= form_tag("/waitlist/join_waitlist_send_email_with_invest/#{@company.slug}", remote: true, target: "_blank", class: "form-inline")  do %>
                               <div class="input-row row">
-                                <div class="col-sm-6 col-xs-6">
+                                <div class="col-sm-6 col-xs-12">
                                   <div class="input-wrap">
                                     <%= text_field_tag "invest_amount", nil, placeholder: '$ 100', class: 'join-waitlist-new' %>
                                   </div>
                                 </div>
-                                <div class="col-sm-6 col-xs-6">
+                                <br><br>
+                                <div class="col-sm-6 col-xs-12">
                                   <%= submit_tag "Join The Waitlist",  class: 'btn btn-blue fw-btn', target: "_blank"%>
                                 </div>
                               </div>
