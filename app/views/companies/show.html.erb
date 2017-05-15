@@ -192,7 +192,7 @@
                             <div class="mentor__name"><span><%= member.name%></span></div>
                             <div class="mentor__pos"><span><%= member.title%></span></div>
                             <div class="mentor__desc">
-                              <p><%= member.content %></p>
+                              <p><%= simple_format(member.content) %></p>
                             </div>
                           </div>
                           <a href="#" class='right small' data-toggle="modal" data-target="#<%= member.id %>">Show More</a>
@@ -211,7 +211,7 @@
                             <h4 class="modal-title mentor__pos"><%= member.title%></h4>
                           </div>
                           <div class="modal-body">
-                            <p><%= member.content %></p>
+                            <p><%= simple_format member.content %></p>
                           </div>
 
                         </div>
