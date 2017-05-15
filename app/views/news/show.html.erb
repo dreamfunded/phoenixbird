@@ -21,7 +21,9 @@
                 <%= image_tag @article.image.url, :class => "full-image" %>
             <% end %>
 
-            <p class= "article text-justify"><%= @article.content.html_safe %></p>
+            <div class='article text-justify'>
+                <%= simple_format @article.content %>
+            </div>
 
 
 

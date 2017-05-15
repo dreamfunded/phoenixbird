@@ -1,38 +1,40 @@
-<div class= "wrapper">
-  <div class= "box creation-wrap">
+<div class= "container news">
+
     <h2 class= "centered"> Edit article </h2>
 
     <%= form_for @article, multipart: true do |f| %>
 
-      <%= f.text_field :title,  :placeholder => "Name of Your Article", :class => "input-box"%><br>
-      <div class= "description-wrap">
+      <%= f.text_field :title,  :placeholder => "Name of Your Article", :class => "form-field"%><br>
+
         <%#= f.text_area(:content, :placeholder => "Article Content", :class => "description-box") %>
         <%= f.text_area :content, size: "70x15", class: 'posts-textarea ckeditor'  %>
-      </div>
 
-      <div class= "description-wrap">
-        <%= f.text_area(:source, :placeholder => "Source", :class => "description-box source") %>
-      </div>
 
-      <div class= "description-wrap">
-        <%= f.text_area(:source_url, :placeholder => "Source URL", :class => "description-box source") %>
-      </div>
 
-      <div class= "description-wrap">
-        <%= f.text_field(:position, :placeholder => "Position", :class => "description-box source") %>
-      </div>
+        <%= f.text_area(:source, :placeholder => "Source", :class => "form-field") %>
+
+
+
+        <%= f.text_area(:source_url, :placeholder => "Source URL", :class => "form-field") %>
+
+
+
+        <%= f.text_field(:position, :placeholder => "Position", :class => "form-field") %>
+
 
       <div class = "notice centered">
         <%= flash[:file_uploaded] if flash[:file_uploaded] %>
       </div>
-      <%= f.text_field(:video_link, :placeholder => 'Youtube link',  :class=> 'input-box') %><br>
+      <%= f.text_field(:video_link, :placeholder => 'Youtube link',  :class=> 'form-field') %><br>
 
-      <label for = "image">Upload Article Image: </label>
-      <%= f.file_field "image" %><br>
-      <%= image_tag @article.image.url, class: 'full-image' %>
+      <div>
+        <label for = "image">Upload Article Image: </label>
+        <%= f.file_field "image" %><br>
+        <%= image_tag @article.image.url, class: 'full-image' %>
+      </div>
       <div class= "centered">
-        <%= submit_tag("Publish", :id => "submit-button") %>
+        <%= submit_tag("Publish", :class => "btn btn-blue") %>
       </div>
     <% end %>
-  </div>
+
 </div>
