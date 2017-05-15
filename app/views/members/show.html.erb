@@ -1,29 +1,24 @@
-
-<title>DreamFunded | <%= @member.name %> </title>
+<%= title "DreamFunded | #{   @member.name}" %>
   <div class="news">
     <div class= " container">
-      <div class= "topbar">
 
-        <% if current_user != nil && current_user.authority == authority[:Admin] %>
-          <%= link_to 'Edit', edit_member_path(@member), {:class => 'right'} %>
-        <% end %>
-      </div>
-      <div class= "page">
-        <div class= "art-text">
-          <h2 class= "center darkblue title"><%= @member.name %></h2>
-
-          <center>
-            <%= image_tag @member.image.url, :class => "full-image" %>
-          </center>
-
-          <p class= "article"><%= nl2br(h(@member.fullbio.html_safe)).html_safe %></p>
-
-          <% if @member.name == 'Manny Fernandez' %>
-            <div class="fb-like" data-href="https://www.facebook.com/mannyfernandezangelinvestor/" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+      <div class='col-md-1'></div>
+      <div class='col-md-10'>
+        <div >
+          <% if current_user != nil && current_user.authority == authority[:Admin] %>
+            <%= link_to 'Edit', edit_member_path(@member), {:class => 'right'} %>
           <% end %>
         </div>
 
+        <h2 class= "center  title"><%= @member.name %></h2><br>
+        <%= image_tag @member.image.url, :class => "full-image" %>
+        <p class= "article text-justify"><%= nl2br(h(@member.fullbio.html_safe)).html_safe %></p>
+
+        <% if @member.name == 'Manny Fernandez' %>
+          <div class="fb-like" data-href="https://www.facebook.com/mannyfernandezangelinvestor/" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="true"></div>
+        <% end %>
       </div>
+
     </div>
   </div>
 
