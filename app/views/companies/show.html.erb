@@ -14,6 +14,10 @@
     <div class="container">
         <div class="">
             <div class="col-md-6 hidden-sm hidden-xs">
+              <% if @company.video_link.empty? %>
+                <%= image_tag @company.image %>
+              <% else %>
+
                 <div data-video="<%= @company.video_link %>" class="investTop__video">
                     <a href="#" class="investTop__video__play">
                         <svg class="svg-icon play-icon">
@@ -26,6 +30,7 @@
                         <iframe src="javascript:void(0)"></iframe>
                     </div>
                 </div>
+              <% end %>
 
             </div>
 
