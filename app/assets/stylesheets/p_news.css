@@ -19,6 +19,9 @@
   font-size: 32px;
   font-weight: 300;
 }
+.news_source{
+  margin-top: 50px;
+}
 .news__list {
   margin-top: 54px;
   padding-bottom: 55px;
