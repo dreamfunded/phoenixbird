@@ -9,35 +9,58 @@
 <% twitter_image @group.background.url %>
 
 
-
-    <section class='group-cover-photo' style="background-image:url(<%= @group.background.url %>)" >
-
-        <div class='group-opacity-on-background'>
+<div style="background-image: url(<%= @group.background.url %>)" class="pageTopBlock group-top-block">
+    <div class='dark-opacity'></div>
+    <div class='container'>
+        <div class='col-md-3 '>
+            <div class='group-top-info-position'>
+                <%= image_tag( @group.image.url )%>
+            </div>
         </div>
-
-        <div class='company-profile-bottom-line group-description-margin'>
-            <%= image_tag( @group.image.url, class: 'image-max-width company-logo group-logo')%>
-            <section class='company-basic-info'>
+        <div class='col-md-7'>
+            <div class='group-top-info-position'>
                 <div>   <%= @group.name %>  </div>
-                <div class='company-slogan'>    <%= @group.description %>  </div>
-                <div class='number-of-members'> <%= number_with_delimiter @group.member %> members</div>
-            </section>
+                <div >    <%= @group.description %>  </div>
+                <div > <%= number_with_delimiter @group.member %> members</div>
+            </div>
         </div>
+        <div class='col-md-2'>
+            <div class='group-top-info-position'>
+                <%= link_to "Member", '#', class: 'btn btn-blue'  %>
+            </div>
+        </div>
+    </div>
 
-        <div class='group-info-right-panel'>
-            <div class='fund-america-invest-button'>
-                <% if current_user %>
-                    <% if @group.users.include?(current_user) %>
-                        <%= link_to "Member", '#', class: 'btn btn-blue'  %>
-                    <% else %>
-                        <%= link_to "Join Group", join_group_path(@group), class: 'btn btn-blue' %>
-                    <% end %>
+
+
+</div>
+
+<!-- <section class='group-cover-photo' style="background-image:url(<%= @group.background.url %>)" >
+
+
+    <div class='company-profile-bottom-line group-description-margin'>
+        <%= image_tag( @group.image.url, class: 'image-max-width company-logo group-logo')%>
+        <section class='company-basic-info'>
+            <div>   <%= @group.name %>  </div>
+            <div class='company-slogan'>    <%= @group.description %>  </div>
+            <div class='number-of-members'> <%= number_with_delimiter @group.member %> members</div>
+        </section>
+    </div>
+
+    <div class='group-info-right-panel'>
+        <div class='fund-america-invest-button'>
+            <% if current_user %>
+                <% if @group.users.include?(current_user) %>
+                    <%= link_to "Member", '#', class: 'btn btn-blue'  %>
                 <% else %>
                     <%= link_to "Join Group", join_group_path(@group), class: 'btn btn-blue' %>
                 <% end %>
-            </div>
+            <% else %>
+                <%= link_to "Join Group", join_group_path(@group), class: 'btn btn-blue' %>
+            <% end %>
         </div>
-    </section>
+    </div>
+</section> -->
 
     <div class='group-blog-section'>
         <div class=" stretch">
@@ -278,100 +301,100 @@
 
 
 <script>
-    // run when page is ready
-    $('.invt-fr-btn').click(function(){
+    // // run when page is ready
+    // $('.invt-fr-btn').click(function(){
 
-        // create variable to hold the current modal window
-        var activeWindow;
+    //     // create variable to hold the current modal window
+    //     var activeWindow;
 
-            // cancel the default link behaviour
+    //         // cancel the default link behaviour
 
-            // find the href of the link that was clicked to use as an id
-            var id = '#invite-dialog'
-            console.log(id);
-            // assign the window with matching id to the activeWindow variable, move it to the center of the screen and fade in
-            activeWindow = $('.window' + id)
-                .css('opacity', '0') // set to an initial 0 opacity
-                .css('top', '30%') // position vertically at 50%
-                .css('left', '32%') // position horizontally at 50%
-                .fadeTo(500, 1); // fade to an opacity of 1 (100%) over 500 milliseconds
+    //         // find the href of the link that was clicked to use as an id
+    //         var id = '#invite-dialog'
+    //         console.log(id);
+    //         // assign the window with matching id to the activeWindow variable, move it to the center of the screen and fade in
+    //         activeWindow = $('.window' + id)
+    //             .css('opacity', '0') // set to an initial 0 opacity
+    //             .css('top', '30%') // position vertically at 50%
+    //             .css('left', '32%') // position horizontally at 50%
+    //             .fadeTo(500, 1); // fade to an opacity of 1 (100%) over 500 milliseconds
 
-            // create blind and fade in
-            $('#modal')
-                .append('<div id="blind" />') // create a <div> with an id of 'blind'
-                .find('#blind') // select the div we've just created
-                .css('opacity', '0') // set the initial opacity to 0
-                .fadeTo(500, 0.8) // fade in to an opacity of 0.8 (80%) over 500 milliseconds
-                .click(function(e){
-                    closeModal(); // close modal if someone clicks anywhere on the blind (outside of the window)
-                });
+    //         // create blind and fade in
+    //         $('#modal')
+    //             .append('<div id="blind" />') // create a <div> with an id of 'blind'
+    //             .find('#blind') // select the div we've just created
+    //             .css('opacity', '0') // set the initial opacity to 0
+    //             .fadeTo(500, 0.8) // fade in to an opacity of 0.8 (80%) over 500 milliseconds
+    //             .click(function(e){
+    //                 closeModal(); // close modal if someone clicks anywhere on the blind (outside of the window)
+    //             });
 
-        $('a.close').click(function(e){
-                // cancel default behaviour
-                e.preventDefault();
-                // call the closeModal function passing this close button's window
-                closeModal();
-        });
-        function closeModal()
-        {
-            // fade out window and then move back to off screen when fade completes
-            activeWindow.fadeOut(250, function(){ $(this).css('top', '-1000px').css('left', '-1000px'); });
-            // fade out blind and then remove it
-            $('#blind').fadeOut(250,    function(){ $(this).remove(); });
-        }
-      // close NewsLetter Subscription Box
-    });
+    //     $('a.close').click(function(e){
+    //             // cancel default behaviour
+    //             e.preventDefault();
+    //             // call the closeModal function passing this close button's window
+    //             closeModal();
+    //     });
+    //     function closeModal()
+    //     {
+    //         // fade out window and then move back to off screen when fade completes
+    //         activeWindow.fadeOut(250, function(){ $(this).css('top', '-1000px').css('left', '-1000px'); });
+    //         // fade out blind and then remove it
+    //         $('#blind').fadeOut(250,    function(){ $(this).remove(); });
+    //     }
+    //   // close NewsLetter Subscription Box
+    // });
 
-    // run when page is ready
-    $(document).ready(function(){
+    // // run when page is ready
+    // $(document).ready(function(){
 
-        // create variable to hold the current modal window
-        var activeWindow;
+    //     // create variable to hold the current modal window
+    //     var activeWindow;
 
-            // cancel the default link behaviour
+    //         // cancel the default link behaviour
 
-            // find the href of the link that was clicked to use as an id
-            var id = '#soc-media-dialog'
-            console.log(id);
-            // assign the window with matching id to the activeWindow variable, move it to the center of the screen and fade in
-            activeWindow = $('.window' + id)
-                .css('opacity', '0') // set to an initial 0 opacity
-                .css('top', '50%') // position vertically at 50%
-                .css('left', '50%') // position horizontally at 50%
-                .fadeTo(500, 1) // fade to an opacity of 1 (100%) over 500 milliseconds
-                .hide();
+    //         // find the href of the link that was clicked to use as an id
+    //         var id = '#soc-media-dialog'
+    //         console.log(id);
+    //         // assign the window with matching id to the activeWindow variable, move it to the center of the screen and fade in
+    //         activeWindow = $('.window' + id)
+    //             .css('opacity', '0') // set to an initial 0 opacity
+    //             .css('top', '50%') // position vertically at 50%
+    //             .css('left', '50%') // position horizontally at 50%
+    //             .fadeTo(500, 1) // fade to an opacity of 1 (100%) over 500 milliseconds
+    //             .hide();
 
-            url = $(location).attr('href');
-            if(url.includes("social-invite") ){
-                activeWindow.show();
-            }
+    //         url = $(location).attr('href');
+    //         if(url.includes("social-invite") ){
+    //             activeWindow.show();
+    //         }
 
 
-            // create blind and fade in
-            $('#modal')
-                .append('<div id="blind" />') // create a <div> with an id of 'blind'
-                .find('#blind') // select the div we've just created
-                .css('opacity', '0') // set the initial opacity to 0
-                // .fadeTo(500, 0.8) // fade in to an opacity of 0.8 (80%) over 500 milliseconds
-                .click(function(e){
-                    closeModal(); // close modal if someone clicks anywhere on the blind (outside of the window)
-                });
+    //         // create blind and fade in
+    //         $('#modal')
+    //             .append('<div id="blind" />') // create a <div> with an id of 'blind'
+    //             .find('#blind') // select the div we've just created
+    //             .css('opacity', '0') // set the initial opacity to 0
+    //             // .fadeTo(500, 0.8) // fade in to an opacity of 0.8 (80%) over 500 milliseconds
+    //             .click(function(e){
+    //                 closeModal(); // close modal if someone clicks anywhere on the blind (outside of the window)
+    //             });
 
-        $('a.close').click(function(e){
-                // cancel default behaviour
-                e.preventDefault();
-                // call the closeModal function passing this close button's window
-                closeModal();
-        });
-        function closeModal()
-        {
-            // fade out window and then move back to off screen when fade completes
-            activeWindow.fadeOut(250, function(){ $(this).css('top', '-1000px').css('left', '-1000px'); });
-            // fade out blind and then remove it
-            $('#blind').fadeOut(250,    function(){ $(this).remove(); });
-        }
-      // close NewsLetter Subscription Box
-    });
+    //     $('a.close').click(function(e){
+    //             // cancel default behaviour
+    //             e.preventDefault();
+    //             // call the closeModal function passing this close button's window
+    //             closeModal();
+    //     });
+    //     function closeModal()
+    //     {
+    //         // fade out window and then move back to off screen when fade completes
+    //         activeWindow.fadeOut(250, function(){ $(this).css('top', '-1000px').css('left', '-1000px'); });
+    //         // fade out blind and then remove it
+    //         $('#blind').fadeOut(250,    function(){ $(this).remove(); });
+    //     }
+    //   // close NewsLetter Subscription Box
+    // });
     //T A B S
     $(document).ready(function(){
 
