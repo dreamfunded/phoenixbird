@@ -195,12 +195,12 @@
                               <p><%= member.content %></p>
                             </div>
                           </div>
-                          <!-- <a href="#" class='right small' data-toggle="modal" data-target="#myModal">Show More</a> -->
+                          <a href="#" class='right small' data-toggle="modal" data-target="#<%= member.id %>">Show More</a>
                         </div>
                       </div>
                     </div>
                     <!-- Team Modal Start -->
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="<%= member.id%>" class="modal fade" role="dialog">
                       <div class="modal-dialog">
 
                         <!-- Modal content-->
@@ -213,9 +213,7 @@
                           <div class="modal-body">
                             <p><%= member.content %></p>
                           </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          </div>
+
                         </div>
 
                       </div>
