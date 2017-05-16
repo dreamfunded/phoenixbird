@@ -11,25 +11,17 @@
 
 <div style="background-image: url(<%= @group.background.url %>)" class="pageTopBlock group-top-block">
     <div class='dark-opacity'></div>
-    <div class='container'>
-        <div class='col-md-3 '>
-            <div class='group-top-info-position'>
+
+    <div class='group-top-info-position col-md-9'>
                 <%= image_tag( @group.image.url )%>
-            </div>
-        </div>
-        <div class='col-md-7'>
-            <div class='group-top-info-position'>
-                <div>   <%= @group.name %>  </div>
-                <div >    <%= @group.description %>  </div>
-                <div > <%= number_with_delimiter @group.member %> members</div>
-            </div>
-        </div>
-        <div class='col-md-2'>
-            <div class='group-top-info-position'>
-                <%= link_to "Member", '#', class: 'btn btn-blue'  %>
-            </div>
-        </div>
+                <h1 class='group-name'>  <%= @group.name %>  </h1>
+                <h3 class='group-descr'>  <%= @group.description %>  </h3>
+                <h3 class='group-descr'>  <%= number_with_delimiter @group.member %> members</h3>
     </div>
+    <div class='col-md-3'>
+                <%= link_to "Member", '#', class: 'btn btn-blue'  %>
+    </div>
+
 
 
 
