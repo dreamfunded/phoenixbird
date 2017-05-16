@@ -109,11 +109,12 @@
 }
 @media (max-width: 767px) {
   .news__it__txt {
-    display: inline;
+   /* display: inline;*/
   }
 }
 .news__it__more {
   margin-top: 10px;
+  text-align: right;
 }
 @media (max-width: 767px) {
 }
