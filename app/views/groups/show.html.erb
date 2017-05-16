@@ -9,30 +9,32 @@
 <% twitter_image @group.background.url %>
 
 
-<div style="background-image: url(<%= @group.background.url %>)" class="pageTopBlock group-top-block">
+<!-- <div style="background-image: url(<%= @group.background.url %>)" class="pageTopBlock group-top-block">
     <div class='dark-opacity'></div>
 
-    <div class='group-top-info-position col-md-9'>
-                <%= image_tag( @group.image.url )%>
-                <h1 class='group-name'>  <%= @group.name %>  </h1>
-                <h3 class='group-descr'>  <%= @group.description %>  </h3>
-                <h3 class='group-descr'>  <%= number_with_delimiter @group.member %> members</h3>
+    <div class='group-top-info-position'>
+        <div class='container'>
+            <div class='group-first-block'>
+                        <%= image_tag( @group.image.url )%>
+                        <h1 class='group-name'>  <%= @group.name %>  </h1>
+                        <h3 class='group-descr'>  <%= @group.description %>  </h3>
+                        <h3 class='group-descr'>  <%= number_with_delimiter @group.member %> members</h3>
+            </div>
+            <div class='group-second-block'>
+                <div>
+                        <%= link_to "Member", '#', class: 'btn btn-blue'  %>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class='col-md-3'>
-                <%= link_to "Member", '#', class: 'btn btn-blue'  %>
-    </div>
+</div> -->
 
-
-
-
-</div>
-
-<!-- <section class='group-cover-photo' style="background-image:url(<%= @group.background.url %>)" >
-
+<section class='group-cover-photo' style="background-image:url(<%= @group.background.url %>)" >
+<div class='dark-opacity'></div>
 
     <div class='company-profile-bottom-line group-description-margin'>
-        <%= image_tag( @group.image.url, class: 'image-max-width company-logo group-logo')%>
         <section class='company-basic-info'>
+            <%#= image_tag( @group.image.url, class: 'image-max-width company-logo group-logo')%>
             <div>   <%= @group.name %>  </div>
             <div class='company-slogan'>    <%= @group.description %>  </div>
             <div class='number-of-members'> <%= number_with_delimiter @group.member %> members</div>
@@ -52,7 +54,7 @@
             <% end %>
         </div>
     </div>
-</section> -->
+</section>
 
     <div class='group-blog-section'>
         <div class=" stretch">

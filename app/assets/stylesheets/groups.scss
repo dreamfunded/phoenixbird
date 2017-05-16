@@ -14,7 +14,6 @@
 }
 .group-top-info-position {
   bottom: 0;
-  left: 10%;
   position: absolute;
 }
 
@@ -26,8 +25,19 @@
   color: #fff;
   font-size: 25pxl
 }
-
-
+.group-first-block{
+  width: 74%;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+}
+.group-second-block{
+  display: inline-block;
+  width: 25%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 
 
 .group-info-right-panel{
