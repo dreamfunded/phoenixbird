@@ -45,12 +45,12 @@
         <div class='fund-america-invest-button'>
             <% if current_user %>
                 <% if @group.users.include?(current_user) %>
-                    <%= link_to "Member", '#', class: 'btn btn-blue'  %>
+                    <%= link_to "Member", '#', class: 'btn '  %>
                 <% else %>
-                    <%= link_to "Join Group", join_group_path(@group), class: 'btn btn-blue' %>
+                    <%= link_to "Join Group", join_group_path(@group), class: 'btn ' %>
                 <% end %>
             <% else %>
-                <%= link_to "Join Group", join_group_path(@group), class: 'btn btn-blue' %>
+                <%= link_to "Join Group", join_group_path(@group), class: 'btn ' %>
             <% end %>
         </div>
     </div>
@@ -59,7 +59,7 @@
     <div class='group-blog-section'>
         <div class=" stretch">
             <!-- A D M I N   E D I T I N G -->
-            <div class='group-admin-editing hide-on-mobile'>
+            <div class='group-admin-editing hidden-xs'>
                 <% if current_user != nil && current_user.authority == authority[:Admin] %>
                     <%= link_to( edit_group_path(@group), class: 'edit-company-button' ) do %>
                        <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -98,7 +98,7 @@
                 <h2 class='section-title group-tab company-tab'>Companies</h2>
             <% end %>
             <div class='container'>
-                <section class= "group-box col-md-8">
+                <section class= "group-box ">
 
                     <div class= "news-container group-tab-content group-blog-content">
                         <% @posts.each do |article| %>
@@ -214,7 +214,7 @@
 
                 </section>
 
-                <div class='col-md-4'>
+
                     <section class="group-members-box">
                         <div class='group-members-header'>Group Admins</div>
                         <div class='group-admins-list'>
@@ -239,7 +239,7 @@
                             <%= link_to "Invite Friend", "#", class: 'btn btn-blue' %>
                         </div>
                     </section>
-                </div>
+
             </div>
         </div>
     </div>
