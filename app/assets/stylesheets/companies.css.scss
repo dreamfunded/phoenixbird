@@ -324,7 +324,7 @@ hr.div {
   width: 85%;
 }
 .company-basic-info {
-  width: 500px;
+  padding-left: 10%;
   font-size: 2em;
   font-weight: bold;
   font-family: Gotham, sans-serif;
@@ -1119,18 +1119,12 @@ and (max-device-width : 568px) {
   .company-info-cateogry, .company-info-category{
     font-size: 1.5em !important;
   }
-  .company-basic-info{
-    font-size: 4em;
-    font-weight: bold;
-    margin-left: 3%;
-  }
+
   .company-logo{
     margin-left: 3%;
   }
   .company-slogan {
-    font-size: 40px;
-    line-height: 1;
-    font-weight: bold;
+
   }
   .company-location{
     font-size: 40px;

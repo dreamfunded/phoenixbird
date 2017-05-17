@@ -1,25 +1,30 @@
-<div class= "word-content">
-    <div class= "text-content centered">
-        <h1>Endorse a Company</h1>
-        <div class='notice'><%= flash[:error] %></div>
-        <%= form_tag "/endorse_company"  do %>
-          <%= hidden_field_tag( 'id',  @group.id) %>
-          <div class="styled-select form-field-dropdown birth-date-width" >
-            <%= select_tag( :company_id, options_from_collection_for_select(@companies, "id", "name") ) %>
-          </div>
+<div class='container news'>
+  <div class= "word-content">
+      <div class= "text-content centered">
+          <h1>Endorse a Company</h1>
+          <div class='notice'><%= flash[:error] %></div>
+          <%= form_tag "/endorse_company"  do %>
+            <%= hidden_field_tag( 'id',  @group.id) %>
+            <div class="styled-select form-field-dropdown birth-date-width" >
+              <%= select_tag( :company_id, options_from_collection_for_select(@companies, "id", "name") ) %>
+            </div>
 
 
-          <div class="actions">
-            <%= submit_tag "Select", class: 'company-button join-group-button mail-to-button invt-fr-btn' %>
-          </div>
-        <% end %>
+            <div class="actions">
+              <%= submit_tag "Select", class: 'company-button join-group-button mail-to-button invt-fr-btn' %>
+            </div>
+          <% end %>
 
-        <div class='companies-endorsed'>List of Endorsed Companies</div>
-        <% @my_companies.each do |company| %>
-          <span><%= company.name%></span>
-          <%= button_to 'Remove', "/delete_endorsed_company/#{company.id}", params: {'id' => @group.id} %>
-          <hr>
-        <% end %>
-    </div>
+          <div class='companies-endorsed'>List of Endorsed Companies</div>
+          <% @my_companies.each do |company| %>
+            <span><%= company.name%></span>
+            <%= button_to 'Remove', "/delete_endorsed_company/#{company.id}", params: {'id' => @group.id} %>
+            <hr>
+          <% end %>
+      </div>
+  </div>
 </div>
 
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

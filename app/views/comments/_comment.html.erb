@@ -16,7 +16,7 @@
       </div>
     </div>
     <% if current_user != nil && current_user.authority == authority[:Admin] %>
-    <%= button_to "X", {action: 'remove_comment',controller: 'comments', id: comment.id} , data: { confirm: 'Are you sure?' }, class:'remove-button'%>
+    <%= link_to "Delete", {action: 'remove_comment',controller: 'comments', id: comment.id} , data: { confirm: 'Are you sure?' }, class:'right red_link comment-admin-edit'%>
     <% end %>
  </div>
 

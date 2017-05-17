@@ -81,7 +81,7 @@ and (max-device-width : 568px) {
         height: 650px;
     }
     .company-profile-bottom-line{
-        bottom: 5%;
+        bottom: 25%;
      /*   left: 5%;*/
     }
     .fund-america-invest-button .profile-button {
