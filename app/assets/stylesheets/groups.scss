@@ -310,6 +310,10 @@
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
 
+  .group-box{
+    width: 100%;
+  }
+
   .group-blog-section{
     padding: 1% 2%;
   }
@@ -344,9 +348,6 @@ and (max-device-width : 568px) {
     margin-left: 1%;
   }
 
-  .group-box{
-    width: 70%;
-  }
 
   #invite-dialog{
     width: 50% !important;
