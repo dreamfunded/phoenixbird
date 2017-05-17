@@ -1,18 +1,24 @@
-<div class="word-content">
-    <div class="text-content centered">
-        <h2 class='section-title'> <%= @group.name %> Members</h2>
+<div class='container news'>
+    <div class="word-content">
+        <div class="text-content centered">
+            <h2 class='section-title'> <%= @group.name %> Members</h2>
 
-        <div class='group-members-table'>
-        <% @group.users.uniq.each do |member| %>
+            <div class='group-members-table'>
+            <% @group.users.uniq.each do |member| %>
 
-            <span class='grp-mmbr-col '> <%= member.name %> </span>
-            <span class='grp-mmbr-col '> <%= member.email%> </span>
-            <span class='grp-mmbr-col '>
-                <%= button_to 'Remove', "/delete_group_member/#{member.id}", params: {'id' => @group.id} %>
-            </span>
+                <span class='grp-mmbr-col '> <%= member.name %> </span>
+                <span class='grp-mmbr-col '> <%= member.email%> </span>
+                <span class='grp-mmbr-col '>
+                    <%= button_to 'Remove', "/delete_group_member/#{member.id}", params: {'id' => @group.id} %>
+                </span>
 
-        <% end %>
+            <% end %>
+            </div>
+
         </div>
-
     </div>
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

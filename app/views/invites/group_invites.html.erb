@@ -3,68 +3,70 @@
 <% facebook_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
 <% facebook_secure_image "https://dreamfunded.com/assets/logo_for_facebook.jpg" %>
 
-<div class= "wrapper"> <!-- wrapper Starts -->
+<div class='container news'>
+  <div class= "wrapper"> <!-- wrapper Starts -->
 
-  <div class="header">
-    <h1 class="centered">Invest with Friends </h1>
-  </div>
 
-  <div class= "invite-content">
-    <div class='linkedin-text centered'>
-      Invite people you know
+
+    <div class= "invite-content">
+      <h1> Invite people you know </h1>
+      <%= flash[:email_sent] %>
+
+        <!--   To Groups -->
+        <div class="invite-via-email">
+          <span class='invite-email-icon'><%=  fa_icon("users 2x")%> </span>
+          <span class='invite-text'>Upload a CSV File</span>
+          <span class='invite-form'>
+            <%= form_tag('/invites_to_group', multipart: true) do  %>
+              <%= text_field_tag(:name,current_user.name, placeholder: 'Name',class: 'invite-text-input', required: true) %>
+              <%= select_tag(:group, options_from_collection_for_select(Group.all, "id", "name"), required: true ) %>
+              <%= file_field_tag :file, required: true %>
+              <%= submit_tag "Send", class: 'invite-button' %>
+            <% end %>
+          </span>
+        </div>
+
+        <div class="invite-via-email">
+          <span class='invite-email-icon'><%=  fa_icon("google 2x")%> </span>
+          <span class='invite-text'>Invite from Gmail</span>
+          <span class='invite-form-google'>
+            <%= button_to  '/authenticate', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+              Invite Contacts from Gmail  &nbsp;
+
+            <% end %>
+
+          </span>
+        </div>
+
+        <div class="invite-via-email">
+          <span class='invite-email-icon'><%=  fa_icon("yahoo 2x")%> </span>
+          <span class='invite-text'>Invite from Yahoo</span>
+          <span class='invite-form-google'>
+            <%= button_to  '/contacts/yahoo',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+              Invite Contacts from Yahoo  &nbsp;
+
+            <% end %>
+
+          </span>
+        </div>
+
+        <div class="invite-via-email">
+          <span class='invite-email-icon'><%=  fa_icon("windows 2x")%> </span>
+          <span class='invite-text'>Invite from Outlook</span>
+          <span class='invite-form-google'>
+            <%= button_to  '/contacts/outlook',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+              Invite Contacts from Outlook
+
+            <% end %>
+
+          </span>
+        </div>
+
     </div>
-    <%= flash[:email_sent] %>
-
-      <!--   To Groups -->
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("users 2x")%> </span>
-        <span class='invite-text'>Upload a CSV File</span>
-        <span class='invite-form'>
-          <%= form_tag('/invites_to_group', multipart: true) do  %>
-            <%= text_field_tag(:name,current_user.name, placeholder: 'Name',class: 'invite-text-input', required: true) %>
-            <%= select_tag(:group, options_from_collection_for_select(Group.all, "id", "name"), required: true ) %>
-            <%= file_field_tag :file, required: true %>
-            <%= submit_tag "Send", class: 'invite-button' %>
-          <% end %>
-        </span>
-      </div>
-
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("google 2x")%> </span>
-        <span class='invite-text'>Invite from Gmail</span>
-        <span class='invite-form-google'>
-          <%= button_to  '/authenticate', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-            Invite Contacts from Gmail  &nbsp;
-            <%= image_tag "static/gmail-icon.png", class: 'gmail-icon' %>
-          <% end %>
-
-        </span>
-      </div>
-
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("yahoo 2x")%> </span>
-        <span class='invite-text'>Invite from Yahoo</span>
-        <span class='invite-form-google'>
-          <%= button_to  '/contacts/yahoo',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-            Invite Contacts from Yahoo  &nbsp;
-            <%= image_tag "static/yahoo_logo.png", class: 'yahoo-icon' %>
-          <% end %>
-
-        </span>
-      </div>
-
-      <div class="invite-via-email">
-        <span class='invite-email-icon'><%=  fa_icon("windows 2x")%> </span>
-        <span class='invite-text'>Invite from Outlook</span>
-        <span class='invite-form-google'>
-          <%= button_to  '/contacts/outlook',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-            Invite Contacts from Outlook
-            <%= image_tag "static/outlook.png", class: 'gmail-icon outlook-icon' %>
-          <% end %>
-
-        </span>
-      </div>
 
   </div>
-
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>
