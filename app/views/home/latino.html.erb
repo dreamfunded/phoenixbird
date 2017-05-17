@@ -1,19 +1,18 @@
 <% title "DreamFunded | Latino" %>
-<div class= "wrapper">
+<div class="news">
+  <div class="container">
 
+        <% if current_user != nil && current_user.authority == authority[:Admin] %>
+            <%= link_to 'Edit', "/posts/#{@post.id}/edit/latino", :"data-no-turbolink" => true, :class => 'right' %>
+        <% end %>
 
+        <p class= "faq-answer">
+            <%= @post.content.html_safe %>
+        </p>
 
-    <div class= "word-content">
-        <div class= "text-content">
-
-            <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                <%= link_to 'Edit', "/posts/#{@post.id}/edit/latino", :"data-no-turbolink" => true, :class => 'right' %>
-            <% end %>
-
-            <p class= "faq-answer">
-                <%= @post.content.html_safe %>
-            </p>
-
-        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>
