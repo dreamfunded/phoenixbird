@@ -168,6 +168,10 @@
   cursor: pointer;
 }
 
+.visible-small {
+  display: none;
+}
+
 .group-box .section-title{
   display: inline-block;
   cursor: pointer;
@@ -312,6 +316,13 @@ and (max-device-width : 568px) {
 
   .group-box{
     width: 100%;
+  }
+  .section-title{
+    font-size: 1.4em !important;
+  }
+
+  .visible-small{
+    display: inline-block;
   }
 
   .group-blog-section{
