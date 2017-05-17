@@ -1,32 +1,25 @@
-<head>
-	<title>DreamFunded | Authorization Error</title>
-</head>
+<%= title "DreamFunded | Authorization Error"%>
 
-<body>
 
-	<div class= "wrapper centered">
-		<div class= "header">
-			<h1>Authorization Error</h1>
-		</div>
-		<div class= "signin-box error">
-			<h2 class= "centered"> Sorry, you are not authorized to view this page </h2>
-			<br>
-			<p class= "left">This might be for one of the following reasons:</p>
-			<ul class= "left">
-				<li>
-					Your account is not verified.
-				</li>
+<div class="about">
+  	<div class="container">
+  		<h1>Authorization Error</h1>
 
-				<li>
-					This is an administrator-only page.
-				</li>
+		<h2 class= "centered"> Sorry, you are not authorized to view this page </h2>
 
-			</ul>
-			<br>
-			<p>If you believe there is an error, please contact us.</p>
-			<br>
-			<button class= "login-button" onclick= "home()">Go Back to Homepage</button>
-		</div>
+		<p >This might be for one of the following reasons:</p>
+
+		<ul>
+			<li>Your account is not verified.</li>
+			<li>This is an administrator-only page.</li>
+		</ul>
+		<br>
+		<p>If you believe there is an error, please contact us.</p>
+		<br>
+
 	</div>
+</div>
 
-</body>
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>
