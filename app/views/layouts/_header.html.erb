@@ -16,7 +16,7 @@
           <% else %>
             <li><a onclick= "get_funded()">Get Funded</a></li>
           <% end %>
-          <!-- <li><%= link_to "Private Offerings", '/how_it_works' %></li> -->
+          <li><%= link_to "Private Offerings", 'http://www.dreamfundedfund.com/', target: '_blank', class: 'privae-offerings' %></li>
         </ul>
       </div>
       <% if !current_user %>
@@ -25,7 +25,7 @@
           <%= link_to "Sign Up", new_user_registration_path %>
         </div>
       <% else %>
-        <div class="header__user"><span class="hidden-xs">Welcome</span><a href="#" class="hidden-xs"><span><%= current_user.first_name.capitalize%></span></a>
+        <div class="header__user"><span class="hidden-xs hidden-sm">Welcome</span><a href="#" class="hidden-xs"><span><%= current_user.first_name.capitalize%></span></a>
           <div class="header__user__drop">
             <ul class="reset-list">
               <li><%= link_to "My Investments", portfolio_path %></li>

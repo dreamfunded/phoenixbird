@@ -58,29 +58,40 @@
   <div class="container"><a href="#" class="mainTop__slider__arr __prev"></a><a href="#" class="mainTop__slider__arr __next"></a>
     <div class="mainTop__inn">
       <div class="mainTop__slider">
+
         <div class="item">
           <div class="mainTop__slider__title">
-            <h2>Invest in Startups</h2>
+            <h2>Invest in Local Business</h2>
           </div>
-          <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
+          <div class="mainTop__slider__txt"><span>And Get a Piece of Their Profits </span></div>
           <div class="mainTop__slider__btn">
            <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %>
           </div>
         </div>
-        <!-- <div class="item">
-          <div class="mainTop__slider__title">
-            <h2>Invest in Startups</h2>
-          </div>
-          <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
-          <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
-        </div>
+
         <div class="item">
           <div class="mainTop__slider__title">
-            <h2>Invest in Startups</h2>
+            <h2>Invest in the Fastest Growing Part of US Economy</h2>
           </div>
-          <div class="mainTop__slider__txt"><span>Now Everyone Can Back Companies They Love</span></div>
+          <div class="mainTop__slider__txt"><span>Latino-Owned Business</span></div>
           <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
-        </div> -->
+        </div>
+
+        <div class="item">
+          <div class="mainTop__slider__title">
+            <h2>Tired of Low CD Rates?</h2>
+          </div>
+          <div class="mainTop__slider__txt"><span>Put Your Money to Work, Make Money<br> When The Business Makes a Profit</span></div>
+          <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
+        </div>
+
+        <div class="item">
+          <div class="mainTop__slider__title">
+            <h2>Tired of Your Banker Using Your Money and Loaning It To Someone Else</h2>
+          </div>
+          <div class="mainTop__slider__txt"><span>Cut Out The Middleman, Invest Directly </span></div>
+          <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
+        </div>
       </div>
     </div>
   </div>
@@ -89,7 +100,7 @@
 <div class="mainCompanies">
   <div class="container">
     <div class="block-title">
-      <h3>Companies raising right now</h3>
+      <h3>Businesses raising right now</h3>
     </div>
 
     <div class="mainCompanies__cnt">
@@ -314,6 +325,8 @@
                 nextArrow: nextBtn,
                 edgeFriction: 0,
                 adaptiveHeight: true,
+                 autoplay: true,
+                autoplaySpeed: 10000
             })
 
             slider.on('afterChange', function(event, slick, currentSlide) {
