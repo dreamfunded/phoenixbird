@@ -31,6 +31,13 @@
     margin-top: 46px;
   }
 }
+.howitworks__it__title a{
+  color: #0d0f22;
+}
+.howitworks__it__title a:hover{
+  color: #62c6d5 !important;
+  border-bottom: 1px solid #62c6d5;
+}
 .howitworks__it__arr {
   width: 100px;
   position: absolute;
