@@ -216,7 +216,7 @@
                         <% end%>
                     </div>
                     <div class='text-center'>
-                        <%= link_to "Invite Friend", "#", class: 'btn btn-blue', :data => { toggle: 'modal', target: '#inviteModal' } %>
+                        <%= link_to "Invite Friend", "#", class: 'company-button join-group-button', :data => { toggle: 'modal', target: '#inviteModal' } %>
                     </div>
                 </section>
 
@@ -233,13 +233,17 @@
                 <div class='close-icon'>
                     <a href="#" class="close"><i class="fa fa-times"></i></a>
                 </div>
-                <h3>Invite Friend </h3>
-                <%= form_for GroupInvite.new, url: invite_to_group_path do |f| %>
-                    <%= f.hidden_field(:group_id, value: @group.id) %>
-                    <%= f.text_field(:name, :placeholder => "Name", :class => "form-field") %>
-                    <%= f.text_field(:email, :placeholder => "Email", :class => "form-field") %>
-                    <%= f.submit "Invite", class: "company-button join-group-button" %>
-                <% end %>
+                <div class="modal-header text-center">
+                    <h3>Invite Friend </h3>
+                </div>
+                <div class="modal-body">
+                    <%= form_for GroupInvite.new, url: invite_to_group_path do |f| %>
+                        <%= f.hidden_field(:group_id, value: @group.id) %>
+                        <%= f.text_field(:name, :placeholder => "Name", :class => "form-field") %>
+                        <%= f.text_field(:email, :placeholder => "Email", :class => "form-field") %>
+                        <%= f.submit "Invite", class: "company-button join-group-button" %>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>
