@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-field' %>
   </div>
   <div class="field">
     <%= f.label :quote %><br>
-    <%= f.text_area :quote %>
+    <%= f.text_area :quote, class: 'form-field' %>
   </div>
   <div class="field">
     <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, class: 'form-field' %>
   </div>
   <div class="field">
     <%= f.label :image %><br>
@@ -29,10 +29,10 @@
   </div>
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.date_select :date, class: 'form-field' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit  class: 'btn btn-blue' %>
   </div>
 <% end %>

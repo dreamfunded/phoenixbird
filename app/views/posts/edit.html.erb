@@ -1,7 +1,19 @@
-<div class='description-container edit-form news'>
-  <h1>Editing Paragraph</h1>
+<div class='news'>
+    <div class='container'>
 
-  <%= render 'form' %>
+        <div class='col-md-2'></div>
+        <div class='col-md-8'>
+            <div class=''>
+              <h1>Editing Paragraph</h1>
 
-  <%= link_to 'Show', @post %> |
+              <%= render 'form' %>
+
+              <%= link_to 'Show', @post %> |
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

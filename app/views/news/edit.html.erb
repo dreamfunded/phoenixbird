@@ -6,21 +6,13 @@
 
       <%= f.text_field :title,  :placeholder => "Name of Your Article", :class => "form-field"%><br>
 
-        <%#= f.text_area(:content, :placeholder => "Article Content", :class => "description-box") %>
         <%= f.text_area :content, size: "70x15", class: 'posts-textarea ckeditor'  %>
-
-
 
         <%= f.text_area(:source, :placeholder => "Source", :class => "form-field") %>
 
-
-
         <%= f.text_area(:source_url, :placeholder => "Source URL", :class => "form-field") %>
 
-
-
         <%= f.text_field(:position, :placeholder => "Position", :class => "form-field") %>
-
 
       <div class = "notice centered">
         <%= flash[:file_uploaded] if flash[:file_uploaded] %>
@@ -38,3 +30,7 @@
     <% end %>
 
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

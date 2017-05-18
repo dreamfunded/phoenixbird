@@ -2,25 +2,18 @@
     <div class='container'>
 		<%= form_for @news, multipart: true do |f|%>
 
-			<%= f.text_field(:title, :placeholder => "Name of Your Article", :class => "input-box") %><br>
+			<%= f.text_field(:title, :placeholder => "Name of Your Article", :class => "form-field") %><br>
 
 			<label for = "Image">Upload Article Image: </label>
 			<%= f.file_field "image" %><br><br>
 
-			<%= f.text_field(:video_link, :placeholder => 'Youtube link',  :class=> 'input-box') %><br>
+			<%= f.text_field(:video_link, :placeholder => 'Youtube link',  :class=> 'form-field') %><br>
 
+				<%= f.text_area(:content, :placeholder => "Article Content", :class => "description-box ckeditor") %>
 
-			<div class= "description-wrap">
-				<%= f.text_area(:content, :placeholder => "Article Content", :class => "description-box") %>
-			</div>
+				<%= f.text_area(:source, :placeholder => "Source", :class => "form-field") %>
 
-			<div class= "description-wrap">
-				<%= f.text_area(:source, :placeholder => "Source", :class => "description-box source") %>
-			</div>
-
-			<div class= "description-wrap">
-				<%= f.text_area(:source_url, :placeholder => "Source URL", :class => "description-box source") %>
-			</div>
+				<%= f.text_area(:source_url, :placeholder => "Source URL", :class => "form-field") %>
 
 			<div class = "notice centered">
 				<%= flash[:file_uploaded] if flash[:file_uploaded] %>
@@ -30,9 +23,13 @@
 			</div>
 
 			<div class= "centered">
-				<%= f.submit("Publish", :id => "submit-button") %>
+				<%= f.submit("Publish", :class => "btn btn-blue") %>
 			</div>
 		<% end %>
 
 	</div>
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

@@ -12,29 +12,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :name, :placeholder => "Name", :class => "input-box" %>
+    <label>Name</label>
+    <%= f.text_field :name, :placeholder => "Name", :class => "form-field" %>
   </div>
 
   <div class="field">
-    <%= f.text_field :title, :placeholder => "Title", :class => "input-box" %>
+    <label>Title</label>
+    <%= f.text_field :title, :placeholder => "Title", :class => "form-field" %>
   </div>
 
   <div class="field">
     <%= f.file_field :image %>
   </div>
 
-  <div class="description-wrap">
-    <%= f.text_area :summary,  :placeholder => "Summary of the Biography", :class => "description-box" %>
-  </div>
+    <label>Short Bio</label>
+    <%= f.text_area :summary,  :placeholder => "Summary of the Biography", :class => "description-box form-field" %>
 
-  <div class="description-wrap">
-    <%= f.text_area :fullbio, :placeholder => "Full Biography", :class => "description-box" %>
-  </div>
+
+    <label>Full Bio</label>
+    <%= f.text_area :fullbio, :placeholder => "Full Biography", :class => "description-box form-field" %>
+
 
   <div class="field">
-    <%= f.number_field :rank, value: 0, :placeholder => "Position", :class => "input-box" %>
+    <label>Position</label>
+    <%= f.number_field :rank, value: 0, :placeholder => "Position", :class => "form-field" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Add", :id => "submit-button" %>
+  <div class="actions text-centered">
+    <%= f.submit "Add", :class => "btn btn-blue" %>
   </div>
 <% end %>
