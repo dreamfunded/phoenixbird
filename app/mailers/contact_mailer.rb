@@ -24,6 +24,12 @@ class ContactMailer < ActionMailer::Base
     mail(to: "info@dreamfunded.com", subject: 'Guest Contacted From DreamFunded website')
   end
 
+  def reject_company(company)
+    user = company.users.first
+    @user, @company = user, company
+    mail(to: user.email, subject: 'DreamFunded Campaign Application')
+  end
+
   def waitlist(name, email, phone,amount, message)
     @name = name
     @email= email
