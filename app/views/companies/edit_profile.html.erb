@@ -1,139 +1,133 @@
-<html>
+<%= title "DreamFunded | Edit"%>
 
-	<head>
-		<title>DreamFunded | Edit </title>
-	</head>
+<div class="news">
+  <div class="container">
+	<%= form_for (@company) do |f| %>
+		<% if @company.errors.any? %>
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this company from being saved: </h2>
 
-	<body>
-		<div class= "word-content"><div class="text-content stretch">
-			<%= form_for (@company) do |f| %>
-				<% if @company.errors.any? %>
-					<h2><%= pluralize(@user.errors.count, "error") %> prohibited this company from being saved: </h2>
-
-					<ul>
-						<% @company.errors.full_messages.each do |message| %>
-							<li><%= message %></li>
-						<% end %>
-					</ul>
+			<ul>
+				<% @company.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
 				<% end %>
+			</ul>
+		<% end %>
 
-			<div class= "topbar">
-				<a href= "/companies" class= "darkblue">&#8617; Back</a>
-			</div>
-			<div class= "company-title indent">
-				<h2 class= "darkblue small-margin">
-					<%= f.text_field :name, :class => 'input-box half' %>
-					<%= f.text_field :website_link, :class => 'input-box half scoot-left' %>
-				</h2>
-				<div class= "video-box">
-					<%# if @company.video_link != "" %>
-						<!-- <iframe width="650" height="450" src= <%#= @company.video_link %> frameborder="0" allowfullscreen class= "indent"></iframe> -->
-					<%# else %>
-						<%= image_tag(@company.image.url, class: "max-width-image")%>
-					<%# end %>
+
+	<div class= "company-title indent">
+		<h2 class= "darkblue small-margin">
+			<%= f.text_field :name, :class => 'input-box half' %>
+			<%= f.text_field :website_link, :class => 'input-box half scoot-left' %>
+		</h2>
+		<div class= "video-box">
+				<%= image_tag(@company.image.url, class: "max-width-image")%>
+		</div>
+
+		<div>
+		  <%= link_to "Form C Editor", "/formc/general/#{@company.slug}", :class => 'btn btn-blue', id: 'formc-button' %>
+		</div>
+	</div>
+
+	<div class= "stats-container">
+		<div class= "profile-image-wrap"> <%= link_to image_tag(@company.image.url, :class => "stats-image"), @company.website_link %></div>
+		<div class='center'><span class= "darkblue twenty">Change Image: </span><%= f.file_field "image" %></br></br></div>
+		<div class='center'><span class= "darkblue twenty">Background Cover: </span><%= f.file_field "cover" %></br></br></div>
+		<div class='center'><span class= "darkblue twenty"><%= link_to "Upload Docs", new_document_path(:company_id => @company.id) %> </span>
+		</br></br>
+	</div>
+
+	<div class='center'>
+		<span class= "darkblue twenty">Documents: </span>
+		<% @company.documents.each do |doc|%>
+			<p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %><br><%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+		<% end %>
+	</div><br>
+
+		<div class= "numbers"><div class= "numbers-content">
+			<div class="meter orange">
+				<% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
+				<% if @progress == 0 %>
+					<span class= "front" style="width: 5px"></span>
+				<% else %>
+			 		<span style='width: <%= @progress %>%'></span>
+			 	<% end %>
+			</div><br>
+			<div class= 'statistics'>
+				<div class= "">
+					<div>
+						<p class= "twenty no-margin center"><span class= "darkblue twenty">Status: </span> </p>
+						<%= f.select( :status, [["Active", 2],["Funded", 3],["Coming Soon", 1] ])  %>
+					</div>
+					<div>
+						<p class= "twenty no-margin center"><span class= "darkblue twenty">Hidden: </span> </p>
+						<%= f.select( :hidden, [["Yes", true],["No", false] ])  %>
+					</div>
+					<div>
+						<p class= "twenty no-margin center"><span class= "darkblue twenty">Reg A+: </span> </p>
+						<%= f.select( :reg_a, [["Yes", true],["No", false] ], include_blank: true)  %>
+					</div>
+
+					<div>
+						<p class= "twenty no-margin center"><%= f.number_field :invested_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Invested </span> </p>
+					</div>
+					<div>
+						<p class= "twenty no-margin center"><%= f.text_field :min_investment, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Minimum Investment: </span> </p>
+					</div>
+					<div>
+						<p class= "twenty no-margin center"><%= f.number_field :goal_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Goal Amount </span> </p>
+					</div>
+				</div>
+				<div>
+					<p class= "twenty no-margin center"><%= f.date_field :end_date, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Days Left</span></p>
+				</div>
+				<div>
+					<p class= "twenty no-margin center"><%= f.number_field :position, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Position</span></p>
+				</div>
+				<div>
+					<p class= "twenty no-margin center"><%= f.number_field :display, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Homepage Position</span></p>
+				</div>
+				<div>
+					<p class= "twenty no-margin center"><%= f.text_field :video_link, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Video Link</span></p>
 				</div>
 
 				<div>
-				  <%= link_to "Form C Editor", "/formc/general/#{@company.slug}", :class => 'invest-button centered', id: 'formc-button' %>
-				  <%#= link_to 'Download Form C', asset_path("/formc_#{@company.name}.pdf"), target: '_blank' %>
+					<p class= "twenty no-margin center"><%= f.text_field :fund_america_code, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">FundAmerica Code</span></p>
 				</div>
-			</div>
-			<div class= "stats-container">
-				<div class= "profile-image-wrap"> <%= link_to image_tag(@company.image.url, :class => "stats-image"), @company.website_link %></div>
-				<div class='center'><span class= "darkblue twenty">Change Image: </span><%= f.file_field "image" %></br></br></div>
-				<div class='center'><span class= "darkblue twenty">Background Cover: </span><%= f.file_field "cover" %></br></br></div>
-				<div class='center'><span class= "darkblue twenty"><%= link_to "Upload Docs", new_document_path(:company_id => @company.id) %> </span></br></br></div>
 
-				<div class='center'>
-					<span class= "darkblue twenty">Documents: </span>
-					<% @company.documents.each do |doc|%>
-						<p class= "no-margin"><%= image_tag "static/pdf_icon.png" %> <%= link_to doc.file_file_name, doc.file.url, target: "_blank", class: 'document-url' %><br><%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-					<% end %>
-				</div><br>
-
-				<div class= "numbers"><div class= "numbers-content">
-					<div class="meter orange">
-						<% @progress = ((@company.invested_amount.to_f / @company.goal_amount.to_f).to_f) *100 %>
-						<% if @progress == 0 %>
-							<span class= "front" style="width: 5px"></span>
-						<% else %>
-					 		<span style='width: <%= @progress %>%'></span>
-					 	<% end %>
-					</div><br>
-					<div class= 'statistics'>
-						<div class= "">
-							<div>
-								<p class= "twenty no-margin center"><span class= "darkblue twenty">Status: </span> </p>
-								<%= f.select( :status, [["Active", 2],["Funded", 3],["Coming Soon", 1] ])  %>
-							</div>
-							<div>
-								<p class= "twenty no-margin center"><span class= "darkblue twenty">Hidden: </span> </p>
-								<%= f.select( :hidden, [["Yes", true],["No", false] ])  %>
-							</div>
-							<div>
-								<p class= "twenty no-margin center"><span class= "darkblue twenty">Reg A+: </span> </p>
-								<%= f.select( :reg_a, [["Yes", true],["No", false] ], include_blank: true)  %>
-							</div>
-
-							<div>
-								<p class= "twenty no-margin center"><%= f.number_field :invested_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Invested </span> </p>
-							</div>
-							<div>
-								<p class= "twenty no-margin center"><%= f.text_field :min_investment, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Minimum Investment: </span> </p>
-							</div>
-							<div>
-								<p class= "twenty no-margin center"><%= f.number_field :goal_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Goal Amount </span> </p>
-							</div>
-						</div>
-						<div>
-							<p class= "twenty no-margin center"><%= f.date_field :end_date, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Days Left</span></p>
-						</div>
-						<div>
-							<p class= "twenty no-margin center"><%= f.number_field :position, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Position</span></p>
-						</div>
-						<div>
-							<p class= "twenty no-margin center"><%= f.number_field :display, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Homepage Position</span></p>
-						</div>
-						<div>
-							<p class= "twenty no-margin center"><%= f.text_field :video_link, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Video Link</span></p>
-						</div>
-
-						<div>
-							<p class= "twenty no-margin center"><%= f.text_field :fund_america_code, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">FundAmerica Code</span></p>
-						</div>
-
-							<div>
-								<p class= "twenty no-margin center"><%= "%.1f" % @progress %>%<br><span class= "darkblue twenty">Funded<span></p>
-							</div>
+					<div>
+						<p class= "twenty no-margin center"><%= "%.1f" % @progress %>%<br><span class= "darkblue twenty">Funded<span></p>
 					</div>
-
-				</div></div>
-
-				<div class= "fake-button"> Invest </div>
 			</div>
 
-			<div class= "description-container">
-
-				<p class= "fifteen">
-					<h2 class= "darkblue twentyf indent">Highlight</h2>
-					<%= f.text_area :description, rows: 10, :class => 'twenty input-box no-margin ' %>
-				</p>
-
-				<%= f.fields_for :financial_detail do |fin_details| %>
-					<h2 class= "darkblue category-name indent">Offering Terms</h2>
-        	<%= fin_details.text_area :offering_terms, rows: 6, :class => 'twenty input-box no-margin ' %>
-        	<h2 class= "darkblue category-name indent">Financial Risks</h2>
-        	<%= fin_details.text_area :fin_risks, rows: 6, :class => 'twenty input-box no-margin ' %>
-      	<% end %>
-
-			</div>
-			<div class = "notice centered">
-        <%= flash[:problem_update] if flash[:problem_update] %>
-        <%= @error_update %>
-      </div>
-      <%= f.submit "Update", :class => 'invest-button' %>
-		<% end %>
 		</div></div>
-	</body>
 
-</html>
+		<%= f.submit "Update", :class => 'btn btn-blue' %>
+	</div>
+
+	<div class= "description-container">
+
+		<p class= "fifteen">
+			<h2 class= "">Highlight</h2>
+			<%= f.text_area :description, rows: 10, :class => 'ckeditor  input-box no-margin ' %>
+		</p>
+
+		<%= f.fields_for :financial_detail do |fin_details| %>
+			<h2 class= "darkblue category-name indent">Offering Terms</h2>
+	<%= fin_details.text_area :offering_terms, rows: 6, :class => 'ckeditor  input-box no-margin ' %>
+	<h2 class= "darkblue category-name indent">Financial Risks</h2>
+	<%= fin_details.text_area :fin_risks, rows: 6, :class => ' ckeditor input-box no-margin ' %>
+	<% end %>
+
+	</div>
+	<div class = "notice centered">
+<%= flash[:problem_update] if flash[:problem_update] %>
+<%= @error_update %>
+</div>
+<%= f.submit "Update", :class => 'btn btn-blue' %>
+<% end %>
+</div></div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>
+
