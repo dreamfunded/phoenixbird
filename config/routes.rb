@@ -99,6 +99,8 @@ Rails.application.routes.draw do
 
   get 'show_unathorized/:id', to: "companies#show_unathorized", as: "show_unathorized"
 
+  get 'reject/:id', to: "companies#reject", as: "reject"
+
 
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
 
