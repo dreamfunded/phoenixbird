@@ -39,7 +39,7 @@ end
     column("User") { |company| link_to(company.users.first.name, admin_user_path(company.users.first)) if company.users.any?}
     column("Phone") { |company| company.users.first.phone if company.users.any?}
     column("Email") { |company| company.users.first.email if company.users.any?}
-    column("Reject") { |company| link_to "Send Reject", reject_path(company)}
+    column("Reject") { |company| link_to "Send Reject", reject_path(company) if company.users.any?}
     column  "created_at"
     actions
   end
