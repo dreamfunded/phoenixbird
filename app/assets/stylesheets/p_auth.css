@@ -14,7 +14,7 @@
   text-align: center;
 }
 .auth__top__inn {
-  display: inline-block;
+  display: block;
   vertical-align: top;
 }
 .auth__top__link {
@@ -23,7 +23,7 @@
   padding-right: 15px;
   /*min-width: 180px;*/
   text-align: center;
-  float: left;
+  /*float: left;*/
   font-size: 32px;
   font-weight: 300;
   color: #7b7c85 !important;
