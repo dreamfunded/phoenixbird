@@ -13,7 +13,12 @@
   .about {
     padding-bottom: 66px;
   }
+  .youtube-latino-video{
+    width: 300px;
+    height: 168px;
+  }
 }
+
 .about a {
   color: #62c6d5 !important;
   border-bottom: 1px solid rgba(98, 198, 213, 0.2);
