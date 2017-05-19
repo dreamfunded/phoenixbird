@@ -84,7 +84,6 @@ class CompaniesController < ApplicationController
 	end
 
 	def reject
-		p 'SEND REJECT EMAIL'
 		ContactMailer.reject_company(@company).deliver
 		redirect_to admin_companies_path, :alert => "Company was rejected. Email was sent."
 	end
@@ -105,17 +104,10 @@ class CompaniesController < ApplicationController
 	  @campaign = Campaign.find(params[:company][:campaign_attributes][:id])
 	  @company = @campaign.company
 	  @financial_detail = @company.financial_detail
-
 	  @company.update(company_params)
-	  @campaign.update(tagline: params[:company][:campaign_attributes][:tagline],
-	  				  elevator_pitch: params[:company][:campaign_attributes][:elevator_pitch],
-	  				  about_campaign: params[:company][:campaign_attributes][:about_campaign],
-	  				  category: params[:company][:campaign_attributes][:category],
-	  				  employees_numer: params[:company][:campaign_attributes][:employees_numer],
-	  				  company_location_city: params[:company][:campaign_attributes][:company_location_city],
-	  				  company_location_state: params[:company][:campaign_attributes][:company_location_state])
-	  @financial_detail.update(offering_terms:  params[:company][:financial_detail_attributes][:offering_terms],
-	  						  fin_risks:  params[:company][:financial_detail_attributes][:fin_risks])
+
+	  # @financial_detail.update(offering_terms:  params[:company][:financial_detail_attributes][:offering_terms],
+	  # 						  fin_risks:  params[:company][:financial_detail_attributes][:fin_risks])
 	  redirect_to :controller => 'companies', :action => 'show', :id => @company.slug
 	end
 
