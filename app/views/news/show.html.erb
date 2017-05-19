@@ -1,3 +1,8 @@
+<% title "DreamFunded | Congratulations" %>
+<% facebook_image @article.image.url %>
+<% facebook_secure_image @article.image.url %>
+<% facebook_url("https://dreamfunded.com/news/#{@article.slug}")%>
+
 <%= title @article.title %>
 <div class="news">
     <div class= " container">
@@ -25,9 +30,32 @@
                 <%= simple_format @article.content %>
             </div>
 
-
-
             <p class= "article indent news_source">Source: <%= link_to @article.source, @article.source_url, target: '_blank' %></p>
+
+            <div class='text-center social-links-congrats'>
+
+                <a id='facebook' class="share-invites-social" href='#'> <i class="fa fa-facebook"></i></a>
+                <script type="text/javascript">
+                  $('#facebook').click(function(){
+                    FB.ui({
+                      method: 'share',
+                      href: "https://dreamfunded.com/news/<%= @article.slug %>",
+                      redirect_uri: "https://dreamfunded.com/news/<%= @article.slug %>",
+                      quote: "<%= @article.title%> "
+                    }, function(response){});
+
+                  })
+                </script>
+
+                <a id="twitter" class="share-invites-social" target="_blank" href="http://twitter.com/intent/tweet?text=<%=@article.title %>%20https://dreamfunded.com/companies/<%= @article.slug %>" title="Share via Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+
+                <a id ='linkedin' class="share-invites-social" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=false&amp;trk=bookmarklet&amp;title=<%=@article.title %>&amp;url=https://dreamfunded.com/companies/<%= @article.slug %>" target="_blank" title="Share via LinkedIn" >
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+
         </div>
 
 
