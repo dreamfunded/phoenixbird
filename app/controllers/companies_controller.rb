@@ -103,11 +103,7 @@ class CompaniesController < ApplicationController
 	def update_campaign
 	  @campaign = Campaign.find(params[:company][:campaign_attributes][:id])
 	  @company = @campaign.company
-	  @financial_detail = @company.financial_detail
 	  @company.update(company_params)
-
-	  # @financial_detail.update(offering_terms:  params[:company][:financial_detail_attributes][:offering_terms],
-	  # 						  fin_risks:  params[:company][:financial_detail_attributes][:fin_risks])
 	  redirect_to :controller => 'companies', :action => 'show', :id => @company.slug
 	end
 
