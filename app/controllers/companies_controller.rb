@@ -126,63 +126,66 @@ class CompaniesController < ApplicationController
 		options = entity_options(params)
 		@error = {}
 		@entity, @ach_authorization = {}, {}
-		if current_user.entity_id
-			begin
-				@entity = FundAmerica::Entity.update(current_user.entity_id, options)
-			rescue FundAmerica::Error => e
-			    p 'ERROR'
-			    @entity, @ach_authorization = {}, {}
-			    puts e.parsed_response
-			    @error = e.parsed_response
-			end
-		else
-			begin
-				@entity = FundAmerica::Entity.create(options)
-			rescue FundAmerica::Error => e
-			    p 'ERROR'
-			    puts e.parsed_response
-			    @error = e.parsed_response
-			end
-		end
+		# if current_user.entity_id
+		# 	begin
+		# 		@entity = FundAmerica::Entity.update(current_user.entity_id, options)
+		# 	rescue FundAmerica::Error => e
+		# 	    p 'ERROR'
+		# 	    @entity, @ach_authorization = {}, {}
+		# 	    puts e.parsed_response
+		# 	    @error = e.parsed_response
+		# 	end
+		# else
+		# 	begin
+		# 		@entity = FundAmerica::Entity.create(options)
+		# 	rescue FundAmerica::Error => e
+		# 	    p 'ERROR'
+		# 	    puts e.parsed_response
+		# 	    @error = e.parsed_response
+		# 	end
+		# end
+		entity_array = FundAmericaPayment.new(params, current_user, request.remote_ip).entity
+		@entity = entity_array.first
+		@error = entity_array.last
 
 		p @entity
 
-		if @entity
-			current_user.update(entity_id: @entity["id"])
-			if params[:ach] == 'exist'
-				@ach_authorization = FundAmerica::AchAuthorization.details( current_user.ach_id )
-			else
-				ach_auth_options = get_ach_options(params, @entity)
-				begin
-				    @ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
-					p "ACH"
-					p @ach_authorization
-				rescue FundAmerica::Error => e
-				    p 'ERROR'
-				    puts e.parsed_response
-				    @error = @error.merge(e.parsed_response)
-				end
-			end
-		end
+		# if @entity
+		# 	current_user.update(entity_id: @entity["id"])
+		# 	if params[:ach] == 'exist'
+		# 		@ach_authorization = FundAmerica::AchAuthorization.details( current_user.ach_id )
+		# 	else
+		# 		ach_auth_options = get_ach_options(params, @entity)
+		# 		begin
+		# 		    @ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
+		# 			p "ACH"
+		# 			p @ach_authorization
+		# 		rescue FundAmerica::Error => e
+		# 		    p 'ERROR'
+		# 		    puts e.parsed_response
+		# 		    @error = @error.merge(e.parsed_response)
+		# 		end
+		# 	end
+		# end
 
-		if @entity && @ach_authorization
-			current_user.update(ach_id: @ach_authorization["id"] )
-			investment_options = get_investment_options(params, @company, @entity, @ach_authorization)
-			begin
-			    @investment = FundAmerica::Investment.create(investment_options)
+		# if @entity && @ach_authorization
+		# 	current_user.update(ach_id: @ach_authorization["id"] )
+		# 	investment_options = get_investment_options(params, @company, @entity, @ach_authorization)
+		# 	begin
+		# 	    @investment = FundAmerica::Investment.create(investment_options)
 
-			    invstmnt = Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
-			    ContactMailer.investment_made( current_user).deliver
-			    ContactMailer.new_investment_made(current_user, params[:id]).deliver
-			    ContactMailer.new_investment_to_founder(params[:id]).deliver
-			rescue FundAmerica::Error => e
-			    p 'ERROR'
-			    puts e.parsed_response
-			    @error = @error.merge(e.parsed_response)
-			end
-			p "INVESTMENT"
-			p @investment
-		end
+		# 	    invstmnt = Investment.create(user_id: current_user.id, fund_america_id: @investment["id"], company_id: params[:id])
+		# 	    ContactMailer.investment_made( current_user).deliver
+		# 	    ContactMailer.new_investment_made(current_user, params[:id]).deliver
+		# 	    ContactMailer.new_investment_to_founder(params[:id]).deliver
+		# 	rescue FundAmerica::Error => e
+		# 	    p 'ERROR'
+		# 	    puts e.parsed_response
+		# 	    @error = @error.merge(e.parsed_response)
+		# 	end
+		# 	p "INVESTMENT"
+		# 	p @investment
+		# end
 
 		if @investment
 			#redirect_to portfolio_path
