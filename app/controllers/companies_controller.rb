@@ -179,7 +179,7 @@ private
 	end
 
 	def company_params
-		params.require(:company).permit(:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url, :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO, :CEO_number, :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code, :reg_a, :category,
+		params.require(:company).permit( Company::ACCESSIBLE_ATTRIBUTES,
 		campaign_attributes: Campaign::ACCESSIBLE_ATTRIBUTES,
 	  	testimonials_attributes: Testimonial::ACCESSIBLE_ATTRIBUTES,
       	quote_attributes: CampaignQuote::ACCESSIBLE_ATTRIBUTES,
@@ -189,15 +189,7 @@ private
 		founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
 	    documents_attributes: [:id, :file, :name, :company_id ],
 	    timeline_items_attributes: [:id , :content, :created_date, :image, :position, :company_id, :_destroy ],
-
-	    financial_detail_attributes: ["id", "offering_terms", "fin_risks", "income", "totat_income", "total_taxable_income",
-				       "total_taxes_paid", "total_assets_this_year", "total_assets_last_year", "cash_this_year", "cash_last_year",
-				       "acount_receivable_this_year", "acount_receivable_last_year", "short_term_debt_this_year", "short_term_debt_last_year",
-				       "long_term_debt_this_year", "long_term_debt_last_year", "sales_this_year", "sales_last_year", "costs_of_goods_this_year",
-				       "costs_of_goods_last_year", "taxes_paid_this_year", "taxes_paid_last_year", "net_income_this_year", "net_income_last_year",
-				       "company_id","balance_sheet", "income_statements", "statement_of_cash_flow", "statement_changes_of_equity",
-				       "business_plan", "party_transaction", "intended_use_of_proceeds", "capital_structure", "material_terms",
-				        "financial_conditions", "directors_background", "accountant_review"]  )
+	    financial_detail_attributes: FinancialDetail::ACCESSIBLE_ATTRIBUTES  )
 	end
 
 	def founder_params

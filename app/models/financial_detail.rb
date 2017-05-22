@@ -2,6 +2,11 @@ class FinancialDetail < ActiveRecord::Base
   belongs_to :company
   belongs_to :general_info
 
+  ACCESSIBLE_ATTRIBUTES = ["id", "offering_terms", "fin_risks",
+               "company_id","balance_sheet", "income_statements", "statement_of_cash_flow", "statement_changes_of_equity",
+               "business_plan", "party_transaction", "intended_use_of_proceeds", "capital_structure", "material_terms",
+                "financial_conditions", "directors_background", "accountant_review"]
+
   has_attached_file :balance_sheet,
     :storage => :s3,
     :bucket => 'dreamfunded',

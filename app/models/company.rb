@@ -1,5 +1,9 @@
 class Company < ActiveRecord::Base
   extend FriendlyId
+  ACCESSIBLE_ATTRIBUTES = [:image, :min_investment, :cover, :id, :end_date, :document, :hidden, :position, :docusign_url,
+           :name, :description, :image, :invested_amount, :website_link, :video_link, :goal_amount, :status, :CEO,
+            :CEO_number, :display, :days_left, :created_at, :updated_at, :suggested_target_price, :fund_america_code,
+             :reg_a, :category]
   friendly_id :name, use: :slugged
 
   scope :all_accredited, -> {
