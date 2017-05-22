@@ -1,14 +1,9 @@
-<html>
-	<head>
-		<% title "DreamFunded | FAQs " %>
-	</head>
+<% title "DreamFunded | FAQs " %>
+<div class="about">
+  <div class="container">
+	<h1 class="centered">Frequently Asked Questions</h1>
 
-	<body>
-		<div class= "wrapper">
-			<div class="header">
-				<h1 class="centered">Frequently Asked Questions</h1>
-			</div>
-			<div class= "word-content"><div class= "text-content">
+
 
 				<center>
 				  <iframe class='youtube-video' width="640" height="360" src="https://www.youtube.com/embed/FguY867__UQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -39,8 +34,10 @@
 					<%= button_to "Get Started", {:action => 'get_started'}, {:id => 'push', class: "link-button"} %>
 				</div>
 
-			</div></div>
-		</div>
-	</body>
+	</div>
+</div>
 
-</html>
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>
+
