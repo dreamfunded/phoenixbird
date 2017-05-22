@@ -89,8 +89,6 @@ class FundAmericaPayment
             investment_options = get_investment_options( @company, @entity, @ach_authorization)
             begin
                 @investment = FundAmerica::Investment.create(investment_options)
-
-                invstmnt = Investment.create(user_id: @user.id, fund_america_id: @investment["id"], company_id: @company.id)
                 ContactMailer.investment_made( @user).deliver
                 ContactMailer.new_investment_made(@user, @company.id).deliver
                 ContactMailer.new_investment_to_founder(@company.id).deliver
