@@ -1,0 +1,1 @@
+function onOff(){for(var e=0,t=1;5>=t;t++)1==document.getElementById("box"+t).checked&&e++;0==e&&(document.getElementById("submit-button").disabled=!0),0!=e&&(document.getElementById("submit-button").disabled=!1)}
