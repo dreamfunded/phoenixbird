@@ -123,9 +123,9 @@ class CompaniesController < ApplicationController
 	end
 
 	def submit_payment
-		options = entity_options(params)
-		@error = {}
-		@entity, @ach_authorization = {}, {}
+		#options = entity_options(params)
+		#@error = {}
+		#@entity, @ach_authorization = {}, {}
 		# if current_user.entity_id
 		# 	begin
 		# 		@entity = FundAmerica::Entity.update(current_user.entity_id, options)
@@ -144,11 +144,6 @@ class CompaniesController < ApplicationController
 		# 	    @error = e.parsed_response
 		# 	end
 		# end
-		entity_array = FundAmericaPayment.new(params, current_user, request.remote_ip).entity
-		@entity = entity_array.first
-		@error = entity_array.last
-
-		p @entity
 
 		# if @entity
 		# 	current_user.update(entity_id: @entity["id"])
@@ -186,9 +181,12 @@ class CompaniesController < ApplicationController
 		# 	p "INVESTMENT"
 		# 	p @investment
 		# end
+		entity_array = FundAmericaPayment.new(params, current_user, request.remote_ip).make_payment
+		@investment = entity_array.first
+		@error = entity_array.second
+		@ach_authorization = last
 
 		if @investment
-			#redirect_to portfolio_path
 			redirect_to congratulation_path(invstmnt.id)
 		else
 			render :invest

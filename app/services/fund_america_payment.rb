@@ -41,7 +41,8 @@ class FundAmericaPayment
         @entity, @ach_authorization = {}, {}
     end
 
-    def entity
+    def make_payment
+
         if @user.entity_id
             begin
                 @entity = FundAmerica::Entity.update(@user.entity_id, options)
@@ -60,14 +61,48 @@ class FundAmericaPayment
                 @error = e.parsed_response
             end
         end
-        return [@entity, @error]
+
+
+        if @entity
+            @user.update(entity_id: @entity["id"])
+            if params[:ach] == 'exist'
+                @ach_authorization = FundAmerica::AchAuthorization.details( @user.ach_id )
+            else
+                ach_auth_options = get_ach_options(params, @entity)
+                begin
+                    @ach_authorization = FundAmerica::AchAuthorization.create(ach_auth_options)
+                    p "ACH"
+                    p @ach_authorization
+                rescue FundAmerica::Error => e
+                    p 'ERROR'
+                    puts e.parsed_response
+                    @error = @error.merge(e.parsed_response)
+                end
+            end
+        end
+
+        if @entity && @ach_authorization
+            @user.update(ach_id: @ach_authorization["id"] )
+            investment_options = get_investment_options(params, @company, @entity, @ach_authorization)
+            begin
+                @investment = FundAmerica::Investment.create(investment_options)
+
+                invstmnt = Investment.create(user_id: @user.id, fund_america_id: @investment["id"], company_id: params[:id])
+                ContactMailer.investment_made( @user).deliver
+                ContactMailer.new_investment_made(@user, params[:id]).deliver
+                ContactMailer.new_investment_to_founder(params[:id]).deliver
+            rescue FundAmerica::Error => e
+                p 'ERROR'
+                puts e.parsed_response
+                @error = @error.merge(e.parsed_response)
+            end
+            p "INVESTMENT"
+            p @investment
+        end
+
+        return [@investment, @error, @ach_authorization]
     end
 
-    def ach
-    end
-
-    def investment
-    end
 
 
     def options
