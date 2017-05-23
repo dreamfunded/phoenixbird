@@ -71,3 +71,15 @@ group :development do
    gem 'spring'
    gem 'byebug'
 end
+
+
+group :test, :development do
+    gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+    gem 'zip-zip'
+    gem 'launchy'
+    gem 'factory_girl_rails'
+    gem 'faker'
+    gem 'rspec-rails', '~> 3.0.0'
+    gem 'capybara', '~> 2.4.3'
+    gem 'selenium-webdriver', '2.43.0'
+end
