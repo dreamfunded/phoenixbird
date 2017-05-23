@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<div class="invest">
+<div class="invest" id='pay-form'>
   <div class="container">
     <div class="invest__inn">
         <% if @error %>
@@ -76,11 +76,11 @@
             <h3> I want to invest:</h3>
         </div>
 
-        <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form', id: 'pay-form') do %>
+        <%= form_tag( '/submit_api_payment', method: :post, class: 'pay-form') do %>
             <%= hidden_field_tag(:id, @company.id) %>
             <%= hidden_field_tag(:email, current_user.email ) %>
             <div class="invest__topinput">
-              <%= text_field_tag :amount, nil, placeholder: '100', required: true %>
+              <%= text_field_tag :amount, nil, placeholder: '', required: true %>
             </div>
 
             <div class="invest__block">
