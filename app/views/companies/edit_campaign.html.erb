@@ -13,15 +13,15 @@
             <section class='company-basic-info'>
                 <div>   <%= f.text_field :name, class: "form-field form-field-half" %> </div>
 
-
-
                 <%= f.fields_for :campaign  do |campaign_fields| %>
                   <%= campaign_fields.text_area :tagline, placeholder: 'Describe your company in one sentence',:class => " form-field", required:true %><br>
                   <!-- <i class="fa fa-map-marker darkblue company_located"></i> -->
                   <%= campaign_fields.text_field :company_location_city, placeholder: 'City', class: "form-field form-field-half", required:true %>
                   <%= campaign_fields.text_field :company_location_state, placeholder: 'State', class: "form-field form-field-half", required:true %>
                 <% end %>
-                <%= f.select(:category, options_for_select(company_categories, @company.category), {}, {class: " form-field form-field-half "} ) %>
+                <div class="input-wrap">
+                  <%= f.select(:category, options_for_select(company_categories, @company.category), {}, {class: "selectpicker", multiple: true} ) %>
+                </div>
             </section>
             </div>
         </div>

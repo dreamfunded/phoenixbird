@@ -79,7 +79,7 @@ group :test, :development do
     gem 'launchy'
     gem 'factory_girl_rails'
     gem 'faker'
-    gem 'rspec-rails', '~> 3.0.0'
+    gem 'rspec-rails', '~> 3.5.2'
     gem 'capybara', '~> 2.4.3'
     gem 'selenium-webdriver', '2.43.0'
 end

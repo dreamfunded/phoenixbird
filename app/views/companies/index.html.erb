@@ -27,7 +27,9 @@
     		            <div class="compthumb__name"> <%= link_to company.name, company_path(company) %> </div>
     		            <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
     		            <div class="compthumb__tags">
-    		              <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
+                      <% company.categories.each do |category|%>
+    		                <div class="compthumb__tag __blue"><span><%= category %></span></div>
+                      <% end %>
     		            </div>
     		          </div>
     		          <div class="compthumb__footer clearfix">

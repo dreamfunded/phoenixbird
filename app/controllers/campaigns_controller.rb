@@ -50,7 +50,7 @@ class CampaignsController < ApplicationController
       @campaign.basics
       @campaign.description
       FinancialDetail.create(company_id: @company.id)
-      @campaign.update( tagline: params[:tagline], category: params[:category])
+      @campaign.update( tagline: params[:tagline], category: params[:categories])
       @company.delay(run_at: 1.day.from_now).submit_application(current_user)
       @company.delay(run_at: 3.days.from_now).submit_application(current_user)
       redirect_to description_path(@campaign.id)
@@ -190,8 +190,8 @@ class CampaignsController < ApplicationController
   end
 
   def company_params
-     params.require(:company).permit(:image, :id, :cover, :name, :description, :video_link, :user_id, :goal_amount, :website_link, :category,
-                     campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :employees_numer, :company_location_city, :company_location_state, :business_plan,
+     params.require(:company).permit(:image, :id, :cover, :name, :description, :video_link, :user_id, :goal_amount, :website_link, :category, :categories => [],
+                     campaign_attributes: [:tagline, :elevator_pitch, :about_campaign, :id, :category, :categories, :employees_numer, :company_location_city, :company_location_state, :business_plan,
                       testimonials_attributes: [:id, :name, :position, :photo, :message],
                       quote_attributes: [:id, :main, :description, :said_by, :position, :photo]],
                      founders_attributes: [:id, :image, :name, :position, :title, :content, :company_id, :created_at, :updated_at, :_destroy],
@@ -208,7 +208,7 @@ class CampaignsController < ApplicationController
   end
 
   def campaign_params
-    params.require(:campaign).permit( "funding_goal", "tagline", "category", "elevator_pitch", "tags", "about_campaign", "employees_numer", "legal_company_name", "employer_id_number", "state_where_incorporated", "office_location", "date_formed", "company_location_address", "company_location_city", "company_location_state", "company_location_zipcode", "company_contact_info_name", "company_contact_info_email", "company_contact_info_phone", "legal_contact_info_name", "legal_contact_info_email", "legal_contact_info_phone", "legal_contact_info_firm", "legal_contact_info_website", "accounting_info_name", "accounting_info_email", "accounting_info_phone", "accounting_info_firm", "accounting_info_website", "state_filing_number","offering_terms",
+    params.require(:campaign).permit( "funding_goal", "tagline", "category", "categories", "elevator_pitch", "tags", "about_campaign", "employees_numer", "legal_company_name", "employer_id_number", "state_where_incorporated", "office_location", "date_formed", "company_location_address", "company_location_city", "company_location_state", "company_location_zipcode", "company_contact_info_name", "company_contact_info_email", "company_contact_info_phone", "legal_contact_info_name", "legal_contact_info_email", "legal_contact_info_phone", "legal_contact_info_firm", "legal_contact_info_website", "accounting_info_name", "accounting_info_email", "accounting_info_phone", "accounting_info_firm", "accounting_info_website", "state_filing_number","offering_terms",
     "financial_risks", "totat_income", "total_taxable_income", "total_taxes_paid",   )
   end
 
