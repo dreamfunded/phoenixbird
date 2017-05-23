@@ -720,6 +720,9 @@ select.selectpicker {
 /*==============================
 =            header            =
 ==============================*/
+.header__user__drop a, .header__nav a{
+  cursor: pointer;
+}
 header.header {
   padding-top: 30px;
   padding-bottom: 30px;
