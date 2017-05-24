@@ -10,12 +10,25 @@
   line-height: 20px;
   position: relative;
 }
+
+@media (max-width: 991px) {
+  .dreamfunded-youtube-videos{
+    width:200px;
+  }
+
+}
+
 @media (max-width: 767px) {
   .project {
     padding-top: 57px;
     padding-bottom: 60px;
   }
+  .dreamfunded-youtube-videos{
+    width:400px;
+    height: 225px;
+  }
 }
+
 .investTopOverlay{
   position: absolute;
   height: 100%;
@@ -23,6 +36,7 @@
   top: 0;
   background-color: rgba(63, 64, 92, 0.8);
 }
+
 
 .join-waitlist-new{
   width: 95% !important;
