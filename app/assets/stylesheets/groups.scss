@@ -208,15 +208,15 @@
 .group-admin:hover >   .group-admin-box {
     display: block;
     position: absolute;
-    right: -128px;
-    bottom: 126px;
+    right: -114px;
+    bottom: 102px;
 }
 
 .group-admin-box:after {
   content: '';
   display: block;
   position: absolute;
-  bottom: -8px;
+  bottom: -7px;
   right: 185px;
   width: 10px;
   height: 10px;
