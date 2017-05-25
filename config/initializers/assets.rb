@@ -33,6 +33,3 @@ Rails.application.config.assets.precompile += %w( jquery-1.4.2.min.js )
 Rails.application.config.assets.precompile += %w( require.js )
 Rails.application.config.assets.precompile += %w( request.js )
 Rails.application.config.assets.precompile += %w( async.js )
-
-Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'html')
-Rails.application.config.assets.register_mime_type('text/html', '.html')
