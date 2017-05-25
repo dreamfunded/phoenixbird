@@ -36,249 +36,241 @@
     </div>
 </section>
 
-    <div class='group-blog-section'>
-        <div class=" stretch">
-            <!-- A D M I N   E D I T I N G -->
-            <div class='group-admin-editing hidden-xs'>
-                <% if current_user != nil && current_user.authority == authority[:Admin] %>
-                    <%= link_to( edit_group_path(@group), class: 'edit-company-button' ) do %>
-                       <i class="fa fa-cogs" aria-hidden="true"></i>
-                       <span class='edit-my-company-button'> Edit Group</span>
-                    <% end %>
-                    <br>
-                    <%= link_to( add_admin_to_group_path(@group), class: 'edit-company-button' ) do %>
-                       <i class="fa fa-users" aria-hidden="true"></i>
-                       <span class='edit-my-company-button'>  Admins </span>
-                    <% end %>
-                    <br>
-                    <%= link_to( group_members_path(@group), class: 'edit-company-button' ) do %>
-                       <i class="fa fa-address-book-o" aria-hidden="true"></i>
-                       <span class='edit-my-company-button'> Members</span>
-                    <% end %>
-                    <br>
-                    <%= link_to( group_companies_path(@group), class: 'edit-company-button' ) do %>
-                       <i class="fa fa-university" aria-hidden="true"></i>
-                       <span class='edit-my-company-button'> Companies</span>
-                    <% end %>
+<div class='group-blog-section container'>
+    <div class=" stretch">
+        <!-- A D M I N   E D I T I N G -->
+        <div class='group-admin-editing hidden-xs hidden-sm'>
+            <br>
+            <% if current_user != nil && current_user.authority == authority[:Admin] %>
+                <%= link_to( edit_group_path(@group), class: 'edit-company-button' ) do %>
+                   <i class="fa fa-cogs" aria-hidden="true"></i>
+                   <span class='edit-my-company-button'> Edit Group</span>
                 <% end %>
                 <br>
-                <% if current_user %>
-                    <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
-                        <%= link_to( group_invites_path(@group), class: 'edit-company-button' ) do %>
-                           <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
-                           <span class='edit-my-company-button'> Invite</span>
-                        <% end %>
+                <%= link_to( add_admin_to_group_path(@group), class: 'edit-company-button' ) do %>
+                   <i class="fa fa-users" aria-hidden="true"></i>
+                   <span class='edit-my-company-button'>  Admins </span>
+                <% end %>
+                <br>
+                <%= link_to( group_members_path(@group), class: 'edit-company-button' ) do %>
+                   <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                   <span class='edit-my-company-button'> Members</span>
+                <% end %>
+                <br>
+                <%= link_to( group_companies_path(@group), class: 'edit-company-button' ) do %>
+                   <i class="fa fa-university" aria-hidden="true"></i>
+                   <span class='edit-my-company-button'> Companies</span>
+                <% end %>
+            <% end %>
+            <br>
+            <% if current_user %>
+                <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
+                    <%= link_to( group_invites_path(@group), class: 'edit-company-button' ) do %>
+                       <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
+                       <span class='edit-my-company-button'> Invite</span>
                     <% end %>
                 <% end %>
-            </div>
-
-            <h2 class='section-title group-tab group-blog active-tab'>Group Blog</h2>
-            <h2 class='section-title group-tab discussion-tab'>Discussion</h2>
-            <% if @group.companies.any? %>
-                <h2 class='section-title group-tab company-tab'>Companies</h2>
             <% end %>
+        </div>
 
-            <div>
-                <section class= "group-box ">
+        <h2 class='section-title group-tab group-blog active-tab'>Group Blog</h2>
+        <h2 class='section-title group-tab discussion-tab'>Discussion</h2>
+        <% if @group.companies.any? %>
+            <h2 class='section-title group-tab company-tab'>Companies</h2>
+        <% end %>
 
-                    <div class= "news-container group-tab-content group-blog-content">
-                        <% @posts.each do |article| %>
-                            <div class= "group-blog_wrapper">
-                                <% if current_user %>
-                                    <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
-                                        <%= link_to 'Delete', article, method: :delete, data: { confirm: 'Are you sure?'}, :class => 'right red_link hide-on-mobile' %>
-                                        <%= link_to 'Edit', "/posts/#{article.id}/edit/#{@group.slug}", {:"data-no-turbolink" => true, :class => 'right red_link hide-on-mobile'} %>
-                                    <% end %>
+        <div>
+            <section class= "group-box ">
+
+                <div class= "news-container group-tab-content group-blog-content">
+                    <% @posts.each do |article| %>
+                        <div class= "group-blog_wrapper">
+                            <% if current_user %>
+                                <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
+                                    <%= link_to 'Delete', article, method: :delete, data: { confirm: 'Are you sure?'}, :class => 'right red_link hide-on-mobile' %>
+                                    <%= link_to 'Edit', "/posts/#{article.id}/edit/#{@group.slug}", {:"data-no-turbolink" => true, :class => 'right red_link hide-on-mobile'} %>
                                 <% end %>
-
-
-                                <div class="some-class-rr">
-                                    <div class= "group-blog-title"> <%= article.title %> </div>
-                                    <div class= "group_blog_content">
-                                        <div class='article-ctn'>
-                                            <%= article.content.html_safe %>
-                                        </div>
-                                        <%#= link_to "Read more", blog_post_path(article) %>
-                                    </div>
-                                    <div class="press-post-item press-date">
-                                        <%= article.created_at.strftime("%b %e %Y") %>
-                                        <%= link_to "Show more", '#', class: 'read-more-link' %>
-                                    </div>
-                                    <!-- <div class='news-read-more-buton'>
-                                        <%#= link_to "Read More", blog_post_path(article), :class =>'article-button' %>
-                                    </div> -->
-                                </div>
-
-                            </div>
-                        <% end %>
-                        <%if current_user%>
-                            <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
-                                <h3 class='centered hide-on-mobile'><%= link_to 'Write New Group Post', "/posts/new/#{@group.slug}" %></h3>
                             <% end %>
-                        <% end %>
-                    </div>
 
-                    <div class=' group-tab-content discussion-tab-content'>
-                        <div class='section-content'>
-                            <div class="comments">
-                               <%= nested_messages(@comments.arrange(:order => :created_at))%>
-                            </div>
-                            <div>
-                                <% if current_user %>
-                                    <div class="comment">
-                                        <div class="headline">
-                                            <span class="name">
-                                                <span class='comment_as'>New comment as</span>
-                                                <a><%= current_user.comments_name%></a>
-                                            </span>
-                                        </div>
-                                        <div class="comment_content">
-                                           <%= form_for Comment.new, remote: true  do |f|%>
-                                                <%= f.hidden_field "user_id", value: current_user.id %>
-                                                <%= f.hidden_field "group_id", value: @group.id %>
-                                                <%= f.hidden_field :parent_id %>
-                                                <div>
-                                                   <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
-                                                </div>
-                                                <%= f.submit "Post Comment", class: 'comment_submit_button' %>
-                                           <% end %>
-                                        </div>
+
+                            <div class="some-class-rr">
+                                <div class= "group-blog-title"> <%= article.title %> </div>
+                                <div class= "group_blog_content">
+                                    <div class='article-ctn'>
+                                        <%= article.content.html_safe %>
                                     </div>
-                               <%else%>
-                                     <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
-                               <%end%>
+                                    <%#= link_to "Read more", blog_post_path(article) %>
+                                </div>
+                                <div class="press-post-item press-date">
+                                    <%= article.created_at.strftime("%b %e %Y") %>
+                                    <%= link_to "Show more", '#', class: 'read-more-link' %>
+                                </div>
+                                <!-- <div class='news-read-more-buton'>
+                                    <%#= link_to "Read More", blog_post_path(article), :class =>'article-button' %>
+                                </div> -->
                             </div>
+
+                        </div>
+                    <% end %>
+                    <%if current_user%>
+                        <% if ( current_user.authority >= authority[:Editor]) || (@group.group_admins.include?(current_user.group_admin)) %>
+                            <h3 class='centered hide-on-mobile'><%= link_to 'Write New Group Post', "/posts/new/#{@group.slug}" %></h3>
+                        <% end %>
+                    <% end %>
+                </div>
+
+                <div class=' group-tab-content discussion-tab-content'>
+                    <div class='section-content'>
+                        <div class="comments">
+                           <%= nested_messages(@comments.arrange(:order => :created_at))%>
+                        </div>
+                        <div>
+                            <% if current_user %>
+                                <div class="comment">
+                                    <div class="headline">
+                                        <span class="name">
+                                            <span class='comment_as'>New comment as</span>
+                                            <a><%= current_user.comments_name%></a>
+                                        </span>
+                                    </div>
+                                    <div class="comment_content">
+                                       <%= form_for Comment.new, remote: true  do |f|%>
+                                            <%= f.hidden_field "user_id", value: current_user.id %>
+                                            <%= f.hidden_field "group_id", value: @group.id %>
+                                            <%= f.hidden_field :parent_id %>
+                                            <div>
+                                               <%= f.text_area :content, rows: 8, class: 'comment_extarea' %>
+                                            </div>
+                                            <%= f.submit "Post Comment", class: 'comment_submit_button' %>
+                                       <% end %>
+                                    </div>
+                                </div>
+                           <%else%>
+                                 <p>First <%= link_to "sign in", "/users/sign_in" %> to post a comment.</p>
+                           <%end%>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class=' group-tab-content company-tab-content'>
-                        <div class='companies-endorsed'>Companies endorsed by <%= @group.name %></div>
-                        <% @companies.each do |company| %>
-                            <div class='property-box endorsed-company'>
+                <div class=' group-tab-content company-tab-content'>
+                    <div class='companies-endorsed'>Companies endorsed by <%= @group.name %></div>
+                    <% @companies.each do |company| %>
+                        <div class='property-box endorsed-company'>
 
-                                <div class="card-topbar primary-color">
-                                    <%= company.name %>
-                                </div>
-
-                                <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
-                                    <div class='logo-image-wrapper'>
-                                        <span class="helper"></span>
-                                        <%= image_tag( company.image.url, :class => "property-logo-image") %>
-                                    </div>
-                                </div>
-
-
-                                <article class='card-body no-height'>
-                                    <div class='company-tagline'>
-                                        <span class='company-tagline-text'><%= company.campaign.tagline %></span>
-                                    </div>
-
-                                    <div class='property-detail company-funded-status property-detail-no-height'>
-                                        <span class='propety-detail-left'>Category</span>
-                                        <span class='property-detail-right'><%= company.category %></span>
-                                    </div>
-
-                                    <div class='property-detail company-funded-status property-detail-no-height'>
-                                        <span class='propety-detail-left'>Status</span>
-                                        <span class='property-detail-right'>Funded </span>
-                                    </div>
-
-                                <div class='company-tagline funded-by-accredited'>
-                                    <span class='company-tagline-text'>Funded by Accredited Investors using 506 (D)</span>
-                                </div>
-
-                                </article>
+                            <div class="card-topbar primary-color">
+                                <%= company.name %>
                             </div>
-                        <% end %>
-                    </div>
 
-                </section>
-
-                <section class="group-members-box hidden-xs">
-                    <div class='group-members-header'>Group Admins</div>
-                    <div class='group-admins-list'>
-                        <% @admins.each do |admin| %>
-                            <span class='group-admin'>
-                                <%= image_tag( admin.photo.url(:thumbnail), class: 'group-admin-photo') %><br>
-                                <span class='group-admin-name'> <%= admin.name %> </span>
-
-                                <div class='group-admin-box'>
-                                    <section class='group-admin-box-photo'>
-                                        <%= image_tag( admin.photo.url(:thumbnail), class: 'group-admin-photo') %>
-                                    </section>
-                                    <section class='group-admin-box-text'>
-                                        <div class='group-admin-name bold-name centered'> <%= admin.name %> </div>
-                                        <span class='group-admin-name'> <%= admin.bio %> </span>
-                                    </section>
+                            <div class='companies-back-image' style="background-image: url(<%= company.cover.url(:small) %>)">
+                                <div class='logo-image-wrapper'>
+                                    <span class="helper"></span>
+                                    <%= image_tag( company.image.url, :class => "property-logo-image") %>
                                 </div>
-                            </span>
-                        <% end%>
-                    </div>
-                    <div class='text-center'>
-                        <%= link_to "Invite Friend", "#", class: 'company-button join-group-button', :data => { toggle: 'modal', target: '#inviteModal' } %>
-                    </div>
-                </section>
-
-            </div>
-        </div>
-    </div>
+                            </div>
 
 
+                            <article class='card-body no-height'>
+                                <div class='company-tagline'>
+                                    <span class='company-tagline-text'><%= company.campaign.tagline %></span>
+                                </div>
 
-    <div id="inviteModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
+                                <div class='property-detail company-funded-status property-detail-no-height'>
+                                    <span class='propety-detail-left'>Category</span>
+                                    <span class='property-detail-right'><%= company.category %></span>
+                                </div>
 
-                <div class='close-icon'>
-                    <a href="#" class="close"><i class="fa fa-times"></i></a>
-                </div>
-                <div class="modal-header text-center">
-                    <h3>Invite Friend </h3>
-                </div>
-                <div class="modal-body">
-                    <%= form_for GroupInvite.new, url: invite_to_group_path do |f| %>
-                        <%= f.hidden_field(:group_id, value: @group.id) %>
-                        <%= f.text_field(:name, :placeholder => "Name", :class => "form-field") %>
-                        <%= f.text_field(:email, :placeholder => "Email", :class => "form-field") %>
-                        <%= f.submit "Invite", class: "company-button join-group-button" %>
+                                <div class='property-detail company-funded-status property-detail-no-height'>
+                                    <span class='propety-detail-left'>Status</span>
+                                    <span class='property-detail-right'>Funded </span>
+                                </div>
+
+                            <div class='company-tagline funded-by-accredited'>
+                                <span class='company-tagline-text'>Funded by Accredited Investors using 506 (D)</span>
+                            </div>
+
+                            </article>
+                        </div>
                     <% end %>
                 </div>
-            </div>
-        </div>
-    </div>
 
+            </section>
 
+            <section class="group-members-box hidden-xs">
+                <div class='group-members-header'>Group Admins</div>
+                <div class='group-admins-list'>
+                    <% @admins.each do |admin| %>
+                        <span class='group-admin'>
+                            <%= image_tag( admin.photo.url(:thumbnail), class: 'group-admin-photo') %><br>
+                            <span class='group-admin-name'> <%= admin.name %> </span>
 
-
-    <div id="modal">
-      <!-- First modal window -->
-        <div id="soc-media-dialog" class="window">
-            <div class="contents">
-                <div class='close-icon'>
-                    <a href="#" class="close"><i class="fa fa-times"></i></a>
+                            <div class='group-admin-box'>
+                                <section class='group-admin-box-photo'>
+                                    <%= image_tag( admin.photo.url(:thumbnail), class: 'group-admin-photo') %>
+                                </section>
+                                <section class='group-admin-box-text'>
+                                    <div class='group-admin-name bold-name centered'> <%= admin.name %> </div>
+                                    <span class='group-admin-name'> <%= admin.bio %> </span>
+                                </section>
+                            </div>
+                        </span>
+                    <% end%>
                 </div>
-                <div class='section-title centered'>Invite people you know</div>
+                <div class='text-center'>
+                    <%= link_to "Invite Friend", "#", class: 'company-button join-group-button', :data => { toggle: 'modal', target: '#inviteModal' } %>
+                </div>
+            </section>
 
-                <%= button_to  '/authenticate', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-                  Invite Contacts from Gmail  &nbsp;
-                  <%= image_tag "static/gmail-icon.png", class: 'gmail-icon' %>
-                <% end %>
-                <br>
+        </div>
+    </div>
+</div>
 
-                <%= button_to  '/contacts/yahoo',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-                  Invite Contacts from Yahoo  &nbsp;
-                  <%= image_tag "static/yahoo_logo.png", class: 'yahoo-icon' %>
-                <% end %>
-                <br>
 
-                <%= button_to  '/contacts/outlook',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
-                  Invite Contacts from Outlook
-                  <%= image_tag "static/outlook.png", class: 'gmail-icon outlook-icon' %>
+<div id="inviteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3>Invite Friend </h3>
+            </div>
+            <div class="modal-body">
+                <%= form_for GroupInvite.new, url: invite_to_group_path do |f| %>
+                    <%= f.hidden_field(:group_id, value: @group.id) %>
+                    <%= f.text_field(:name, :placeholder => "Name", :class => "form-field") %>
+                    <%= f.text_field(:email, :placeholder => "Email", :class => "form-field") %>
+                    <%= f.submit "Invite", class: "company-button join-group-button" %>
                 <% end %>
             </div>
         </div>
     </div>
+</div>
+
+
+<div id="modal">
+  <!-- First modal window -->
+    <div id="soc-media-dialog" class="window">
+        <div class="contents">
+
+            <div class='section-title centered'>Invite people you know</div>
+
+            <%= button_to  '/authenticate', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+              Invite Contacts from Gmail  &nbsp;
+              <%= image_tag "static/gmail-icon.png", class: 'gmail-icon' %>
+            <% end %>
+            <br>
+
+            <%= button_to  '/contacts/yahoo',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+              Invite Contacts from Yahoo  &nbsp;
+              <%= image_tag "static/yahoo_logo.png", class: 'yahoo-icon' %>
+            <% end %>
+            <br>
+
+            <%= button_to  '/contacts/outlook',method: 'get', class: 'invite-google-contacts', form: {target: '_blank'} do %>
+              Invite Contacts from Outlook
+              <%= image_tag "static/outlook.png", class: 'gmail-icon outlook-icon' %>
+            <% end %>
+        </div>
+    </div>
+</div>
 
 
 <script>
