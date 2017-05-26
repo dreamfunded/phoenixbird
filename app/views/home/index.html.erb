@@ -14,6 +14,16 @@
 
         <div class="item">
           <div class="mainTop__slider__title">
+            <h2>Invest in Real Estate</h2>
+          </div>
+          <div class="mainTop__slider__txt"><span>For as Low as $500</span></div>
+          <div class="mainTop__slider__btn">
+           <%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="mainTop__slider__title">
             <h2>Invest in Local Business</h2>
           </div>
           <div class="mainTop__slider__txt"><span>And Get a Share of Their Profits</span></div>
@@ -22,19 +32,13 @@
           </div>
         </div>
 
-        <div class="item">
-          <div class="mainTop__slider__title">
-            <h2>Invest in the Fastest Growing Part of US Economy</h2>
-          </div>
-          <div class="mainTop__slider__txt"><span>Latino-Owned Business</span></div>
-          <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
-        </div>
+
 
         <div class="item">
           <div class="mainTop__slider__title">
             <h2>Tired of Low CD Rates?</h2>
           </div>
-          <div class="mainTop__slider__txt"><span>Put Your Money to Work, Make Money<br> When The Business Makes a Profit</span></div>
+          <div class="mainTop__slider__txt"><span>Put Your Money to Work</span></div>
           <div class="mainTop__slider__btn"><%= link_to "Get Started", {:action => 'get_started'}, {:class => 'btn btn-blue'} %></div>
         </div>
 
@@ -53,7 +57,7 @@
 <div class="mainCompanies">
   <div class="container">
     <div class="block-title">
-      <h3>Businesses raising right now</h3>
+      <h3>Investment Opportunities</h3>
     </div>
 
     <div class="mainCompanies__cnt">
@@ -61,7 +65,7 @@
         <div class="">
           <% @companies.each do |company| %>
             <%= link_to company_path(company) do %>
-              <div class='col-md-4'></div>
+
               <div class="col-md-4 col-sm-6">
                 <div class="compthumb">
                   <div class="compthumb__img ofit-block">
@@ -124,30 +128,30 @@
 <!-- <div class="mainFaq">
   <div class="container">
     <div class="block-title">
-      <h3>Faq</h3>
+      <h3>FAQ</h3>
     </div>
     <div class="mainFaq__cnt">
       <div class="row">
         <div class="mainFaq__slider">
           <div class="col-sm-4">
-            <div class="mainFaq__it__title"><a href="#">How does DreamFunded make money?</a></div>
+            <div class="mainFaq__it__title"><a href="#">What type of investment opportuniteis DreamFunded has?</a></div>
             <div class="mainFaq__it__txt">
-              <p>Equity crowdfunding is when an investor invests in a company through an online crowdfunding platform to get an ownership stake in the company with the hope of earning a financial return.</p>
+              <p>DreamFunded has 2 types of investments: Real Estate properties and Small Businesses.</p>
             </div>
             <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
           </div>
           <div class="col-sm-4">
-            <div class="mainFaq__it__title"><a href="#">Why would existing angel groups partner with DreamFunded?</a></div>
+            <div class="mainFaq__it__title"><a href="#">What are returns on Investments?</a></div>
             <div class="mainFaq__it__txt">
               <p>Crowdfunding has become very popular over the past few years, but the process is nothing new. </p>
-              <p>Crowdfunding has been around for hundreds of years.  In fact, it is one of the oldest forms of raising money. </p>
+
             </div>
             <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
           </div>
           <div class="col-sm-4">
             <div class="mainFaq__it__title"><a href="#">If I am non-accredited, can I invest on DreamFunded?</a></div>
             <div class="mainFaq__it__txt">
-              <p>These and other similar crowdfunding platforms raise money in the form of donations for all types of different things; from new products and services to social causes and public initiatives.</p>
+              <p>Yes. DreamFunded operates under Title III of the JOBS Act and can recive investments from non-accredited investors.</p>
             </div>
             <div class="mainFaq__it__more"><a href="#">Lean More</a></div>
           </div>
