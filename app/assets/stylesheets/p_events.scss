@@ -4,6 +4,9 @@
 .events-bg{
  background-image: url(image_path('template/events/top-bg.jpg'));
 }
+.edit_event .input-wrap input, .edit_event .input-wrap textarea{
+  background-color: #fff;
+}
 .events {
   padding-top: 70px;
   padding-bottom: 80px;

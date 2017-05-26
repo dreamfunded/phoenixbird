@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426215056) do
+ActiveRecord::Schema.define(version: 20170526175158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +205,8 @@ ActiveRecord::Schema.define(version: 20170426215056) do
     t.datetime "timestamp"
     t.boolean  "reg_a"
     t.string   "category"
+    t.string   "categories"
+    t.boolean  "real_estate"
   end
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", using: :btree

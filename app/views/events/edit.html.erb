@@ -1,13 +1,16 @@
 <div class='news'>
     <div class='container'>
 
-        <h1>Editing event</h1>
-        <center>
-          <%= render 'form' %>
-        </center>
-        <%= link_to 'Show', @event %> |
-        <%= link_to 'Back', events_path %>
+        <div class='col-md-2'></div>
+        <div class='col-md-8'>
 
+            <h1>Editing event</h1>
+            <center>
+              <%= render 'form' %>
+            </center>
+
+            <%= link_to 'Back', events_path %>
+        </div>
     </div>
 </div>
 
