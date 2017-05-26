@@ -112,6 +112,17 @@ class InvitesController < ApplicationController
     end
   end
 
+  def invites_to_real_estate
+    begin
+        SubscribeJob.new.async.invites_to_real_estate(params[:file] )
+        flash[:email_sent] = "Emails sent"
+        redirect_to  invite_users_path
+      rescue
+        flash[:upload_error] = "Invalid CSV file format."
+        redirect_to  invite_users_path
+    end
+  end
+
   def invite_to_group
     @invite = GroupInvite.create(group_invite_params)
     @group = Group.find( @invite.group_id )

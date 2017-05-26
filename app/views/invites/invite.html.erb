@@ -174,6 +174,32 @@
           </div>
 
           <% if current_user.authority == authority[:Admin] %>
+            <!--   4. Invites to Real Estate -->
+             <div class="invite__block">
+               <div class="invite__block__title">
+                 <%= image_tag('home.png', class: 'svg-icon')%>
+                 <span>Invites to Real Estate</span>
+               </div>
+               <div class="invite__csv">
+                 <%= form_tag('/invites_to_real_estate', multipart: true) do %>
+                   <div class="row">
+                     <div class="col-md-9">
+                       <div class="input-wrap">
+                         <div data-title="Choose" class="file-input">
+                           <label>
+                             <%= file_field_tag :file, class: 'hidden-input' %>
+                             <span class="file-input__txt">Choose File</span>
+                           </label>
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-md-3">
+                       <button type="submit" class="btn btn-blue fw-btn">Upload</button>
+                     </div>
+                   </div>
+                 <% end %>
+               </div>
+             </div>
 
             <!--   4. Upload from Manny -->
              <div class="invite__block">

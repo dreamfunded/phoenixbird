@@ -78,5 +78,10 @@ class InviteMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Hi #{@user.name}, new blog post in your #{group.name} Group " )
   end
 
+  def invites_to_real_estate(invite)
+    @invite = invite
+    mail(to: @invite.email, subject: "Hi #{@invite.name}, you are invited to invest in Real Estate." )
+  end
+
 end
 

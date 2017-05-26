@@ -251,6 +251,7 @@ Rails.application.routes.draw do
 
   post '/invite_from_startup', to: "invites#invite_from_startup", as: :invite_from_startup
   post '/invite_to_group', to: "invites#invite_to_group", as: :invite_to_group
+  post '/invites_to_real_estate', to: "invites#invites_to_real_estate"
 
   get '/group_invites/:id', to: 'invites#group_invites', as: :group_invites
 
