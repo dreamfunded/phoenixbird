@@ -15,7 +15,7 @@ class Company < ActiveRecord::Base
   end
 
   def self.homepage
-    all.order(:display).limit(2)
+    all.order(:display).limit(1)
   end
 
   has_many :users
