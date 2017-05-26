@@ -10,6 +10,11 @@
   line-height: 20px;
   position: relative;
 }
+.company-info-bottom-position{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 @media (max-width: 991px) {
   .dreamfunded-youtube-videos{

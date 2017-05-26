@@ -1,60 +1,34 @@
 <% title "DreamFunded | #{@company.name}" %>
 <%= form_for(@company, :url => url_for( :action => 'update_campaign') ) do |f| %>
 
-  <section class='company-cover-photo' style="background-image:url(<%= @company.cover.url %>)" >
-
-        <div class='company-profile-bottom-line'>
-            <div class='company-info-container'>
-            <div class='inline-block'>
+<section class='company-cover-photo' style="background-image:url(<%= @company.cover.url %>)" >
+    <div class='company-info-bottom-position'>
+        <div class='container'>
+            <div class='col-md-3'>
                 <%= image_tag( @company.image.url, class: 'image-max-width company-logo')%>
-                <br>
                 <%= f.file_field "image", class: "company-logo" %>
+                <div>Background Cover</div>
+                <%= f.file_field "cover" %>
             </div>
-            <section class='company-basic-info'>
-                <div>   <%= f.text_field :name, class: "form-field form-field-half" %> </div>
 
-
+            <div class='col-md-6'>
+                <%= f.text_field :name, class: "form-field form-field-half" %>
 
                 <%= f.fields_for :campaign  do |campaign_fields| %>
-                  <%= campaign_fields.text_area :tagline, placeholder: 'Describe your company in one sentence',:class => " form-field", required:true %><br>
-                  <!-- <i class="fa fa-map-marker darkblue company_located"></i> -->
-                  <%= campaign_fields.text_field :company_location_city, placeholder: 'City', class: "form-field form-field-half", required:true %>
-                  <%= campaign_fields.text_field :company_location_state, placeholder: 'State', class: "form-field form-field-half", required:true %>
+                    <%= campaign_fields.text_area :tagline, placeholder: 'Describe your company in one sentence',:class => " form-field", required:true %>
+                    <%= campaign_fields.text_field :company_location_city, placeholder: 'City', class: "form-field form-field-half", required:true %>
+                    <%= campaign_fields.text_field :company_location_state, placeholder: 'State', class: "form-field form-field-half", required:true %>
                 <% end %>
+
                 <%= f.select(:category, options_for_select(company_categories, @company.category), {}, {class: " form-field form-field-half "} ) %>
-            </section>
+            </div>
+
+            <div class='col-md-3'>
+                <%= f.submit "Update", :class => 'company-button profile-button mail-to-button company-update-btn edit-company-button' %>
             </div>
         </div>
-
-        <div class='company-info-right-panel'>
-            <div class='company-info-cateogry no-margin-top'>RAISED</div>
-            <div class='company-finance-info company-detail'><%= number_to_currency @company.invested_amount, precision: 0 %></div>
-
-            <div class='company-info-cateogry'>TARGET</div>
-            <div class='company-finance-info company-detail'><%= number_to_currency @company.goal_amount, precision: 0 %></div>
-
-            <div class='company-info-cateogry'>minimum investment</div>
-            <div class='company-finance-info company-detail'> <%= number_to_currency @company.min_investment, precision: 0 %> </div>
-
-            <div class='company-info-cateogry'>Background Cover:</div>
-            <div class='company-finance-info'> <%= f.file_field "cover" %> </div>
-
-              <div class="meter orange">
-                  <% @progress = ((@company.invested.to_f / @company.goal_amount.to_f).to_f) *100 %>
-                  <% if @progress == 0 %>
-                      <span class= "front" style="width: 5px"></span>
-                  <% elsif @progress > 100 %>
-                      <span style= 'width: 100%'></span>
-                  <% else %>
-                      <span style='width: <%= @progress %>%'></span>
-                  <% end %>
-              </div>
-              <div class='company-info-cateogry percent-funded'><%= @progress.to_i %>% funded</div>
-
-            <%= f.submit "Update", :class => 'company-button profile-button mail-to-button company-update-btn edit-company-button' %>
-
-          </div>
-  </section>
+    </div>
+</section>
 
   <div class='grey-section'>
       <div class=" stretch">
