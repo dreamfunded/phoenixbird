@@ -49,7 +49,7 @@ gem 'devise'
 gem 'newrelic_rpm'
 gem 'raygun4ruby'
 gem 'pdfkit'
-gem 'wkhtmltopdf-heroku'
+
 gem 'pdf-forms'
 gem 'delayed_job_active_record'
 gem 'csv-importer'
@@ -57,11 +57,13 @@ gem 'fund_america', :git => "git://github.com/yuri-zubov/fund_america"
 gem "oink"
 gem 'htmltoword'
 gem "omnicontacts", github: 'Diego81/omnicontacts'
-
-
 gem 'will_paginate', '~> 3.0.5'
 gem 'betterlorem', '~> 0.1.2'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+
+group :production do
+  gem 'wkhtmltopdf-heroku'
+end
 
 group :development do
    gem "thin"
@@ -70,6 +72,7 @@ group :development do
    gem 'binding_of_caller'
    gem 'spring'
    gem 'byebug'
+   gem 'wkhtmltopdf-binary'
 end
 
 

@@ -1,95 +1,118 @@
 <% title "DreamFunded | Form C" %>
-<div class= "wrapper">
-  <div class="header education-center">
-    <div class='education-title'>Form C Editor</div>
-    <a href="#" class='education-links active-link'>General</a> <%= fa_icon "chevron-right"%>
-    <a href="#" class='education-links disabled-link'>Team</a> <%= fa_icon "chevron-right"%>
-    <a href="#" class='education-links disabled-link'>Terms</a> <%= fa_icon "chevron-right"%>
-    <a href="#" class='education-links disabled-link'>Disclosures</a>
-  </div>
 
-  <div class= "campaign-box  get-funded ">
-
-  <div class="row">
-    <div class=" active">
-      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">General Info</a></h2>
+<div class="stepTop">
+  <div class="container">
+    <div class="stepTop__title">
+      <h2>Form C Editor</h2>
+    </div>
+    <div class="stepTop__steps">
+      <div class="stepTop__steps__inn clearfix">
+        <div class="stepTop__steps__it active">
+          <div class="stepTop__steps__it__txt"><span>General</span></div>
+        </div>
+        <div class="stepTop__steps__it ">
+          <div class="stepTop__steps__it__txt"><span>Team</span></div>
+        </div>
+        <div class="stepTop__steps__it">
+          <div class="stepTop__steps__it__txt"><span>Terms</span></div>
+        </div>
+        <div class="stepTop__steps__it">
+          <div class="stepTop__steps__it__txt"><span>Disclosures</span></div>
+        </div>
+        <div class="stepTop__steps__it ">
+          <div class="stepTop__steps__it__txt"><span>Financials</span></div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class= "login-container">
-    <%= form_for @general_info, :url => {:action => "general_save"}, method: "post" do |f| %>
-      <%= f.hidden_field :company_id, value: @company.id %>
-      <div class='get-funded-section-name'>Legal Company Name </div>
-      <%= f.text_field :name, value: @company.name, placeholder: 'Company Name', :class => "input-box", required:true %>
-      <br>
+<div class= "step">
+  <div class='container'>
 
-
-      <div class='get-funded-section-name'>Legal status</div>
-      <div class="styled-select select-100-width" >
-        <%= f.select( :kind, ['C Corp', 'S Corp', 'LLC', 'Partnership', 'Sole Proprietorship'] ) %>
-      </div>
-      <br>
-      <div class='get-funded-section-name'>In which state was it incorporated or organized?</div>
-      <div class="styled-select select-100-width" >
-        <%= f.select( :state, options_for_select(all_states) ) %>
-      </div>
-      <br>
-
-
-      <div>
-        <div class='get-funded-section-name'>What is the date of incorporation?</div>
-        <%= f.date_field :date_formed, class: 'campaign-input-box' %>
-      </div>
-
-
-      <div class='get-funded-section-name'>What kind of securities are you offering?</div>
-      <%= f.text_field(:type_of_securtity, value: "Crowd Safe", class: "campaign-input-box" ) %>
-      <br>
+    <div class= "campaign-box  get-funded ">
 
 
 
-      <div class='get-funded-section-name'>
-        Company Location
-      </div>
-
-      <%= f.text_field :company_location_address, value: @company.campaign.company_location_address,  placeholder: 'Address',:class => "campaign-input-box", required:true %>
-      <%= f.text_field :company_location_city, value: @company.campaign.company_location_city,  placeholder: 'City',:class => "campaign-input-box", required:true %>
-      <%= f.text_field :company_location_state, value: @company.campaign.company_location_state, placeholder: 'State',:class => "campaign-input-box", required:true %>
-      <%= f.text_field :company_location_zipcode, value: @company.campaign.company_location_zipcode, placeholder: 'Zipcode',:class => "campaign-input-box", required:true %>
-      <br><br>
-
-      <div class='get-funded-section-name'>Website</div>
-      <%= f.text_field :website, value: @company.website_link,  placeholder: 'Website', :class => "campaign-input-box", required:true  %><br>
+    <div class= "login-container">
+      <%= form_for @general_info, :url => {:action => "general_save"}, method: "post" do |f| %>
+        <%= f.hidden_field :company_id, value: @company.id %>
+        <div class='get-funded-section-name'>Legal Company Name </div>
+        <%= f.text_field :name, value: @company.name, placeholder: 'Company Name', :class => "input-box", required:true %>
+        <br>
 
 
-      <div class='get-funded-section-name'>Business Phone Number</div>
-      <%= f.text_field :phone,  placeholder: 'Phone', :class => "campaign-input-box", required:true  %><br>
+        <div class='get-funded-section-name'>Legal status</div>
+        <div class="styled-select select-100-width" >
+          <%= f.select( :kind, ['C Corp', 'S Corp', 'LLC', 'Partnership', 'Sole Proprietorship'] ) %>
+        </div>
+        <br>
+        <div class='get-funded-section-name'>In which state was it incorporated or organized?</div>
+        <div class="styled-select select-100-width" >
+          <%= f.select( :state, options_for_select(all_states) ) %>
+        </div>
+        <br>
 
 
-      <div class='get-funded-section-name'>What is the maximum you are looking to raise?</div>
-      <%= f.text_field(:max_amount, value: @company.campaign.funding_goal,  class: "campaign-input-box" ) %>
-      <br>
+        <div>
+          <div class='get-funded-section-name'>What is the date of incorporation?</div>
+          <%= f.date_field :date_formed, class: 'campaign-input-box' %>
+        </div>
 
-      <div class='get-funded-section-name'>What is your target minimum amount? (Note: if you do not meet this amount, the funds will not be distributed to you)</div>
-      <%= f.text_field(:min_amount, value: '20,000',  class: "campaign-input-box" ) %>
-      <br>
 
-      <div class='get-funded-section-name'>Target number of securities to be offered</div>
-      <%= f.text_field(:number_of_securities,  class: "campaign-input-box" ) %>
-      <br>
-
-      <div class='get-funded-section-name'>Price (or method for determining price)</div>
-      <%= f.text_field(:price_of_securities,  class: "campaign-input-box" ) %>
-      <br>
-
-      <div class='get-funded-section-name'>How long will the campaign last? (days)</div>
-      <%= f.number_field :days, value: 180, class: 'campaign-input-box', required:true %>
+        <div class='get-funded-section-name'>What kind of securities are you offering?</div>
+        <%= f.text_field(:type_of_securtity, value: "Crowd Safe", class: "campaign-input-box" ) %>
+        <br>
 
 
 
-      <div class= "centered">
-        <%= submit_tag("Continue", :id => "submit-button") %>
-      </div>
-    <% end %>
+        <div class='get-funded-section-name'>
+          Company Location
+        </div>
+
+        <%= f.text_field :company_location_address, value: @company.campaign.company_location_address,  placeholder: 'Address',:class => "campaign-input-box", required:true %>
+        <%= f.text_field :company_location_city, value: @company.campaign.company_location_city,  placeholder: 'City',:class => "campaign-input-box", required:true %>
+        <%= f.text_field :company_location_state, value: @company.campaign.company_location_state, placeholder: 'State',:class => "campaign-input-box", required:true %>
+        <%= f.text_field :company_location_zipcode, value: @company.campaign.company_location_zipcode, placeholder: 'Zipcode',:class => "campaign-input-box", required:true %>
+        <br><br>
+
+        <div class='get-funded-section-name'>Website</div>
+        <%= f.text_field :website, value: @company.website_link,  placeholder: 'Website', :class => "campaign-input-box", required:true  %><br>
+
+
+        <div class='get-funded-section-name'>Business Phone Number</div>
+        <%= f.text_field :phone,  placeholder: 'Phone', :class => "campaign-input-box", required:true  %><br>
+
+
+        <div class='get-funded-section-name'>What is the maximum you are looking to raise?</div>
+        <%= f.text_field(:max_amount, value: @company.campaign.funding_goal,  class: "campaign-input-box" ) %>
+        <br>
+
+        <div class='get-funded-section-name'>What is your target minimum amount? (Note: if you do not meet this amount, the funds will not be distributed to you)</div>
+        <%= f.text_field(:min_amount, value: '20,000',  class: "campaign-input-box" ) %>
+        <br>
+
+        <div class='get-funded-section-name'>Target number of securities to be offered</div>
+        <%= f.text_field(:number_of_securities,  class: "campaign-input-box" ) %>
+        <br>
+
+        <div class='get-funded-section-name'>Price (or method for determining price)</div>
+        <%= f.text_field(:price_of_securities,  class: "campaign-input-box" ) %>
+        <br>
+
+        <div class='get-funded-section-name'>How long will the campaign last? (days)</div>
+        <%= f.number_field :days, value: 180, class: 'campaign-input-box', required:true %>
+
+
+
+        <div class= "centered">
+          <%= submit_tag("Continue", :id => "submit-button") %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $('header').addClass('__white');
+</script>

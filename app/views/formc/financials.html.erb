@@ -1,68 +1,81 @@
 <% title "DreamFunded | Form C" %>
-<div class= "wrapper">
-  <div class="header education-center">
-    <div class='education-title'>Form C Editor</div>
-    <a href="#" class='education-links disabled-link '>General</a> <%= fa_icon "chevron-right"%>
-    <a href="#" class='education-links disabled-link'>People</a> <%= fa_icon "chevron-right"%>
-    <a href="#" class='education-links disabled-link '>Terms</a> <%= fa_icon "chevron-right"%>
-    <a href="#" class='education-links disabled-link '> Disclosures</a> <%= fa_icon "chevron-right"%>
-    <span href="#" class='education-links active-link'> Financial Info </span>
-  </div>
 
-  <div class= "campaign-box  get-funded ">
-
-  <div class="row">
-    <div class=" active">
-      <h2 class= "darkblue no-margin centered"><a  id="login-form-link">Financial Info</a></h2>
-
+<div class="stepTop">
+  <div class="container">
+    <div class="stepTop__title">
+      <h2>Form C Editor</h2>
+    </div>
+    <div class="stepTop__steps">
+      <div class="stepTop__steps__inn clearfix">
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>General</span></div>
+        </div>
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Team</span></div>
+        </div>
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Terms</span></div>
+        </div>
+        <div class="stepTop__steps__it completed">
+          <div class="stepTop__steps__it__txt"><span>Disclosures</span></div>
+        </div>
+        <div class="stepTop__steps__it active">
+          <div class="stepTop__steps__it__txt"><span>Financials</span></div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class= "login-container">
-    <%= form_for @general_info, :url => {:action => "financials_save", id: @general_info.id}, method: 'post' do |f| %>
-      <%= f.hidden_field :completed, value: true %>
+<div class='step'>
+  <div class= "container">
+    <div class= "campaign-box  get-funded ">
+      <div class= "login-container">
+        <%= form_for @general_info, :url => {:action => "financials_save", id: @general_info.id}, method: 'post' do |f| %>
+          <%= f.hidden_field :completed, value: true %>
 
-        <strong>Outstanding Loans</strong>
-        <%= f.text_area :outstanding_loan, rows: 10, class: "campaign_text_area_width", placeholder: 'Describe your outstanding loans. Include creditor, amount owed, interest rate, maturity date, and any other material special terms.' %>
+            <strong>Outstanding Loans</strong>
+            <%= f.text_area :outstanding_loan, rows: 10, class: "campaign_text_area_width", placeholder: 'Describe your outstanding loans. Include creditor, amount owed, interest rate, maturity date, and any other material special terms.' %>
 
-        <div class='get-funded-section-name'>Valuation</div>
-        <%= f.text_field(:valuation,  class: "form-field" ) %>
-        <br>
+            <div class='get-funded-section-name'>Valuation</div>
+            <%= f.text_field(:valuation,  class: "form-field" ) %>
+            <br>
 
-        <div class='get-funded-section-name'>Burn Rate</div>
-        <%= f.text_field(:burn_rate,  class: "form-field" ) %>
-        <br>
+            <div class='get-funded-section-name'>Burn Rate</div>
+            <%= f.text_field(:burn_rate,  class: "form-field" ) %>
+            <br>
 
-        <div class='get-funded-section-name'>Will company require additional financing in excess of the proceeds from the Offering in order to sustain operations for the next 12 months? </div>
-        <%= f.select(:additional_financing, options_for_select([['Yes', true],['No', false]]),{},  {class: "form-select form-field required-field"} ) %>
+            <div class='get-funded-section-name'>Will company require additional financing in excess of the proceeds from the Offering in order to sustain operations for the next 12 months? </div>
+            <%= f.select(:additional_financing, options_for_select([['Yes', true],['No', false]]),{},  {class: "form-select form-field required-field"} ) %>
 
-        <div class='get-funded-section-name'>Does company have any additional sources of capital other than the proceeds from the offering? </div>
-        <%= f.select(:additional_sources_capital, options_for_select([['Yes', true],['No', false]]),{},  { class: "form-select form-field required-field" }) %>
+            <div class='get-funded-section-name'>Does company have any additional sources of capital other than the proceeds from the offering? </div>
+            <%= f.select(:additional_sources_capital, options_for_select([['Yes', true],['No', false]]),{},  { class: "form-select form-field required-field" }) %>
 
-        <div class='get-funded-section-name'>Are  aditional sources of capital  necessary to the operations of the Company? </div>
-        <%= f.select(:additional_sources_necessary, options_for_select([['Yes', true],['No', false]]), {},  {class: "form-select form-field required-field" }) %>
+            <div class='get-funded-section-name'>Are  aditional sources of capital  necessary to the operations of the Company? </div>
+            <%= f.select(:additional_sources_necessary, options_for_select([['Yes', true],['No', false]]), {},  {class: "form-select form-field required-field" }) %>
 
-        <div class='get-funded-section-name'>Has company made any material capital expenditures in the past two years? </div>
-        <%= f.select(:has_material_capital, options_for_select([['Yes', true],['No', false]]), {},  {class: "form-select form-field required-field" }) %>
+            <div class='get-funded-section-name'>Has company made any material capital expenditures in the past two years? </div>
+            <%= f.select(:has_material_capital, options_for_select([['Yes', true],['No', false]]), {},  {class: "form-select form-field required-field" }) %>
 
-        <div class='get-funded-section-name'>Is so, then list material capital expenditures in the future</div>
-        <%= f.text_field(:material_capital,  class: "form-field" ) %>
-        <br>
+            <div class='get-funded-section-name'>Is so, then list material capital expenditures in the future</div>
+            <%= f.text_field(:material_capital,  class: "form-field" ) %>
+            <br>
 
-        <strong>The Company intends to make the following material capital expenditures in the future:</strong>
-        <%= f.text_area :material_capital_expenditures, rows: 10, class: "campaign_text_area_width", placeholder: 'The Company intends to make the following material capital expenditures in the future:' %>
+            <strong>The Company intends to make the following material capital expenditures in the future:</strong>
+            <%= f.text_area :material_capital_expenditures, rows: 10, class: "campaign_text_area_width", placeholder: 'The Company intends to make the following material capital expenditures in the future:' %>
 
-        <strong>List any transactions with related persons.</strong>
-        <strong>Description of transaction</strong>
-        <%= f.text_area :transactin, rows: 5, class: "campaign_text_area_width" %>
-        <strong>Name of related person</strong>
-        <%= f.text_area :related_person, rows: 5, class: "campaign_text_area_width" %>
-        <strong>Describe there any conflicts of interest between the Company and any related person? </strong>
-        <%= f.text_area :conflicts, rows: 5, class: "campaign_text_area_width" %>
+            <strong>List any transactions with related persons.</strong>
+            <strong>Description of transaction</strong>
+            <%= f.text_area :transactin, rows: 5, class: "campaign_text_area_width" %>
+            <strong>Name of related person</strong>
+            <%= f.text_area :related_person, rows: 5, class: "campaign_text_area_width" %>
+            <strong>Describe there any conflicts of interest between the Company and any related person? </strong>
+            <%= f.text_area :conflicts, rows: 5, class: "campaign_text_area_width" %>
 
-      <div class= "centered">
-        <%= f.submit("Continue", :id => "submit-button") %>
+          <div class= "centered">
+            <%= f.submit("Continue", :id => "submit-button") %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
   </div>
 </div>
