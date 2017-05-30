@@ -15,6 +15,11 @@
   bottom: 0;
   width: 100%;
 }
+.pageTopBlock__title h2{
+  color: white;
+  font-size: 55px;
+  font-weight: 700;
+}
 
 @media (max-width: 991px) {
   .dreamfunded-youtube-videos{

@@ -3,7 +3,11 @@ require 'rails_helper'
 feature 'create new campaign' do
     let!(:user) { FactoryGirl.create :user }
     before(:each) do
-      stub_current_user user
+        visit root_path
+        click_on "Login"
+        fill_in "Email", :with => user.email
+        fill_in "Password", :with => user.password
+        click_button "Login"
     end
 
     scenario 'Basic step' do

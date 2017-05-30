@@ -5,5 +5,6 @@ FactoryGirl.define do
     last_name { Faker::Name.last_name }
     password 'password'
     authority '2'
+    confirmed true
   end
 end
