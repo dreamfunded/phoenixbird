@@ -101,6 +101,8 @@ Rails.application.routes.draw do
 
   get 'reject/:id', to: "companies#reject", as: "reject"
 
+  get '/realestate', to: "companies#realestate", as: "realestate"
+
 
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
 

@@ -18,6 +18,10 @@ class Company < ActiveRecord::Base
     all.order(:display).limit(1)
   end
 
+  def self.real_estate
+    all.order(:position).where(real_estate: true)
+  end
+
   has_many :users
   has_and_belongs_to_many :groups
   has_many :followers, inverse_of: :company

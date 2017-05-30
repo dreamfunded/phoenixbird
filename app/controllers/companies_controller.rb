@@ -12,6 +12,10 @@ class CompaniesController < ApplicationController
 		@funded_companies = Company.all_funded
 	end
 
+	def realestate
+		@companies = Company.real_estate
+	end
+
 	def company_profile
 		@campaign = @company.campaign
 		@financial_details = @company.financial_detail
