@@ -36,7 +36,6 @@ end
 feature 'Authentication' do
     let!(:user) { FactoryGirl.create :user }
     scenario "redirects to root_path on success and replaces login with user name" do
-
             visit root_path
             click_on "Login"
             fill_in "Email", :with => user.email
@@ -44,6 +43,14 @@ feature 'Authentication' do
             click_button "Login"
             expect(page).to have_content(user.first_name)
             expect { click_on("Log In") }.to raise_error(Capybara::ElementNotFound)
+    end
 
+    scenario "shows on bad wrong password" do
+            visit root_path
+            click_on "Login"
+            fill_in "Email", :with => user.email
+            fill_in "Password", :with => 'wrong_password'
+            click_button "Login"
+            expect(page).to have_content("Invalid email or password.")
     end
 end

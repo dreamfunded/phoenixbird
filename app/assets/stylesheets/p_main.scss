@@ -17,6 +17,58 @@
   margin-top: 23px;
   font-size: 15px;
 }
+/*===============================
+=        Investment Types      =
+===============================*/
+
+.investmentTypes{
+  margin-bottom: 100px;
+}
+
+.invst-type-frst-blk{
+  text-align: right;
+}
+
+.block-title h3 span{
+  border-bottom: 2px solid #62c6d5;
+}
+
+.main-page-bullets{
+  list-style: none;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+.investment-types{
+  display: inline-block;
+  width: 423px;
+}
+.main-page-bullets li{
+  margin: 8px 0;
+}
+.main-page-bullets li span{
+  padding-bottom: 2px;
+  font-size: 16px;
+}
+@media (max-width: 991px) {
+  .investment-types{
+    width: auto;
+    min-height: 250px;
+  }
+}
+@media (max-width: 768px) {
+  .investment-types{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .investmentTypes{
+    margin-bottom: 0;
+  }
+
+}
+
+/*         END          */
+
 .mainTop__inn {
   min-height: 600px;
   display: -webkit-box;
