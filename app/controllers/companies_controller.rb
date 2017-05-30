@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-	before_action :authenticate_user!, except: [:index, :show, :company_profile ]
+	before_action :authenticate_user!, except: [:index, :show, :company_profile, :realestate ]
 	before_action :verify, except: [:index, :company_profile, :show]
 
 	before_action :admin_check, only: [:new, :edit, :make_team, :make_profile, :edit_profile, :reject]
