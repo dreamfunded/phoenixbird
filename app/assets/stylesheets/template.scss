@@ -1254,9 +1254,13 @@ body.mob-menu-open .header__mob-trig span:nth-child(odd) {
 }
 .header_invstments ul li{
   float: none;
-  margin: 0 !important;
-  margin-top: 9px !important;
+  margin: 0;
+  margin-top: 9px;
 }
+.header_invstments ul li + li{
+  margin-left: 0;
+}
+
 @media (max-width: 767px) {
   .header__user__drop {
     margin-top: 0px !important;
