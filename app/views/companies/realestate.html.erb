@@ -1,6 +1,5 @@
 <% title "DreamFunded " %>
 
-
 <div class="pageTopBlock companies-bg">
   <div class="container">
     <div class="pageTopBlock__inn">
@@ -15,17 +14,16 @@
     <h3 class='center'>These rehab projects were made possible in partnership with Sacramento Housing and Redevelopment Agency (SHRA) under the federal Neighborhood Stabilization Program.</h3><br><br>
     <div class="row">
         <% @companies.each do |company| %>
-            <%= link_to company_path(company) do %>
               <div class="col-md-4 col-sm-6">
                     <div class="compthumb">
                         <div class="compthumb__img ofit-block">
                             <%= image_tag(company.cover.url) %>
                         </div>
-                        <span class="compthumb__logo">
-                            <%= image_tag( company.image.url )%>
-                        </span>
+                        <!-- <span class="compthumb__logo">
+                            <%#= image_tag( company.image.url )%>
+                        </span> -->
                       <div class="compthumb__cnt">
-                        <div class="compthumb__name"> <%= link_to company.name, company_path(company) %> </div>
+                        <div class="compthumb__name"> <a><%= company.name %> </a> </div>
                         <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
                         <div class="compthumb__tags">
                           <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
@@ -52,9 +50,7 @@
                       </div>
                     </div>
               </div>
-            <% end %>
         <% end %>
     </div>
-
   </div>
 </div>
