@@ -17,8 +17,13 @@
 }
 .pageTopBlock__title h2{
   color: white;
-  font-size: 55px;
+  font-size: 50px;
   font-weight: 700;
+}
+.real-estate-tagline{
+  color: white;
+  font-size: 40px;
+  font-weight: 300;
 }
 
 @media (max-width: 991px) {
