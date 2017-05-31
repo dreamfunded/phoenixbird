@@ -1,0 +1,21 @@
+.rs-invsts{
+    padding-top: 50px;
+}
+.real-estate-bg{
+  background-image: url(image_path('template/real_estate/90percent_opacity.jpg'));
+}
+@media (max-width: 767px){
+
+    #rs-title{
+     font-size: 32px;
+    }
+    .real-estate-tagline{
+        font-size: 25px;
+    }
+    .rs-text{
+        font-size: 16px;
+    }
+    .rs-invsts{
+        padding-top: 25px;
+    }
+}
