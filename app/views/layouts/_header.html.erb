@@ -6,6 +6,19 @@
       <div class="header__nav">
         <ul class="reset-list clearfix">
           <li><%= link_to "Companies", companies_path %></li>
+
+          <!-- <li>
+            <div class="header_invstments">
+              <a href="#" class="hidden-xs"><span>Invest</span></a>
+              <div class="header__user__drop">
+                <ul class="reset-list">
+                  <li><%#= link_to "Real Estate", realestate_path %></li>
+                  <li><%#= link_to "Companies", companies_path %></li>
+                  <li><a></a></li>
+                </ul>
+            </div>
+          </li> -->
+
           <li><%= link_to "How It Works", '/how_it_works' %></li>
           <% if current_user %>
             <% if current_user.company %>
@@ -25,7 +38,9 @@
           <%= link_to "Sign Up", new_user_registration_path %>
         </div>
       <% else %>
-        <div class="header__user"><span class="hidden-xs hidden-sm">Welcome</span><a href="#" class="hidden-xs"><span><%= current_user.first_name.capitalize%></span></a>
+        <div class="header__user">
+            <span class="hidden-xs hidden-sm">Welcome</span>
+            <a href="#" class="hidden-xs"><span><%= current_user.first_name.capitalize%></span></a>
           <div class="header__user__drop">
             <ul class="reset-list">
               <li><%= link_to "My Investments", portfolio_path %></li>
@@ -72,9 +87,19 @@
     $(this).closest('.header__user').toggleClass('active');
     e.preventDefault();
   });
+  $('.header_invstments > a').on('click', function(e) {
+
+    $(this).closest('.header_invstments').toggleClass('active');
+    e.preventDefault();
+  });
+
   $(document).click(function(event) {
     if ($(event.target).closest(".header__user").length) return;
     $('.header__user').removeClass('active');
+  });
+  $(document).click(function(event) {
+    if ($(event.target).closest(".header_invstments").length) return;
+    $('.header_invstments').removeClass('active');
   });
 
 

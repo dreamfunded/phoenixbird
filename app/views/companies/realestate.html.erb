@@ -13,7 +13,10 @@
 </div>
 <div class="investments" style="padding-top: 50px;">
   <div class="container">
-    <h3 class='center' style="font-size:20px;">These rehab projects were made possible due to the partnership between Sacramento Affordable Housing Organization and Sacramento Housing and Redevelopment Agency (SHRA) under the federal Neighborhood Stabilization Program.</h3><br><br>
+    <h3 class='center' style="font-size:20px;">These rehab projects were made possible due to the partnership between Sacramento Affordable Housing Organization and Sacramento Housing and Redevelopment Agency (SHRA) under the federal Neighborhood Stabilization Program.</h3>
+    <br>
+    <h3 class='center' style="font-size:20px;">Funded by Accredited Investors</h3>
+    <br>
     <div class="row">
         <% @companies.each do |company| %>
               <div class="col-md-4 col-sm-6">
@@ -29,22 +32,23 @@
                         <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
                         <div class="compthumb__tags">
                           <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
+                          <div class="compthumb__tag __red"><span>DEBT</span></div>
                         </div>
                       </div>
                       <div class="compthumb__footer clearfix">
 
-                            <div class="compthumb__footer__block" style="width:50%;">
+                            <div class="compthumb__footer__block" >
                               <div class="compthumb__footer__title"><span>Raised</span></div>
                               <div class="compthumb__footer__num"><span><%= number_to_currency company.goal_amount, precision: 0 %></span></div>
                             </div>
 
-                            <!-- <div class="compthumb__footer__block">
+                            <div class="compthumb__footer__block">
                               <div class="compthumb__footer__title"><span>Return</span></div>
 
                                 <div class="compthumb__footer__num"><span>9%</span></div>
-                            </div> -->
+                            </div>
 
-                            <div class="compthumb__footer__block" style="width:50%;">
+                            <div class="compthumb__footer__block" >
                               <div class="compthumb__footer__title"><span>Status</span></div>
                               <div class="compthumb__footer__num"><span>Funded</span></div>
                             </div>
