@@ -1277,6 +1277,10 @@ body.mob-menu-open .header__mob-trig span:nth-child(odd) {
     opacity: 1;
     visibility: visible;
   }
+  .header_invstments ul li{
+    text-align: left;
+    font-size: 20px;
+  }
 }
 .header__user__drop ul li + li {
   margin-top: 8px;
@@ -1299,7 +1303,7 @@ body.mob-menu-open .header__mob-trig span:nth-child(odd) {
   .header__user__drop ul li a {
     color: #fff !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 .header__user__drop ul li a:hover {
