@@ -11,6 +11,11 @@
     </div>
   </div>
 </div>
+
+<h1 class="text-center rs-waitlist">
+  <%= flash[:notice] %>
+</h1>
+
 <div class="investments rs-invsts">
   <div class="container">
     <h3 class='center rs-text'>These rehab projects were made possible due to the partnership between Sacramento Affordable Housing Organization and Sacramento Housing and Redevelopment Agency (<a href="http://www.shra.org/" target="_blank" style="color:#62c6d5;">SHRA</a>) under the federal Neighborhood Stabilization Program.</h3>
@@ -57,10 +62,11 @@
                     </div>
               </div>
         <% end %>
-             <!--  <div class="col-md-4 col-sm-6">
+            <%= link_to real_estate_waitlist_path do %>
+              <div class="col-md-4 col-sm-6">
                     <div class="compthumb">
-                        <div class="compthumb__img ofit-block">
-                            <%= image_tag("clipart-house.jpg") %>
+                        <div class="compthumb__img ofit-block coming-soon-prperty">
+                            <%= image_tag("clip_art_house.png") %>
                         </div>
 
                       <div class="compthumb__cnt">
@@ -72,8 +78,6 @@
                       </div>
                       <div class="compthumb__footer clearfix">
 
-
-
                             <div class="compthumb__footer__block" style="width:100%;">
                               <div class="compthumb__footer__title"><span>Status</span></div>
                               <div class="compthumb__footer__num"><span>Coming Soon</span></div>
@@ -81,7 +85,8 @@
 
                       </div>
                     </div>
-              </div> -->
+              </div>
+            <% end %>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	invisible_captcha only: [:create]
-	before_action :authenticate_user!, only: [:portfolio, :campaign, :profile, :my_group, :resend_verification]
+	before_action :authenticate_user!, only: [:portfolio, :campaign, :profile, :my_group, :resend_verification, :real_estate_waitlist]
 
 	def edit
 		@user = User.find(params[:id])
@@ -96,6 +96,11 @@ class UsersController < ApplicationController
 	   else
 	     render "edit_password"
 	   end
+	 end
+
+	 def real_estate_waitlist
+	 	Guest.create(email: current_user.email, company: 'Real Estate', user_id: current_user.id)
+	 	redirect_to realestate_path, notice: 'Thank you for joining the waitlist for future properties.'
 	 end
 
 private

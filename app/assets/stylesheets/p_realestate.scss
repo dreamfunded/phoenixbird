@@ -1,11 +1,18 @@
 .rs-invsts{
-    padding-top: 50px;
+    padding-top: 25px;
 }
 .rs-text{
     font-size: 20px;
+    font-weight: 300;
 }
 .real-estate-bg{
   background-image: url(image_path('template/real_estate/90percent_opacity.jpg'));
+}
+.coming-soon-prperty{
+    border: 1px solid #f3f3f3;
+}
+.rs-waitlist{
+    margin: 25px 0;
 }
 @media (max-width: 767px){
 

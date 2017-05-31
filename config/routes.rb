@@ -190,6 +190,8 @@ Rails.application.routes.draw do
   get '/my_campaigns', to: "users#campaign"
   get '/my_group', to: "users#my_group"
 
+  get '/real_estate_waitlist', to: 'users#real_estate_waitlist', as: :real_estate_waitlist
+
   post '/marketplace_signup', to: 'guests#marketplace'
 
   get 'homes/faq', to: "home#faq", as: :faq
