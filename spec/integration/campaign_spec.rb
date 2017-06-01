@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'create new campaign'  do
     let(:user) { FactoryGirl.create :user }
     let(:company_attr) { FactoryGirl.attributes_for :company }
-    let(:campaign_attr) { FactoryGirl.attributes_for :company }
+    let(:campaign_attr) { FactoryGirl.attributes_for :campaign }
 
 
 
@@ -18,7 +18,7 @@ feature 'create new campaign'  do
         visit campaign_basics_path
         fill_in 'company_name', with: company_attr[:name]
         fill_in 'tagline', with: campaign_attr[:tagline]
-        #select('Art', :from => 'company_category')
+        select('Art', :from => 'company_category')
         fill_in 'company_description', with: company_attr[:description]
         click_on 'Continue'
         expect(page).to have_content('Campaign Details')
@@ -43,5 +43,10 @@ feature 'create new campaign'  do
 
         click_on "Complete"
         expect(page).to have_content( company_attr[:name] )
+        expect(page).to have_content( campaign_attr[:tagline] )
+        expect(page).to have_content( campaign_attr[:company_location_city] + ', ' +  campaign_attr[:company_location_state])
+        expect(page).to have_content(company_attr[:description])
+        expect(page).to have_content( campaign_attr[:elevator_pitch] )
+        expect(page).to have_content( campaign_attr[:about_campaign] )
     end
 end

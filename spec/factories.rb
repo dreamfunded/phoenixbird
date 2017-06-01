@@ -20,7 +20,7 @@ FactoryGirl.define do
 
     elevator_pitch { Faker::Lorem.paragraph }
     about_campaign { Faker::Lorem.paragraph }
-    employees_numer { Faker::Config.random }
+    employees_numer { Faker::Number.number(1) }
 
     state_where_incorporated { Faker::Address.state_abbr }
     company_location_address {Faker::Address.street_address}
