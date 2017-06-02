@@ -20,7 +20,7 @@ class HomeController < ApplicationController
 		if current_user == nil
 			redirect_to "/users/sign_up"
 		else
-			redirect_to "/companies"
+			redirect_to "/realestate"
 		end
 	end
 
