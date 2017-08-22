@@ -12,6 +12,17 @@ ActiveAdmin.register Guest  do
 
   end
 
+  batch_action :example_action, form: {
+                                              comment: :text,
+                                              comment: :select,
+                                              send_now: :checkbox
+                                            } do |ids, inputs|
+    # load selected trips
+    guests = Guest.find(ids) # selected trips
+    guests.update_all()
+    redirect_to admin_guests_path
+  end
+
 # config.filters = false
 filter :company, as: 'select', collection: proc { Company.all_accredited.pluck(:name) }
 
@@ -19,10 +30,12 @@ permit_params  :user_id, :email, :name, :created_at, :updated_at
 
 
   index :title => 'Waitlist' do
+    selectable_column
+    column "id"
     column  "name"
     column  "email"
     column("User") { |guest| link_to(guest.user.name, admin_user_path(guest.user)) if guest.user}
-    column  "company"
+    column  "com pany"
     column  "created_at"
     actions
   end

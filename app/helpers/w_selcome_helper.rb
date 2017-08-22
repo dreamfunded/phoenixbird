@@ -1,0 +1,2 @@
+module WSelcomeHelper
+end

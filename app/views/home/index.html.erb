@@ -108,7 +108,9 @@
                     <div class="compthumb__tags">
                       <div class="compthumb__tag __blue"><span><%= company.category%></span></div>
                       <div class="compthumb__tag __blue"><span>DEBT</span></div>
-                      <div class="compthumb__tag __yellow"><span>loan repaid</span></div>
+                      <% unless company.status == 2 %>
+                        <div class="compthumb__tag __yellow"><span>loan repaid</span></div>
+                      <% end %>
                     </div>
                   </div>
 
