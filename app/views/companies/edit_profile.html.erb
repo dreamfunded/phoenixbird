@@ -70,34 +70,40 @@
 						<p class= "twenty no-margin center"><span class= "darkblue twenty">Real Estate</span> </p>
 						<%= f.select( :real_estate, [["Yes", true],["No", false] ], include_blank: true)  %>
 					</div>
-
+					<hr>
 					<div>
 						<p class= "twenty no-margin center"><%= f.number_field :invested_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Invested </span> </p>
 					</div>
+					<hr>
 					<div>
 						<p class= "twenty no-margin center"><%= f.text_field :min_investment, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Minimum Investment: </span> </p>
 					</div>
+					<hr>
 					<div>
 						<p class= "twenty no-margin center"><%= f.number_field :goal_amount, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Goal Amount </span> </p>
 					</div>
 				</div>
+				<hr>
 				<div>
 					<p class= "twenty no-margin center"><%= f.date_field :end_date, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Days Left</span></p>
 				</div>
+				<hr>
 				<div>
 					<p class= "twenty no-margin center"><%= f.number_field :position, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Position</span></p>
 				</div>
+				<hr>
 				<div>
 					<p class= "twenty no-margin center"><%= f.number_field :display, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Homepage Position</span></p>
 				</div>
+				<hr>
 				<div>
 					<p class= "twenty no-margin center"><%= f.text_field :video_link, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">Video Link</span></p>
 				</div>
-
+				<hr>
 				<div>
 					<p class= "twenty no-margin center"><%= f.text_field :fund_america_code, :class => 'input-box no-margin center' %><br><span class= "darkblue twenty">FundAmerica Code</span></p>
 				</div>
-
+				<hr>
 					<div>
 						<p class= "twenty no-margin center"><%= "%.1f" % @progress %>%<br><span class= "darkblue twenty">Funded<span></p>
 					</div>
