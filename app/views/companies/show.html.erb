@@ -65,12 +65,12 @@
                 <% if user_signed_in? %>
                     <%if @company.accredited %>
                         <% if @company.status == 2 %>
-                            <!-- <button type="button" data-fa-invest-now="<%#= @company.fund_america_code%>" class=" company-button profile-button mail-to-button" >
-                                Invest in <%#= @company.name %>
-                            </button> -->
-                            <div class="investTop__btn">
-                              <%= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), :"data-no-turbolink" => true, class: 'btn btn-blue fw-btn' %>
-                            </div>
+                            <button type="button" data-fa-invest-now="<%= @company.fund_america_code%>" class="btn btn-blue fw-btn" >
+                                Invest in <%= @company.name %>
+                            </button>
+                           <!--  <div class="investTop__btn">
+                              <%#= link_to "Invest in #{@company.name}", invest_path(@company.slug, :anchor => "pay-form"), :"data-no-turbolink" => true, class: 'btn btn-blue fw-btn' %>
+                            </div> -->
                         <%else%>
                             <br><br><br><br>
                             <h2 class='waitlist_thankyou_text investTop__subtitle'></h2>
