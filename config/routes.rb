@@ -103,7 +103,6 @@ Rails.application.routes.draw do
 
   get '/realestate', to: "companies#realestate", as: "realestate"
 
-
   match "/diversity-tech-angels-earn-wings/" => redirect("https://dreamfundedsf.wpengine.com/diversity-tech-angels-earn-wings/"), via: 'get'
 
   get 'payment/index'

@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def realestate
-		@companies = Company.real_estate
+		redirect_to 'https://realtyreturns.com/'
 	end
 
 	def company_profile
