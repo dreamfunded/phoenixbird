@@ -83,31 +83,31 @@
 </div> -->
 
 
-<div class="mainCompanies">
+<!-- <div class="mainCompanies">
   <div class="container">
     <!-- <div class="block-title">
       <h3>Investment Opportunities</h3>
     </div> -->
 
-    <div class="mainCompanies__cnt">
+<!--     <div class="mainCompanies__cnt">
       <div class="row">
         <div class="">
 
-          <% @companies.each do |company| %>
-          <% if company.status == 2%>
-            <%= link_to company_path(company) do %>
+          <%# @companies.each do |company| %>
+          <%# if company.status == 2%>
+            <%#= link_to company_path(company) do %> -->
                 <!-- <div class="col-md-4 col-sm-6">
                       <div class="compthumb">
                           <div class="compthumb__img ofit-block">
-                              <%= image_tag(company.cover.url) %>
+                              <%#= image_tag(company.cover.url) %>
                           </div>
 
                         <div class="compthumb__cnt">
 
-                          <div class="compthumb__name"> <%= link_to company.name, company_path(company) %> </div>
-                          <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
+                          <div class="compthumb__name"> <%#= link_to company.name, company_path(company) %> </div>
+                          <div class="compthumb__desc"><span><%#= company.campaign.tagline %></span></div>
                           <div class="compthumb__tags">
-                            <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
+                            <div class="compthumb__tag __blue"><span><%#= company.category %></span></div>
                             <div class="compthumb__tag __blue"><span>DEBT</span></div>
                           </div>
                         </div>
@@ -115,7 +115,7 @@
 
                               <div class="compthumb__footer__block" >
                                 <div class="compthumb__footer__title"><span>Raised</span></div>
-                                <div class="compthumb__footer__num"><span><%= number_to_currency company.invested_amount, precision: 0 %></span></div>
+                                <div class="compthumb__footer__num"><span><%#= number_to_currency company.invested_amount, precision: 0 %></span></div>
                               </div>
 
 
@@ -128,19 +128,19 @@
                         </div>
                       </div>
                 </div> -->
-            <% end %>
-          <% else %>
+            <%# end %>
+          <%# else %>
               <!-- <div class="col-md-4 col-sm-6">
                       <div class="compthumb">
                           <div class="compthumb__img ofit-block">
-                              <%= image_tag(company.cover.url) %>
+                              <%#= image_tag(company.cover.url) %>
                           </div>
                         <div class="compthumb__cnt">
 
-                          <div class="compthumb__name"> <a><%=  company.name %></a> </div>
-                          <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
+                          <div class="compthumb__name"> <a><%#=  company.name %></a> </div>
+                          <div class="compthumb__desc"><span><%#= company.campaign.tagline %></span></div>
                           <div class="compthumb__tags">
-                            <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
+                            <div class="compthumb__tag __blue"><span><%#= company.category %></span></div>
                             <div class="compthumb__tag __blue"><span>DEBT</span></div>
                             <div class="compthumb__tag __yellow"><span>loan repaid</span></div>
                           </div>
@@ -149,7 +149,7 @@
 
                               <div class="compthumb__footer__block" >
                                 <div class="compthumb__footer__title"><span>Raised</span></div>
-                                <div class="compthumb__footer__num"><span><%= number_to_currency company.goal_amount, precision: 0 %></span></div>
+                                <div class="compthumb__footer__num"><span><%#= number_to_currency company.goal_amount, precision: 0 %></span></div>
                               </div>
 
                               <div class="compthumb__footer__block" >
@@ -160,22 +160,22 @@
                         </div>
                       </div>
               </div> -->
-          <% end %>
-        <% end %>
+          <%# end %>
+        <%# end %>
 
 
 
 
 
-        </div>
+       <!--  </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- <div class="mainCompanies__btn">
       <div class="mainCompanies__btn__inn"><a href="/realestate" class="btn btn-blue">View More</a></div>
     </div> -->
-  </div>
-</div>
+<!--   </div>
+</div> -->
 
 <!-- <div class="mainFaq">
   <div class="container">
