@@ -1555,7 +1555,7 @@ footer.footer {
   background: #fff;
   border-left: 1px solid #f3f3f3;
   border-right: 1px solid #f3f3f3;
-  border-bottom: 1px solid #f3f3f3;
+  /*border-bottom: 1px solid #f3f3f3;*/
   padding-left: 19px;
   padding-right: 23px;
   padding-top: 28px;
@@ -1589,9 +1589,9 @@ footer.footer {
 }
 .compthumb__desc {
   text-align: center;
-  color: #7b7c85;
+  color: #333;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 600;
   margin-top: 6px;
   height: 42px;
   overflow: hidden;
