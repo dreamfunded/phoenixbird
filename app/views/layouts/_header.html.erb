@@ -5,19 +5,20 @@
     <div class="header__left clearfix"><a href="#" class="header__mob-close visible-xs"></a>
       <div class="header__nav">
         <ul class="reset-list clearfix">
-          <li><%= link_to "Team", members_path %></li>
+          <!-- <li><%#= link_to "Team", members_path %></li> -->
 
-          <!-- <li>
+          <li>
             <div class="header_invstments">
-              <a href="#" class="hidden-xs"><span>Invest</span></a>
+              <a href="#" class="hidden-xs"><span>About</span></a>
               <div class="header__user__drop">
                 <ul class="reset-list">
-                  <li><%= link_to "Real Estate", realestate_path %></li>
-                  <li><%= link_to "Companies", companies_path %></li>
+                  <li><%= link_to "About Us", about_path %></li>
+                  <li><%= link_to "Team", members_path %></li>
+                  <li><%= link_to "News", '/news' %></li>
                   <li><a></a></li>
                 </ul>
             </div>
-          </li> -->
+          </li>
 
           <!-- <li><%= link_to "How It Works", '/how_it_works' %></li>
           <% if current_user %>
