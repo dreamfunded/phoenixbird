@@ -102,46 +102,70 @@
                 <div class="input-row row">
                   <div class="col-xs-6">
                     <div class="input-wrap">
-                      <%= f.password_field(:password, :placeholder => "Password ", required: true, pattern: ".{6,}") %>
+                      <%= f.password_field(:password, :placeholder => "Password ", pattern: ".{6,}") %>
                     </div>
                   </div>
                   <div class="col-xs-6">
                     <div class="input-wrap">
-                      <%= f.password_field(:password_confirmation, :placeholder => "Confirm Password", required: true, pattern: ".{6,}") %>
+                      <%= f.password_field(:password_confirmation, :placeholder => "Confirm Password", pattern: ".{6,}") %>
                     </div>
                   </div>
                 </div>
                 <div class="singup__passdesc"><span>Password must be at least 6 characters</span></div>
               </div>
             </div>
-            <!-- <div class="singup__checks">
+            <div class="singup__checks">
+
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="hidden-input" id="box1" ><span class="checkbox__icon"></span>
                 </label>
                 <div class="checkbox__txt">
-                  <p>I have read the important notice and consent to the Site’s use of <%= link_to 'electronic communications, electronic records, and electronic signatures', asset_path("ElectronicCommunicationsRecordsandSignaturesConsentForm(3).pdf"), target: '_blank' %>.</p>
+                  <p>My net worth is over $1 million, excluding my home.</p>
                 </div>
               </div>
+
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="hidden-input" id="box3" ><span class="checkbox__icon"></span>
                 </label>
                 <div class="checkbox__txt">
-                  <p>I acknowledge that I have reviewed and understand the <%= link_to 'Educational Materials', asset_path("DF_Investor_Guide_2017.pdf"), target: '_blank' %> and understand the risks involved in the offerings on the Site.</p>
+                  <p>My income was $200k+ for the past two years.</p>
 
                 </div>
               </div>
+
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="hidden-input" id="box4" ><span class="checkbox__icon"></span>
                 </label>
                 <div class="checkbox__txt">
-                  <p>I have read and signed the <%= link_to 'Compensation Disclosure', asset_path("compensation.pdf"), target: '_blank' %>.</p>
+                  <p>I invest from an accredited business, family office or VC.</p>
                 </div>
               </div>
-            </div> -->
-            <div class="singup__terms"><span>By signing up you agree with our <%= link_to 'Terms and Conditions', asset_path("DreamFunded.VCTermsConditions(2).pdf"), target: '_blank' %> & <%= link_to 'Privacy Policy', asset_path("DreamFunded_PrivacyPolicy.pdf"), target: '_blank' %></span></div>
+
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="hidden-input" id="box4" ><span class="checkbox__icon"></span>
+                </label>
+                <div class="checkbox__txt">
+                  <p>I am an international investor.</p>
+                </div>
+              </div>
+
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="hidden-input" id="box4" ><span class="checkbox__icon"></span>
+                </label>
+                <div class="checkbox__txt">
+                  <p>I am not accredited, but may invest when the rules change.</p>
+                </div>
+              </div>
+
+
+
+            </div>
+
             <div class="auth__form__btn">
               <div class="auth__form__btn__inn">
                 <%= f.submit("Sign Up", :class => "btn btn-blue" ) %>
@@ -182,11 +206,11 @@
     const form = document.querySelector('#new_user');
     const checkboxes = Array.from(document.querySelectorAll('.checkbox input'));
 
-    function all_checkboxes_checked(){
-      all_checked = true
+    function one_checkbox_checked(){
+      all_checked = false
       checkboxes.forEach( function(checkbox){
-        if(!checkbox.checked){
-          all_checked =  false;
+        if(checkbox.checked){
+          all_checked =  true;
         }
       });
       return all_checked;
@@ -209,7 +233,7 @@
     form.addEventListener('submit', function(e){
       e.preventDefault();
       console.log('form clicked');
-      if(all_checkboxes_checked()){
+      if(one_checkbox_checkedre()){
         //submit form
         this.submit();
       }else{
