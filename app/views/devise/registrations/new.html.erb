@@ -115,7 +115,7 @@
               </div>
             </div>
             <div class="singup__checks">
-
+              <div class='checkbox-error' id='error_explanation'>Select one</div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" class="hidden-input" id="box1" ><span class="checkbox__icon"></span>
@@ -217,11 +217,12 @@
     }
 
     function highlight_checkboxes(){
-      checkboxes.map(function(checkbox){
-        if(checkbox.checked == false){
-          return checkbox.nextSibling.style.borderColor = 'red'
-        }
-      })
+      document.querySelector('.checkbox-error').style.display = 'block'
+      // checkboxes.map(function(checkbox){
+      //   if(checkbox.checked == false){
+      //     return checkbox.nextSibling.style.borderColor = 'red'
+      //   }
+      // })
     }
 
     function remove_red_border(){
@@ -233,7 +234,7 @@
     form.addEventListener('submit', function(e){
       e.preventDefault();
       console.log('form clicked');
-      if(one_checkbox_checkedre()){
+      if(one_checkbox_checked()){
         //submit form
         this.submit();
       }else{

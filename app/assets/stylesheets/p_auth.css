@@ -5,6 +5,10 @@
   padding-top: 154px;
   padding-bottom: 70px;
 }
+.checkbox-error {
+  display: none;
+  margin-bottom: 10px;
+}
 .auth__cnt {
   max-width: 580px;
   margin-left: auto;
