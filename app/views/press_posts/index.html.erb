@@ -15,7 +15,7 @@
                       <%= post.quote %>
                   </div>
                   <br>
-                  <div class="press-post-item press-date"><%= post.date.strftime("%b %e %Y") %></div>
+                  <div class="press-post-item press-date"><%= post.date.strftime("%b %e, %Y") %></div>
 
                   <div class='admin-links-press-post'>
                     <% if current_user != nil && current_user.authority == authority[:Admin] %>
