@@ -60,7 +60,7 @@
     	<% end %>
     </div>
 
-    <h1 class='center'>Funded by Accredited Investors</h1><br>
+    <h1 class='center'>Exited Investments</h1><br>
     <div class='row'>
         <% @funded_companies.each do |company| %>
 
@@ -76,9 +76,9 @@
                       <div class="compthumb__cnt">
                         <div class="compthumb__name"> <a><%= company.name %></a> </div>
                         <div class="compthumb__desc"><span><%= company.campaign.tagline %></span></div>
-                        <div class="compthumb__tags">
+                        <!-- <div class="compthumb__tags">
                           <div class="compthumb__tag __blue"><span><%= company.category %></span></div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="compthumb__footer clearfix">
                         <div class="compthumb__desc funder-by-accredited">Funded by Accredited Investors</div>
