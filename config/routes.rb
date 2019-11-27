@@ -193,7 +193,6 @@ Rails.application.routes.draw do
 
   post '/marketplace_signup', to: 'guests#marketplace'
 
-  get 'homes/faq', to: "home#faq", as: :faq
   get '/legal', to: "home#legal", as: :legal
   get '/contact', to: 'home#contact_us'
   post '/contact_us', to: 'home#contact_us_send_email'
@@ -280,7 +279,6 @@ Rails.application.routes.draw do
   #URLs from old site
   get '/how-it-works', to: 'home#why'
   get '/why-invest-with-dream-funded', to: 'home#why'
-  get '/faq', to: 'home#faq'
   get '/how_it_works', to: 'home#howItWorks'
   get '/about', to: 'home#about'
   get '/privacy_policy', to: 'home#privacy_policy'
