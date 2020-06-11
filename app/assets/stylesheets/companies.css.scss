@@ -988,8 +988,9 @@ hr.div {
   text-shadow: 0 0 5px #444;
 }
 .slide{
-    width: Calc(100% - 196px); /*196px means both sides (left 98px and right 98px)*/
-    margin: 0 auto;
+  /*width: Calc(100% - 196px); */
+  /*196px means both sides (left 98px and right 98px)*/
+  margin: 0 auto;
 }
 
 input[type=range] {

@@ -147,10 +147,8 @@
   width: 40px;
   height: 40px;
   display: block;
-  float: left;
   margin-left: 5px;
   margin-right: 5px;
-  border: 1px solid currentColor;
   -webkit-border-radius: 50%;
      -moz-border-radius: 50%;
           border-radius: 50%;
@@ -192,8 +190,13 @@
 .login__soc a:hover .svg-icon {
   color: #fff;
 }
+.google-button {
+
+}
 .login__soc a.__gp {
   color: #f52934;
+  margin: 0 auto;
+  margin-top: 5px;
 }
 .login__soc a.__in {
   color: #0077bb;
@@ -204,6 +207,14 @@
 .login__soc__inn {
   display: inline-block;
   vertical-align: top;
+  height: 50px;
+  line-height: 49px;
+  min-width: 220px;
+
+  max-width: 220px;
+    border: 1px solid #f52934;
+    border-radius: 4px;
+    margin: 0 auto;
 }
 .singup__top {
   margin-top: -1px;

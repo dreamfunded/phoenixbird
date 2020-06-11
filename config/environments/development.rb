@@ -6,6 +6,9 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.assets.initialize_on_precompile = false
 
+  config.assets.compress = false
+  config.assets.compile = true
+
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -27,7 +30,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = false
+  config.assets.debug = true
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

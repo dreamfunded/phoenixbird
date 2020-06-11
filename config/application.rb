@@ -16,6 +16,11 @@ module Dreamfunded
       g.scaffold_controller "scaffold_controller"
     end
 
+    config.action_dispatch.default_headers = {
+        'Access-Control-Allow-Origin' => 'http://localhost:3000',
+        'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+      }
+
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -30,6 +35,14 @@ module Dreamfunded
     # config.i18n.default_locale = :de
     config.middleware.use "PDFKit::Middleware", :print_media_type => true
     #config.middleware.use Oink::Middleware, :logger => Hodel3000CompliantLogger.new(STDOUT)
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
   end
 end
-
