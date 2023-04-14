@@ -53,7 +53,7 @@ class PaymentsController < ApplicationController
     if tran.resultcode.to_s=="A"
     then
       flash[:message] = tran.result
-      flash[:message] = "Thank you. Your investment has been completed. You will receive an email from DreamFunded within 24 hours or less."
+      flash[:message] = "Thank you. Your investment has been completed. You will receive an email from PhoenixBird within 24 hours or less."
         p "Full result #{tran.result}"
         p "Authcode:  #{tran.authcode} "
         p "AVS Result: #{tran.avs_result} "
