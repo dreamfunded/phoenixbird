@@ -34,7 +34,7 @@ jobs:
         
                               - name: Update Ruby version in Gemfile.lock
       run: bundle update --ruby9.1
-        with:
+
           bundler-cache: true
       # Add or replace database setup steps here
       - name: Set up database schema
