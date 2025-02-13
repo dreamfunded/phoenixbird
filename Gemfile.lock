@@ -490,7 +490,7 @@ DEPENDENCIES
   zip-zip
 
 RUBY VERSION
-   ruby 2.4.6p354
+   Ruby 3.0.0
 
 BUNDLED WITH
    1.16.6
