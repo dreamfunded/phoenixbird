@@ -27,14 +27,15 @@ jobs:
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-      # Add or replace dependency steps here
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@78c01b705fd9d5ad960d432d3a0cfa341d50e410 # v1.17
+        uses: actions/checkout@v4undle install -
+          - name: Set up Ruby
+    uses: ruby/setup-ruby@v1
+    with:
+      ruby-version: '3.0'
+      bundler-cache: true
         
                               - name: Update Ruby version in Gemfile.lock
-      run: bundle update --ruby9.1
-
+ 
           bundler-cache: true
       # Add or replace database setup steps here
       - name: Set up database schema
